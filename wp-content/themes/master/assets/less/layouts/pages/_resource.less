@@ -1,0 +1,80 @@
+.page-template-template-resource{
+	.page-general-info{
+		margin-bottom:30px;
+		
+		h1{
+			&.pageTitle{
+			  font-size: 28px;
+			  color: #005a70;
+			  margin-bottom:0;
+			}
+		}
+		
+		.page-description{
+			
+		}
+		
+	}
+	
+	.filter-wrapper{
+		padding-bottom:12px;
+		border-bottom: solid 1px #e7e7e7;
+	}
+	
+	.resource-container{
+		.resource-item{
+			margin-bottom:50px;
+			
+			.resource-thumbnail{
+				margin-bottom:13px;
+			}
+			
+			.resource-title-wrapper{
+				position:relative;
+				margin-bottom:23px;
+				
+				.resource-title{
+				  font-size: 14px;
+				  padding-right:27px;
+				}
+				
+				.resource-note{
+					position:absolute;
+					right:0;
+					top:0;
+					.icon-note{
+						width:20px;
+						height:20px;
+						background:url(../img/common/icon_notes.png) no-repeat center;
+						background-size:cover;
+					}
+				}
+			}
+			
+			.resource-type{
+			  font-size: 12px;
+			  line-height: 1.33;
+			  color: #666666;
+			}
+			
+			.resource-download-wrapper{
+				a{
+					&.btn_single_download{
+						padding:5px 5px 5px 13px;
+						color:#fff;
+						background:url(../img/common/bg_gradient_download.png) repeat-x;
+						background-size:100% auto;
+						&:before{
+							content:"";
+							width:24px;
+							height:24px;
+							background:url(../img/common/ic-file-download-white@2x.png) no-repeat center;
+							background-size:24px auto;
+							padding-right:5px;
+						}
+					}
+				}
+			}
+		}
+	}
+}
