@@ -7039,6 +7039,17 @@ footer.content-info .footer-wrapper .footer-copyright {
 .page-template-template-resource .filter-wrapper {
   padding-bottom: 12px;
   border-bottom: solid 1px #e7e7e7;
+  margin-bottom: 20px;
+}
+.page-template-template-resource .filter-wrapper .filter-select {
+  padding: 0;
+}
+.page-template-template-resource .filter-wrapper .filter-select .filter-item {
+  float: left;
+  margin-right: 10px;
+}
+.page-template-template-resource .filter-wrapper .view-option {
+  padding: 0;
 }
 .page-template-template-resource .resource-container .resource-item {
   margin-bottom: 50px;
@@ -7070,13 +7081,19 @@ footer.content-info .footer-wrapper .footer-copyright {
   font-size: 12px;
   line-height: 1.33;
   color: #666666;
+  margin-bottom: 10px;
 }
 .page-template-template-resource .resource-container .resource-item .resource-download-wrapper a.btn_single_download {
-  padding: 5px 5px 5px 13px;
+  padding: 5px 13px 5px 35px;
   color: #fff;
   background: url(../img/common/bg_gradient_download.png) repeat-x;
-  -webkit-background-size: 100% auto;
-          background-size: 100% auto;
+  -webkit-background-size: contain;
+          background-size: contain;
+  border-radius: 2px;
+  display: inline-block;
+  -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  position: relative;
 }
 .page-template-template-resource .resource-container .resource-item .resource-download-wrapper a.btn_single_download:before {
   content: "";
@@ -7086,6 +7103,10 @@ footer.content-info .footer-wrapper .footer-copyright {
   -webkit-background-size: 24px auto;
           background-size: 24px auto;
   padding-right: 5px;
+  display: inline-block;
+  position: absolute;
+  top: 5px;
+  left: 5px;
 }
 /* Slider */
 .slick-slider {

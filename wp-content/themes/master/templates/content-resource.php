@@ -18,8 +18,35 @@
 		<div class="page-description">Optional text for the content. The chief executive of a British company at the centre of allegations of electoral interference boasted about using "beautiful Ukrainian girls" to entrap the political opponents of clients. Alexander Nix was filmed saying that Cambridge Analytica would offer bribes to smear opponents </div>
 	</div>
 	<div class="filter-wrapper clearfix">	
-		<div class="col-md-9">filter</div>
-		<div class="col-md-3">view</div>
+		<div class="col-md-9 filter-select">
+			<div class="filter-item">
+				<select>
+					<option>All Books</option>
+					<option>Books 1</option>
+					<option>Books 2</option>
+					<option>Books 3</option>
+				</select>
+			</div>
+			<div class="filter-item">
+				<select>
+					<option>All Chapters</option>
+					<option>Chapters 1</option>
+					<option>Chapters 2</option>
+					<option>Chapters 3</option>
+				</select>
+			</div>
+			<div class="filter-item">
+				<select>
+					<option>3rd Filter (Optional)</option>
+					<option>Filter 1</option>
+					<option>Filter 2</option>
+					<option>Filter 3</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-md-3 view-option">
+			
+		</div>
 	</div>
 	<div class="resource-container clearfix">
 		<div class="col-md-3 resource-item">
