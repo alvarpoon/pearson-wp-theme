@@ -1,0 +1,23 @@
+body{
+	font-family: 'Open Sans', sans-serif;
+	color: #505759;
+}
+
+a{
+	text-underline-position: under;
+}
+
+.main{
+	float:none!important;
+}
+
+.clearfix{
+	zoom: 1; // For IE 6/7 (trigger hasLayout)   
+	&:before, &:after {     
+		content: "";     
+		display: table;   
+	}   
+	&:after {     
+		clear:both;   
+	} 
+}
