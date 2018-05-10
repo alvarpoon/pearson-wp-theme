@@ -37,7 +37,7 @@ else if($_SERVER['SERVER_NAME'] == "pearson.catus.tech"){
 	define('DB_NAME', 'pearson');
 
 	/** MySQL database username */
-	define('DB_USER', 'catus');
+	define('DB_USER', 'root');
 
 	/** MySQL database password */
 	define('DB_PASSWORD', 'catus');
