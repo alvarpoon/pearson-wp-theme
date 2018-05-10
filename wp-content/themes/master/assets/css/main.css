@@ -6776,6 +6776,18 @@ a {
 .form-horizontal .comment-form p:after {
   clear: both;
 }
+.breadcrumb {
+  background: #fff;
+  padding: 0;
+  border-radius: 0;
+  margin-top: 5px;
+}
+.breadcrumb > li + li:before {
+  content: "\003e";
+}
+.breadcrumb a {
+  color: #505759;
+}
 .comment-list ol {
   list-style: none;
 }
@@ -7048,8 +7060,70 @@ footer.content-info .footer-wrapper .footer-copyright {
   float: left;
   margin-right: 10px;
 }
-.page-template-template-resource .filter-wrapper .view-option {
+.page-template-template-resource .filter-wrapper .view-option-wrapper {
   padding: 0;
+  text-align: right;
+}
+.page-template-template-resource .filter-wrapper .view-option-wrapper .view-option {
+  float: right;
+}
+.page-template-template-resource .filter-wrapper .view-option-wrapper .view-option a {
+  border: 1px solid #cccccc;
+  display: inline-block;
+  font-size: 15px;
+  padding: 5px 17px 5px 37px;
+  position: relative;
+  color: #505759;
+  float: left;
+  background: url(../img/common/bg_gradient_view.png) repeat-x;
+  -webkit-background-size: contain;
+          background-size: contain;
+}
+.page-template-template-resource .filter-wrapper .view-option-wrapper .view-option a.btn_list {
+  border-radius: 2px 0 0 2px;
+  border-right: none;
+}
+.page-template-template-resource .filter-wrapper .view-option-wrapper .view-option a.btn_list:before {
+  content: "";
+  background: url(../img/common/ic-list@2x.png) no-repeat;
+  -webkit-background-size: cover;
+          background-size: cover;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 4px;
+  left: 5px;
+}
+.page-template-template-resource .filter-wrapper .view-option-wrapper .view-option a.btn_list.active:before {
+  background: url(../img/common/ic-list-blue@2x.png) no-repeat;
+  -webkit-background-size: cover;
+          background-size: cover;
+}
+.page-template-template-resource .filter-wrapper .view-option-wrapper .view-option a.btn_grid {
+  border-radius: 0 2px 2px 0;
+}
+.page-template-template-resource .filter-wrapper .view-option-wrapper .view-option a.btn_grid:before {
+  content: "";
+  background: url(../img/common/ic-view-module@2x.png) no-repeat;
+  -webkit-background-size: cover;
+          background-size: cover;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 4px;
+  left: 5px;
+}
+.page-template-template-resource .filter-wrapper .view-option-wrapper .view-option a.btn_grid.active:before {
+  background: url(../img/common/ic-view-module-blue@2x.png) no-repeat;
+  -webkit-background-size: cover;
+          background-size: cover;
+}
+.page-template-template-resource .filter-wrapper .view-option-wrapper .view-option a.active {
+  background: #fff!important;
+  color: #007fa3;
+}
+.page-template-template-resource .filter-wrapper .view-option-wrapper .view-option a:hover {
+  text-decoration: none;
 }
 .page-template-template-resource .resource-container .resource-item {
   margin-bottom: 50px;
