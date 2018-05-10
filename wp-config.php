@@ -20,13 +20,31 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define('DB_NAME', 'pearson');
+if ($_SERVER['SERVER_NAME'] == "local.pearson-master.com") {
+	/** The name of the database for WordPress */
+	define('DB_NAME', 'pearson');
 
-/** MySQL database username */
-define('DB_USER', 'root');
+	/** MySQL database username */
+	define('DB_USER', 'root');
 
-/** MySQL database password */
-define('DB_PASSWORD', 'root');
+	/** MySQL database password */
+	define('DB_PASSWORD', 'root');
+	define( 'WP_SITEURL',  'http://local.pearson-master.com' );
+	define( 'WP_HOME', 'http:/local.pearson-master.com' );
+}
+else if($_SERVER['SERVER_NAME'] == "pearson.catus.tech"){
+	/** The name of the database for WordPress */
+	define('DB_NAME', 'pearson');
+
+	/** MySQL database username */
+	define('DB_USER', 'catus');
+
+	/** MySQL database password */
+	define('DB_PASSWORD', 'catus');
+	define( 'WP_SITEURL',  'http://pearson.catus.tech' );
+	define( 'WP_HOME', 'http://pearson.catus.tech' );
+}
+
 
 /** MySQL hostname */
 define('DB_HOST', 'localhost');
