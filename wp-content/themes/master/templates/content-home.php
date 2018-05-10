@@ -1,7 +1,7 @@
 <?php //the_content(); ?>
 <?php //wp_link_pages(array('before' => '<nav class="pagination">', 'after' => '</nav>')); ?>
 
-<div class="home-top-banner">
+<div class="top-banner-container">
 	<img src="<?=get_stylesheet_directory_uri()?>/assets/img/home/banner-top.png" class="img-responsive" />
 </div>
 
