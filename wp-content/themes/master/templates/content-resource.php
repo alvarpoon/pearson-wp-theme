@@ -44,8 +44,11 @@
 				</select>
 			</div>
 		</div>
-		<div class="col-md-3 view-option">
-			
+		<div class="col-md-3 view-option-wrapper">
+			<div class="view-option clearfix">
+				<a href="#" class="btn_list">List</a>
+				<a href="#" class="btn_grid active">Grid</a>
+			</div>
 		</div>
 	</div>
 	<div class="resource-container clearfix">

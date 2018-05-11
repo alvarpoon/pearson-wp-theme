@@ -29,8 +29,77 @@
 			}
 		}
 		
-		.view-option{
+		.view-option-wrapper{
 			padding:0;
+			text-align:right;
+			
+			.view-option{
+				float:right;
+			
+				a{
+					border:1px solid #cccccc;
+					display:inline-block;
+					font-size:15px;
+					padding:5px 17px 5px 37px;
+					position:relative;
+					color:#505759;
+					float:left;
+					background:url(../img/common/bg_gradient_view.png) repeat-x;
+					background-size: contain;
+				
+					&.btn_list{
+						border-radius:2px 0 0 2px;
+						border-right:none;
+						&:before{
+							content:"";
+							background:url(../img/common/ic-list@2x.png) no-repeat;
+							background-size:cover;
+							width:24px;
+							height:24px;
+							position:absolute;
+							top:4px;
+							left:5px;
+						}
+						
+						&.active{
+							&:before{
+								background:url(../img/common/ic-list-blue@2x.png) no-repeat;
+								background-size:cover;
+							}
+						}
+					}
+					
+					&.btn_grid{
+						border-radius:0 2px 2px 0;
+						&:before{
+							content:"";
+							background:url(../img/common/ic-view-module@2x.png) no-repeat;
+							background-size:cover;
+							width:24px;
+							height:24px;
+							position:absolute;
+							top:4px;
+							left:5px;
+						}
+						
+						&.active{
+							&:before{
+								background:url(../img/common/ic-view-module-blue@2x.png) no-repeat;
+								background-size:cover;
+							}
+						}
+					}
+					
+					&.active{
+						background:#fff!important;
+						color:#007fa3;
+					}
+					
+					&:hover{
+						text-decoration:none;
+					}
+				}
+			}
 		}
 	}
 	
