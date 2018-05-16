@@ -54,337 +54,40 @@
 		</div>
 	</div>
 	<div class="resource-container clearfix">
-		<div class="col-md-3 resource-item">
-			<div class="resource-thumbnail">
-				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
-			</div>
-			<div class="resource-title-wrapper">
-				<div class="resource-title">A multiple sample files for download</div>
-				<div class="resource-note">
-					<div class="icon-note"></div>
-					<div class="note-content"></div>
-				</div>
-			</div>
-			<div class="resource-type">File Downlaod</div>
-			<div class="resource-download-wrapper">
-				<a href="#" class="btn_single_download">Download</a>
-			</div>
+		<div class="clearfix resource-header">
+			<div class="col-xs-9 col-sm-10 col-md-5 no-padding">Items</div>
+			<div class="col-xs-3 col-sm-2 col-md-7 no-padding">Download</div>
 		</div>
-		<div class="col-md-3 resource-item">
-			<div class="resource-thumbnail">
-				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/multiiple@2x.png" class="img-responsive" />
-			</div>
-			<div class="resource-title-wrapper">
-				<div class="resource-title">A multiple sample files for download</div>
-				<div class="resource-note">
-					<div class="icon-note"></div>
-					<div class="note-content"></div>
-				</div>
-			</div>
-			<div class="resource-type">File Downlaod</div>
-			<div class="resource-download-wrapper">
-				<div class="multiple_download">
-					<div class="multiple_dl_header">Download</div>
-					<div class="multiple_dl_content">
-						<ul>
-							<li><a href="#">long item name here max 2 lines</a></li>
-							<li><a href="#">Item 2</a></li>
-							<li><a href="#">Item 3</a></li>
-							<li><a href="#">Item 4</a></li>
-							<li><a href="#">Item 5</a></li>
-							<li><a href="#">Download All (5 files)</a></li>
-						</ul>
+		<div class="resource-item single-file">
+			<div class="resource-title-wrapper col-xs-9 col-sm-10 col-md-5">
+				<div class="clearfix">
+					<table cellpadding="0" cellspacing="0" border="0" width="90%">
+						<tr>
+							<td>
+								<div class="resource-title-div">
+									<div class="resource-title">A multiple sample files for download</div>
+									<div class="resource-category">Category name</div>
+								</div>
+							</td>
+							<td>
+								<a href="#" style="display:inline-block; width:100px; height:28px;">listen</a>
+								<a href="#" style="display:inline-block; width:100px; height:28px;">listen</a>
+							</td>
+						</tr>
+					</table>
+					<div class="resource-note">
+						<div class="icon-note"></div>
+						<div class="note-content"></div>
 					</div>
 				</div>
-				<!--<a href="#" class="btn_single_download">Download</a>-->
 			</div>
-		</div>
-		<div class="col-md-3 resource-item">
-			<div class="resource-thumbnail">
-				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
-			</div>
-			<div class="resource-title-wrapper">
-				<div class="resource-title">A multiple sample files for download</div>
-				<div class="resource-note">
-					<div class="icon-note"></div>
-					<div class="note-content"></div>
-				</div>
-			</div>
-			<div class="resource-type">File Downlaod</div>
-			<div class="resource-download-wrapper">
-				<a href="#" class="btn_single_download">Download</a>
-			</div>
-		</div>
-		<div class="col-md-3 resource-item">
-			<div class="resource-thumbnail">
-				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
-			</div>
-			<div class="resource-title-wrapper">
-				<div class="resource-title">A multiple sample files for download</div>
-				<div class="resource-note">
-					<div class="icon-note"></div>
-					<div class="note-content"></div>
-				</div>
-			</div>
-			<div class="resource-type">File Downlaod</div>
-			<div class="resource-download-wrapper">
-				<a href="#" class="btn_single_download">Download</a>
-			</div>
-		</div>
-		<div class="col-md-3 resource-item">
-			<div class="resource-thumbnail">
-				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
-			</div>
-			<div class="resource-title-wrapper">
-				<div class="resource-title">A multiple sample files for download</div>
-				<div class="resource-note">
-					<div class="icon-note"></div>
-					<div class="note-content"></div>
-				</div>
-			</div>
-			<div class="resource-type">File Downlaod</div>
-			<div class="resource-download-wrapper">
-				<a href="#" class="btn_single_download">Download</a>
-			</div>
-		</div>
-		<div class="col-md-3 resource-item">
-			<div class="resource-thumbnail">
-				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
-			</div>
-			<div class="resource-title-wrapper">
-				<div class="resource-title">A multiple sample files for download</div>
-				<div class="resource-note">
-					<div class="icon-note"></div>
-					<div class="note-content"></div>
-				</div>
-			</div>
-			<div class="resource-type">File Downlaod</div>
-			<div class="resource-download-wrapper">
-				<a href="#" class="btn_single_download">Download</a>
-			</div>
-		</div>
-		<div class="col-md-3 resource-item">
-			<div class="resource-thumbnail">
-				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
-			</div>
-			<div class="resource-title-wrapper">
-				<div class="resource-title">A multiple sample files for download</div>
-				<div class="resource-note">
-					<div class="icon-note"></div>
-					<div class="note-content"></div>
-				</div>
-			</div>
-			<div class="resource-type">File Downlaod</div>
-			<div class="resource-download-wrapper">
-				<a href="#" class="btn_single_download">Download</a>
-			</div>
-		</div>
-		<div class="col-md-3 resource-item">
-			<div class="resource-thumbnail">
-				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
-			</div>
-			<div class="resource-title-wrapper">
-				<div class="resource-title">A multiple sample files for download</div>
-				<div class="resource-note">
-					<div class="icon-note"></div>
-					<div class="note-content"></div>
-				</div>
-			</div>
-			<div class="resource-type">File Downlaod</div>
-			<div class="resource-download-wrapper">
-				<a href="#" class="btn_single_download">Download</a>
-			</div>
-		</div>
-		<div class="col-md-3 resource-item">
-			<div class="resource-thumbnail">
-				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
-			</div>
-			<div class="resource-title-wrapper">
-				<div class="resource-title">A multiple sample files for download</div>
-				<div class="resource-note">
-					<div class="icon-note"></div>
-					<div class="note-content"></div>
-				</div>
-			</div>
-			<div class="resource-type">File Downlaod</div>
-			<div class="resource-download-wrapper">
-				<a href="#" class="btn_single_download">Download</a>
-			</div>
-		</div>
-		<div class="col-md-3 resource-item">
-			<div class="resource-thumbnail">
-				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
-			</div>
-			<div class="resource-title-wrapper">
-				<div class="resource-title">A multiple sample files for download</div>
-				<div class="resource-note">
-					<div class="icon-note"></div>
-					<div class="note-content"></div>
-				</div>
-			</div>
-			<div class="resource-type">File Downlaod</div>
-			<div class="resource-download-wrapper">
-				<a href="#" class="btn_single_download">Download</a>
-			</div>
-		</div>
-		<div class="col-md-3 resource-item">
-			<div class="resource-thumbnail">
-				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
-			</div>
-			<div class="resource-title-wrapper">
-				<div class="resource-title">A multiple sample files for download</div>
-				<div class="resource-note">
-					<div class="icon-note"></div>
-					<div class="note-content"></div>
-				</div>
-			</div>
-			<div class="resource-type">File Downlaod</div>
-			<div class="resource-download-wrapper">
-				<a href="#" class="btn_single_download">Download</a>
-			</div>
-		</div>
-		<div class="col-md-3 resource-item">
-			<div class="resource-thumbnail">
-				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
-			</div>
-			<div class="resource-title-wrapper">
-				<div class="resource-title">A multiple sample files for download</div>
-				<div class="resource-note">
-					<div class="icon-note"></div>
-					<div class="note-content"></div>
-				</div>
-			</div>
-			<div class="resource-type">File Downlaod</div>
-			<div class="resource-download-wrapper">
-				<a href="#" class="btn_single_download">Download</a>
-			</div>
-		</div>
-		<div class="col-md-3 resource-item">
-			<div class="resource-thumbnail">
-				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
-			</div>
-			<div class="resource-title-wrapper">
-				<div class="resource-title">A multiple sample files for download</div>
-				<div class="resource-note">
-					<div class="icon-note"></div>
-					<div class="note-content"></div>
-				</div>
-			</div>
-			<div class="resource-type">File Downlaod</div>
-			<div class="resource-download-wrapper">
-				<a href="#" class="btn_single_download">Download</a>
-			</div>
-		</div>
-		<div class="col-md-3 resource-item">
-			<div class="resource-thumbnail">
-				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
-			</div>
-			<div class="resource-title-wrapper">
-				<div class="resource-title">A multiple sample files for download</div>
-				<div class="resource-note">
-					<div class="icon-note"></div>
-					<div class="note-content"></div>
-				</div>
-			</div>
-			<div class="resource-type">File Downlaod</div>
-			<div class="resource-download-wrapper">
-				<a href="#" class="btn_single_download">Download</a>
-			</div>
-		</div>
-		<div class="col-md-3 resource-item">
-			<div class="resource-thumbnail">
-				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
-			</div>
-			<div class="resource-title-wrapper">
-				<div class="resource-title">A multiple sample files for download</div>
-				<div class="resource-note">
-					<div class="icon-note"></div>
-					<div class="note-content"></div>
-				</div>
-			</div>
-			<div class="resource-type">File Downlaod</div>
-			<div class="resource-download-wrapper">
-				<a href="#" class="btn_single_download">Download</a>
-			</div>
-		</div>
-		<div class="col-md-3 resource-item">
-			<div class="resource-thumbnail">
-				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
-			</div>
-			<div class="resource-title-wrapper">
-				<div class="resource-title">A multiple sample files for download</div>
-				<div class="resource-note">
-					<div class="icon-note"></div>
-					<div class="note-content"></div>
-				</div>
-			</div>
-			<div class="resource-type">File Downlaod</div>
-			<div class="resource-download-wrapper">
-				<a href="#" class="btn_single_download">Download</a>
-			</div>
-		</div>
-		<div class="col-md-3 resource-item">
-			<div class="resource-thumbnail">
-				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
-			</div>
-			<div class="resource-title-wrapper">
-				<div class="resource-title">A multiple sample files for download</div>
-				<div class="resource-note">
-					<div class="icon-note"></div>
-					<div class="note-content"></div>
-				</div>
-			</div>
-			<div class="resource-type">File Downlaod</div>
-			<div class="resource-download-wrapper">
-				<a href="#" class="btn_single_download">Download</a>
-			</div>
-		</div>
-		<div class="col-md-3 resource-item">
-			<div class="resource-thumbnail">
-				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
-			</div>
-			<div class="resource-title-wrapper">
-				<div class="resource-title">A multiple sample files for download</div>
-				<div class="resource-note">
-					<div class="icon-note"></div>
-					<div class="note-content"></div>
-				</div>
-			</div>
-			<div class="resource-type">File Downlaod</div>
-			<div class="resource-download-wrapper">
-				<a href="#" class="btn_single_download">Download</a>
-			</div>
-		</div>
-		<div class="col-md-3 resource-item">
-			<div class="resource-thumbnail">
-				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
-			</div>
-			<div class="resource-title-wrapper">
-				<div class="resource-title">A multiple sample files for download</div>
-				<div class="resource-note">
-					<div class="icon-note"></div>
-					<div class="note-content"></div>
-				</div>
-			</div>
-			<div class="resource-type">File Downlaod</div>
-			<div class="resource-download-wrapper">
-				<a href="#" class="btn_single_download">Download</a>
-			</div>
-		</div>
-		<div class="col-md-3 resource-item">
-			<div class="resource-thumbnail">
-				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
-			</div>
-			<div class="resource-title-wrapper">
-				<div class="resource-title">A multiple sample files for download</div>
-				<div class="resource-note">
-					<div class="icon-note"></div>
-					<div class="note-content"></div>
-				</div>
-			</div>
-			<div class="resource-type">File Downlaod</div>
-			<div class="resource-download-wrapper">
-				<a href="#" class="btn_single_download">Download</a>
+			<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
+				<a href="#">Download</a>
+				<a href="#">Download</a>
+				<a href="#">Download</a>
+				<a href="#">Download</a>
+				<a href="#">Download</a>
+				<a href="#" class="all">Download</a>
 			</div>
 		</div>
 	</div>

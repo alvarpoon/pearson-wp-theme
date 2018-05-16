@@ -6778,6 +6778,9 @@ a {
 .form-horizontal .comment-form p:after {
   clear: both;
 }
+.no-padding {
+  padding: 0!important;
+}
 .breadcrumb {
   background: #fff;
   padding: 0;
@@ -7198,6 +7201,7 @@ footer.content-info .footer-wrapper .footer-copyright {
 }
 .page-template-template-resource .resource-container .resource-item {
   margin-bottom: 50px;
+  height: 295px;
 }
 .page-template-template-resource .resource-container .resource-item .resource-thumbnail {
   margin-bottom: 13px;
@@ -7320,6 +7324,52 @@ footer.content-info .footer-wrapper .footer-copyright {
   font-size: 15px;
   color: #505759;
   background: url(../img/common/ic-arrow-drop-right.svg) no-repeat center right;
+}
+.page-template-template-resource-list .filter-wrapper {
+  padding-bottom: 0;
+  margin-bottom: 15px;
+  border: none;
+}
+.page-template-template-resource-list .resource-container .resource-header {
+  border-bottom: 1px solid #e7e7e7;
+  padding-bottom: 12px;
+  margin-bottom: 15px;
+}
+.page-template-template-resource-list .resource-container .resource-item .resource-title-wrapper {
+  padding-left: 0;
+}
+.page-template-template-resource-list .resource-container .resource-item .resource-title-wrapper .resource-title-div .resource-type {
+  font-size: 12px;
+  line-height: 1.33;
+  color: #666666;
+  margin-bottom: 10px;
+}
+.page-template-template-resource-list .resource-container .resource-item .resource-title-wrapper .resource-note {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+       -o-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+.page-template-template-resource-list .resource-container .resource-item .resource-title-wrapper .resource-note .icon-note {
+  width: 20px;
+  height: 20px;
+  background: url(../img/common/icon_notes.png) no-repeat center;
+  -webkit-background-size: cover;
+          background-size: cover;
+}
+.page-template-template-resource-list .resource-container .resource-item .file-download-wrapper {
+  padding-right: 0;
+}
+.page-template-template-resource-list .resource-container .resource-item .file-download-wrapper a {
+  display: inline-block;
+}
+@media (min-width: 768px) {
+  .page-template-template-resource .resource-container .resource-item {
+    height: 250px;
+  }
 }
 @media (min-width: 992px) {
   .page-template-template-resource .filter-wrapper .filter-select .filter-item,
