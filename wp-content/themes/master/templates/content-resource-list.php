@@ -48,8 +48,8 @@
 		</div>
 		<div class="col-md-3 view-option-wrapper">
 			<div class="view-option clearfix">
-				<a href="#" class="btn_list">List</a>
-				<a href="#" class="btn_grid active">Grid</a>
+				<a href="#" class="btn_list active">List</a>
+				<a href="#" class="btn_grid">Grid</a>
 			</div>
 		</div>
 	</div>

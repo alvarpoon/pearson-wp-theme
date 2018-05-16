@@ -1,4 +1,4 @@
-.page-template-template-resource{
+.page-template-template-resource, .page-template-template-resource-list{
 	.page-general-info{
 		margin-bottom:30px;
 		
@@ -26,6 +26,7 @@
 			.filter-item{
 				float:left;
 				margin-right:10px;
+				margin-bottom:5px;
 			}
 		}
 		
@@ -103,6 +104,10 @@
 		}
 	}
 	
+}
+
+
+.page-template-template-resource{	
 	.resource-container{
 		.resource-item{
 			margin-bottom:50px;
@@ -140,7 +145,7 @@
 			  margin-bottom:10px;
 			}
 			
-			.resource-download-wrapper{
+			.resource-download-wrapper{			
 				a{
 					&.btn_single_download{
 						padding:5px 13px 5px 35px;
@@ -166,7 +171,119 @@
 						}
 					}
 				}
+				
+				.multiple_download{
+					position:relative;
+					
+					&.opened{
+						.multiple_dl_content{
+							display:block;
+						}
+					}
+					
+					.multiple_dl_header{
+						cursor:pointer;
+						padding:5px 35px;
+						color:#fff;
+						background:url(../img/common/bg_gradient_download.png) repeat-x;
+						background-size: contain;
+						border-radius:2px;
+						display:inline-block;
+						box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+						position:relative;
+						
+						&:before{
+							content:"";
+							width:24px;
+							height:24px;
+							background:url(../img/common/ic-file-download-white@2x.png) no-repeat center;
+							background-size:24px auto;
+							padding-right:5px;
+							display:inline-block;
+							position:absolute;
+							top:5px;
+							left:5px;
+						}
+						
+						&:after{
+							content:"";
+							width: 29px;
+							background: url(../img/common/ic-file-more-white.svg) no-repeat center;
+							border-left: 1px solid #00b2e1;
+							display: inline-block;
+							position: absolute;
+							right: 0;
+							top: 0;
+							height: 100%;
+						}
+					}
+					
+					.multiple_dl_content{
+						border-radius: 5px;
+						background-color: #ffffff;
+					  	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+						position:absolute;
+						z-index:999;
+						display:none;
+						
+						ul{
+							padding:0;
+							margin-bottom:0;
+							li{
+								padding:0;
+								list-style:none;
+								border-bottom:1px solid rgba(0, 0, 0, 0.1);
+								a{
+									display:block;
+									padding:10px 30px 10px 15px;
+									font-size:15px;
+									color:#505759;
+									background:url(../img/common/ic-arrow-drop-right.svg) no-repeat center right;
+								}
+							}
+						}
+					}
+				}
 			}
 		}
 	}
+}
+
+.page-template-template-resource-list{
+	
+}
+
+//===============================================================================
+//===============================================================================
+// tablet
+//===============================================================================
+//===============================================================================
+@media (min-width: @screen-sm-min) {
+	
+}
+
+//===============================================================================
+//===============================================================================
+// Desktop
+//===============================================================================
+//===============================================================================
+@media (min-width: @screen-md-min) {
+	.page-template-template-resource, .page-template-template-resource-list{
+		.filter-wrapper{
+			.filter-select{
+				.filter-item{
+					margin-bottom:0;
+				}
+			}
+		}
+	}
+}
+
+//===============================================================================
+//===============================================================================
+// Wide desktop
+//===============================================================================
+//===============================================================================
+@media (min-width: @screen-lg-min) {
+  
 }

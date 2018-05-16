@@ -23,7 +23,31 @@ var Roots = {
   common: {
     init: function() {
       // JavaScript to be fired on all pages
-	  console.log('JS!');
+	  //console.log('JS!');
+	  function initMultipleDownload(){
+		  $('.multiple_download').each(function(){
+			$(this).find('.multiple_dl_header').click(function(){
+				if(!$(this).parent().hasClass('opened')){
+					$(this).parent().addClass('opened');	
+				}
+			});
+		  });
+		  
+		  $(window).on('click touchend', function(event) {
+			var target = $(event.target);
+			if (target.parents('div.multiple_download').length) {
+				console.log('it is in multiple_download');	
+			}else{
+				if($('.multiple_download').hasClass('opened')) {
+					$('.multiple_download').removeClass('opened');
+				}		
+			}				
+		  });
+	  }
+	  
+	  $(document).ready(function(){
+		initMultipleDownload();						 
+	  });
     }
   },
   // Home page
