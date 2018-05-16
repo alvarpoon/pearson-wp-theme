@@ -54,7 +54,7 @@
 		</div>
 	</div>
 	<div class="resource-container clearfix">
-		<div class="col-md-3 resource-item">
+		<div class="col-xs-6 col-sm-4 col-md-3 resource-item">
 			<div class="resource-thumbnail">
 				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
 			</div>
@@ -70,7 +70,7 @@
 				<a href="#" class="btn_single_download">Download</a>
 			</div>
 		</div>
-		<div class="col-md-3 resource-item">
+		<div class="col-xs-6 col-sm-4 col-md-3 resource-item">
 			<div class="resource-thumbnail">
 				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/multiiple@2x.png" class="img-responsive" />
 			</div>
@@ -96,10 +96,9 @@
 						</ul>
 					</div>
 				</div>
-				<!--<a href="#" class="btn_single_download">Download</a>-->
 			</div>
 		</div>
-		<div class="col-md-3 resource-item">
+		<div class="col-xs-6 col-sm-4 col-md-3 resource-item">
 			<div class="resource-thumbnail">
 				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
 			</div>
@@ -115,7 +114,7 @@
 				<a href="#" class="btn_single_download">Download</a>
 			</div>
 		</div>
-		<div class="col-md-3 resource-item">
+		<div class="col-xs-6 col-sm-4 col-md-3 resource-item">
 			<div class="resource-thumbnail">
 				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
 			</div>
@@ -131,7 +130,7 @@
 				<a href="#" class="btn_single_download">Download</a>
 			</div>
 		</div>
-		<div class="col-md-3 resource-item">
+		<div class="col-xs-6 col-sm-4 col-md-3 resource-item">
 			<div class="resource-thumbnail">
 				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
 			</div>
@@ -147,7 +146,7 @@
 				<a href="#" class="btn_single_download">Download</a>
 			</div>
 		</div>
-		<div class="col-md-3 resource-item">
+		<div class="col-xs-6 col-sm-4 col-md-3 resource-item">
 			<div class="resource-thumbnail">
 				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
 			</div>
@@ -163,7 +162,7 @@
 				<a href="#" class="btn_single_download">Download</a>
 			</div>
 		</div>
-		<div class="col-md-3 resource-item">
+		<div class="col-xs-6 col-sm-4 col-md-3 resource-item">
 			<div class="resource-thumbnail">
 				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
 			</div>
@@ -179,7 +178,7 @@
 				<a href="#" class="btn_single_download">Download</a>
 			</div>
 		</div>
-		<div class="col-md-3 resource-item">
+		<div class="col-xs-6 col-sm-4 col-md-3 resource-item">
 			<div class="resource-thumbnail">
 				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
 			</div>
@@ -195,7 +194,7 @@
 				<a href="#" class="btn_single_download">Download</a>
 			</div>
 		</div>
-		<div class="col-md-3 resource-item">
+		<div class="col-xs-6 col-sm-4 col-md-3 resource-item">
 			<div class="resource-thumbnail">
 				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
 			</div>
@@ -211,7 +210,7 @@
 				<a href="#" class="btn_single_download">Download</a>
 			</div>
 		</div>
-		<div class="col-md-3 resource-item">
+		<div class="col-xs-6 col-sm-4 col-md-3 resource-item">
 			<div class="resource-thumbnail">
 				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
 			</div>
@@ -227,7 +226,7 @@
 				<a href="#" class="btn_single_download">Download</a>
 			</div>
 		</div>
-		<div class="col-md-3 resource-item">
+		<div class="col-xs-6 col-sm-4 col-md-3 resource-item">
 			<div class="resource-thumbnail">
 				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
 			</div>
@@ -243,7 +242,7 @@
 				<a href="#" class="btn_single_download">Download</a>
 			</div>
 		</div>
-		<div class="col-md-3 resource-item">
+		<div class="col-xs-6 col-sm-4 col-md-3 resource-item">
 			<div class="resource-thumbnail">
 				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
 			</div>
@@ -259,7 +258,7 @@
 				<a href="#" class="btn_single_download">Download</a>
 			</div>
 		</div>
-		<div class="col-md-3 resource-item">
+		<div class="col-xs-6 col-sm-4 col-md-3 resource-item">
 			<div class="resource-thumbnail">
 				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
 			</div>
@@ -275,7 +274,7 @@
 				<a href="#" class="btn_single_download">Download</a>
 			</div>
 		</div>
-		<div class="col-md-3 resource-item">
+		<div class="col-xs-6 col-sm-4 col-md-3 resource-item">
 			<div class="resource-thumbnail">
 				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
 			</div>
@@ -291,7 +290,7 @@
 				<a href="#" class="btn_single_download">Download</a>
 			</div>
 		</div>
-		<div class="col-md-3 resource-item">
+		<div class="col-xs-6 col-sm-4 col-md-3 resource-item">
 			<div class="resource-thumbnail">
 				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
 			</div>
@@ -307,7 +306,7 @@
 				<a href="#" class="btn_single_download">Download</a>
 			</div>
 		</div>
-		<div class="col-md-3 resource-item">
+		<div class="col-xs-6 col-sm-4 col-md-3 resource-item">
 			<div class="resource-thumbnail">
 				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
 			</div>
@@ -323,7 +322,7 @@
 				<a href="#" class="btn_single_download">Download</a>
 			</div>
 		</div>
-		<div class="col-md-3 resource-item">
+		<div class="col-xs-6 col-sm-4 col-md-3 resource-item">
 			<div class="resource-thumbnail">
 				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
 			</div>
@@ -339,7 +338,7 @@
 				<a href="#" class="btn_single_download">Download</a>
 			</div>
 		</div>
-		<div class="col-md-3 resource-item">
+		<div class="col-xs-6 col-sm-4 col-md-3 resource-item">
 			<div class="resource-thumbnail">
 				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
 			</div>
@@ -355,7 +354,7 @@
 				<a href="#" class="btn_single_download">Download</a>
 			</div>
 		</div>
-		<div class="col-md-3 resource-item">
+		<div class="col-xs-6 col-sm-4 col-md-3 resource-item">
 			<div class="resource-thumbnail">
 				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
 			</div>
@@ -371,7 +370,7 @@
 				<a href="#" class="btn_single_download">Download</a>
 			</div>
 		</div>
-		<div class="col-md-3 resource-item">
+		<div class="col-xs-6 col-sm-4 col-md-3 resource-item">
 			<div class="resource-thumbnail">
 				<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
 			</div>

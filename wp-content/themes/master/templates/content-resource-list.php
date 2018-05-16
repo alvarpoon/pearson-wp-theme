@@ -54,23 +54,40 @@
 		</div>
 	</div>
 	<div class="resource-container clearfix">
-		<div class="resource-item">
-			<div class="resource-title-wrapper col-md-5">
+		<div class="clearfix resource-header">
+			<div class="col-xs-9 col-sm-10 col-md-5 no-padding">Items</div>
+			<div class="col-xs-3 col-sm-2 col-md-7 no-padding">Download</div>
+		</div>
+		<div class="resource-item single-file">
+			<div class="resource-title-wrapper col-xs-9 col-sm-10 col-md-5">
 				<div class="clearfix">
-					<div class="resource-title">A multiple sample files for download</div>
+					<table cellpadding="0" cellspacing="0" border="0" width="90%">
+						<tr>
+							<td>
+								<div class="resource-title-div">
+									<div class="resource-title">A multiple sample files for download</div>
+									<div class="resource-category">Category name</div>
+								</div>
+							</td>
+							<td>
+								<a href="#" style="display:inline-block; width:100px; height:28px;">listen</a>
+								<a href="#" style="display:inline-block; width:100px; height:28px;">listen</a>
+							</td>
+						</tr>
+					</table>
 					<div class="resource-note">
 						<div class="icon-note"></div>
 						<div class="note-content"></div>
 					</div>
 				</div>
 			</div>
-			<div class="col-md-7">
-				<a href="#" style="display:inline-block;">Download</a>
-				<a href="#" style="display:inline-block;">Download</a>
-				<a href="#" style="display:inline-block;">Download</a>
-				<a href="#" style="display:inline-block;">Download</a>
-				<a href="#" style="display:inline-block;">Download</a>
-				<a href="#" style="display:inline-block;">Download</a>
+			<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
+				<a href="#">Download</a>
+				<a href="#">Download</a>
+				<a href="#">Download</a>
+				<a href="#">Download</a>
+				<a href="#">Download</a>
+				<a href="#" class="all">Download</a>
 			</div>
 		</div>
 	</div>
