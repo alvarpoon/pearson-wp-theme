@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+    <defs>
+        <rect id="a" width="16" height="16" rx="1"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <rect width="19" height="19" x="2.5" y="2.5" fill="#FFF" stroke="#979797" rx="1"/>
+        <use fill="#008638" transform="translate(4 4)" xlink:href="#a"/>
+        <path fill="#FFF" d="M7 13.938h3.111L14 18V6l-3.889 4.063H7zM15 9a3 3 0 0 1 0 6V9z"/>
+        <path fill="#008638" d="M15 8h1v8h-1z"/>
+    </g>
+</svg>

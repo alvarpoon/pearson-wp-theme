@@ -84,7 +84,7 @@
 			<div class="resource-type">File Downlaod</div>
 			<div class="resource-download-wrapper">
 				<div class="multiple_download">
-					<div class="multiple_dl_header">Download</div>
+					<div class="multiple_dl_header">Download (5)</div>
 					<div class="multiple_dl_content">
 						<ul>
 							<li><a href="#">long item name here max 2 lines</a></li>
