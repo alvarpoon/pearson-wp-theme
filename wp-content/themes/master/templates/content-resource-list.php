@@ -374,4 +374,12 @@
 			</div>
 		</div>
 	</div>
+	<div class="resource-footer">
+		<div class="pagination">
+			
+		</div>
+		<div class="download_all">
+			
+		</div>
+	</div>
 </div>
