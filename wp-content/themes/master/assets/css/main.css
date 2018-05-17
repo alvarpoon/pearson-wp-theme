@@ -7060,7 +7060,7 @@ footer.content-info .footer-wrapper .footer-copyright {
 .page-template-template-home .home-content-wrapper .content-right .scrollable-content-wrapper {
   border-top: solid 1px #005a70;
   border-bottom: solid 1px #005a70;
-  height: 550px;
+  height: 230px;
   overflow-y: scroll;
 }
 .page-template-template-home .home-content-wrapper .content-right .scrollable-content-wrapper .scrollable-content .news-item {
@@ -7120,6 +7120,9 @@ footer.content-info .footer-wrapper .footer-copyright {
   .page-template-template-home .home-content-wrapper .content-right {
     margin-bottom: 0;
     padding-left: 320px;
+  }
+  .page-template-template-home .home-content-wrapper .content-right .scrollable-content-wrapper {
+    height: 550px;
   }
 }
 .page-template-template-resource .page-general-info,
