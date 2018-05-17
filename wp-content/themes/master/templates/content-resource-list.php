@@ -375,11 +375,17 @@
 		</div>
 	</div>
 	<div class="resource-footer">
-		<div class="pagination">
-			
+		<div class="pagination clearfix">
+			<select>
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+			</select>
+			<span>/32</span>
+			<button class="btn_gopage"></button>
 		</div>
 		<div class="download_all">
-			
+			<a href="#" class="btn_single_download">Download All</a>
 		</div>
 	</div>
 </div>
