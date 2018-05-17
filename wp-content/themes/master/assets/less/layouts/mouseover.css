@@ -1,0 +1,145 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/*---Remove Banner Shadow-------------------*/
+.top-banner-container{
+    box-shadow:none;
+}
+/*---Left Banner Effect-------------------*/
+.banner-item{
+    -webkit-transition:0.2s ease-in;  
+    -moz-transition:0.2s ease-in;  
+    -o-transition:0.2s ease-in;  
+    transition:0.2s ease-in;
+}
+.banner-item:hover{
+    filter:alpha(opacity=90);
+    opacity:0.9;
+    -moz-opacity:0.9;
+}
+/*---Slider Banner Effect-------------------*/
+.slick-slide img{
+    -webkit-transition:0.2s ease-in;  
+    -moz-transition:0.2s ease-in;  
+    -o-transition:0.2s ease-in;  
+    transition:0.2s ease-in;
+    cursor:pointer
+}
+.slick-slide img:hover{
+    filter:alpha(opacity=90);
+    opacity:0.9;
+    -moz-opacity:0.9;
+}
+
+/*---General Link-------------------*/
+.page-template-template-home .home-content-wrapper .content-right .scrollable-content-wrapper .scrollable-content .news-item .news-content a:hover{
+    color:#005A70;
+}
+
+
+/*---Download Button Style-------------------*/
+.page-template-template-resource .resource-container .resource-item .resource-download-wrapper a.btn_single_download{
+    background-image: linear-gradient(to bottom, #00a1af, #0073a3);
+    text-decoration:none;
+}
+.page-template-template-resource .resource-container .resource-item .resource-download-wrapper a.btn_single_download:hover, .page-template-template-resource .resource-container .resource-item .resource-download-wrapper a.btn_single_download:focus{
+    background-image: linear-gradient(to bottom, #00aFb6, #0073a3);    
+}
+.page-template-template-resource .resource-container .resource-item .resource-download-wrapper a.btn_single_download:active{
+    background-image: linear-gradient(to bottom, #005588, #008888);
+}
+
+/*---View Mode Button-------------------*/
+.page-template-template-resource .filter-wrapper .view-option-wrapper .view-option a{
+    background-image: linear-gradient(to bottom, #ffffff, #e8e8e8);
+    text-decoration:none;
+}
+.page-template-template-resource .filter-wrapper .view-option-wrapper .view-option a:hover{
+    background-image: linear-gradient(to bottom, #FFFFFF, #F0F0F0);
+}
+.page-template-template-resource .filter-wrapper .view-option-wrapper .view-option a:active{
+    background-image: linear-gradient(to bottom, #E0E0E0, #FAFAFA);
+}
+
+/*---Note Icon-------------------*/
+.icon-note{
+   cursor:pointer;
+}
+.icon-note:hover{
+    filter:alpha(opacity=80);
+    opacity:0.8;
+    -moz-opacity:0.8;
+}
+.icon-note:active{
+    filter:alpha(opacity=60);
+    opacity:0.6;
+    -moz-opacity:0.6;
+}
+/*---Thumbnail-------------------*/
+.resource-thumbnail{
+	-webkit-transition:0.2s ease-in;  
+    -moz-transition:0.2s ease-in;  
+    -o-transition:0.2s ease-in;  
+    transition:0.2s ease-in;
+    cursor:pointer;
+}
+.resource-thumbnail:hover{
+	filter:alpha(opacity=80);
+    opacity:0.8;
+    -moz-opacity:0.8;
+}
+.resource-thumbnail:active{
+    filter:alpha(opacity=70);
+    opacity:0.7;
+    -moz-opacity:0.7;
+}
+
+/*---Thumbnail title-------------------*/
+.page-template-template-resource .resource-container .resource-item .resource-title-wrapper .resource-title:hover{
+    -webkit-transition:0.2s ease-in;  
+    -moz-transition:0.2s ease-in;  
+    -o-transition:0.2s ease-in;  
+    transition:0.2s ease-in;
+    cursor:pointer;
+    color:#007FA3;
+}
+.page-template-template-resource .resource-container .resource-item .resource-type{
+    cursor:default;
+}
+/*---Title Link-------------------*/
+.breadcrumb a{
+    text-decoration:none;
+}
+.breadcrumb a:hover{
+    color:#007FA3;
+    text-decoration:none;
+    
+}
+/*---Top Link---------------------*/
+.navbar-header-right .lang-wrapper a:hover{
+    color:#007FA3;
+    text-decoration:none;
+}
+.navbar-header-right .login-wrapper a{
+    text-decoration:none;
+}
+.navbar-header-right .login-wrapper a:hover{
+    color:#007FA3;
+    background-color:#FAFAFA;
+    text-decoration:none;
+}
+/*---Top Link---------------------*/
+.navbar-default .navbar-nav > .active > a{
+    background-color: #EEE;
+    -webkit-transition:0.2s ease-in;  
+    -moz-transition:0.2s ease-in;  
+    -o-transition:0.2s ease-in;  
+    transition:0.2s ease-in;
+    
+}
+
+.navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus{
+    color: #555555;
+    background-color: #e7e7e7;
+
+}
