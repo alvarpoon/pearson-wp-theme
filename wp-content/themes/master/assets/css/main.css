@@ -7378,6 +7378,10 @@ footer.content-info .footer-wrapper .footer-copyright {
   color: #505759;
   background: url(../img/common/ic-arrow-drop-right.svg) no-repeat center right;
 }
+.page-template-template-resource .resource-footer {
+  border-top: 2px solid #e7e7e7;
+  padding-top: 10px;
+}
 .page-template-template-resource-list .filter-wrapper {
   padding-bottom: 0;
   margin-bottom: 15px;
@@ -7541,6 +7545,9 @@ footer.content-info .footer-wrapper .footer-copyright {
   }
   .page-template-template-resource .resource-container .resource-item {
     height: 250px;
+  }
+  .page-template-template-resource .resource-footer .download_all {
+    top: 10px;
   }
   .page-template-template-resource-list .resource-container .resource-item .resource-title-wrapper table tr td {
     float: none;
