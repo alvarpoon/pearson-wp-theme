@@ -7,7 +7,7 @@
  *   <li id="menu-item-9" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-9"><a href="/sample-page/">Sample Page</a></l
  *
  * Roots_Nav_Walker example output:
- *   <li class="menu-home"><a href="/">Home</a></li>
+ *   ><li class="menu-home"><a href="/">Home</a></li>
  *   <li class="menu-sample-page"><a href="/sample-page/">Sample Page</a></li>
  */
 class Roots_Nav_Walker extends Walker_Nav_Menu {
@@ -23,7 +23,7 @@ class Roots_Nav_Walker extends Walker_Nav_Menu {
     $item_html = '';
     parent::start_el($item_html, $item, $depth, $args);
 
-    if ($item->is_dropdown && ($depth === 0)) {
+    if ($item->is_dropdown /*&& ($depth === 0)*/) {
       $item_html = str_replace('<a', '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"', $item_html);
       $item_html = str_replace('</a>', ' <b class="caret"></b></a>', $item_html);
     }
@@ -83,7 +83,11 @@ function roots_nav_menu_args($args = '') {
   }
 
   if (!$args['depth']) {
-    $roots_nav_menu_args['depth'] = 2;
+    $roots_nav_menu_args['depth'] = 3;
+  }
+  
+  if (!$args['walker']) {
+    $args['walker'] = new Roots_Nav_Walker();
   }
 
   return array_merge($args, $roots_nav_menu_args);

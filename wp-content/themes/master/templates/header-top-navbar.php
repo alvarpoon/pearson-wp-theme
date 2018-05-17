@@ -1,4 +1,4 @@
-<header class="banner navbar navbar-default" role="banner">
+<header class="banner navbar navbar-default mainmenu" role="banner">
 	<div class="topbar-wrapper">
 	  <div class="container">
 		<div class="clearfix">
@@ -25,8 +25,8 @@
 	  </div>
 	</div>
   <div class="nav-container">
-	<div class="container">
-		<nav class="collapse navbar-collapse main-menu" role="navigation">
+	<div class="container ">
+		<nav class="collapse navbar-collapse" role="navigation">
 			<?php
 				//Main menu
 				if (has_nav_menu('primary_navigation')) :
