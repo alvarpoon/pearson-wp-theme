@@ -58,20 +58,16 @@
 			<div class="col-xs-9 col-sm-10 col-md-5 no-padding">Items</div>
 			<div class="col-xs-3 col-sm-2 col-md-7 no-padding">Download</div>
 		</div>
-		<div class="resource-item single-file">
+		<div class="resource-item single-file clearfix">
 			<div class="resource-title-wrapper col-xs-9 col-sm-10 col-md-5">
 				<div class="clearfix">
 					<table cellpadding="0" cellspacing="0" border="0" width="90%">
 						<tr>
-							<td>
+							<td class="title">
 								<div class="resource-title-div">
 									<div class="resource-title">A multiple sample files for download</div>
-									<div class="resource-category">Category name</div>
+									<div class="resource-type">Category name</div>
 								</div>
-							</td>
-							<td>
-								<a href="#" style="display:inline-block; width:100px; height:28px;">listen</a>
-								<a href="#" style="display:inline-block; width:100px; height:28px;">listen</a>
 							</td>
 						</tr>
 					</table>
@@ -82,13 +78,314 @@
 				</div>
 			</div>
 			<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
-				<a href="#">Download</a>
-				<a href="#">Download</a>
-				<a href="#">Download</a>
-				<a href="#">Download</a>
-				<a href="#">Download</a>
-				<a href="#" class="all">Download</a>
+				<a href="#" class="doc">Item 1</a>
 			</div>
+		</div>
+		<div class="resource-item multiple-file clearfix">
+			<div class="resource-title-wrapper col-xs-9 col-sm-10 col-md-5">
+				<div class="clearfix">
+					<table cellpadding="0" cellspacing="0" border="0" width="90%">
+						<tr>
+							<td class="title">
+								<div class="resource-title-div">
+									<div class="resource-title">A multiple sample files for download</div>
+									<div class="resource-type">Category name</div>
+								</div>
+							</td>
+							<td class="audio">
+								<a href="#" class="btn_listen"><span>listen</span></a>
+								<a href="#" class="btn_listen"><span>listen</span></a>
+							</td>
+						</tr>
+					</table>
+					<div class="resource-note">
+						<div class="icon-note"></div>
+						<div class="note-content"></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
+				<a href="#" class="doc hidden-xs hidden-sm">long item name here max 2 line</a>
+				<a href="#" class="ppt hidden-xs hidden-sm">Item 2</a>
+				<a href="#" class="pdf hidden-xs hidden-sm">Item 3</a>
+				<a href="#" class="wav hidden-xs hidden-sm">Item 4</a>
+				<a href="#" class="zip hidden-xs hidden-sm">Item 5</a>
+				<a href="#" class="all">All</a>
+			</div>
+		</div>
+		<div class="resource-item image-file clearfix">
+			<div class="resource-title-wrapper col-xs-9 col-sm-10 col-md-5">
+				<div class="clearfix">
+					<table cellpadding="0" cellspacing="0" border="0" width="90%">
+						<tr>
+							<td class="title">
+								<div class="resource-title-div">
+									<div class="resource-title">An single Image file</div>
+									<div class="resource-type">Category name</div>
+								</div>
+							</td>
+							<td class="audio">
+								<a href="#" class="btn_listen"><span>listen</span></a>
+								<a href="#" class="btn_listen"><span>listen</span></a>
+							</td>
+						</tr>
+					</table>
+					<div class="resource-note">
+						<div class="icon-note"></div>
+						<div class="note-content"></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
+				<a href="#" class="doc hidden-xs hidden-sm">long item name here max 2 line</a>
+				<a href="#" class="ppt hidden-xs hidden-sm">Item 2</a>
+				<a href="#" class="pdf hidden-xs hidden-sm">Item 3</a>
+				<a href="#" class="wav hidden-xs hidden-sm">Item 4</a>
+				<a href="#" class="zip hidden-xs hidden-sm">Item 5</a>
+				<a href="#" class="all">All</a>
+			</div>
+		</div>
+		<div class="resource-item image-file clearfix">
+			<div class="resource-title-wrapper col-xs-9 col-sm-10 col-md-5">
+				<div class="clearfix">
+					<table cellpadding="0" cellspacing="0" border="0" width="90%">
+						<tr>
+							<td class="title">
+								<div class="resource-title-div">
+									<div class="resource-title">A multiple sample files for download</div>
+									<div class="resource-type">Category name</div>
+								</div>
+							</td>
+							<td class="audio">
+								<a href="#" class="btn_listen"><span>listen</span></a>
+							</td>
+						</tr>
+					</table>
+					<div class="resource-note">
+						<div class="icon-note"></div>
+						<div class="note-content"></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
+				<a href="#" class="jpg hidden-xs hidden-sm">Item 1</a>
+				<a href="#" class="wav hidden-xs hidden-sm">Item 2</a>
+				<a href="#" class="all">All</a>
+			</div>
+		</div>
+		<div class="resource-item video-file clearfix">
+			<div class="resource-title-wrapper col-xs-9 col-sm-10 col-md-5">
+				<div class="clearfix">
+					<table cellpadding="0" cellspacing="0" border="0" width="90%">
+						<tr>
+							<td class="title">
+								<div class="resource-title-div">
+									<div class="resource-title">An single Video file</div>
+									<div class="resource-type">Category name</div>
+								</div>
+							</td>
+						</tr>
+					</table>
+					<div class="resource-note">
+						<div class="icon-note"></div>
+						<div class="note-content"></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
+				<a href="#" class="mpg hidden-xs hidden-sm">Item 1</a>
+			</div>
+		</div>
+		<div class="resource-item video-file clearfix">
+			<div class="resource-title-wrapper col-xs-9 col-sm-10 col-md-5">
+				<div class="clearfix">
+					<table cellpadding="0" cellspacing="0" border="0" width="90%">
+						<tr>
+							<td class="title">
+								<div class="resource-title-div">
+									<div class="resource-title">An Video File with multiple files for download</div>
+									<div class="resource-type">Category name</div>
+								</div>
+							</td>
+						</tr>
+					</table>
+					<div class="resource-note">
+						<div class="icon-note"></div>
+						<div class="note-content"></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
+				<a href="#" class="mpg hidden-xs hidden-sm">Item 1</a>
+				<a href="#" class="ppt hidden-xs hidden-sm">Item 2</a>
+				<a href="#" class="pdf hidden-xs hidden-sm">Item 2</a>
+				<a href="#" class="all">All</a>
+			</div>
+		</div>
+		<div class="resource-item audio-file clearfix">
+			<div class="resource-title-wrapper col-xs-9 col-sm-10 col-md-5">
+				<div class="clearfix">
+					<table cellpadding="0" cellspacing="0" border="0" width="90%">
+						<tr>
+							<td class="title">
+								<div class="resource-title-div">
+									<div class="resource-title">An single Audio file</div>
+									<div class="resource-type">Category name</div>
+								</div>
+							</td>
+							<td class="audio">
+								<a href="#" class="btn_listen"><span>listen</span></a>
+							</td>
+						</tr>
+					</table>
+					<div class="resource-note">
+						<div class="icon-note"></div>
+						<div class="note-content"></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
+				<a href="#" class="wav hidden-xs hidden-sm">Item 1</a>
+			</div>
+		</div>
+		<div class="resource-item audio-file clearfix">
+			<div class="resource-title-wrapper col-xs-9 col-sm-10 col-md-5">
+				<div class="clearfix">
+					<table cellpadding="0" cellspacing="0" border="0" width="90%">
+						<tr>
+							<td class="title">
+								<div class="resource-title-div">
+									<div class="resource-title">Max. 2 Audioes Preview</div>
+									<div class="resource-type">Category name</div>
+								</div>
+							</td>
+							<td class="audio">
+								<a href="#" class="btn_listen"><span>listen</span></a>
+								<a href="#" class="btn_listen"><span>listen</span></a>
+							</td>
+						</tr>
+					</table>
+					<div class="resource-note">
+						<div class="icon-note"></div>
+						<div class="note-content"></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
+				<a href="#" class="wav hidden-xs hidden-sm">Item 1</a>
+				<a href="#" class="wav hidden-xs hidden-sm">Item 2</a>
+				<a href="#" class="all">All</a>
+			</div>
+		</div>
+		<div class="resource-item interactive-file clearfix">
+			<div class="resource-title-wrapper col-xs-9 col-sm-10 col-md-5">
+				<div class="clearfix">
+					<table cellpadding="0" cellspacing="0" border="0" width="90%">
+						<tr>
+							<td class="title">
+								<div class="resource-title-div">
+									<div class="resource-title">A single Interactive File</div>
+									<div class="resource-type">Category name</div>
+								</div>
+							</td>
+						</tr>
+					</table>
+					<div class="resource-note">
+						<div class="icon-note"></div>
+						<div class="note-content"></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
+				<a href="#" class="html hidden-xs hidden-sm">Item 1</a>
+			</div>
+		</div>
+		<div class="resource-item interactive-file clearfix">
+			<div class="resource-title-wrapper col-xs-9 col-sm-10 col-md-5">
+				<div class="clearfix">
+					<table cellpadding="0" cellspacing="0" border="0" width="90%">
+						<tr>
+							<td class="title">
+								<div class="resource-title-div">
+									<div class="resource-title">An Interactive File with addional files</div>
+									<div class="resource-type">Category name</div>
+								</div>
+							</td>
+						</tr>
+					</table>
+					<div class="resource-note">
+						<div class="icon-note"></div>
+						<div class="note-content"></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
+				<a href="#" class="html hidden-xs hidden-sm">Item 1</a>
+				<a href="#" class="pdf hidden-xs hidden-sm">Item 2</a>
+				<a href="#" class="all">All</a>
+			</div>
+		</div>
+		<div class="resource-item article-file clearfix">
+			<div class="resource-title-wrapper col-xs-9 col-sm-10 col-md-5">
+				<div class="clearfix">
+					<table cellpadding="0" cellspacing="0" border="0" width="90%">
+						<tr>
+							<td class="title">
+								<div class="resource-title-div">
+									<div class="resource-title">An Article only</div>
+									<div class="resource-type">Category name</div>
+								</div>
+							</td>
+						</tr>
+					</table>
+					<div class="resource-note">
+						<div class="icon-note"></div>
+						<div class="note-content"></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
+				<a href="#" class="html hidden-xs hidden-sm">Item 1</a>
+			</div>
+		</div>
+		<div class="resource-item article-file clearfix">
+			<div class="resource-title-wrapper col-xs-9 col-sm-10 col-md-5">
+				<div class="clearfix">
+					<table cellpadding="0" cellspacing="0" border="0" width="90%">
+						<tr>
+							<td class="title">
+								<div class="resource-title-div">
+									<div class="resource-title">Article with files download and thumbnail</div>
+									<div class="resource-type">Category name</div>
+								</div>
+							</td>
+						</tr>
+					</table>
+					<div class="resource-note">
+						<div class="icon-note"></div>
+						<div class="note-content"></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
+				<a href="#" class="html hidden-xs hidden-sm">Item 1</a>
+				<a href="#" class="pdf hidden-xs hidden-sm">Item 2</a>
+				<a href="#" class="all">All</a>
+			</div>
+		</div>
+	</div>
+	<div class="resource-footer">
+		<div class="pagination clearfix">
+			<select>
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+			</select>
+			<span>/32</span>
+			<button class="btn_gopage"></button>
+		</div>
+		<div class="download_all">
+			<a href="#" class="btn_single_download">Download All</a>
 		</div>
 	</div>
 </div>
