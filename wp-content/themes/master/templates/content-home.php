@@ -18,7 +18,7 @@
 </div>
 
 <div class="home-content-wrapper">
-	<div class="container">
+	<!--<div class="container">-->
 		<div class="content-right col-md-12">
 			<div class="section-title">What's New</div>
 			<div class="scrollable-content-wrapper">
@@ -101,5 +101,5 @@
 			<div class="banner-item"><a href="#"><img src="<?=get_stylesheet_directory_uri()?>/assets/img/home/side-banner-6.png" class="img-responsive" /></a></div>
 		</div>
 		
-	</div>
+	<!--</div>-->
 </div>

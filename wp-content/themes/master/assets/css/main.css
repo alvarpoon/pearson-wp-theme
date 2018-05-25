@@ -6882,7 +6882,7 @@ figure.alignnone {
   }
 }
 .top-banner-container {
-  margin: 0 -20px 20px -20px;
+  margin: 0 -15px 20px -15px;
   background-repeat: no-repeat;
   background-position: center;
   -webkit-background-size: auto 60px;
@@ -6990,8 +6990,7 @@ figure.alignnone {
 	}
 }*/
 .mainmenu .navbar-nav {
-  margin-top: 0;
-  margin-bottom: 0;
+  margin: 0;
 }
 .mainmenu .navbar-collapse ul li a,
 .mainmenu .navbar-collapse ul li a.dropdown-toggle {
@@ -7170,10 +7169,24 @@ footer.content-info .footer-wrapper .footer-links a:after {
 }
 footer.content-info .footer-wrapper .footer-links a:last-child:after {
   padding-right: 0;
+  display: none;
 }
 footer.content-info .footer-wrapper .footer-copyright {
-  display: inline-block;
+  margin-top: 10px;
+  display: block;
   color: #fff;
+}
+@media (min-width: 992px) {
+  footer.content-info .footer-wrapper .footer-links a:last-child {
+    margin-right: 0;
+  }
+  footer.content-info .footer-wrapper .footer-links a:last-child:after {
+    display: inline-block;
+  }
+  footer.content-info .footer-wrapper .footer-copyright {
+    margin-top: 0;
+    display: inline-block;
+  }
 }
 .page-template-template-home .home-slider {
   margin-bottom: 40px;
@@ -7303,6 +7316,10 @@ footer.content-info .footer-wrapper .footer-copyright {
   margin-right: 10px;
   margin-bottom: 5px;
 }
+.page-template-template-resource .filter-wrapper .filter-select .filter-item select,
+.page-template-template-resource-list .filter-wrapper .filter-select .filter-item select {
+  padding: 5px;
+}
 .page-template-template-resource .filter-wrapper .view-option-wrapper,
 .page-template-template-resource-list .filter-wrapper .view-option-wrapper {
   padding: 0;
@@ -7387,7 +7404,7 @@ footer.content-info .footer-wrapper .footer-copyright {
 }
 .page-template-template-resource .resource-footer .pagination,
 .page-template-template-resource-list .resource-footer .pagination {
-  margin: 0;
+  margin: 0 0 5px 0;
   display: inline-block;
   text-align: center;
 }
@@ -7434,6 +7451,8 @@ footer.content-info .footer-wrapper .footer-copyright {
 }
 .page-template-template-resource .resource-container .resource-item {
   margin-bottom: 50px;
+  padding-left: 3px;
+  padding-right: 3px;
   height: 295px;
 }
 .page-template-template-resource .resource-container .resource-item .resource-thumbnail {
@@ -7587,7 +7606,7 @@ footer.content-info .footer-wrapper .footer-copyright {
   width: 100%;
 }
 .page-template-template-resource-list .resource-container .resource-item .resource-title-wrapper table tr td.audio {
-  text-align: right;
+  text-align: left;
 }
 .page-template-template-resource-list .resource-container .resource-item .resource-title-wrapper .resource-title-div .resource-title {
   min-height: 40px;
@@ -7660,6 +7679,7 @@ footer.content-info .footer-wrapper .footer-copyright {
   padding-top: 40px;
   margin-right: 4px;
   float: left;
+  overflow: hidden;
 }
 .page-template-template-resource-list .resource-container .resource-item .file-download-wrapper a:last-child {
   margin-right: 0;
@@ -7709,6 +7729,9 @@ footer.content-info .footer-wrapper .footer-copyright {
   }
   .page-template-template-resource-list .resource-container .resource-item .resource-title-wrapper table tr td.title {
     width: auto;
+  }
+  .page-template-template-resource-list .resource-container .resource-item .resource-title-wrapper table tr td.audio {
+    text-align: right;
   }
 }
 @media (min-width: 992px) {
@@ -8027,11 +8050,12 @@ footer.content-info .footer-wrapper .footer-copyright {
   -moz-osx-font-smoothing: grayscale;
 }
 .slick-prev {
-  left: -25px;
+  left: 10px;
+  z-index: 800;
 }
 .slick-prev[dir="rtl"] {
   left: auto;
-  right: -25px;
+  right: 10px;
 }
 .slick-prev:before {
   content: "←";
@@ -8040,10 +8064,10 @@ footer.content-info .footer-wrapper .footer-copyright {
   content: "→";
 }
 .slick-next {
-  right: -25px;
+  right: 10px;
 }
 .slick-next[dir="rtl"] {
-  left: -25px;
+  left: 10px;
   right: auto;
 }
 .slick-next:before {
@@ -8115,5 +8139,19 @@ footer.content-info .footer-wrapper .footer-copyright {
 .slick-dots li.slick-active button:before {
   color: #000000;
   opacity: 0.75;
+}
+@media (min-width: 1200px) {
+  .slick-prev {
+    left: -25px;
+  }
+  .slick-prev[dir="rtl"] {
+    right: -25px;
+  }
+  .slick-next {
+    right: -25px;
+  }
+  .slick-next[dir="rtl"] {
+    left: -25px;
+  }
 }
 /*# sourceMappingURL=main.css.map */

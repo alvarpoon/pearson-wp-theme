@@ -64,7 +64,8 @@ var Roots = {
 	  function initSlider(){
 		  if($('.home-slider').length > 0){
 			  $('.home-slider').slick({
-				dots: true,					  
+				dots: true,	
+				arrows: false
 			  });
 		  }
 	  }

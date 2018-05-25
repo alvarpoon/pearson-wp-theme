@@ -27,6 +27,9 @@
 				float:left;
 				margin-right:10px;
 				margin-bottom:5px;
+				select{
+				    padding: 5px;
+				}
 			}
 		}
 		
@@ -110,7 +113,7 @@
 		position:relative;
 		
 		.pagination{
-			margin:0;
+			margin:0 0 5px 0;
 			//width:100%;
 			display:inline-block;
 			text-align:center;
@@ -163,6 +166,8 @@
 	.resource-container{
 		.resource-item{
 			margin-bottom:50px;
+			padding-left: 3px;
+		    padding-right: 3px;
 			height:295px;
 			
 			.resource-thumbnail{
@@ -361,7 +366,8 @@
 							}
 							
 							&.audio{
-								text-align:right;
+								//text-align:right;
+								text-align:left;
 							}
 						}
 					}
@@ -445,6 +451,7 @@
 					padding-top: 40px;
 					margin-right:4px;
 					float:left;
+					overflow:hidden;
 					
 					&:last-child{
 						margin-right:0;
@@ -536,6 +543,10 @@
 								
 								&.title{
 									width:auto;
+								}
+								
+								&.audio{
+									text-align:right;
 								}
 							}
 						}
