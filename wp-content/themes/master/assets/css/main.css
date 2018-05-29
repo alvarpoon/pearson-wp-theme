@@ -6705,7 +6705,9 @@ a {
 }
 .main {
   float: none!important;
-  padding: 0!important;
+  padding-left: 0!important;
+  padding-right: 0!important;
+  padding-top: 61px;
 }
 .clearfix,
 .dl-horizontal dd,
@@ -6778,7 +6780,8 @@ a {
 .form-horizontal .comment-form p:after {
   clear: both;
 }
-.no-padding {
+.no-padding,
+.noPadding {
   padding: 0!important;
 }
 .breadcrumb {
@@ -6827,6 +6830,29 @@ a.btn_single_download:before {
   position: absolute;
   top: 5px;
   left: 5px;
+}
+select {
+  color: #000;
+  -webkit-appearance: none;
+  background: url(../img/common/bg_select.png) no-repeat right center;
+  -webkit-background-size: contain;
+          background-size: contain;
+  border-radius: 2px;
+  padding-right: 40px!important;
+  border-color: #CCCCCC;
+}
+select::-ms-expand {
+  display: none;
+}
+@media (min-width: 768px) {
+  .main {
+    padding-top: 68px;
+  }
+}
+@media (min-width: 992px) {
+  .main {
+    padding-top: 0;
+  }
 }
 .comment-list ol {
   list-style: none;
@@ -6989,8 +7015,21 @@ figure.alignnone {
 		}
 	}
 }*/
+.mainmenu {
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+}
+.mainmenu .collapse ul li.external-link a {
+  background: url(../img/common/ic-open-in-new-small.svg) no-repeat 98% center;
+  padding-right: 25px;
+}
 .mainmenu .navbar-nav {
   margin: 0;
+}
+.mainmenu .navbar-collapse {
+  padding: 0;
 }
 .mainmenu .navbar-collapse ul li a,
 .mainmenu .navbar-collapse ul li a.dropdown-toggle {
@@ -7101,6 +7140,12 @@ figure.alignnone {
   }
 }
 @media (min-width: 992px) {
+  .mainmenu {
+    position: relative;
+  }
+  .mainmenu .navbar-collapse {
+    padding: 0 15px;
+  }
   .mainmenu .navbar-collapse ul ul > li > a,
   .mainmenu .navbar-collapse ul ul.dropdown-menu > li > a,
   .mainmenu .navbar-collapse ul ul ul > li > a,
@@ -7412,6 +7457,7 @@ footer.content-info .footer-wrapper .footer-copyright {
 .page-template-template-resource-list .resource-footer .pagination select {
   float: left;
   min-height: 28px;
+  padding-left: 10px;
 }
 .page-template-template-resource .resource-footer .pagination span,
 .page-template-template-resource-list .resource-footer .pagination span {
@@ -7550,7 +7596,6 @@ footer.content-info .footer-wrapper .footer-copyright {
   padding: 10px 30px 10px 15px;
   font-size: 15px;
   color: #505759;
-  background: url(../img/common/ic-arrow-drop-right.svg) no-repeat center right;
 }
 .page-template-template-resource .resource-footer {
   border-top: 2px solid #e7e7e7;

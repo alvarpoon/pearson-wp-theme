@@ -25,16 +25,18 @@
 	  </div>
 	</div>
   <div class="nav-container">
-	<div class="container ">
-		<nav class="collapse navbar-collapse" role="navigation">
-			<?php
-				//Main menu
-				if (has_nav_menu('primary_navigation')) :
-				  wp_nav_menu(array('theme_location' => 'primary_navigation', 'menu_class' => 'nav navbar-nav', 'depth' => 3));
-				endif;
-	
-			?>
-		</nav>
+	<div class="container">
+		<div class="row">
+			<nav class="collapse navbar-collapse" role="navigation">
+				<?php
+					//Main menu
+					if (has_nav_menu('primary_navigation')) :
+					  wp_nav_menu(array('theme_location' => 'primary_navigation', 'menu_class' => 'nav navbar-nav', 'depth' => 3));
+					endif;
+		
+				?>
+			</nav>
+		</div>
 	</div>
   </div>
 </header>
