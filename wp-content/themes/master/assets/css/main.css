@@ -7075,6 +7075,12 @@ figure.alignnone {
        -o-transform: translateY(-50%) rotate(0deg);
           transform: translateY(-50%) rotate(0deg);
 }
+.mainmenu .dropdown-menu > .active > a,
+.mainmenu .dropdown-menu > .active > a:hover,
+.mainmenu .dropdown-menu > .active > a:focus {
+  background-color: #fafafa;
+  color: #777;
+}
 @media (min-width: 768px) {
   .navbar-brand {
     width: 123px;
