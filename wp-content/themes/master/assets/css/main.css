@@ -7296,11 +7296,10 @@ footer.content-info .footer-wrapper .footer-copyright {
   margin-bottom: 40px;
 }
 .page-template-template-home .home-slider .slider-item {
-  width: 300px;
-  height: 180px;
-  background-position: left center;
-  -webkit-background-size: cover;
-          background-size: cover;
+  /*width:300px;
+			height:180px;
+			background-position:left center;
+			background-size:cover;*/
 }
 .page-template-template-home .home-slider .slick-dots li {
   margin: 0;
@@ -7373,8 +7372,8 @@ footer.content-info .footer-wrapper .footer-copyright {
 }
 @media (min-width: 768px) {
   .page-template-template-home .home-slider .slider-item {
-    width: 100%;
-    height: 250px;
+    /*width:100%;
+				height:250px;*/
   }
   .page-template-template-home .home-content-wrapper {
     position: relative;

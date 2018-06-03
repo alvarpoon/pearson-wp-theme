@@ -10,14 +10,20 @@
 
 <div class="container">
 	<div class="home-slider">
-		<div class="slider-item" style="background-image:url('<?=get_stylesheet_directory_uri()?>/assets/img/home/slider-banner-1.png');">
-			<img src="<?=get_stylesheet_directory_uri()?>/assets/img/home/slider-banner-1.png" class="img-responsive hidden-xs hidden-sm hidden-md visible-lg" />
+		<div class="slider-item">
+			<img src="<?=get_stylesheet_directory_uri()?>/assets/img/home/slider-banner-300w180h.png" class="img-responsive visible-xs hidden-sm hidden-md hidden-lg" />
+			<img src="<?=get_stylesheet_directory_uri()?>/assets/img/home/slider-banner-735w250h.png" class="img-responsive hidden-xs visible-sm visible-md hidden-lg" />
+			<img src="<?=get_stylesheet_directory_uri()?>/assets/img/home/slider-banner-1179w250h.png" class="img-responsive hidden-xs hidden-sm hidden-md visible-lg" />
 		</div>
-		<div class="slider-item" style="background-image:url('<?=get_stylesheet_directory_uri()?>/assets/img/home/slider-banner-1.png');">
-			<img src="<?=get_stylesheet_directory_uri()?>/assets/img/home/slider-banner-1.png" class="img-responsive hidden-xs hidden-sm hidden-md visible-lg" />
+		<div class="slider-item">
+			<img src="<?=get_stylesheet_directory_uri()?>/assets/img/home/slider-banner-300w180h.png" class="img-responsive visible-xs hidden-sm hidden-md hidden-lg" />
+			<img src="<?=get_stylesheet_directory_uri()?>/assets/img/home/slider-banner-735w250h.png" class="img-responsive hidden-xs visible-sm visible-md hidden-lg" />
+			<img src="<?=get_stylesheet_directory_uri()?>/assets/img/home/slider-banner-1179w250h.png" class="img-responsive hidden-xs hidden-sm hidden-md visible-lg" />
 		</div>
-		<div class="slider-item" style="background-image:url('<?=get_stylesheet_directory_uri()?>/assets/img/home/slider-banner-1.png');">
-			<img src="<?=get_stylesheet_directory_uri()?>/assets/img/home/slider-banner-1.png" class="img-responsive hidden-xs hidden-sm hidden-md visible-lg" />
+		<div class="slider-item">
+			<img src="<?=get_stylesheet_directory_uri()?>/assets/img/home/slider-banner-300w180h.png" class="img-responsive visible-xs hidden-sm hidden-md hidden-lg" />
+			<img src="<?=get_stylesheet_directory_uri()?>/assets/img/home/slider-banner-735w250h.png" class="img-responsive hidden-xs visible-sm visible-md hidden-lg" />
+			<img src="<?=get_stylesheet_directory_uri()?>/assets/img/home/slider-banner-1179w250h.png" class="img-responsive hidden-xs hidden-sm hidden-md visible-lg" />
 		</div>
 	</div>
 	
