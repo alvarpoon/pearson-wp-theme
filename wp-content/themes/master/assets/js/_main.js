@@ -45,8 +45,22 @@ var Roots = {
 		  });
 	  }
 	  
+	  function initNavbarToggle(){
+		$('.navbar-toggle').click(function(){
+			console.log('clicked');
+			if($(this).hasClass('collapsed')){
+				console.log('remove class');
+				$(this).removeClass('collapsed');	
+			}else{
+				console.log('add class');
+				$(this).addClass('collapsed');		
+			}
+		});  
+	  }
+	  
 	  $(document).ready(function(){
 		initMultipleDownload();			
+		initNavbarToggle();
 		
 		$('ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
 			event.preventDefault(); 

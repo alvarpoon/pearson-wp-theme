@@ -1,13 +1,13 @@
 <header class="banner navbar navbar-default mainmenu" role="banner">
 	<div class="topbar-wrapper">
-	  <div class="container">
-		<div class="clearfix">
+	  <div class="container-fluid">
+		<div class="row">
 			<div class="navbar-header">
-			  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+			  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
 				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
+				<span class="icon-bar top-bar"></span>
+				<span class="icon-bar middle-bar"></span>
+				<span class="icon-bar bottom-bar"></span>
 			  </button>
 			  <a href="javascript:;" class="menu-label hidden-xs hidden-sm hidden-md hidden-lg" data-toggle="collapse" data-target=".navbar-collapse">menu</a>
 			  <a class="navbar-brand" href="<?php echo home_url(); ?>/"><img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/pearson-logo@2x.png" class="img-responsive"></a>
@@ -25,7 +25,7 @@
 	  </div>
 	</div>
   <div class="nav-container">
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row">
 			<nav class="collapse navbar-collapse" role="navigation">
 				<?php

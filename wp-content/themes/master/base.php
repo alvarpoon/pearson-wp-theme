@@ -13,9 +13,9 @@
   ?>
 
       <main class="main" role="main">
-	  	<div class="container">
+	  	<!--<div class="container">-->
 	        <?php include roots_template_path(); ?>
-		</div>
+		<!--</div>-->
       </main>
 
   <?php get_template_part('templates/footer'); ?>

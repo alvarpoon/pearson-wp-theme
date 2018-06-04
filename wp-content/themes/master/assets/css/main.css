@@ -6844,6 +6844,9 @@ select {
 select::-ms-expand {
   display: none;
 }
+.container-fluid {
+  max-width: 1280px;
+}
 @media (min-width: 768px) {
   .main {
     padding-top: 68px;
@@ -6911,22 +6914,23 @@ figure.alignnone {
   margin: 0 -15px 20px -15px;
   background-repeat: no-repeat;
   background-position: center;
-  -webkit-background-size: auto 60px;
-          background-size: auto 60px;
-  height: 60px;
+  /*background-size:auto 60px;
+	height:60px;*/
+  height: 100px;
+  max-width: 1280px;
+  -webkit-background-size: cover;
+          background-size: cover;
 }
 @media (min-width: 768px) {
   .top-banner-container {
-    height: 100px;
-    -webkit-background-size: auto 100px;
-            background-size: auto 100px;
+    /*height:100px;
+		background-size:auto 100px;*/
   }
 }
 @media (min-width: 992px) {
   .top-banner-container {
-    height: auto;
-    margin-left: 0;
-    margin-right: 0;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 .navbar {
@@ -6938,23 +6942,71 @@ figure.alignnone {
   border-bottom: 1px solid #e9e9e9;
 }
 .navbar-default .navbar-toggle {
-  margin: 0 -15px 0 0;
+  margin: 0;
   border: none;
+  background: transparent !important;
   padding: 23px;
+}
+.navbar-default .navbar-toggle:hover {
+  background: transparent !important;
 }
 .navbar-default .navbar-toggle:focus,
 .navbar-default .navbar-toggle:active {
   background: #fff;
 }
+.navbar-default .navbar-toggle.collapsed .icon-bar {
+  width: 18px;
+}
+.navbar-default .navbar-toggle.collapsed .top-bar {
+  -webkit-transform: rotate(0);
+      -ms-transform: rotate(0);
+       -o-transform: rotate(0);
+          transform: rotate(0);
+}
+.navbar-default .navbar-toggle.collapsed .middle-bar {
+  opacity: 1;
+}
+.navbar-default .navbar-toggle.collapsed .bottom-bar {
+  -webkit-transform: rotate(0);
+      -ms-transform: rotate(0);
+       -o-transform: rotate(0);
+          transform: rotate(0);
+}
 .navbar-default .navbar-toggle .icon-bar {
   background-color: #505759;
-  width: 18px;
+  width: 22px;
+  -webkit-transition: all 0.2s;
+       -o-transition: all 0.2s;
+          transition: all 0.2s;
+}
+.navbar-default .navbar-toggle .top-bar {
+  -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+       -o-transform: rotate(45deg);
+          transform: rotate(45deg);
+  -webkit-transform-origin: 20% 200%;
+      -ms-transform-origin: 20% 200%;
+       -o-transform-origin: 20% 200%;
+          transform-origin: 20% 200%;
+}
+.navbar-default .navbar-toggle .middle-bar {
+  opacity: 0;
+}
+.navbar-default .navbar-toggle .bottom-bar {
+  -webkit-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+       -o-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  -webkit-transform-origin: 15% -100%;
+      -ms-transform-origin: 15% -100%;
+       -o-transform-origin: 15% -100%;
+          transform-origin: 15% -100%;
 }
 .navbar-brand {
   padding: 0;
   width: 100px;
   height: auto;
-  margin: 15px 15px 15px 0;
+  margin: 15px;
 }
 .navbar-header-right {
   float: right;
@@ -7149,8 +7201,9 @@ figure.alignnone {
   .mainmenu {
     position: relative;
   }
-  .mainmenu .navbar-collapse {
-    padding: 0 15px;
+  .mainmenu .navbar-collapse ul li a,
+  .mainmenu .navbar-collapse ul li a.dropdown-toggle {
+    padding: 10px 31px 10px 15px;
   }
   .mainmenu .navbar-collapse ul ul > li > a,
   .mainmenu .navbar-collapse ul ul.dropdown-menu > li > a,
@@ -7243,11 +7296,10 @@ footer.content-info .footer-wrapper .footer-copyright {
   margin-bottom: 40px;
 }
 .page-template-template-home .home-slider .slider-item {
-  width: 300px;
-  height: 180px;
-  background-position: left center;
-  -webkit-background-size: cover;
-          background-size: cover;
+  /*width:300px;
+			height:180px;
+			background-position:left center;
+			background-size:cover;*/
 }
 .page-template-template-home .home-slider .slick-dots li {
   margin: 0;
@@ -7320,8 +7372,8 @@ footer.content-info .footer-wrapper .footer-copyright {
 }
 @media (min-width: 768px) {
   .page-template-template-home .home-slider .slider-item {
-    width: 100%;
-    height: 250px;
+    /*width:100%;
+				height:250px;*/
   }
   .page-template-template-home .home-content-wrapper {
     position: relative;

@@ -16,17 +16,54 @@
 	//border-color:#e9e9e9;
 	
 	.navbar-toggle{
-		margin:0 -15px 0 0;
+		//margin:0 -15px 0 0;
+		margin:0;
 		border:none;
+		background: transparent !important;
 		padding:23px;
+		
+		&:hover {
+			background: transparent !important;
+		}
 		
 		&:focus, &:active{
 			background:#fff;
 		}
 		
+		&.collapsed {
+			.icon-bar{
+				width:18px;
+			}
+		
+			.top-bar {
+				transform: rotate(0);
+			}
+			.middle-bar {
+				opacity: 1;
+			}
+			.bottom-bar {
+				transform: rotate(0);
+			}
+		}
+		
 		.icon-bar{
-			background-color:#505759;		
-			width:18px;
+			background-color:#505759;
+			width:22px;
+			transition: all 0.2s;
+		}
+		
+		.top-bar {
+			transform: rotate(45deg);
+			//transform-origin: 10% 10%;
+			transform-origin:20% 200%;
+		}
+		.middle-bar {
+			opacity: 0;
+		}
+		.bottom-bar {
+			transform: rotate(-45deg);
+			//transform-origin: 10% 90%;
+			transform-origin:15% -100%;
 		}
 	}
 }
@@ -35,7 +72,7 @@
 	padding:0;
 	width:100px;
 	height:auto;
-	margin:15px 15px 15px 0;
+	margin:15px;
 }
 
 .navbar-header-right{
@@ -186,8 +223,8 @@
 //===============================================================================
 @media (min-width: @screen-md-min) {
 	.mainmenu{position:relative;}
-	.mainmenu .navbar-collapse{padding:0 15px;}
-
+	//.mainmenu .navbar-collapse{padding:0 15px;}
+	.mainmenu .navbar-collapse ul li a, .mainmenu .navbar-collapse ul li a.dropdown-toggle{padding:10px 31px 10px 15px;}
 	.mainmenu .navbar-collapse ul ul > li > a, .mainmenu .navbar-collapse ul ul.dropdown-menu > li > a, .mainmenu .navbar-collapse ul ul ul > li > a, .mainmenu .navbar-collapse ul ul ul.dropdown-menu > li > a{padding:10px 27px 10px 15px;}
 	
 	.mainmenu .navbar-collapse ul > li:hover > a, .mainmenu .navbar-collapse ul ul > li:hover > a{background:#007fa3; color:#fff;}
