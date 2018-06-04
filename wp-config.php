@@ -44,7 +44,18 @@ else if($_SERVER['SERVER_NAME'] == "pearson.catus.tech"){
 	define( 'WP_SITEURL',  'http://pearson.catus.tech' );
 	define( 'WP_HOME', 'http://pearson.catus.tech' );
 }
+else if($_SERVER['SERVER_NAME'] == "science.pprod4.ilongman.com"){
+	/** The name of the database for WordPress */
+	define('DB_NAME', 'pearson');
 
+	/** MySQL database username */
+	define('DB_USER', 'root');
+
+	/** MySQL database password */
+	define('DB_PASSWORD', 'catus');
+	define( 'WP_SITEURL',  'http://science.pprod4.ilongman.com' );
+	define( 'WP_HOME', 'http://science.pprod4.ilongman.com' );
+}
 
 /** MySQL hostname */
 define('DB_HOST', 'localhost');
