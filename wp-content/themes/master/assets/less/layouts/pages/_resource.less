@@ -172,12 +172,20 @@
 			height:295px;
 			
 			.resource-thumbnail{
+				position:relative;
 				margin-bottom:13px;
+				
+				.audio_playback{
+					position:absolute;
+					bottom:0;
+				}
 			}
 			
 			.resource-title-wrapper{
 				position:relative;
-				margin-bottom:23px;
+				//margin-bottom:23px;
+				height:50px;
+				overflow-y:hidden;
 				
 				.resource-title{
 				  font-size: 14px;
@@ -193,6 +201,11 @@
 						height:20px;
 						background:url(../img/common/icon_notes.png) no-repeat center;
 						background-size:cover;
+						display:inline-block;
+					}
+					
+					.hidden-content{
+						display:none;
 					}
 				}
 			}
@@ -433,6 +446,11 @@
 						height:20px;
 						background:url(../img/common/icon_notes.png) no-repeat center;
 						background-size:cover;
+						display:inline-block;
+					}
+					
+					.hidden-content{
+						display:none;
 					}
 				}
 			}
