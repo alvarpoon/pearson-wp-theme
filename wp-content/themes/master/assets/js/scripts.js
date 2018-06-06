@@ -2478,11 +2478,11 @@ function createZip(){
 		};
 		
 		$.post(ajaxurl, data, function(response) {
+			console.log('createzip done');
 			
 	    }).done(function(response){
-			console.log('createzip done');
 			console.log(response);
-			//window.location = response;
+			window.location = response;
 	    }).fail(function(response){
 			console.log('createzip fail');
 	    });
