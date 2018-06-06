@@ -96,14 +96,14 @@
 						<div class="multiple_dl_header">Download (5)</div>
 						<div class="multiple_dl_content">
 							<ul>
-								<li><a href="#">long item name here max 2 lines</a></li>
-								<li><a href="#">Item 2</a></li>
-								<li><a href="#">Item 3</a></li>
-								<li><a href="#">Item 4</a></li>
-								<li><a href="#">Item 5</a></li>
+								<li><a href="<?=get_stylesheet_directory_uri()?>/assets/img/common/multiiple@2x.png" target="_blank">long item name here max 2 lines</a></li>
+								<li><a href="<?=get_stylesheet_directory_uri()?>/assets/img/common/img_single_image.png" target="_blank">Item 2</a></li>
+								<li><a href="<?=get_stylesheet_directory_uri()?>/assets/img/common/surroundTestDTS.dts.wav" target="_blank">Item 3</a></li>
+								<li><a href="<?=get_stylesheet_directory_uri()?>/assets/img/common/img_video.png" target="_blank">Item 4</a></li>
+								<li><a href="<?=get_stylesheet_directory_uri()?>/assets/img/common/sample.wav" target="_blank">Item 5</a></li>
 								<!--<li><a href="javascript:;" data-file="<?=get_stylesheet_directory_uri()?>/assets/img/common/multiiple@2x.png,<?=get_stylesheet_directory_uri()?>/assets/img/common/img_single_image.png,<?=get_stylesheet_directory_uri()?>/assets/img/common/surroundTestDTS.dts.wav,<?=get_stylesheet_directory_uri()?>/assets/img/common/img_video.png" data-filename="testing123" class="createzip">Download All (5 files)</a></li>-->
 								<!--<li><a href="javascript:;" data-file="\wp-content\themes\master\assets\img\common\multiiple@2x.png,\wp-content\themes\master\assets\img\common\img_single_image.png,\wp-content\themes\master\assets\img\common\surroundTestDTS.dts.wav,\wp-content\themes\master\assets\img\common\img_video.png" data-filename="testing123" class="createzip">Download All (5 files)</a></li>-->
-								<li><a href="javascript:;" data-file="/wp-content/themes/master/assets/img/common/multiiple@2x.png,/wp-content/themes/master/assets/img/common/img_single_image.png,/wp-content/themes/master/assets/img/common/surroundTestDTS.dts.wav,/wp-content/themes/master/assets/img/common/img_video.png" data-filename="testing123" class="createzip">Download All (5 files)</a></li>
+								<li><a href="javascript:;" data-file="/wp-content/themes/master/assets/img/common/multiiple@2x.png,/wp-content/themes/master/assets/img/common/img_single_image.png,/wp-content/themes/master/assets/img/common/surroundTestDTS.dts.wav,/wp-content/themes/master/assets/img/common/img_video.png,/wp-content/themes/master/assets/img/common/sample.wav" data-filename="testing123" class="createzip">Download All (5 files)</a></li>
 							</ul>
 						</div>
 					</div>

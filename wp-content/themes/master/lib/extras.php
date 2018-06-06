@@ -185,6 +185,8 @@ function create_zip(){
 	  }
 	}
 	
+	var_dump($validFiles);
+	
 	if(count($validFiles)) {
 	  $zip = new ZipArchive();
 	  if($zip->open($destination,$overwrite ? ZIPARCHIVE::OVERWRITE : ZIPARCHIVE::CREATE) !== true) {
