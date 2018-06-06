@@ -43,19 +43,19 @@ function wpsax_filter_option( $value, $option_name ) {
                 'entityId' => 'http://science.pprod4.ilongman.com',
                 'singleSignOnService' => array(
                     // Required: Set based on provider's supplied value.
-                    'url'  => '',
+                    'url'  => 'https://iam-stage.pearson.com:443/auth/SSORedirect/metaAlias/pearson/idp',
                     'binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
                 ),
                 'singleLogoutService' => array(
                     // Required: Set based on provider's supplied value.
-                    'url'  => '',
+                    'url'  => 'https://iam-stage.pearson.com:443/auth/IDPSloRedirect/metaAlias/pearson/idp',
                     'binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
                 ),
                 // Required: Contents of the IDP's public x509 certificate.
                 // Use file_get_contents() to load certificate contents into scope.
                 'x509cert' => '',
                 // Optional: Instead of using the x509 cert, you can specify the fingerprint and algorithm.
-                'certFingerprint' => '',
+                'certFingerprint' => '9bbec676cff86935b1d803596c96f1e697fdbff0',
                 'certFingerprintAlgorithm' => '',
             ),
         ),
