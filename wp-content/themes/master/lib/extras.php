@@ -147,3 +147,63 @@ function wpsax_filter_option( $value, $option_name ) {
     return $value;
 }
 add_filter( 'wp_saml_auth_option', 'wpsax_filter_option', 10, 2 );
+
+
+add_action( 'wp_ajax_create-zip', 'create_zip' );
+// We allow non-logged in users to access our pagination
+add_action( 'wp_ajax_nopriv_create-zip', 'create_zip' ); 
+
+function create_zip(){
+	global $wpdb;
+	$overwrite = true;
+	$filepath = $_POST['filepathdata'];	
+	$files = explode(',', $filepath);
+	//$destination = ;
+	
+	$destination = $_SERVER['DOCUMENT_ROOT'] . '/wp-content/themes/master/assets/zip-archives/'.$_POST['filenamedata'].'.zip';
+	
+	if(file_exists($_SERVER['DOCUMENT_ROOT'] .'/wp-content/themes/master/assets/img/common/surroundTestDTS.dts.wav')){
+		echo 'i found it!';
+		echo $_SERVER['DOCUMENT_ROOT'] .'/wp-content/themes/master/assets/img/common/surroundTestDTS.dts.wav';
+	}
+	
+	$validFiles = [];
+	if(is_array($files)) {
+	  foreach($files as $file) {
+		 if(file_exists($file)) {
+			$validFiles[] = $file;
+			//echo '<p>has files</p>';
+		 }else{
+		 	echo 'not found ';
+		 }
+	  }
+	}
+	
+	//var_dump($files);
+	
+	if(count($validFiles)) {
+	  $zip = new ZipArchive();
+	  /*if($zip->open($destination,$overwrite ? ZIPARCHIVE::OVERWRITE : ZIPARCHIVE::CREATE) !== true) {
+		 return false;
+	  }*/
+	
+	  foreach($validFiles as $file) {
+		 $zip->addFile($destination,$file);
+	  }
+	
+	  $zip->close();
+	  //return file_exists($destination);
+	  
+	  if(file_exists($destination)){  
+		  /*header("Content-Disposition: attachment; filename=\"".$destination."\"");
+		  header("Content-Length: ".filesize($destination));
+		  readfile($destination);*/
+		  
+		  echo 'yeah';
+		  //echo $destination;
+	  }
+	}else{
+	  //return false;
+	  echo 'fail';
+	}
+}

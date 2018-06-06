@@ -2431,6 +2431,7 @@ var Roots = {
 	init: function() {
 		$('document').ready(function(){
 			initAudioSetup();
+			createZip();
 		});
 	}
   },
@@ -2461,6 +2462,33 @@ var UTIL = {
     });
   }
 };
+
+function createZip(){
+	$('.createzip').click(function(){
+		console.log('in createZip');
+		var ajaxurl = '/wp-admin/admin-ajax.php';
+		
+		var filepath = $(this).attr('data-file');
+		var filename = $(this).attr('data-filename');
+		
+		var data = {
+			filepathdata: filepath,
+			filenamedata: filename,
+			action: 'create-zip'
+		};
+		
+		$.post(ajaxurl, data, function(response) {
+			
+	    }).done(function(response){
+			console.log('createzip done');
+			console.log(response);
+			//window.location = response;
+	    }).fail(function(response){
+			console.log('createzip fail');
+	    });
+		
+	});
+}
 
 function initAudioSetup(){
 	function stopAllAudio(obj){
