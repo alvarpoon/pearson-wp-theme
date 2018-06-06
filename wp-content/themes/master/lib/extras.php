@@ -172,7 +172,7 @@ function create_zip(){
 	  foreach($files as $file) {
 		 if(file_exists($file)) {
 			$validFiles[] = $file;
-			//echo '<p>has files</p>';
+			echo '<p>has files</p>';
 		 }else{
 		 	echo 'not found ';
 		 }
