@@ -2482,7 +2482,7 @@ function createZip(){
 			
 	    }).done(function(response){
 			console.log(response);
-			//window.location = response;
+			window.location = response;
 	    }).fail(function(response){
 			console.log('createzip fail');
 	    });
