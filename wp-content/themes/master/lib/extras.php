@@ -185,7 +185,7 @@ function create_zip(){
 	  }
 	}
 	
-	var_dump($validFiles);
+	//var_dump($validFiles);
 	
 	if(count($validFiles)) {
 	  $zip = new ZipArchive();
