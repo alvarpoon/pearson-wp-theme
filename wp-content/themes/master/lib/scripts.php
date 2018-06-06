@@ -25,6 +25,7 @@ function roots_scripts() {
       'js'        => '/assets/js/scripts.js',
       'modernizr' => '/assets/vendor/modernizr/modernizr.js',
       'jquery'    => '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js',
+	  'jquery-ui'    => '/assets/js/plugins/jquery-ui.min.js',
 	  'fancybox'    => '/assets/js/plugins/jquery.fancybox.min.js'
     );
   } else {
@@ -35,6 +36,7 @@ function roots_scripts() {
       'js'        => '/assets/js/scripts.min.js?' . $assets['assets/js/scripts.min.js']['hash'],
       'modernizr' => '/assets/js/vendor/modernizr.min.js',
       'jquery'    => '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js',
+	  'jquery-ui'    => '/assets/js/plugins/jquery-ui.min.js',
 	  'fancybox'    => '/assets/js/plugins/jquery.fancybox.min.js'
     );
   }

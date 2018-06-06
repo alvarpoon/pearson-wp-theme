@@ -94,6 +94,20 @@ var Roots = {
     init: function() {
       // JavaScript to be fired on the about us page
     }
+  },
+  page_template_template_resource:{
+	init: function() {
+		$('document').ready(function(){
+			initAudioSetup();
+		});
+	}
+  },
+  page_template_template_resource_list:{
+	init: function() {
+		$('document').ready(function(){
+			initAudioSetup();
+		});
+	}
   }
 };
 
@@ -115,6 +129,127 @@ var UTIL = {
     });
   }
 };
+
+function initAudioSetup(){
+	function stopAllAudio(obj){
+		$('.audio_playback').each(function(){
+			if($(obj) !== $(this)){
+				var audio = $(this).find('.player audio').get(0);
+			
+				audio.pause();
+				
+				$(this).find(".playtoggle").removeClass('playing');
+			}
+		});
+	}
+	
+	function initAudioPlayer(obj, source){	
+		var supportsAudio = !!document.createElement('audio').canPlayType,
+				audio,
+				loadingIndicator,
+				positionIndicator,
+				timeleft,
+				loaded = false,
+				manualSeek = false;
+	
+		if (supportsAudio) {
+			
+			//var episodeTitle = $('body')[0].id;
+			
+			var player = '<p class="player">';
+			player += '<span class="playtoggle"><a href="javascript:;">Listen</a></span>';
+			player += '<span class="gutter">';
+			player += '<span class="loading" />';
+			player += '<span class="handle ui-slider-handle" />';
+			player += '</span>';
+			player += '<span class="timeleft" />';
+			player += '<audio preload="metadata">';
+			player += '<source src="' + source + '" type="audio/wav"></source>';
+			player += '</audio>';
+			player += '</p>';
+			
+			$(player).appendTo(obj);
+			
+			/*audio = $('.player audio').get(0);
+			loadingIndicator = $('.player .loading');
+			positionIndicator = $('.player .handle');
+			timeleft = $('.player .timeleft');*/
+			
+			audio = $(obj).find('.player audio').get(0);
+			loadingIndicator = $(obj).find('.player .loading');
+			positionIndicator = $(obj).find('.player .handle');
+			timeleft = $(obj).find('.player .timeleft');
+			
+			
+			//timeleft.text('-' + mins + ':' + (secs < 10 ? '0' + secs : secs) + '/' + fl_mins + ':' + (fl_secs < 10 ? '0' + fl_secs : fl_secs));
+			
+			if ((audio.buffered !== undefined) && (audio.buffered.length !== 0)) {
+				$(audio).bind('progress', function() {
+					var loaded = parseInt(((audio.buffered.end(0) / audio.duration) * 100), 10);
+					loadingIndicator.css({width: loaded + '%'});
+				});
+			}
+			else {
+				loadingIndicator.remove();
+			}
+			
+			$(audio).bind('timeupdate', function() {
+				
+				var rem = parseInt(audio.duration - audio.currentTime, 10),
+						pos = (audio.currentTime / audio.duration) * 100,
+						mins = Math.floor(rem/60,10),
+						secs = rem - mins*60;
+						
+				var full_length = audio.duration,
+					fl_mins = Math.floor(full_length/60,10),
+					fl_secs = Math.floor(full_length-fl_mins*60,10);
+				
+				timeleft.text('-' + mins + ':' + (secs < 10 ? '0' + secs : secs) + '/' + fl_mins + ':' + (fl_secs < 10 ? '0' + fl_secs : fl_secs));
+				if (!manualSeek) { positionIndicator.css({left: pos + '%'}); }
+				if (!loaded) {
+					loaded = true;
+					
+					$('.player .gutter').slider({
+							value: 0,
+							step: 0.01,
+							orientation: "horizontal",
+							range: "min",
+							max: audio.duration,
+							animate: true,					
+							slide: function(){							
+								manualSeek = true;
+							},
+							stop:function(e,ui){
+								manualSeek = false;	
+								audio.currentTime = ui.value;
+							}
+						});
+				}
+				
+			}).bind('play',function(){
+				$(obj).find(".playtoggle").addClass('playing');		
+			}).bind('pause ended', function() {
+				$(obj).find(".playtoggle").removeClass('playing');		
+			});		
+			
+			$(obj).find(".playtoggle").click(function() {
+				if (audio.paused) {
+					stopAllAudio(obj);
+					audio.play();
+				} 
+				else { 
+					audio.pause();
+				}	
+			});
+		}
+	}
+	
+	$('.audio_playback').each(function(){
+		var source = $(this).attr('data-source');
+		//console.log(source);
+		initAudioPlayer($(this), source);
+	});
+}
 
 $(document).ready(UTIL.loadEvents);
 

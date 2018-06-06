@@ -6807,7 +6807,7 @@ a {
   width: 100%;
 }
 a {
-  outline: none;
+  outline: none!important;
 }
 a.btn_single_download {
   padding: 5px 13px 5px 35px;
@@ -7109,6 +7109,7 @@ figure.alignnone {
   margin: 15px;
 }
 .navbar-header-right {
+  margin-right: 15px;
   float: right;
 }
 .navbar-header-right .lang-wrapper,
@@ -7603,6 +7604,139 @@ footer.content-info .footer-wrapper .footer-copyright {
 .page-template-template-resource-list .filter-wrapper .view-option-wrapper .view-option a:hover {
   text-decoration: none;
 }
+.page-template-template-resource .audio_container,
+.page-template-template-resource-list .audio_container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 28px;
+}
+.page-template-template-resource .audio_container.two_audio .audio_playback,
+.page-template-template-resource-list .audio_container.two_audio .audio_playback,
+.page-template-template-resource .audio_container.small_audio .audio_playback,
+.page-template-template-resource-list .audio_container.small_audio .audio_playback {
+  width: 49.3%;
+  display: inline-block;
+}
+.page-template-template-resource .audio_container.two_audio .audio_playback .player .timeleft,
+.page-template-template-resource-list .audio_container.two_audio .audio_playback .player .timeleft,
+.page-template-template-resource .audio_container.small_audio .audio_playback .player .timeleft,
+.page-template-template-resource-list .audio_container.small_audio .audio_playback .player .timeleft {
+  width: 100px;
+}
+.page-template-template-resource .audio_container.two_audio .audio_playback .player .gutter,
+.page-template-template-resource-list .audio_container.two_audio .audio_playback .player .gutter,
+.page-template-template-resource .audio_container.small_audio .audio_playback .player .gutter,
+.page-template-template-resource-list .audio_container.small_audio .audio_playback .player .gutter {
+  display: none;
+}
+.page-template-template-resource .audio_container .audio_playback,
+.page-template-template-resource-list .audio_container .audio_playback {
+  width: 100%;
+  position: relative;
+  height: 28px;
+}
+.page-template-template-resource .audio_container .audio_playback .player,
+.page-template-template-resource-list .audio_container .audio_playback .player {
+  margin-bottom: 0;
+  display: block;
+  height: 28px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-radius: 4px;
+  background: #505759;
+  cursor: default;
+}
+.page-template-template-resource .audio_container .audio_playback .playtoggle,
+.page-template-template-resource-list .audio_container .audio_playback .playtoggle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 28px;
+  background-color: #e8e8e8;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  z-index: 999;
+  color: #007fa3;
+  text-align: center;
+  font-size: 14px;
+  line-height: 2;
+  border-radius: 4px;
+}
+.page-template-template-resource .audio_container .audio_playback .playtoggle a,
+.page-template-template-resource-list .audio_container .audio_playback .playtoggle a {
+  color: #007fa3;
+  display: inline-block;
+  background: url(../img/common/ic-volume-down.svg) no-repeat left center;
+  padding-left: 25px;
+}
+.page-template-template-resource .audio_container .audio_playback .playtoggle a:hover,
+.page-template-template-resource-list .audio_container .audio_playback .playtoggle a:hover,
+.page-template-template-resource .audio_container .audio_playback .playtoggle a:focus,
+.page-template-template-resource-list .audio_container .audio_playback .playtoggle a:focus,
+.page-template-template-resource .audio_container .audio_playback .playtoggle a:active,
+.page-template-template-resource-list .audio_container .audio_playback .playtoggle a:active {
+  text-decoration: none;
+}
+.page-template-template-resource .audio_container .audio_playback .playtoggle.playing,
+.page-template-template-resource-list .audio_container .audio_playback .playtoggle.playing {
+  width: 30px;
+  background: url(../img/common/player.png) no-repeat 0 0;
+  float: left;
+  text-indent: -9999px;
+  border: none;
+}
+.page-template-template-resource .audio_container .audio_playback .timeleft,
+.page-template-template-resource-list .audio_container .audio_playback .timeleft {
+  line-height: 28px;
+  position: absolute;
+  top: 0;
+  right: 10px;
+  width: 70px;
+  text-align: center;
+  font-size: 12px;
+  color: #fff;
+}
+.page-template-template-resource .audio_container .audio_playback .gutter,
+.page-template-template-resource-list .audio_container .audio_playback .gutter {
+  position: absolute;
+  top: 12px;
+  left: 30px;
+  right: 85px;
+  height: 5px;
+  background: #888888;
+}
+.page-template-template-resource .audio_container .audio_playback .loading,
+.page-template-template-resource-list .audio_container .audio_playback .loading {
+  background: #fff;
+  background: #939eaa;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#eaeef1), to(#c7cfd8));
+  background: -webkit-gradient(linear, left top, left bottom, from(#eaeef1), to(#c7cfd8));
+  background: -webkit-linear-gradient(top, #eaeef1, #c7cfd8);
+  background: -o-linear-gradient(top, #eaeef1, #c7cfd8);
+  background: linear-gradient(top, #eaeef1, #c7cfd8);
+  -webkit-box-shadow: 0 1px 0 #fff inset, 0 1px 0 #141e28;
+  -o-box-shadow: 0 1px 0 #fff inset, 0 1px 0 #141e28;
+  box-shadow: 0 1px 0 #fff inset, 0 1px 0 #141e28;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  display: block;
+  float: left;
+  min-width: 6px;
+  height: 6px;
+}
+.page-template-template-resource .audio_container .audio_playback .handle,
+.page-template-template-resource-list .audio_container .audio_playback .handle {
+  position: absolute;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  background: #fff;
+  cursor: pointer;
+}
 .page-template-template-resource .resource-footer,
 .page-template-template-resource-list .resource-footer {
   text-align: center;
@@ -7667,10 +7801,6 @@ footer.content-info .footer-wrapper .footer-copyright {
   position: relative;
   margin-bottom: 13px;
 }
-.page-template-template-resource .resource-container .resource-item .resource-thumbnail .audio_playback {
-  position: absolute;
-  bottom: 0;
-}
 .page-template-template-resource .resource-container .resource-item .resource-title-wrapper {
   position: relative;
   height: 50px;
@@ -7679,6 +7809,17 @@ footer.content-info .footer-wrapper .footer-copyright {
 .page-template-template-resource .resource-container .resource-item .resource-title-wrapper .resource-title {
   font-size: 14px;
   padding-right: 27px;
+}
+.page-template-template-resource .resource-container .resource-item .resource-title-wrapper .resource-title a {
+  color: #505759;
+}
+.page-template-template-resource .resource-container .resource-item .resource-title-wrapper .resource-title a:hover {
+  color: #007FA3;
+}
+.page-template-template-resource .resource-container .resource-item .resource-title-wrapper .resource-title a:hover,
+.page-template-template-resource .resource-container .resource-item .resource-title-wrapper .resource-title a:focus,
+.page-template-template-resource .resource-container .resource-item .resource-title-wrapper .resource-title a:active {
+  text-decoration: none;
 }
 .page-template-template-resource .resource-container .resource-item .resource-title-wrapper .resource-note {
   position: absolute;
@@ -7826,6 +7967,17 @@ footer.content-info .footer-wrapper .footer-copyright {
   min-height: 40px;
   font-size: 16px;
   line-height: 1.25;
+}
+.page-template-template-resource-list .resource-container .resource-item .resource-title-wrapper .resource-title-div .resource-title a {
+  color: #505759;
+}
+.page-template-template-resource-list .resource-container .resource-item .resource-title-wrapper .resource-title-div .resource-title a:hover {
+  color: #007FA3;
+}
+.page-template-template-resource-list .resource-container .resource-item .resource-title-wrapper .resource-title-div .resource-title a:hover,
+.page-template-template-resource-list .resource-container .resource-item .resource-title-wrapper .resource-title-div .resource-title a:focus,
+.page-template-template-resource-list .resource-container .resource-item .resource-title-wrapper .resource-title-div .resource-title a:active {
+  text-decoration: none;
 }
 .page-template-template-resource-list .resource-container .resource-item .resource-title-wrapper .resource-title-div .resource-type {
   font-size: 12px;

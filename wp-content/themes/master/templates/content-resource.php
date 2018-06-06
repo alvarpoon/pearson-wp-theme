@@ -1,8 +1,11 @@
 <?php //the_content(); ?>
 <?php //wp_link_pages(array('before' => '<nav class="pagination">', 'after' => '</nav>')); ?>
-
-<div class="top-banner-container">
-	<img src="<?=get_stylesheet_directory_uri()?>/assets/img/home/banner-top.png" class="img-responsive" />
+<div class="container-fluid">
+	<div class="row">
+		<div class="top-banner-container" style="background-image:url('<?=get_stylesheet_directory_uri()?>/assets/img/home/banner-top.png');">
+			<img src="<?=get_stylesheet_directory_uri()?>/assets/img/home/banner-top.png" class="img-responsive hidden-xs hidden-sm hidden-md hidden-lg" />
+		</div>
+	</div>
 </div>
 <div class="container">
 	<div class="page-content-wrapper">
@@ -111,7 +114,7 @@
 					</a>
 				</div>
 				<div class="resource-title-wrapper">
-					<div class="resource-title">An single image file</div>
+					<div class="resource-title"><a href="https://source.unsplash.com/Q1Zyjio6pIM/1279x870" data-fancybox>An single image file</a></div>
 					<div class="resource-note">
 						<a class="icon-note" data-fancybox data-src="#note-content" href="javascript:;"></a>
 						<div id="note-content" class="hidden-content fancybox-content file-download">
@@ -130,16 +133,12 @@
 					<a href="https://source.unsplash.com/Q1Zyjio6pIM/1279x870" data-fancybox>
 						<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img_single_image.png" class="img-responsive" />
 					</a>
-					<div class="audio_playback">
-						<button>Listen</button>
-						
-						<audio controls>
-							   <source src="<?=get_stylesheet_directory_uri()?>/assets/img/common/surroundTestDTS.dts.wav" type="audio/wav"/>
-						</audio>
+					<div class="audio_container">
+						<div class="audio_playback" data-source="<?=get_stylesheet_directory_uri()?>/assets/img/common/surroundTestDTS.dts.wav"></div>
 					</div>
 				</div>
 				<div class="resource-title-wrapper">
-					<div class="resource-title">A multiple sample files for download</div>
+					<div class="resource-title"><a href="https://source.unsplash.com/Q1Zyjio6pIM/1279x870" data-fancybox>A multiple sample files for download</a></div>
 					<div class="resource-note">
 						<a class="icon-note" data-fancybox data-src="#note-content" href="javascript:;"></a>
 						<div id="note-content" class="hidden-content fancybox-content file-download">
@@ -160,7 +159,7 @@
 					</a>
 				</div>
 				<div class="resource-title-wrapper">
-					<div class="resource-title">A single video file</div>
+					<div class="resource-title"><a data-fancybox href="https://vimeo.com/191947042">A single video file</a></div>
 					<div class="resource-note">
 						<a class="icon-note" data-fancybox data-src="#note-content" href="javascript:;"></a>
 						<div id="note-content" class="hidden-content fancybox-content file-download">
@@ -181,7 +180,7 @@
 					</a>
 				</div>
 				<div class="resource-title-wrapper">
-					<div class="resource-title">A Video File with multiple files for download</div>
+					<div class="resource-title"><a data-fancybox href="https://vimeo.com/191947042">A Video File with multiple files for download</a></div>
 					<div class="resource-note">
 						<a class="icon-note" data-fancybox data-src="#note-content" href="javascript:;"></a>
 						<div id="note-content" class="hidden-content fancybox-content file-download">
@@ -198,8 +197,8 @@
 			<div class="col-xs-6 col-sm-3 col-md-3 resource-item">
 				<div class="resource-thumbnail">
 					<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img_wav.png" class="img-responsive" />
-					<div class="audio_playback">
-						<button>Listen</button>
+					<div class="audio_container">
+						<div class="audio_playback" data-source="<?=get_stylesheet_directory_uri()?>/assets/img/common/sample.wav"></div>
 					</div>
 				</div>
 				<div class="resource-title-wrapper">
@@ -342,10 +341,16 @@
 			</div>
 			<div class="col-xs-6 col-sm-3 col-md-3 resource-item">
 				<div class="resource-thumbnail">
-					<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-zip.png" class="img-responsive" />
+					<a href="https://source.unsplash.com/Q1Zyjio6pIM/1279x870" data-fancybox>
+						<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img_wav.png" class="img-responsive" />
+					</a>
+					<div class="audio_container two_audio">
+						<div class="audio_playback" data-source="<?=get_stylesheet_directory_uri()?>/assets/img/common/surroundTestDTS.dts.wav"></div>
+						<div class="audio_playback" data-source="<?=get_stylesheet_directory_uri()?>/assets/img/common/sample.wav"></div>
+					</div>
 				</div>
 				<div class="resource-title-wrapper">
-					<div class="resource-title">A multiple sample files for download</div>
+					<div class="resource-title"><a href="https://source.unsplash.com/Q1Zyjio6pIM/1279x870" data-fancybox>A multiple sample files for download</a></div>
 					<div class="resource-note">
 						<a class="icon-note" data-fancybox data-src="#note-content" href="javascript:;"></a>
 						<div id="note-content" class="hidden-content fancybox-content file-download">
