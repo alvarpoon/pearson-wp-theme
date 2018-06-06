@@ -132,6 +132,10 @@
 					</a>
 					<div class="audio_playback">
 						<button>Listen</button>
+						
+						<audio controls>
+							   <source src="<?=get_stylesheet_directory_uri()?>/assets/img/common/surroundTestDTS.dts.wav" type="audio/wav"/>
+						</audio>
 					</div>
 				</div>
 				<div class="resource-title-wrapper">
@@ -253,7 +257,9 @@
 			</div>
 			<div class="col-xs-6 col-sm-3 col-md-3 resource-item">
 				<div class="resource-thumbnail">
-					<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img_article.png" class="img-responsive" />
+					<a href="javascript:;" data-fancybox data-src="#elon-musk-1">
+						<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img_article.png" class="img-responsive" />
+					</a>
 				</div>
 				<div class="resource-title-wrapper">
 					<div class="resource-title">Article with files download and thumbnail</div>
@@ -269,10 +275,37 @@
 				<div class="resource-download-wrapper">
 					<a href="#" class="btn_single_download">Download</a>
 				</div>
+				<div id="elon-musk-1" class="hidden-content fancybox-content article-lightbox">
+					<h3>Article Title</h3>
+					<div class="article-content">
+						<div class="media-container">
+							<a href="#" class="media-file doc">Item 1</a>
+							<a href="#" class="media-file pdf">Item 2</a>
+							<a href="#" class="media-file mpg">Item 3</a>
+							<a href="#" class="media-file ppt">Item 4</a>
+							<a href="#" class="media-file zip">Item 5</a>
+						</div>
+						<div class="clearfix">
+							<div class="img-container"><img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-elon-musk.png" class="img-responsive" /></div>
+							<div class="content-container">
+								<p>Dummy descripition. Young motorists could be banned from the road at night if plans for probationary driving licences are approved.</p>
+								
+								<p>Theresa May said yesterday that the Department for Transport would review the case for a "graduated" licensing system that imposes restrictions on drivers depending on experience. The prime minister's intervention came amid concerns that young motorists are involved in a disproportionately high number of accidents. Figures show that young drivers - those aged 17 to 24 - make up about 7 per cent of licence holders but are involved in more than a quarter of crashes leading to deaths or serious injuries.</p>
+								<p>Under the graduated licence system, drivers are required to abide by a series of restrictions during a probationary period - usually one or two years. This...to</p>
+								<p>Dummy descripition. Young motorists could be banned from the road at night if plans for probationary driving licences are approved.</p>
+								
+								<p>Theresa May said yesterday that the Department for Transport would review the case for a "graduated" licensing system that imposes restrictions on drivers depending on experience. The prime minister's intervention came amid concerns that young motorists are involved in a disproportionately high number of accidents. Figures show that young drivers - those aged 17 to 24 - make up about 7 per cent of licence holders but are involved in more than a quarter of crashes leading to deaths or serious injuries.</p>
+								<p>Under the graduated licence system, drivers are required to abide by a series of restrictions during a probationary period - usually one or two years. This...to </p>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="col-xs-6 col-sm-3 col-md-3 resource-item">
 				<div class="resource-thumbnail">
-					<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img_article.png" class="img-responsive" />
+					<a href="javascript:;" data-fancybox data-src="#elon-musk-2" href="javascript:;">
+						<img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img_article.png" class="img-responsive" />
+					</a>
 				</div>
 				<div class="resource-title-wrapper">
 					<div class="resource-title">An Article only</div>
@@ -287,6 +320,24 @@
 				<div class="resource-type">File Downlaod</div>
 				<div class="resource-download-wrapper">
 					<a href="#" class="btn_single_download">Download</a>
+				</div>
+				<div id="elon-musk-2" class="hidden-content fancybox-content article-lightbox">
+					<h3>Article Title</h3>
+					<div class="article-content">
+						<div class="clearfix">
+							<div class="img-container"><img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/img-elon-musk.png" class="img-responsive" /></div>
+							<div class="content-container">
+								<p>Dummy descripition. Young motorists could be banned from the road at night if plans for probationary driving licences are approved.</p>
+								
+								<p>Theresa May said yesterday that the Department for Transport would review the case for a "graduated" licensing system that imposes restrictions on drivers depending on experience. The prime minister's intervention came amid concerns that young motorists are involved in a disproportionately high number of accidents. Figures show that young drivers - those aged 17 to 24 - make up about 7 per cent of licence holders but are involved in more than a quarter of crashes leading to deaths or serious injuries.</p>
+								<p>Under the graduated licence system, drivers are required to abide by a series of restrictions during a probationary period - usually one or two years. This...to</p>
+								<p>Dummy descripition. Young motorists could be banned from the road at night if plans for probationary driving licences are approved.</p>
+								
+								<p>Theresa May said yesterday that the Department for Transport would review the case for a "graduated" licensing system that imposes restrictions on drivers depending on experience. The prime minister's intervention came amid concerns that young motorists are involved in a disproportionately high number of accidents. Figures show that young drivers - those aged 17 to 24 - make up about 7 per cent of licence holders but are involved in more than a quarter of crashes leading to deaths or serious injuries.</p>
+								<p>Under the graduated licence system, drivers are required to abide by a series of restrictions during a probationary period - usually one or two years. This...to </p>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="col-xs-6 col-sm-3 col-md-3 resource-item">

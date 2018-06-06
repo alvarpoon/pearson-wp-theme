@@ -99,6 +99,27 @@ select::-ms-expand {
 	&.file-download{
 		max-width:360px!important;
 	}
+	
+	&.article-lightbox{
+		max-width:360px!important;
+		
+		.media-container{
+			margin-bottom:30px;
+		
+			a{
+				
+			}
+		}
+		
+		.img-container{
+			margin-bottom:25px;
+		}
+		
+		.content-container{
+			font-size: 16px;
+			color: #505759;
+		}
+	}
 }
 
 //===============================================================================
@@ -108,6 +129,29 @@ select::-ms-expand {
 //===============================================================================
 @media (min-width: @screen-sm-min) {
 	.main{padding-top:68px;}
+	.fancybox-content{
+		&.file-download{
+			max-width:480px!important;
+		}
+		
+		&.article-lightbox{
+			max-width:700px!important;
+		
+			.media-container{
+				text-align:right;
+				
+			}
+			
+			.img-container{
+				float:right;
+				margin:0 0 15px 25px;
+				img{
+					max-width:360px;
+					height:auto;
+				}
+			}
+		}
+	}
 }
 
 //===============================================================================
@@ -117,6 +161,15 @@ select::-ms-expand {
 //===============================================================================
 @media (min-width: @screen-md-min) {
 	.main{padding-top:0;}
+	.fancybox-content{
+		&.file-download{
+			max-width:640px!important;
+		}
+		
+		&.article-lightbox{
+			max-width:800px!important;
+		}
+	}
 }
 
 //===============================================================================
@@ -125,10 +178,14 @@ select::-ms-expand {
 //===============================================================================
 //===============================================================================
 @media (min-width: @screen-lg-min) {
-
+	
 }
 
 //adding new break point for container max-width: 1280
 @media (min-width: 1500px) {
-  
+	.fancybox-content{
+		&.file-download{
+			max-width:800px!important;
+		}
+	}
 }

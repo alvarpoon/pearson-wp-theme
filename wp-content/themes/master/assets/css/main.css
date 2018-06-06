@@ -6853,14 +6853,55 @@ select::-ms-expand {
 .fancybox-content.file-download {
   max-width: 360px!important;
 }
+.fancybox-content.article-lightbox {
+  max-width: 360px!important;
+}
+.fancybox-content.article-lightbox .media-container {
+  margin-bottom: 30px;
+}
+.fancybox-content.article-lightbox .img-container {
+  margin-bottom: 25px;
+}
+.fancybox-content.article-lightbox .content-container {
+  font-size: 16px;
+  color: #505759;
+}
 @media (min-width: 768px) {
   .main {
     padding-top: 68px;
+  }
+  .fancybox-content.file-download {
+    max-width: 480px!important;
+  }
+  .fancybox-content.article-lightbox {
+    max-width: 700px!important;
+  }
+  .fancybox-content.article-lightbox .media-container {
+    text-align: right;
+  }
+  .fancybox-content.article-lightbox .img-container {
+    float: right;
+    margin: 0 0 15px 25px;
+  }
+  .fancybox-content.article-lightbox .img-container img {
+    max-width: 360px;
+    height: auto;
   }
 }
 @media (min-width: 992px) {
   .main {
     padding-top: 0;
+  }
+  .fancybox-content.file-download {
+    max-width: 640px!important;
+  }
+  .fancybox-content.article-lightbox {
+    max-width: 800px!important;
+  }
+}
+@media (min-width: 1500px) {
+  .fancybox-content.file-download {
+    max-width: 800px!important;
   }
 }
 .comment-list ol {
@@ -7399,6 +7440,10 @@ footer.content-info .footer-wrapper .footer-copyright {
     height: 550px;
   }
 }
+.page-template-template-resource .hidden-content,
+.page-template-template-resource-list .hidden-content {
+  display: none;
+}
 .page-template-template-resource .page-general-info,
 .page-template-template-resource-list .page-general-info {
   margin-bottom: 30px;
@@ -7595,9 +7640,6 @@ footer.content-info .footer-wrapper .footer-copyright {
           background-size: cover;
   display: inline-block;
 }
-.page-template-template-resource .resource-container .resource-item .resource-title-wrapper .resource-note .hidden-content {
-  display: none;
-}
 .page-template-template-resource .resource-container .resource-item .resource-type {
   font-size: 12px;
   line-height: 1.33;
@@ -7782,9 +7824,6 @@ footer.content-info .footer-wrapper .footer-copyright {
   -webkit-background-size: cover;
           background-size: cover;
   display: inline-block;
-}
-.page-template-template-resource-list .resource-container .resource-item .resource-title-wrapper .resource-note .hidden-content {
-  display: none;
 }
 .page-template-template-resource-list .resource-container .resource-item .file-download-wrapper {
   padding-right: 0;
