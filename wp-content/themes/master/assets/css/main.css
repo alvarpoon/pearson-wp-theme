@@ -6834,6 +6834,48 @@ a.btn_single_download:before {
   top: 5px;
   left: 5px;
 }
+a.media-file {
+  display: inline-block;
+  font-size: 12px;
+  line-height: 1.33;
+  color: #505759;
+  width: 92px;
+  height: 70px;
+  background-repeat: no-repeat;
+  background-position: top center;
+  text-align: center;
+  padding-top: 40px;
+  margin-right: 4px;
+  float: left;
+  overflow: hidden;
+}
+a.media-file.all {
+  background-image: url(../img/common/download-all.svg);
+}
+a.media-file.doc {
+  background-image: url(../img/common/doc.svg);
+}
+a.media-file.ppt {
+  background-image: url(../img/common/ppt.svg);
+}
+a.media-file.wav {
+  background-image: url(../img/common/wav.svg);
+}
+a.media-file.zip {
+  background-image: url(../img/common/zip.svg);
+}
+a.media-file.pdf {
+  background-image: url(../img/common/pdf.svg);
+}
+a.media-file.mpg {
+  background-image: url(../img/common/mpg.svg);
+}
+a.media-file.jpg {
+  background-image: url(../img/common/jpg.svg);
+}
+a.media-file.html {
+  background-image: url(../img/common/html.svg);
+}
 select {
   color: #000;
   -webkit-appearance: none;
@@ -6858,6 +6900,17 @@ select::-ms-expand {
 }
 .fancybox-content.article-lightbox .media-container {
   margin-bottom: 30px;
+}
+.fancybox-content.article-lightbox .media-container a {
+  float: none;
+  height: 30px;
+  padding: 0;
+  text-align: right;
+  padding-left: 32px;
+  width: 66px;
+  background-position: left;
+  vertical-align: middle;
+  line-height: 2.5;
 }
 .fancybox-content.article-lightbox .img-container {
   margin-bottom: 25px;
@@ -7829,49 +7882,61 @@ footer.content-info .footer-wrapper .footer-copyright {
   padding-right: 0;
 }
 .page-template-template-resource-list .resource-container .resource-item .file-download-wrapper a {
-  display: inline-block;
-  font-size: 12px;
-  line-height: 1.33;
-  color: #505759;
-  width: 92px;
-  height: 70px;
-  background-repeat: no-repeat;
-  background-position: top center;
-  text-align: center;
-  padding-top: 40px;
-  margin-right: 4px;
-  float: left;
-  overflow: hidden;
-}
-.page-template-template-resource-list .resource-container .resource-item .file-download-wrapper a:last-child {
-  margin-right: 0;
-}
-.page-template-template-resource-list .resource-container .resource-item .file-download-wrapper a.all {
-  background-image: url(../img/common/download-all.svg);
-}
-.page-template-template-resource-list .resource-container .resource-item .file-download-wrapper a.doc {
-  background-image: url(../img/common/doc.svg);
-}
-.page-template-template-resource-list .resource-container .resource-item .file-download-wrapper a.ppt {
-  background-image: url(../img/common/ppt.svg);
-}
-.page-template-template-resource-list .resource-container .resource-item .file-download-wrapper a.wav {
-  background-image: url(../img/common/wav.svg);
-}
-.page-template-template-resource-list .resource-container .resource-item .file-download-wrapper a.zip {
-  background-image: url(../img/common/zip.svg);
-}
-.page-template-template-resource-list .resource-container .resource-item .file-download-wrapper a.pdf {
-  background-image: url(../img/common/pdf.svg);
-}
-.page-template-template-resource-list .resource-container .resource-item .file-download-wrapper a.mpg {
-  background-image: url(../img/common/mpg.svg);
-}
-.page-template-template-resource-list .resource-container .resource-item .file-download-wrapper a.jpg {
-  background-image: url(../img/common/jpg.svg);
-}
-.page-template-template-resource-list .resource-container .resource-item .file-download-wrapper a.html {
-  background-image: url(../img/common/html.svg);
+  /*display:inline-block;
+					font-size: 12px;
+					line-height: 1.33;
+					color: #505759;
+					width:92px;
+					height:70px;
+					background-repeat: no-repeat;
+					background-position: top center;
+					text-align: center;
+					padding-top: 40px;
+					margin-right:4px;
+					float:left;
+					overflow:hidden;
+					
+					&:last-child{
+						margin-right:0;
+						
+					}
+				
+					&.all{
+						background-image:url(../img/common/download-all.svg);
+						//float:right;
+					}
+				
+					&.doc{
+						background-image:url(../img/common/doc.svg);
+					}
+					
+					&.ppt{
+						background-image:url(../img/common/ppt.svg);
+					}
+					
+					&.wav{
+						background-image:url(../img/common/wav.svg);
+					}
+					
+					&.zip{
+						background-image:url(../img/common/zip.svg);
+					}
+					
+					&.pdf{
+						background-image:url(../img/common/pdf.svg);
+					}
+					
+					&.mpg{
+						background-image:url(../img/common/mpg.svg);
+					}
+					
+					&.jpg{
+						background-image:url(../img/common/jpg.svg);
+					}
+					
+					&.html{
+						background-image:url(../img/common/html.svg);
+					}*/
 }
 @media (min-width: 768px) {
   .page-template-template-resource .resource-footer .download_all,

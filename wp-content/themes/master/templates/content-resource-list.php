@@ -81,7 +81,7 @@
 					</div>
 				</div>
 				<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
-					<a href="#" class="doc">Item 1</a>
+					<a href="#" class="media-file doc">Item 1</a>
 				</div>
 			</div>
 			<div class="resource-item multiple-file clearfix">
@@ -111,12 +111,12 @@
 					</div>
 				</div>
 				<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
-					<a href="#" class="doc hidden-xs hidden-sm">long item name here max 2 line</a>
-					<a href="#" class="ppt hidden-xs hidden-sm">Item 2</a>
-					<a href="#" class="pdf hidden-xs hidden-sm">Item 3</a>
-					<a href="#" class="wav hidden-xs hidden-sm">Item 4</a>
-					<a href="#" class="zip hidden-xs hidden-sm">Item 5</a>
-					<a href="#" class="all">All</a>
+					<a href="#" class="media-file doc hidden-xs hidden-sm">long item name here max 2 line</a>
+					<a href="#" class="media-file ppt hidden-xs hidden-sm">Item 2</a>
+					<a href="#" class="media-file pdf hidden-xs hidden-sm">Item 3</a>
+					<a href="#" class="media-file wav hidden-xs hidden-sm">Item 4</a>
+					<a href="#" class="media-file zip hidden-xs hidden-sm">Item 5</a>
+					<a href="#" class="media-file all">All</a>
 				</div>
 			</div>
 			<div class="resource-item image-file clearfix">
@@ -146,12 +146,12 @@
 					</div>
 				</div>
 				<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
-					<a href="#" class="doc hidden-xs hidden-sm">long item name here max 2 line</a>
-					<a href="#" class="ppt hidden-xs hidden-sm">Item 2</a>
-					<a href="#" class="pdf hidden-xs hidden-sm">Item 3</a>
-					<a href="#" class="wav hidden-xs hidden-sm">Item 4</a>
-					<a href="#" class="zip hidden-xs hidden-sm">Item 5</a>
-					<a href="#" class="all">All</a>
+					<a href="#" class="media-file doc hidden-xs hidden-sm">long item name here max 2 line</a>
+					<a href="#" class="media-file ppt hidden-xs hidden-sm">Item 2</a>
+					<a href="#" class="media-file pdf hidden-xs hidden-sm">Item 3</a>
+					<a href="#" class="media-file wav hidden-xs hidden-sm">Item 4</a>
+					<a href="#" class="media-file zip hidden-xs hidden-sm">Item 5</a>
+					<a href="#" class="media-file all">All</a>
 				</div>
 			</div>
 			<div class="resource-item image-file clearfix">
@@ -180,9 +180,9 @@
 					</div>
 				</div>
 				<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
-					<a href="#" class="jpg hidden-xs hidden-sm">Item 1</a>
-					<a href="#" class="wav hidden-xs hidden-sm">Item 2</a>
-					<a href="#" class="all">All</a>
+					<a href="#" class="media-file jpg hidden-xs hidden-sm">Item 1</a>
+					<a href="#" class="media-file wav hidden-xs hidden-sm">Item 2</a>
+					<a href="#" class="media-file all">All</a>
 				</div>
 			</div>
 			<div class="resource-item video-file clearfix">
@@ -208,7 +208,7 @@
 					</div>
 				</div>
 				<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
-					<a href="#" class="mpg hidden-xs hidden-sm">Item 1</a>
+					<a href="#" class="media-file mpg hidden-xs hidden-sm">Item 1</a>
 				</div>
 			</div>
 			<div class="resource-item video-file clearfix">
@@ -234,10 +234,10 @@
 					</div>
 				</div>
 				<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
-					<a href="#" class="mpg hidden-xs hidden-sm">Item 1</a>
-					<a href="#" class="ppt hidden-xs hidden-sm">Item 2</a>
-					<a href="#" class="pdf hidden-xs hidden-sm">Item 2</a>
-					<a href="#" class="all">All</a>
+					<a href="#" class="media-file mpg hidden-xs hidden-sm">Item 1</a>
+					<a href="#" class="media-file ppt hidden-xs hidden-sm">Item 2</a>
+					<a href="#" class="media-file pdf hidden-xs hidden-sm">Item 2</a>
+					<a href="#" class="media-file all">All</a>
 				</div>
 			</div>
 			<div class="resource-item audio-file clearfix">
@@ -266,7 +266,7 @@
 					</div>
 				</div>
 				<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
-					<a href="#" class="wav hidden-xs hidden-sm">Item 1</a>
+					<a href="#" class="media-file wav hidden-xs hidden-sm">Item 1</a>
 				</div>
 			</div>
 			<div class="resource-item audio-file clearfix">
@@ -293,9 +293,9 @@
 					</div>
 				</div>
 				<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
-					<a href="#" class="wav hidden-xs hidden-sm">Item 1</a>
-					<a href="#" class="wav hidden-xs hidden-sm">Item 2</a>
-					<a href="#" class="all">All</a>
+					<a href="#" class="media-file wav hidden-xs hidden-sm">Item 1</a>
+					<a href="#" class="media-file wav hidden-xs hidden-sm">Item 2</a>
+					<a href="#" class="media-file all">All</a>
 				</div>
 			</div>
 			<div class="resource-item interactive-file clearfix">
@@ -318,7 +318,7 @@
 					</div>
 				</div>
 				<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
-					<a href="#" class="html hidden-xs hidden-sm">Item 1</a>
+					<a href="#" class="media-file html hidden-xs hidden-sm">Item 1</a>
 				</div>
 			</div>
 			<div class="resource-item interactive-file clearfix">
@@ -344,9 +344,9 @@
 					</div>
 				</div>
 				<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
-					<a href="#" class="html hidden-xs hidden-sm">Item 1</a>
-					<a href="#" class="pdf hidden-xs hidden-sm">Item 2</a>
-					<a href="#" class="all">All</a>
+					<a href="#" class="media-file html hidden-xs hidden-sm">Item 1</a>
+					<a href="#" class="media-file pdf hidden-xs hidden-sm">Item 2</a>
+					<a href="#" class="media-file all">All</a>
 				</div>
 			</div>
 			<div class="resource-item article-file clearfix">
@@ -372,7 +372,7 @@
 					</div>
 				</div>
 				<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
-					<a href="#" class="html hidden-xs hidden-sm">Item 1</a>
+					<a href="#" class="media-file html hidden-xs hidden-sm">Item 1</a>
 				</div>
 			</div>
 			<div class="resource-item article-file clearfix">
@@ -398,9 +398,9 @@
 					</div>
 				</div>
 				<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
-					<a href="#" class="html hidden-xs hidden-sm">Item 1</a>
-					<a href="#" class="pdf hidden-xs hidden-sm">Item 2</a>
-					<a href="#" class="all">All</a>
+					<a href="#" class="media-file html hidden-xs hidden-sm">Item 1</a>
+					<a href="#" class="media-file pdf hidden-xs hidden-sm">Item 2</a>
+					<a href="#" class="media-file all">All</a>
 				</div>
 			</div>
 		</div>

@@ -75,6 +75,32 @@ a{
 			left:5px;
 		}
 	}
+	
+	&.media-file{
+		display:inline-block;
+		font-size: 12px;
+		line-height: 1.33;
+		color: #505759;
+		width:92px;
+		height:70px;
+		background-repeat: no-repeat;
+		background-position: top center;
+		text-align: center;
+		padding-top: 40px;
+		margin-right:4px;
+		float:left;
+		overflow:hidden;
+		
+		&.all{ background-image:url(../img/common/download-all.svg); }
+		&.doc{ background-image:url(../img/common/doc.svg); }
+		&.ppt{ background-image:url(../img/common/ppt.svg); }
+		&.wav{ background-image:url(../img/common/wav.svg); }
+		&.zip{ background-image:url(../img/common/zip.svg); }
+		&.pdf{ background-image:url(../img/common/pdf.svg); }
+		&.mpg{ background-image:url(../img/common/mpg.svg); }
+		&.jpg{ background-image:url(../img/common/jpg.svg); }
+		&.html{ background-image:url(../img/common/html.svg); }
+	}
 }
 
 select{
@@ -107,7 +133,15 @@ select::-ms-expand {
 			margin-bottom:30px;
 		
 			a{
-				
+				float: none;
+				height: 30px;
+				padding: 0;
+				text-align: right;
+				padding-left: 32px;
+				width: 66px;
+				background-position: left;
+				vertical-align: middle;
+				line-height: 2.5;
 			}
 		}
 		
