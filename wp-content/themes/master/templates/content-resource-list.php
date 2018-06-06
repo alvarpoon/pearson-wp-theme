@@ -96,8 +96,10 @@
 									</div>
 								</td>
 								<td class="audio">
-									<a href="#" class="btn_listen"><span>listen</span></a>
-									<a href="#" class="btn_listen"><span>listen</span></a>
+									<div class="audio_container two_audio">
+										<div class="audio_playback" data-source="<?=get_stylesheet_directory_uri()?>/assets/img/common/surroundTestDTS.dts.wav"></div>
+										<div class="audio_playback" data-source="<?=get_stylesheet_directory_uri()?>/assets/img/common/sample.wav"></div>
+									</div>
 								</td>
 							</tr>
 						</table>
@@ -131,8 +133,10 @@
 									</div>
 								</td>
 								<td class="audio">
-									<a href="#" class="btn_listen"><span>listen</span></a>
-									<a href="#" class="btn_listen"><span>listen</span></a>
+									<div class="audio_container two_audio">
+										<div class="audio_playback" data-source="<?=get_stylesheet_directory_uri()?>/assets/img/common/surroundTestDTS.dts.wav"></div>
+										<div class="audio_playback" data-source="<?=get_stylesheet_directory_uri()?>/assets/img/common/sample.wav"></div>
+									</div>
 								</td>
 							</tr>
 						</table>
@@ -166,7 +170,9 @@
 									</div>
 								</td>
 								<td class="audio">
-									<a href="#" class="btn_listen"><span>listen</span></a>
+									<div class="audio_container">
+										<div class="audio_playback" data-source="<?=get_stylesheet_directory_uri()?>/assets/img/common/surroundTestDTS.dts.wav"></div>
+									</div>
 								</td>
 							</tr>
 						</table>
@@ -252,7 +258,9 @@
 									</div>
 								</td>
 								<td class="audio">
-									<a href="#" class="btn_listen"><span>listen</span></a>
+									<div class="audio_container">
+										<div class="audio_playback" data-source="<?=get_stylesheet_directory_uri()?>/assets/img/common/sample.wav"></div>
+									</div>
 								</td>
 							</tr>
 						</table>
@@ -281,8 +289,10 @@
 									</div>
 								</td>
 								<td class="audio">
-									<a href="#" class="btn_listen"><span>listen</span></a>
-									<a href="#" class="btn_listen"><span>listen</span></a>
+									<div class="audio_container two_audio">
+										<div class="audio_playback" data-source="<?=get_stylesheet_directory_uri()?>/assets/img/common/surroundTestDTS.dts.wav"></div>
+										<div class="audio_playback" data-source="<?=get_stylesheet_directory_uri()?>/assets/img/common/sample.wav"></div>
+									</div>
 								</td>
 							</tr>
 						</table>
