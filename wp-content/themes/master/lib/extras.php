@@ -194,7 +194,7 @@ function create_zip(){
 	  }
 	  
 	  foreach($validFiles as $file) {
-	  	 $onlyfilename = substr(strrchr($file, "/"), 1);;
+	  	 $onlyfilename = substr(strrchr($file, "/"), 1);
 		 $zip->addFile($file,$onlyfilename);
 	  }
 	
