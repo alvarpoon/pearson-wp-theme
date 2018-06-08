@@ -81,7 +81,12 @@
 					</div>
 				</div>
 				<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
-					<a href="#" class="media-file doc">Item 1</a>
+					<div class="hidden-xs hidden-sm">
+						<a href="#" class="media-file doc">Item 1</a>
+					</div>
+					<div class="hidden-md hidden-lg">
+						<a href="#" class="media-file all">Download</a>
+					</div>
 				</div>
 			</div>
 			<div class="resource-item multiple-file clearfix">
@@ -113,12 +118,27 @@
 					</div>
 				</div>
 				<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
-					<a href="#" class="media-file doc hidden-xs hidden-sm">long item name here max 2 line</a>
-					<a href="#" class="media-file ppt hidden-xs hidden-sm">Item 2</a>
-					<a href="#" class="media-file pdf hidden-xs hidden-sm">Item 3</a>
-					<a href="#" class="media-file wav hidden-xs hidden-sm">Item 4</a>
-					<a href="#" class="media-file zip hidden-xs hidden-sm">Item 5</a>
-					<a href="#" class="media-file all">All</a>
+					<div class="hidden-xs hidden-sm">
+						<a href="#" class="media-file doc">long item name here max 2 line</a>
+						<a href="#" class="media-file ppt">Item 2</a>
+						<a href="#" class="media-file pdf">Item 3</a>
+						<a href="#" class="media-file wav">Item 4</a>
+						<a href="#" class="media-file zip">Item 5</a>
+						<a href="#" class="media-file all">All</a>
+					</div>
+					<div class="hidden-md hidden-lg">
+						<div class="mobile_download_wrapper">
+							<select class="mobile_download">
+								<option>Item 1</option>
+								<option>Item 2</option>
+								<option>Item 3</option>
+								<option>Item 4</option>
+								<option>Item 5</option>
+								<option>Download All</option>
+							</select>
+							<div class="download_text">Download</div>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="resource-item image-file clearfix">
@@ -150,12 +170,27 @@
 					</div>
 				</div>
 				<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
-					<a href="#" class="media-file doc hidden-xs hidden-sm">long item name here max 2 line</a>
-					<a href="#" class="media-file ppt hidden-xs hidden-sm">Item 2</a>
-					<a href="#" class="media-file pdf hidden-xs hidden-sm">Item 3</a>
-					<a href="#" class="media-file wav hidden-xs hidden-sm">Item 4</a>
-					<a href="#" class="media-file zip hidden-xs hidden-sm">Item 5</a>
-					<a href="#" class="media-file all">All</a>
+					<div class="hidden-xs hidden-sm">
+						<a href="#" class="media-file doc">long item name here max 2 line</a>
+						<a href="#" class="media-file ppt">Item 2</a>
+						<a href="#" class="media-file pdf">Item 3</a>
+						<a href="#" class="media-file wav">Item 4</a>
+						<a href="#" class="media-file zip">Item 5</a>
+						<a href="#" class="media-file all">All</a>
+					</div>
+					<div class="hidden-md hidden-lg">
+						<div class="mobile_download_wrapper">
+							<select class="mobile_download">
+								<option>Item 1</option>
+								<option>Item 2</option>
+								<option>Item 3</option>
+								<option>Item 4</option>
+								<option>Item 5</option>
+								<option>Download All</option>
+							</select>
+							<div class="download_text">Download</div>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="resource-item image-file clearfix">
@@ -186,9 +221,24 @@
 					</div>
 				</div>
 				<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
-					<a href="#" class="media-file jpg hidden-xs hidden-sm">Item 1</a>
-					<a href="#" class="media-file wav hidden-xs hidden-sm">Item 2</a>
-					<a href="#" class="media-file all">All</a>
+					<div class="hidden-xs hidden-sm">
+						<a href="#" class="media-file jpg">Item 1</a>
+						<a href="#" class="media-file wav">Item 2</a>
+						<a href="#" class="media-file all">All</a>
+					</div>
+					<div class="hidden-md hidden-lg">
+						<div class="mobile_download_wrapper">
+							<select class="mobile_download">
+								<option>Item 1</option>
+								<option>Item 2</option>
+								<option>Item 3</option>
+								<option>Item 4</option>
+								<option>Item 5</option>
+								<option>Download All</option>
+							</select>
+							<div class="download_text">Download</div>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="resource-item video-file clearfix">
@@ -214,7 +264,12 @@
 					</div>
 				</div>
 				<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
-					<a href="#" class="media-file mpg hidden-xs hidden-sm">Item 1</a>
+					<div class="hidden-xs hidden-sm">
+						<a href="#" class="media-file mpg">Item 1</a>
+					</div>
+					<div class="hidden-md hidden-lg">
+						<a href="#" class="media-file all">Download</a>
+					</div>
 				</div>
 			</div>
 			<div class="resource-item video-file clearfix">
@@ -240,10 +295,25 @@
 					</div>
 				</div>
 				<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
-					<a href="#" class="media-file mpg hidden-xs hidden-sm">Item 1</a>
-					<a href="#" class="media-file ppt hidden-xs hidden-sm">Item 2</a>
-					<a href="#" class="media-file pdf hidden-xs hidden-sm">Item 2</a>
-					<a href="#" class="media-file all">All</a>
+					<div class="hidden-xs hidden-sm">
+						<a href="#" class="media-file mpg">Item 1</a>
+						<a href="#" class="media-file ppt">Item 2</a>
+						<a href="#" class="media-file pdf">Item 2</a>
+						<a href="#" class="media-file all">All</a>
+					</div>
+					<div class="hidden-md hidden-lg">
+						<div class="mobile_download_wrapper">
+							<select class="mobile_download">
+								<option>Item 1</option>
+								<option>Item 2</option>
+								<option>Item 3</option>
+								<option>Item 4</option>
+								<option>Item 5</option>
+								<option>Download All</option>
+							</select>
+							<div class="download_text">Download</div>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="resource-item audio-file clearfix">
@@ -274,7 +344,12 @@
 					</div>
 				</div>
 				<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
-					<a href="#" class="media-file wav hidden-xs hidden-sm">Item 1</a>
+					<div class="hidden-xs hidden-sm">
+						<a href="#" class="media-file wav">Item 1</a>
+					</div>
+					<div class="hidden-md hidden-lg">
+						<a href="#" class="media-file all">Download</a>
+					</div>
 				</div>
 			</div>
 			<div class="resource-item audio-file clearfix">
@@ -303,9 +378,24 @@
 					</div>
 				</div>
 				<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
-					<a href="#" class="media-file wav hidden-xs hidden-sm">Item 1</a>
-					<a href="#" class="media-file wav hidden-xs hidden-sm">Item 2</a>
-					<a href="#" class="media-file all">All</a>
+					<div class="hidden-xs hidden-sm">
+						<a href="#" class="media-file wav">Item 1</a>
+						<a href="#" class="media-file wav">Item 2</a>
+						<a href="#" class="media-file all">All</a>
+					</div>
+					<div class="hidden-md hidden-lg">
+						<div class="mobile_download_wrapper">
+							<select class="mobile_download">
+								<option>Item 1</option>
+								<option>Item 2</option>
+								<option>Item 3</option>
+								<option>Item 4</option>
+								<option>Item 5</option>
+								<option>Download All</option>
+							</select>
+							<div class="download_text">Download</div>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="resource-item interactive-file clearfix">
@@ -328,7 +418,9 @@
 					</div>
 				</div>
 				<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
-					<a href="#" class="media-file html hidden-xs hidden-sm">Item 1</a>
+					<div class="hidden-xs hidden-sm">
+						<a href="#" class="media-file html">Item 1</a>
+					</div>
 				</div>
 			</div>
 			<div class="resource-item interactive-file clearfix">
@@ -354,9 +446,24 @@
 					</div>
 				</div>
 				<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
-					<a href="#" class="media-file html hidden-xs hidden-sm">Item 1</a>
-					<a href="#" class="media-file pdf hidden-xs hidden-sm">Item 2</a>
-					<a href="#" class="media-file all">All</a>
+					<div class="hidden-xs hidden-sm">
+						<a href="#" class="media-file html">Item 1</a>
+						<a href="#" class="media-file pdf">Item 2</a>
+						<a href="#" class="media-file all">All</a>
+					</div>
+					<div class="hidden-md hidden-lg">
+						<div class="mobile_download_wrapper">
+							<select class="mobile_download">
+								<option>Item 1</option>
+								<option>Item 2</option>
+								<option>Item 3</option>
+								<option>Item 4</option>
+								<option>Item 5</option>
+								<option>Download All</option>
+							</select>
+							<div class="download_text">Download</div>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="resource-item article-file clearfix">
@@ -382,7 +489,12 @@
 					</div>
 				</div>
 				<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
-					<a href="#" class="media-file html hidden-xs hidden-sm">Item 1</a>
+					<div class="hidden-xs hidden-sm">
+						<a href="#" class="media-file html">Item 1</a>
+					</div>
+					<div class="hidden-md hidden-lg">
+						<a href="#" class="media-file all">Download</a>
+					</div>
 				</div>
 			</div>
 			<div class="resource-item article-file clearfix">
@@ -408,9 +520,24 @@
 					</div>
 				</div>
 				<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
-					<a href="#" class="media-file html hidden-xs hidden-sm">Item 1</a>
-					<a href="#" class="media-file pdf hidden-xs hidden-sm">Item 2</a>
-					<a href="#" class="media-file all">All</a>
+					<div class="hidden-xs hidden-sm">
+						<a href="#" class="media-file html">Item 1</a>
+						<a href="#" class="media-file pdf">Item 2</a>
+						<a href="#" class="media-file all">All</a>
+					</div>
+					<div class="hidden-md hidden-lg">
+						<div class="mobile_download_wrapper">
+							<select class="mobile_download">
+								<option>Item 1</option>
+								<option>Item 2</option>
+								<option>Item 3</option>
+								<option>Item 4</option>
+								<option>Item 5</option>
+								<option>Download All</option>
+							</select>
+							<div class="download_text">Download</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
