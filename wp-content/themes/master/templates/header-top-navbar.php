@@ -1,3 +1,10 @@
+<?php
+	//$body = wp_remote_retrieve_body( wp_remote_get( 'http://leap.beta.ilongman.com/acs-web/App/ACSGateway.do?method=getProfile&asMethod=get&loginId=ts12081887' ) );
+
+	//print_r($body);
+?>
+
+
 <header class="banner navbar navbar-default mainmenu" role="banner">
 	<div class="topbar-wrapper">
 	  <div class="container-fluid">
