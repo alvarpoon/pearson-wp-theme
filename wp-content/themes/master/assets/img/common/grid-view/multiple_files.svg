@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="210" height="118" viewBox="0 0 210 118">
+    <defs>
+        <linearGradient id="b" x1="50%" x2="50%" y1="0%" y2="100%">
+            <stop offset="0%" stop-color="#F8F8F8"/>
+            <stop offset="100%" stop-color="#EEE"/>
+        </linearGradient>
+        <rect id="a" width="210" height="118" rx="2"/>
+        <filter id="d" width="119.2%" height="115.2%" x="-9.6%" y="-5.4%" filterUnits="objectBoundingBox">
+            <feOffset dy="2" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+            <feColorMatrix in="shadowBlurOuter1" result="shadowMatrixOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0"/>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+        <linearGradient id="e" x1="100%" x2="0%" y1="0%" y2="104.901%">
+            <stop offset="0%" stop-color="#CCC"/>
+            <stop offset="19.948%" stop-color="#FFF"/>
+            <stop offset="100%" stop-color="#F0F0F0"/>
+        </linearGradient>
+        <filter id="f" width="119.2%" height="115.2%" x="-9.6%" y="-5.4%" filterUnits="objectBoundingBox">
+            <feOffset dy="2" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+            <feColorMatrix in="shadowBlurOuter1" result="shadowMatrixOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0"/>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+        <filter id="g" width="119.2%" height="115.2%" x="-9.6%" y="-5.4%" filterUnits="objectBoundingBox">
+            <feOffset dy="2" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+            <feColorMatrix in="shadowBlurOuter1" result="shadowMatrixOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0"/>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <mask id="c" fill="#fff">
+            <use xlink:href="#a"/>
+        </mask>
+        <use fill="url(#b)" xlink:href="#a"/>
+        <g mask="url(#c)">
+            <g filter="url(#d)" transform="translate(74 8)">
+                <path fill="url(#e)" d="M1.296 0C.58 0 0 .579 0 1.29v89.42C0 91.421.581 92 1.296 92h70.408C72.42 92 73 91.421 73 90.71V22.785c0-.836-.501-2.04-1.095-2.631L52.75 1.09C52.157.5 50.946 0 50.107 0H1.296z"/>
+                <path fill="#797979" d="M52 .89v18.386c0 .948.776 1.724 1.724 1.724h18.385c.95 0 1.176-.549.505-1.219L53.22.385c-.26-.26-.503-.385-.701-.385-.313 0-.518.31-.518.89z"/>
+            </g>
+            <g filter="url(#f)" transform="translate(69 13)">
+                <path fill="url(#e)" d="M1.296 0C.58 0 0 .579 0 1.29v89.42C0 91.421.581 92 1.296 92h70.408C72.42 92 73 91.421 73 90.71V22.785c0-.836-.501-2.04-1.095-2.631L52.75 1.09C52.157.5 50.946 0 50.107 0H1.296z"/>
+                <path fill="#8F8F8F" d="M52 .89v18.386c0 .948.776 1.724 1.724 1.724h18.385c.95 0 1.176-.549.505-1.219L53.22.385c-.26-.26-.503-.385-.701-.385-.313 0-.518.31-.518.89z"/>
+            </g>
+            <g filter="url(#g)" transform="translate(64 18)">
+                <path fill="url(#e)" d="M1.296 0C.58 0 0 .579 0 1.29v89.42C0 91.421.581 92 1.296 92h70.408C72.42 92 73 91.421 73 90.71V22.785c0-.836-.501-2.04-1.095-2.631L52.75 1.09C52.157.5 50.946 0 50.107 0H1.296z"/>
+                <path fill="#B1B1B1" d="M52 .89v18.386c0 .948.776 1.724 1.724 1.724h18.385c.95 0 1.176-.549.505-1.219L53.22.385c-.26-.26-.503-.385-.701-.385-.313 0-.518.31-.518.89z"/>
+            </g>
+        </g>
+    </g>
+</svg>

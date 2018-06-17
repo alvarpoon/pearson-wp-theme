@@ -209,3 +209,117 @@ function create_zip(){
 	
 	exit();
 }
+
+function showGridThumbnail($resource_thumbnail, $resource_type, $popup_image, $popup_url,$resource_slug){
+	$path = get_stylesheet_directory_uri()."/assets/img/common/grid-view/";
+
+	if(!empty($resource_thumbnail)){
+		switch ($resource_type) {
+			case "single-file":
+			case "multiple-file":
+			case "audio-file":
+				echo '<img src="'.$resource_thumbnail.'" class="img-responsive" />';
+				break;
+			case "image-file":
+				if(!empty($popup_image)){
+					echo '<a href="'.$popup_image.'" data-fancybox><img src="'.$resource_thumbnail.'" class="img-responsive" /></a>';
+				}else{
+					echo '<img src="'.$resource_thumbnail.'" class="img-responsive" />';
+				}
+				break;
+			case "video-file":
+				if(!empty($popup_url)){
+					echo '<a data-fancybox href="'.$popup_url.'"><img src="'.$resource_thumbnail.'" class="img-responsive" /></a>';
+				}else{
+					echo '<img src="'.$resource_thumbnail.'" class="img-responsive" />';
+				}
+			case "interactive-file":
+				if(!empty($popup_url)){
+					echo '<a href="'.$popup_url.'" target="_blank"><img src="'.$resource_thumbnail.'" class="img-responsive" /></a>';
+				}else{
+					echo '<img src="'.$resource_thumbnail.'" class="img-responsive" />';
+				}
+				break;
+			case "article-file":
+				echo '<img src="'.$resource_thumbnail.'" class="img-responsive" />';
+				break;
+		}
+	}else{
+		switch ($resource_type) {
+			case "single-file":
+				echo '<img src="'.$path.'single_file.svg" class="img-responsive" />';
+				break;
+			case "multiple-file":
+				echo '<img src="'.$path.'multiple_files.svg" class="img-responsive" />';
+				break;
+			case "image-file":
+				if(!empty($popup_image)){
+					echo '<a href="'.$popup_image.'" data-fancybox><img src="'.$path.'single_file.svg" class="img-responsive" /></a>';
+				}else{
+					echo '<img src="'.$path.'single_file.svg" class="img-responsive" />';
+				}
+				break;
+			case "video-file":
+				if(!empty($popup_url)){
+					echo '<a data-fancybox href="'.$popup_url.'"><img src="'.$path.'single_file.svg" class="img-responsive" /></a>';
+				}else{
+					echo '<img src="'.$path.'single_file.svg" class="img-responsive" />';
+				}
+				break;
+			case "audio-file":
+				echo '<img src="'.$path.'single_file.svg" class="img-responsive" />';
+				break;
+			case "interactive-file":
+				if(!empty($popup_url)){
+					echo '<a href="'.$popup_url.'" target="_blank"><img src="'.$path.'single_file.svg" class="img-responsive" /></a>';
+				}else{
+					echo '<img src="'.$path.'single_file.svg" class="img-responsive" />';
+				}
+				break;
+			case "article-file":
+				echo '<img src="'.$path.'single_file.svg" class="img-responsive" />';
+				break;
+		}
+	}
+}
+
+function get_audio_preview($downloads){
+	$count = count($downloads);
+	$audio_url_array = array();
+	$previewer;
+	
+	if($count > 1){
+		foreach($downloads as $download){
+			$file_type = $download['file_type'];
+			$downloadable_file = $download['downloadable_file']['url'];
+			$audio_preview = $download['audio_preview'];
+			
+			if($audio_preview){
+				array_push($audio_url_array,$downloadable_file);
+			}
+		}
+	}else{
+		$file_type = $downloads[0]['file_type'];
+		$downloadable_file = $downloads[0]['downloadable_file']['url'];
+		$audio_preview = $downloads[0]['audio_preview'];
+		
+		if($audio_preview){			
+			array_push($audio_url_array,$downloadable_file);
+		}
+	}
+	
+	if(count($audio_url_array) >= 2){
+		$previewer .= '<div class="audio_container two_audio">';
+	}else if(count($audio_url_array) == 1){
+		$previewer .= '<div class="audio_container">';
+	}
+	
+	if(count($audio_url_array) > 0){
+		foreach($audio_url_array as $audio_url){
+			$previewer .= '<div class="audio_playback" data-source="'.$audio_url.'"></div>';
+		}
+		$previewer .=  '</div>';
+	}
+	
+	return $previewer;
+}

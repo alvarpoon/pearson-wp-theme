@@ -7900,6 +7900,7 @@ footer.content-info .footer-wrapper .footer-copyright {
   padding: 0;
   list-style: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  min-width: 230px;
 }
 .page-template-template-resource .resource-container .resource-item .resource-download-wrapper .multiple_download .multiple_dl_content ul li a {
   display: block;
@@ -8043,7 +8044,7 @@ footer.content-info .footer-wrapper .footer-copyright {
   -webkit-background-size: 25px auto;
           background-size: 25px auto;
   background-position: top center;
-  padding: 40px 0 10px 0!important;
+  padding: 40px 0 15px 0!important;
   border: 0;
   text-align: center;
   position: relative;
