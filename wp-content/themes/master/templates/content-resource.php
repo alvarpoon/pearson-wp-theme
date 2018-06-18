@@ -66,7 +66,7 @@
 				$resource_list = get_field('resource_list');
 				$resources = get_field('resources', $resource_list[0]->ID);
 				
-				foreach ($resources as $resource){
+				foreach ($resources as $resource):
 					$resource_id = $resource->ID;
 					$resource_type = get_field('resource_type', $resource_id);
 					$resource_thumbnail = get_the_post_thumbnail_url($resource_id,'full');
@@ -88,12 +88,12 @@
 						</div>
 						<div class="resource-title-wrapper">
 							<div class="resource-title"><?=get_the_title( $resource->ID );?></div>
+							<?php if(!empty($note)){ ?>
 							<div class="resource-note">
-								<a class="icon-note" data-fancybox data-src="#note-content" href="javascript:;"></a>
-								<?php if(!empty($note)){ ?>
-								<div id="note-content" class="hidden-content fancybox-content file-download"><?=$note?>	</div>
-								<?php } ?>
+								<a class="icon-note" data-fancybox data-src="#<?=$resource_slug.'-note'?>" href="javascript:;"></a>
+								<div id="<?=$resource_slug.'-note'?>" class="hidden-content fancybox-content file-download"><?=$note?>	</div>
 							</div>
+							<?php } ?>
 						</div>
 						<div class="resource-type">File Downlaod</div>
 						<div class="resource-download-wrapper">
@@ -160,7 +160,7 @@
 						</div>
 						<?php } ?>
 					</div>
-			<?php } ?>
+			<?php endforeach; ?>
 		</div>
 		<div class="resource-footer">
 			<div class="pagination clearfix">

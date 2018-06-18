@@ -233,6 +233,7 @@ function showGridThumbnail($resource_thumbnail, $resource_type, $popup_image, $p
 				}else{
 					echo '<img src="'.$resource_thumbnail.'" class="img-responsive" />';
 				}
+				break;
 			case "interactive-file":
 				if(!empty($popup_url)){
 					echo '<a href="'.$popup_url.'" target="_blank"><img src="'.$resource_thumbnail.'" class="img-responsive" /></a>';
@@ -280,6 +281,40 @@ function showGridThumbnail($resource_thumbnail, $resource_type, $popup_image, $p
 				echo '<a href="javascript:;" data-fancybox data-src="#'.$resource_slug.'-content"><img src="'.$path.'single_file.svg" class="img-responsive" /></a>';
 				break;
 		}
+	}
+}
+
+function showListTitle($resource_id, $resource_type, $popup_image, $popup_url, $resource_slug){
+	switch ($resource_type) {
+		case "single-file":
+		case "multiple-file":
+		case "audio-file":
+			echo get_the_title( $resource_id );
+			break;
+		case "image-file":
+			if(!empty($popup_image)){
+				echo '<a href="'.$popup_image.'" data-fancybox>'.get_the_title( $resource_id ).'</a>';
+			}else{
+				echo get_the_title( $resource_id );
+			}
+			break;
+		case "video-file":
+			if(!empty($popup_url)){
+				echo '<a data-fancybox href="'.$popup_url.'">'.get_the_title( $resource_id ).'</a>';
+			}else{
+				echo get_the_title( $resource_id );
+			}
+			break;
+		case "interactive-file":
+			if(!empty($popup_url)){
+				echo '<a href="'.$popup_url.'" target="_blank">'.get_the_title( $resource_id ).'</a>';
+			}else{
+				echo get_the_title( $resource_id );
+			}
+			break;
+		case "article-file":
+			echo '<a href="javascript:;" data-fancybox data-src="#'.$resource_slug.'-content">'.get_the_title( $resource_id ).'</a>';
+			break;
 	}
 }
 
