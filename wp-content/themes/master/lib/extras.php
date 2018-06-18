@@ -241,7 +241,7 @@ function showGridThumbnail($resource_thumbnail, $resource_type, $popup_image, $p
 				}
 				break;
 			case "article-file":
-				echo '<img src="'.$resource_thumbnail.'" class="img-responsive" />';
+				echo '<a href="javascript:;" data-fancybox data-src="#'.$resource_slug.'-content"><img src="'.$resource_thumbnail.'" class="img-responsive" /></a>';
 				break;
 		}
 	}else{
@@ -277,7 +277,7 @@ function showGridThumbnail($resource_thumbnail, $resource_type, $popup_image, $p
 				}
 				break;
 			case "article-file":
-				echo '<img src="'.$path.'single_file.svg" class="img-responsive" />';
+				echo '<a href="javascript:;" data-fancybox data-src="#'.$resource_slug.'-content"><img src="'.$path.'single_file.svg" class="img-responsive" /></a>';
 				break;
 		}
 	}
