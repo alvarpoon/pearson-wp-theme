@@ -2368,7 +2368,7 @@ var Roots = {
 		  $(window).on('click touchend', function(event) {
 			var target = $(event.target);
 			if (target.parents('div.multiple_download').length) {
-				console.log('it is in multiple_download');	
+				//console.log('it is in multiple_download');	
 			}else{
 				if($('.multiple_download').hasClass('opened')) {
 					$('.multiple_download').removeClass('opened');
@@ -2465,15 +2465,15 @@ var UTIL = {
 
 function createZip(){
 	$('.createzip').click(function(){
-		console.log('in createZip');
+		//console.log('in createZip');
 		var ajaxurl = '/wp-admin/admin-ajax.php';
 		
 		var filepath = $(this).attr('data-file');
 		var filename = $(this).attr('data-filename');
 		
 		var data = {
-			filepathdata: filepath,
-			filenamedata: filename,
+			filepaths: filepath,
+			zipname: filename,
 			action: 'create-zip'
 		};
 		
@@ -2481,10 +2481,12 @@ function createZip(){
 			console.log('createzip done');
 			
 	    }).done(function(response){
-			console.log(response);
-			window.location = response;
+			console.log(window.location.protocol + "//" + response);
+			//window.location.href = response;
+			
+			window.location.href = window.location.protocol + "//" + response;
 	    }).fail(function(response){
-			console.log('createzip fail');
+			//console.log('createzip fail');
 	    });
 		
 	});
@@ -2610,6 +2612,21 @@ function initAudioSetup(){
 		initAudioPlayer($(this), source);
 	});
 }
+
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+};
 
 $(document).ready(UTIL.loadEvents);
 

@@ -1,5 +1,11 @@
 <?php //the_content(); ?>
 <?php //wp_link_pages(array('before' => '<nav class="pagination">', 'after' => '</nav>')); ?>
+
+<?php
+
+
+
+?>
 <div class="container-fluid">
 	<div class="row">
 		<div class="top-banner-container" style="background-image:url('<?=get_stylesheet_directory_uri()?>/assets/img/home/banner-top.png');">
@@ -104,15 +110,21 @@
 										<div class="multiple_dl_content">
 											<ul>
 											<?php	
+											$downloadable_file_arr = array();
+											
 											if( have_rows('downloads', $resource_id) ){
 												while( have_rows('downloads', $resource_id) ): the_row();
 													$file_title = get_sub_field('file_title');
 													$downloadable_file = get_sub_field('downloadable_file');
 													echo '<li><a href="'.$downloadable_file['url'].'" target="_blank">'.$file_title.'</a></li>';
+													
+													array_push($downloadable_file_arr, $downloadable_file['url']);
 												endwhile;
+												
+												$downloadable_file_string = implode(',',$downloadable_file_arr);
 											}?>
 											
-											<!--<li><a href="javascript:;" data-file="/wp-content/themes/master/assets/img/common/multiiple@2x.png,/wp-content/themes/master/assets/img/common/img_single_image.png,/wp-content/themes/master/assets/img/common/surroundTestDTS.dts.wav,/wp-content/themes/master/assets/img/common/img_video.png,/wp-content/themes/master/assets/img/common/sample.wav" data-filename="testing123" class="createzip">Download All (5 files)</a></li>-->
+											<li><a href="javascript:;" data-file="<?=$downloadable_file_string?>" data-filename="testing123" class="createzip">Download All (<?=$download_count?> files)</a></li>
 											</ul>
 										</div>
 									</div>

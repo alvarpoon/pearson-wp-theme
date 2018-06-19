@@ -171,41 +171,60 @@ add_action( 'wp_ajax_nopriv_create-zip', 'create_zip' );
 function create_zip(){
 	global $wpdb;
 	$overwrite = true;
-	$filepath = $_POST['filepathdata'];	
+	$filepath = $_POST['filepaths'];	
 	$files = explode(',', $filepath);
 	
-	$destination = get_stylesheet_directory_uri().'/assets/zip-archives/'.$_POST['filenamedata'].'.zip';
+	if(extension_loaded('zip')):
+		$zip = new ZipArchive();            // Load zip library 
+        $zip_name = $_POST['zipname'].".zip";
+		
+		$destination_path = parse_url('http://local.pearson-master.com/wp-content/uploads/zip/', PHP_URL_PATH);
 	
-	$validFiles = [];
-	if(is_array($files)) {
-	  foreach($files as $file) {
-		 if(file_exists($_SERVER['DOCUMENT_ROOT'].$file)) {
-			$validFiles[] = $_SERVER['DOCUMENT_ROOT'].$file;
-		 }
-	  }
-	}
-	
-	//var_dump($validFiles);
-	
-	if(count($validFiles)) {
-	  $zip = new ZipArchive();
-	  if($zip->open($destination,$overwrite ? ZIPARCHIVE::OVERWRITE : ZIPARCHIVE::CREATE) !== true) {
-		 return false;
-	  }
-	  
-	  foreach($validFiles as $file) {
-	  	 $onlyfilename = substr(strrchr($file, "/"), 1);
-		 $zip->addFile($file,$onlyfilename);
-	  }
-	
-	  $zip->close();
-	  if(is_url_exist($destination)){
-		 echo $destination;
-	  }
-	  
-	}else{
-	  return false;
-	}
+		$zip_name = $_SERVER['DOCUMENT_ROOT'].$destination_path.$zip_name;
+		
+		$result = $zip->open($zip_name, ZIPARCHIVE::OVERWRITE);
+		
+		if($result === TRUE){
+			if(is_array($files)) {
+			  foreach($files as $file) {
+				$file_path = parse_url($file, PHP_URL_PATH);
+				$file_root_path = $_SERVER['DOCUMENT_ROOT'].$file_path;
+				$onlyfilename = substr(strrchr($file_root_path, "/"), 1);
+			  
+				 if(file_exists($file_root_path)) {
+					//$validFiles[] = $file_root_path;
+					$zip->addFile( $file_root_path, $onlyfilename );
+				 }
+			  }
+			}
+			
+			if ($zip->close() === false) {
+				exit("Error creating ZIP file");
+			};
+			
+			$zipfile = $zip_name;
+			if (file_exists($zipfile)) {
+				/*header('Content-Description: File Transfer');
+				header('Content-Type: application/octet-stream');
+				header('Content-Disposition: attachment; filename='.basename($zipfile));
+				header('Expires: 0');
+				header('Cache-Control: must-revalidate');
+				header('Pragma: public');
+				header('Content-Length: ' . filesize($zipfile));
+				ob_clean();
+				flush();
+				readfile($zipfile);*/
+				$zipfile_path_arr = explode("/",$zipfile);
+				$output = array_slice($zipfile_path_arr, -4, 4);
+				$output = $_SERVER['SERVER_NAME'].'/'.implode('/',$output);
+				//echo $zipfile;
+				echo $output;
+				exit;
+			}
+		}else{
+			$error .=  "* Sorry ZIP creation failed at this time<br/>";
+		}
+	endif;
 	
 	exit();
 }
@@ -357,4 +376,59 @@ function get_audio_preview($downloads){
 	}
 	
 	return $previewer;
+}
+
+// Hook this function to WordPress' Ajax actions
+add_action( 'wp_ajax_nopriv_get_resource', 'get_resource' );
+add_action( 'wp_ajax_get_resource', 'get_resource' );
+function get_resource(){
+	global $post;
+	
+	if ($post->ID) {
+		// On initial page load, just grab the post ID...
+		//$page_id = $post->ID;
+		$resource_list_id = get_field('resource_list',$post->ID);
+	} else {
+		// ... but once you're using Ajax, need to get the ID via Ajax
+		$resource_list_id = $_POST['resource_listID'];
+	}
+	
+	if (isset($_POST['page'])) {
+		// Set $page to data from Ajax, if available
+		$page = $_POST['page'];
+	} else {
+		// ... if not, set default to 1 (for initial page load)
+		$page = 1;
+	}
+	
+	
+	$resources = get_posts(array(
+		// post type of the posts linked to current post
+		'post_type' => 'resource', 
+		// fetch all of them--we'll divide them into separate pages in a moment
+		'posts_per_page' => -1, 
+		'meta_query' => array(
+			array(
+				// name of ACF Relationship field
+				'key' => 'resources', 
+				// ID of current post
+				'value' => $resource_list_id, 
+				'compare' => 'LIKE'
+			)
+		)
+	));
+	
+	// Pagination variables
+	$resource_count      = 0;
+	$resources_per_page  = 20; // How many features to display on each page
+	$total              = count( $resources );
+	$pages              = ceil( $total / $resources_per_page );
+	$min                = ( ( $page * $resources_per_page ) - $resources_per_page ) + 1;
+	$max                = ( $min + $resources_per_page ) - 1;
+	
+	if( $resources ):
+		$i = 1;
+		?>
+	<?php endif; //end if ($features)
+	wp_reset_postdata();
 }

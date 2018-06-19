@@ -85,7 +85,6 @@
 								<td class="title">
 									<div class="resource-title-div">
 										<div class="resource-title">
-											<? //=get_the_title( $resource->ID );?>
 											<?php echo showListTitle($resource_id, $resource_type, $resource_popup_image['url'], $resource_popup_url, $resource_slug);?>
 										</div>
 										<div class="resource-type"><?=$resource_type?></div>
