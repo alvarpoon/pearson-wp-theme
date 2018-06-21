@@ -1,5 +1,11 @@
 <?php //the_content(); ?>
 <?php //wp_link_pages(array('before' => '<nav class="pagination">', 'after' => '</nav>')); ?>
+
+<?php
+
+
+
+?>
 <div class="container-fluid">
 	<div class="row">
 		<div class="top-banner-container" style="background-image:url('<?=get_stylesheet_directory_uri()?>/assets/img/home/banner-top.png');">
@@ -62,38 +68,10 @@
 			</div>
 		</div>
 		<div class="resource-container clearfix">
-			
-		<?php
+			<?php
 				$resource_list = get_field('resource_list');
-				$resources = get_field('resources', $resource_list[0]->ID); 
+				$resources = get_field('resources', $resource_list[0]->ID);
 				
-				$url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-				$parts = parse_url($url);
-				parse_str($parts['query'], $query);
-				$page = $query['page'];
-				
-				if(empty($page)){
-					$page = 1;
-				}
-				
-				$resource_count      = 0;
-				$resources_per_page  = 20; // How many features to display on each page
-				$total              = count( $resources );
-				$pages              = ceil( $total / $resources_per_page );
-				$min                = ( ( $page * $resources_per_page ) - $resources_per_page ) + 1;
-				$max                = ( $min + $resources_per_page ) - 1;
-				
-		?>
-				
-				<script>
-					var resource_listID = '<?=$resource_list[0]->ID?>';
-					var currentPageNum = '<?=$page?>';
-					//console.log('resource_listID: '+resource_listID);
-				</script>
-				
-		<?php
-				echo '<div class="resource-container-inner">';
-					
 				foreach ($resources as $resource):
 					$resource_id = $resource->ID;
 					$resource_type = get_field('resource_type', $resource_id);
@@ -105,13 +83,8 @@
 					
 					$resource_post = get_post($resource_id); 
 					$resource_slug = $resource_post->post_name;
-					
-					$resource_count++;
-					// Ignore this feature if $feature_count is lower than $min
-					if($resource_count < $min) { continue; }
-					// Stop loop completely if $feature_count is higher than $max
-					if($resource_count > $max) { break; } 
 			?>
+			
 					<div class="col-xs-6 col-sm-3 col-md-3 resource-item">
 						<div class="resource-thumbnail">
 							<?php
@@ -199,23 +172,16 @@
 						</div>
 						<?php } ?>
 					</div>
-			<?php endforeach; 
-				echo '</div>';
-			?>
-			</div>
+			<?php endforeach; ?>
 		</div>
 		<div class="resource-footer">
 			<div class="pagination clearfix">
-				<select id="pagination-select">
-					<?php
-					
-					for($i = 1; $i <= $pages; $i++){
-						echo '<option val='.$i.'>'.$i.'</option>';
-					}
-					
-					?>
+				<select>
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
 				</select>
-				<span>/<?=$pages?></span>
+				<span>/32</span>
 				<button class="btn_gopage"></button>
 			</div>
 			<div class="download_all">

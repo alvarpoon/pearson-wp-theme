@@ -97,16 +97,96 @@ var Roots = {
   },
   page_template_template_resource:{
 	init: function() {
+		function get_post_grid(){			
+			$('.btn_gopage').on('click touchstart', function(){															 
+				$('.resource-container-inner').fadeOut();
+				
+				var ajaxurl = '/wp-admin/admin-ajax.php';
+				var newPageNum = $('#pagination-select').val();
+				
+				//console.log('newPageNum = '+newPageNum);
+				//var newUrl = location.href.replace("page="+currentPageNum, "page="+newPageNum);
+				
+				if(newPageNum === currentPageNum){
+					return;	
+				}
+
+				//history.pushState('','', newUrl);
+				
+				$.ajax({
+				  url: ajaxurl,
+				  type: 'post',
+				  data: {
+					action: 'get_resource_grid', // the name of the function in your php file
+					page: newPageNum, // access in php function via $_POST['page']
+					resource_listID: resource_listID // access in php function via $_POST['bikeID']
+				  },
+				  success: function( result ) {
+					// Replace the content of the container div w/ the output from dl_bikeFeatures()
+					$('.resource-container-inner').html(result);
+					// fade in this content for a smooth transition
+					$('.resource-container-inner').fadeIn();
+					
+					currentPageNum = newPageNum;
+				  },
+				  error: function(MLHttpRequest, textStatus, errorThrown){
+					alert('Sorry, something went wrong. Please try again.');
+				  }
+				});
+			});
+		}
+		
 		$('document').ready(function(){
 			initAudioSetup();
 			createZip();
+			get_post_grid();
 		});
 	}
   },
   page_template_template_resource_list:{
 	init: function() {
+		function get_post_list(){			
+			$('.btn_gopage').on('click touchstart', function(){															 
+				$('.resource-container-inner').fadeOut();
+				
+				var ajaxurl = '/wp-admin/admin-ajax.php';
+				var newPageNum = $('#pagination-select').val();
+				
+				//console.log('newPageNum = '+newPageNum);
+				//var newUrl = location.href.replace("page="+currentPageNum, "page="+newPageNum);
+				
+				if(newPageNum === currentPageNum){
+					return;	
+				}
+
+				//history.pushState('','', newUrl);
+				
+				$.ajax({
+				  url: ajaxurl,
+				  type: 'post',
+				  data: {
+					action: 'get_resource_list', // the name of the function in your php file
+					page: newPageNum, // access in php function via $_POST['page']
+					resource_listID: resource_listID // access in php function via $_POST['bikeID']
+				  },
+				  success: function( result ) {
+					// Replace the content of the container div w/ the output from dl_bikeFeatures()
+					$('.resource-container-inner').html(result);
+					// fade in this content for a smooth transition
+					$('.resource-container-inner').fadeIn();
+					
+					currentPageNum = newPageNum;
+				  },
+				  error: function(MLHttpRequest, textStatus, errorThrown){
+					alert('Sorry, something went wrong. Please try again.');
+				  }
+				});
+			});
+		}
+		
 		$('document').ready(function(){
 			initAudioSetup();
+			get_post_list();
 		});
 	}
   }
