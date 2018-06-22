@@ -10,7 +10,14 @@
 <div class="container">
 	<div class="page-content-wrapper">
 		<div class="page-general-info">
-			<h1 class="pageTitle"><?=the_title();?></h1>
+			<?php
+				$display_title = get_field('display_title');
+				
+				if(empty($display_title)){
+					$display_title = get_the_title($post->ID);
+				}
+			?>
+			<h1 class="pageTitle"><?=$display_title?></h1>
 			<nav aria-label="breadcrumb">
 			  <ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -29,28 +36,64 @@
 			<div class="col-md-9 filter-select">
 				<div class="clearfix">
 					<div class="filter-item">
-						<select>
-							<option>All Books</option>
-							<option>Books 1</option>
-							<option>Books 2</option>
-							<option>Books 3</option>
-						</select>
+						<?php
+							$filter_title_1 = get_field('filter_title_1');
+							$filter_1 = get_field('filter_1');
+							if(count($filter_1) > 0):
+							
+							echo '<select id="filter_1" class="resource_filtering">';
+							echo '<option value="0">'.$filter_title_1.'</option>';
+								foreach($filter_1 as $f1):
+									$term = get_term_by('id', $f1, 'resource_category');
+									$name = $term->name;
+									
+									echo '<option value="'.$f1.'">'.$name.'</option>';
+								endforeach;	
+								
+							echo '</select>';
+							
+							endif;
+						?>
 					</div>
 					<div class="filter-item">
-						<select>
-							<option>All Chapters</option>
-							<option>Chapters 1</option>
-							<option>Chapters 2</option>
-							<option>Chapters 3</option>
-						</select>
+						<?php 
+							$filter_title_2 = get_field('filter_title_2');
+							$filter_2 = get_field('filter_2');
+							if(count($filter_2) > 0):
+							
+							echo '<select id="filter_2" class="resource_filtering">';
+							echo '<option value="0">'.$filter_title_2.'</option>';
+								foreach($filter_2 as $f2):
+									$term = get_term_by('id', $f2, 'resource_category');
+									$name = $term->name;
+									
+									echo '<option value="'.$f2.'">'.$name.'</option>';
+								endforeach;	
+								
+							echo '</select>';
+							
+							endif;
+						?>
 					</div>
 					<div class="filter-item">
-						<select>
-							<option>3rd Filter (Optional)</option>
-							<option>Filter 1</option>
-							<option>Filter 2</option>
-							<option>Filter 3</option>
-						</select>
+						<?php 
+							$filter_title_3 = get_field('filter_title_3');
+							$filter_3 = get_field('filter_3');
+							if(count($filter_3) > 0):
+							
+							echo '<select id="filter_3" class="resource_filtering">';
+							echo '<option value="0">'.$filter_title_3.'</option>';
+								foreach($filter_3 as $f3):
+									$term = get_term_by('id', $f3, 'resource_category');
+									$name = $term->name;
+									
+									echo '<option value="'.$f3.'">'.$name.'</option>';
+								endforeach;	
+								
+							echo '</select>';
+							
+							endif;
+						?>
 					</div>
 				</div>
 			</div>
@@ -97,6 +140,7 @@
 				foreach ($resources as $resource):
 					$resource_id = $resource->ID;
 					$resource_type = get_field('resource_type', $resource_id);
+					$resource_display_title = get_field('display_title', $resource_id);
 					$resource_thumbnail = get_the_post_thumbnail_url($resource_id,'full');
 					$note = get_field('note', $resource_id);
 					$resource_popup_image = get_field('resource_popup_image', $resource_id);
@@ -120,7 +164,16 @@
 							?>
 						</div>
 						<div class="resource-title-wrapper">
-							<div class="resource-title"><?=get_the_title( $resource->ID );?></div>
+							<div class="resource-title">
+							<?php
+								if(empty($resource_display_title)){
+									echo get_the_title( $resource->ID );
+								}else{
+									echo $resource_display_title;
+								}
+							?>
+							
+							</div>
 							<?php if(!empty($note)){ ?>
 							<div class="resource-note">
 								<a class="icon-note" data-fancybox data-src="#<?=$resource_slug.'-note'?>" href="javascript:;"></a>

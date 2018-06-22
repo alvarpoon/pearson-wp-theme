@@ -2429,42 +2429,60 @@ var Roots = {
   },
   page_template_template_resource:{
 	init: function() {
-		function get_post_grid(){			
-			$('.btn_gopage').on('click touchstart', function(){															 
-				$('.resource-container-inner').fadeOut();
-				
+		function get_post_grid(){
+			function ajax_action_grid(){
 				var ajaxurl = '/wp-admin/admin-ajax.php';
 				var newPageNum = $('#pagination-select').val();
+				var filter_1,filter_2,filter3 = 0;
 				
-				//console.log('newPageNum = '+newPageNum);
-				//var newUrl = location.href.replace("page="+currentPageNum, "page="+newPageNum);
+				if($('#filter_1').length > 0){
+					filter_1 = $('#filter_1').val();
+				}
 				
-				if(newPageNum === currentPageNum){
+				if($('#filter_2').length > 0){
+					filter_2 = $('#filter_2').val();
+				}
+				
+				if($('#filter_3').length > 0){
+					filter_3 = $('#filter_3').val();
+				}
+				
+				if(newPageNum !== currentPageNum || filter_1 !== 0 || filter_2 !== 0 || filter_3 !== 0){
+					//return;	
+					$('.resource-container-inner').fadeOut();
+					
+					$.ajax({
+					  url: ajaxurl,
+					  type: 'post',
+					  data: {
+						action: 'get_resource_grid', // the name of the function in your php file
+						page: newPageNum, // access in php function via $_POST['page']
+						resource_listID: resource_listID, // access in php function via $_POST['bikeID']
+						filters: filter_1+','+filter_2+','+filter_3
+					  },
+					  success: function( result ) {
+						// Replace the content of the container div w/ the output from dl_bikeFeatures()
+						$('.resource-container-inner').html(result);
+						// fade in this content for a smooth transition
+						$('.resource-container-inner').fadeIn();
+						
+						currentPageNum = newPageNum;
+					  },
+					  error: function(MLHttpRequest, textStatus, errorThrown){
+						alert('Sorry, something went wrong. Please try again.');
+					  }
+					});
+				}else{
 					return;	
 				}
-
-				//history.pushState('','', newUrl);
-				
-				$.ajax({
-				  url: ajaxurl,
-				  type: 'post',
-				  data: {
-					action: 'get_resource_grid', // the name of the function in your php file
-					page: newPageNum, // access in php function via $_POST['page']
-					resource_listID: resource_listID // access in php function via $_POST['bikeID']
-				  },
-				  success: function( result ) {
-					// Replace the content of the container div w/ the output from dl_bikeFeatures()
-					$('.resource-container-inner').html(result);
-					// fade in this content for a smooth transition
-					$('.resource-container-inner').fadeIn();
-					
-					currentPageNum = newPageNum;
-				  },
-				  error: function(MLHttpRequest, textStatus, errorThrown){
-					alert('Sorry, something went wrong. Please try again.');
-				  }
-				});
+			}
+			
+			$('.btn_gopage').on('click touchstart', function(){															 
+				ajax_action_grid();
+			});
+			
+			$('.resource_filtering').on('change', function(){
+				ajax_action_grid();											   
 			});
 		}
 		
@@ -2477,42 +2495,61 @@ var Roots = {
   },
   page_template_template_resource_list:{
 	init: function() {
-		function get_post_list(){			
-			$('.btn_gopage').on('click touchstart', function(){															 
-				$('.resource-container-inner').fadeOut();
-				
+		function get_post_list(){
+			function ajax_action_list(){
 				var ajaxurl = '/wp-admin/admin-ajax.php';
 				var newPageNum = $('#pagination-select').val();
+				var filter_1,filter_2,filter3 = 0;
 				
-				//console.log('newPageNum = '+newPageNum);
-				//var newUrl = location.href.replace("page="+currentPageNum, "page="+newPageNum);
-				
-				if(newPageNum === currentPageNum){
-					return;	
+				if($('#filter_1').length > 0){
+					filter_1 = $('#filter_1').val();
 				}
-
-				//history.pushState('','', newUrl);
 				
-				$.ajax({
-				  url: ajaxurl,
-				  type: 'post',
-				  data: {
-					action: 'get_resource_list', // the name of the function in your php file
-					page: newPageNum, // access in php function via $_POST['page']
-					resource_listID: resource_listID // access in php function via $_POST['bikeID']
-				  },
-				  success: function( result ) {
-					// Replace the content of the container div w/ the output from dl_bikeFeatures()
-					$('.resource-container-inner').html(result);
-					// fade in this content for a smooth transition
-					$('.resource-container-inner').fadeIn();
+				if($('#filter_2').length > 0){
+					filter_2 = $('#filter_2').val();
+				}
+				
+				if($('#filter_3').length > 0){
+					filter_3 = $('#filter_3').val();
+				}
+				
+				if(newPageNum !== currentPageNum || filter_1 !== 0 || filter_2 !== 0 || filter_3 !== 0){
 					
-					currentPageNum = newPageNum;
-				  },
-				  error: function(MLHttpRequest, textStatus, errorThrown){
-					alert('Sorry, something went wrong. Please try again.');
-				  }
-				});
+					$('.resource-container-inner').fadeOut();
+					
+					$.ajax({
+					  url: ajaxurl,
+					  type: 'post',
+					  data: {
+						action: 'get_resource_list', // the name of the function in your php file
+						page: newPageNum, // access in php function via $_POST['page']
+						resource_listID: resource_listID, // access in php function via $_POST['bikeID']
+						filters: filter_1+','+filter_2+','+filter_3
+					  },
+					  success: function( result ) {
+						// Replace the content of the container div w/ the output from dl_bikeFeatures()
+						$('.resource-container-inner').html(result);
+						// fade in this content for a smooth transition
+						$('.resource-container-inner').fadeIn();
+						
+						currentPageNum = newPageNum;
+					  },
+					  error: function(MLHttpRequest, textStatus, errorThrown){
+						alert('Sorry, something went wrong. Please try again.');
+					  }
+					});
+
+				}else{
+					return;
+				}
+			}
+			
+			$('.btn_gopage').on('click touchstart', function(){															 
+				ajax_action_list();
+			});
+			
+			$('.resource_filtering').on('change', function(){
+				ajax_action_list();											   
 			});
 		}
 		

@@ -304,35 +304,41 @@ function showGridThumbnail($resource_thumbnail, $resource_type, $popup_image, $p
 }
 
 function showListTitle($resource_id, $resource_type, $popup_image, $popup_url, $resource_slug){
+	$resource_display_title = get_field('display_title', $resource_id);
+	
+	if(empty($resource_display_title)){
+		$resource_display_title = get_the_title( $resource_id );
+	}
+
 	switch ($resource_type) {
 		case "single-file":
 		case "multiple-file":
 		case "audio-file":
-			echo get_the_title( $resource_id );
+			echo $resource_display_title;
 			break;
 		case "image-file":
 			if(!empty($popup_image)){
-				echo '<a href="'.$popup_image.'" data-fancybox>'.get_the_title( $resource_id ).'</a>';
+				echo '<a href="'.$popup_image.'" data-fancybox>'.$resource_display_title.'</a>';
 			}else{
-				echo get_the_title( $resource_id );
+				echo $resource_display_title;
 			}
 			break;
 		case "video-file":
 			if(!empty($popup_url)){
-				echo '<a data-fancybox href="'.$popup_url.'">'.get_the_title( $resource_id ).'</a>';
+				echo '<a data-fancybox href="'.$popup_url.'">'.$resource_display_title.'</a>';
 			}else{
-				echo get_the_title( $resource_id );
+				echo $resource_display_title;
 			}
 			break;
 		case "interactive-file":
 			if(!empty($popup_url)){
-				echo '<a href="'.$popup_url.'" target="_blank">'.get_the_title( $resource_id ).'</a>';
+				echo '<a href="'.$popup_url.'" target="_blank">'.$resource_display_title.'</a>';
 			}else{
-				echo get_the_title( $resource_id );
+				echo $resource_display_title;
 			}
 			break;
 		case "article-file":
-			echo '<a href="javascript:;" data-fancybox data-src="#'.$resource_slug.'-content">'.get_the_title( $resource_id ).'</a>';
+			echo '<a href="javascript:;" data-fancybox data-src="#'.$resource_slug.'-content">'.$resource_display_title.'</a>';
 			break;
 	}
 }
@@ -401,12 +407,25 @@ function get_resource_grid(){
 		$page = 1;
 	}
 	
+	if (isset($_POST['filters'])) {
+		// Set $page to data from Ajax, if available
+		$filters = $_POST['filters'];
+	}
+	
+	//echo $filters;
+	
+	$filters_arr = explode(',', $filters);	
+	$filters_arr = array_values(array_diff( $filters_arr, [0]));
+	
+	//print_r($filters_arr);
+	
 	$resources = get_field('resources', $resource_list_id);
 	
 	//print_r($resources);
 	
 	// Pagination variables
 	$resource_count      = 0;
+	$resource_match_count = 0;
 	$resources_per_page  = 20; // How many features to display on each page
 	$total              = count( $resources );
 	//$pages              = ceil( $total / $resources_per_page );
@@ -431,10 +450,48 @@ function get_resource_grid(){
 			
 			$resource_post = get_post($resource_id); 
 			$resource_slug = $resource_post->post_name;
+			$term_arr = array();
+			
+			$terms = get_the_terms( $resource_id, 'resource_category' );
+			if ($terms) {
+				foreach($terms as $term) {
+				  //echo '<p>'.$term->term_id.'</p>';
+				  array_push($term_arr,$term->term_id);
+				} 
+			}
+			
+			$matched = false;
+			
+			switch(count($filters_arr)){
+				case 1:
+					if(in_array($filters_arr[0],$term_arr)){
+						$matched = true;
+					}
+					break;
+				case 2:
+					if(in_array($filters_arr[0],$term_arr) && in_array($filters_arr[1],$term_arr)){
+						$matched = true;
+					}
+					break;
+				case 3:
+					if(in_array($filters_arr[0],$term_arr) && in_array($filters_arr[1],$term_arr) && in_array($filters_arr[2],$term_arr)){
+						$matched = true;
+					}
+					break;
+				default:
+					$matched = true;
+					break;
+			}
+			
+			if(!$matched){
+				continue; 
+			}else{
+				$resource_match_count++;
+			}
 			
 			$resource_count++;
 			// Ignore this feature if $feature_count is lower than $min
-			if($resource_count < $min) { continue; }
+			if($resource_count < $min ) { continue; }
 			// Stop loop completely if $feature_count is higher than $max
 			if($resource_count > $max) { break; } 
 	?>
@@ -528,6 +585,11 @@ function get_resource_grid(){
 				<?php } ?>
 			</div>
 	<?php endforeach;
+		
+		if($resource_match_count == 0){
+			echo '<p>No resources found, please refine your filter.</p>';
+		}
+	
 		echo '</div>'; 
 	endif; //end if ($features)
 	wp_reset_postdata();
@@ -558,12 +620,23 @@ function get_resource_list(){
 		$page = 1;
 	}
 	
+	if (isset($_POST['filters'])) {
+		// Set $page to data from Ajax, if available
+		$filters = $_POST['filters'];
+	}
+	
+	//echo $filters;
+	
+	$filters_arr = explode(',', $filters);	
+	$filters_arr = array_values(array_diff( $filters_arr, [0]));
+	
 	$resources = get_field('resources', $resource_list_id);
 	
 	//print_r($resources);
 	
 	// Pagination variables
 	$resource_count      = 0;
+	$resource_match_count = 0;
 	$resources_per_page  = 20; // How many features to display on each page
 	$total              = count( $resources );
 	//$pages              = ceil( $total / $resources_per_page );
@@ -588,6 +661,44 @@ function get_resource_list(){
 			
 			$resource_post = get_post($resource_id); 
 			$resource_slug = $resource_post->post_name;
+			$term_arr = array();
+			
+			$terms = get_the_terms( $resource_id, 'resource_category' );
+			if ($terms) {
+				foreach($terms as $term) {
+				  //echo '<p>'.$term->term_id.'</p>';
+				  array_push($term_arr,$term->term_id);
+				} 
+			}
+			
+			$matched = false;
+			
+			switch(count($filters_arr)){
+				case 1:
+					if(in_array($filters_arr[0],$term_arr)){
+						$matched = true;
+					}
+					break;
+				case 2:
+					if(in_array($filters_arr[0],$term_arr) && in_array($filters_arr[1],$term_arr)){
+						$matched = true;
+					}
+					break;
+				case 3:
+					if(in_array($filters_arr[0],$term_arr) && in_array($filters_arr[1],$term_arr) && in_array($filters_arr[2],$term_arr)){
+						$matched = true;
+					}
+					break;
+				default:
+					$matched = true;
+					break;
+			}
+			
+			if(!$matched){
+				continue; 
+			}else{
+				$resource_match_count++;
+			}
 			
 			$resource_count++;
 			// Ignore this feature if $feature_count is lower than $min
@@ -709,6 +820,11 @@ function get_resource_list(){
 				<?php } ?>
 			</div>
 	<?php endforeach;
+		
+		if($resource_match_count == 0){
+			echo '<p>No resources found, please refine your filter.</p>';
+		}
+	
 		echo '</div>'; 
 	endif; //end if ($features)
 	wp_reset_postdata();
