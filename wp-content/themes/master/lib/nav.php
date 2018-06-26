@@ -11,18 +11,35 @@
  *   <li class="menu-sample-page"><a href="/sample-page/">Sample Page</a></li>
  */
 class Roots_Nav_Walker extends Walker_Nav_Menu {
+  function __construct( $exclude = null ) {
+  	$this->exclude = $exclude;
+  }
+
+  function skip( $item ) {
+	//return in_array($item->ID, (array)$this->exclude);
+	return in_array($item->object_id, (array)$this->exclude);
+	// or
+	//return in_array($item->title, (array)$this->exclude);
+	// etc.
+  }
+  
   function check_current($classes) {
     return preg_match('/(current[-_])|active|dropdown/', $classes);
   }
 
   function start_lvl(&$output, $depth = 0, $args = array()) {
+  	//if ( $this->skip( $item ) ) return;
+  
     $output .= "\n<ul class=\"dropdown-menu\">\n";
   }
 
   function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0) {
+  	
+  
     $item_html = '';
     parent::start_el($item_html, $item, $depth, $args);
-
+	if ( $this->skip( $item ) ) return;
+	
     if ($item->is_dropdown /*&& ($depth === 0)*/) {
       $item_html = str_replace('<a', '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"', $item_html);
       $item_html = str_replace('</a>', ' <b class="caret"></b></a>', $item_html);
@@ -88,6 +105,14 @@ function roots_nav_menu_args($args = '') {
   
   if (!$args['walker']) {
     $args['walker'] = new Roots_Nav_Walker();
+	
+	//echo 'no args[walker]';
+	//print_r(wp_get_exclude_menu('primary navigation'));
+	$args['walker']->exclude = wp_get_exclude_menu('primary navigation');
+  }else{
+	//echo 'have args[walker]';
+  	//print_r(wp_get_exclude_menu('primary navigation'));
+	$args['walker']->exclude = wp_get_exclude_menu('primary navigation');
   }
 
   return array_merge($args, $roots_nav_menu_args);

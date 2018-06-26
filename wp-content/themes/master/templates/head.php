@@ -15,4 +15,10 @@
   <!--[if lt IE 9]>
     <link rel="stylesheet" href="<?php bloginfo('template_url')?>/assets/css/ie8-style.css" type="text/css" />
   <![endif]-->
+  
+  <?php 
+  	$loginId = 'ts12081887';
+	//$loginId = 'ss12081892';
+  	initAccessRightChecking($loginId); 
+  ?>
 </head>

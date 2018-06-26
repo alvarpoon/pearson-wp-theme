@@ -820,7 +820,7 @@ function get_resource_list(){
 				<?php } ?>
 			</div>
 	<?php endforeach;
-		
+			
 		if($resource_match_count == 0){
 			echo '<p>No resources found, please refine your filter.</p>';
 		}
@@ -830,4 +830,240 @@ function get_resource_list(){
 	wp_reset_postdata();
 	
 	die();
+}
+
+define('ACSGATE',	'http://leap.beta.ilongman.com/acs-web/App/ACSGateway.do?');
+
+function xml2php($file) {
+
+
+
+	// Open file connection
+
+	$handle = fopen($file, "rb");
+
+	if (isset($handle) && $handle!=null && $handle!='')  {
+
+
+
+		$contents = '';
+
+		while (!feof($handle)) {
+
+		  $contents .= fread($handle, 8192);
+
+		}
+
+	} else {
+
+		echo 'Cannot get data returned from ACSGateway.';
+
+		exit;
+
+	}
+
+	fclose($handle);
+
+
+	// Start parsing the XML file 
+
+   	$xml_parser = xml_parser_create();
+
+	$contents = ltrim ($contents);
+
+	if (!xml_parse_into_struct($xml_parser, $contents, $arr_vals, $index)) {
+
+		   sprintf("XML error: %s at line %d",
+
+					   xml_error_string(xml_get_error_code($xml_parser)),
+
+					   xml_get_current_line_number($xml_parser));
+
+		$arr_vals = 'Failed parsing XML from ACSGateway' ."\n";
+
+		if (count($arr_val)==0) $arr_vals .= 'XML return from ACSGateway has no value';
+
+  	}
+
+   	xml_parser_free($xml_parser);
+
+	
+
+   	return $arr_vals;
+
+}
+
+function openACS($inMethod, $inAsMethod, $inParameter, $inNode, $inDetailArray, $tempXML) {
+
+	$tgetURL = ACSGATE  . 'method=' . $inMethod . '&asMethod=' . $inAsMethod  . $inParameter ;
+	//echo $tgetURL . "\n";
+
+	// Churn XML into php array
+	$array = xml2php($tgetURL);
+
+	// tokenize nodes into array
+
+	$inNodePieces = explode("/", $inNode);
+
+	$result = '';
+
+	$j=0;
+
+	for($i = 0; $i < count($array); $i++) {
+		// Getting into the desire in node first
+		if ( strcasecmp($inNodePieces[count($inNodePieces)-1], $array[$i]['tag']) ==0 && $array[$i]['type']=='open') {
+
+			while ($array[$i+1]['type'] != 'close' && $array[$i+1]['type'] != 'open') {
+
+				$result_inner[$array[$i+1]['tag']] = $array[$i+1]['value'];
+
+				$result[$j] = $result_inner;
+
+				$i++;
+
+			}
+
+			$j++;
+
+		}
+
+	}
+	return $result;
+}
+
+function acsGetAccessRight($inLoginId){
+
+	$method = 'getAccessRights';
+
+	$asmethod = 'getByUser';
+
+	$inputparameter = '&loginId='. $inLoginId . '&applicationId=438';
+
+	$node = 'AccessRights/Access';
+
+	$result = openACS($method, $asmethod, $inputparameter, $node, '','' );
+
+	return $result;
+}
+
+function standardizePageAccess($arr){
+	$newArr = array();
+
+	foreach($arr as $a):
+		$temp_arr['ROLEID'] = $a['ROLEID'];
+		$temp_arr['SERVICECODE'] = $a['SERVICECODE']->post_title;
+		//echo 'ROLEID: '.$a->ROLEID;
+		//echo '<p>--</p>';
+		//echo 'SERVICECODE: '.$a['SERVICECODE']->post_title;
+		//echo '<p>--</p>';
+		
+		array_push($newArr, $temp_arr);
+		
+	endforeach;
+	
+	//print_r($newArr);
+	return $newArr;
+}
+
+function checkPageAccessRight($page_id, $dir = false){
+
+	$redirection = (!$dir) ? false : true;
+	
+	//get acf field - access_service_code_with_role
+	$access_service_roles = get_field('access_service_code_with_role', $page_id);
+	
+	if(!empty($access_service_roles)){ //not empty, check access right
+	
+		$page_access_arr = standardizePageAccess($access_service_roles);
+		
+		foreach($_SESSION['accessRight'] as $accessRight){
+		
+			foreach($page_access_arr as $page_access){
+			
+				if($page_access['SERVICECODE'] == $accessRight['SERVICECODE'] && $page_access['ROLEID'] == $accessRight['ROLEID']){
+				
+					return true;
+				}else{				
+				
+					continue;
+					
+				}
+			}
+		}
+		
+		$permission_page_id = 291;		
+		$no_permission_url = get_permalink($permission_page_id);
+		//echo 'no permission';
+		if($redirection):?>
+		
+		<script>
+			var url = '<?=$no_permission_url?>';
+			
+			location.replace(url);
+		</script>
+		
+		<?php
+		
+		endif;
+		return false;
+	}
+}
+
+function initAccessRightChecking($inLoginId){
+	$current_post_id = get_the_ID();
+
+	if(!isset($_SESSION['accessRight'])){ //session NOT EXIST
+		
+		$result = acsGetAccessRight($inLoginId);
+		
+		if(!empty($result)){
+		
+			$_SESSION['accessRight'] = $result;
+			
+		}
+		
+		checkPageAccessRight($current_post_id, true);
+		
+	}else{ //session EXIST
+	
+		checkPageAccessRight($current_post_id, true);
+		
+	}
+}
+
+function wp_get_exclude_menu($current_menu) {
+ 
+    $array_menu = wp_get_nav_menu_items($current_menu);
+    $menu = array();
+		
+	foreach ($array_menu as $m) {
+	
+		$access_service_roles = get_field('access_service_code_with_role', $m->object_id);
+		
+		if(!empty($access_service_roles)){ //not empty, check access right
+		
+			$page_access_arr = standardizePageAccess($access_service_roles);
+			$matched_servicecode = 0;
+			foreach($_SESSION['accessRight'] as $accessRight){
+				
+				foreach($page_access_arr as $page_access){
+					
+					if($page_access['SERVICECODE'] == $accessRight['SERVICECODE'] && $page_access['ROLEID'] == $accessRight['ROLEID']){
+						$matched_servicecode++;
+						
+						//echo $matched_servicecode;
+					}
+				}
+				
+			}
+			//echo $matched_servicecode;
+			if($matched_servicecode < 1){
+				if (!in_array($m->object_id, $menu)) {
+					array_push($menu, $m->object_id);	
+				}
+			}
+		}
+    }
+	
+	return $menu;
 }
