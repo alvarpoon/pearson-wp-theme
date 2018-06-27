@@ -1,5 +1,9 @@
 <?php //the_content(); ?>
 <?php //wp_link_pages(array('before' => '<nav class="pagination">', 'after' => '</nav>')); ?>
+
+<?php
+	$resource_list = get_field('resource_list');
+?>
 <div class="container-fluid">
 	<div class="row">
 		<div class="top-banner-container" style="background-image:url('<?=get_stylesheet_directory_uri()?>/assets/img/home/banner-top.png');">
@@ -37,9 +41,9 @@
 				<div class="clearfix">
 					<div class="filter-item">
 						<?php
-							$filter_title_1 = get_field('filter_title_1');
-							$filter_1 = get_field('filter_1');
-							if(count($filter_1) > 0):
+							$filter_title_1 = get_field('filter_title_1', $resource_list[0]->ID);
+							$filter_1 = get_field('filter_1', $resource_list[0]->ID);
+							if(count($filter_1) > 0 && !empty($filter_title_1)):
 							
 							echo '<select id="filter_1" class="resource_filtering">';
 							echo '<option value="0">'.$filter_title_1.'</option>';
@@ -57,9 +61,9 @@
 					</div>
 					<div class="filter-item">
 						<?php 
-							$filter_title_2 = get_field('filter_title_2');
-							$filter_2 = get_field('filter_2');
-							if(count($filter_2) > 0):
+							$filter_title_2 = get_field('filter_title_2', $resource_list[0]->ID);
+							$filter_2 = get_field('filter_2', $resource_list[0]->ID);
+							if(count($filter_2) > 0 && !empty($filter_title_2)):
 							
 							echo '<select id="filter_2" class="resource_filtering">';
 							echo '<option value="0">'.$filter_title_2.'</option>';
@@ -77,9 +81,9 @@
 					</div>
 					<div class="filter-item">
 						<?php 
-							$filter_title_3 = get_field('filter_title_3');
-							$filter_3 = get_field('filter_3');
-							if(count($filter_3) > 0):
+							$filter_title_3 = get_field('filter_title_3', $resource_list[0]->ID);
+							$filter_3 = get_field('filter_3', $resource_list[0]->ID);
+							if(count($filter_3) > 0 && !empty($filter_title_3)):
 							
 							echo '<select id="filter_3" class="resource_filtering">';
 							echo '<option value="0">'.$filter_title_3.'</option>';
@@ -99,15 +103,18 @@
 			</div>
 			<div class="col-md-3 view-option-wrapper">
 				<div class="view-option clearfix">
-					<a href="/list-view/" class="btn_list">List</a>
-					<a href="/grid-view/" class="btn_grid active">Grid</a>
+					<?php 
+						$alternative_view = get_field('alternative_view');
+					?>
+					<a href="<?=$alternative_view?>" class="btn_list">List</a>
+					<a href="javascript:;" class="btn_grid active">Grid</a>
 				</div>
 			</div>
 		</div>
 		<div class="resource-container clearfix">
 			
 		<?php
-				$resource_list = get_field('resource_list');
+				
 				$resources = get_field('resources', $resource_list[0]->ID); 
 				
 				$url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
@@ -181,7 +188,7 @@
 							</div>
 							<?php } ?>
 						</div>
-						<div class="resource-type">File Downlaod</div>
+						<!--<div class="resource-type">File Downlaod</div>-->
 						<div class="resource-download-wrapper">
 							<?php
 								if($download_count > 1){ ?>

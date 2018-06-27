@@ -7801,6 +7801,12 @@ footer.content-info .footer-wrapper .footer-copyright {
   position: relative;
   margin-bottom: 13px;
 }
+.page-template-template-resource .resource-container .resource-item .resource-thumbnail .thumb {
+  -webkit-background-size: cover;
+          background-size: cover;
+  background-repeat: no-repeat;
+  display: block;
+}
 .page-template-template-resource .resource-container .resource-item .resource-title-wrapper {
   position: relative;
   height: 50px;
