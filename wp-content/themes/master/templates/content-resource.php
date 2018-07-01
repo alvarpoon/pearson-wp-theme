@@ -143,6 +143,9 @@
 				
 		<?php
 				echo '<div class="resource-container-inner">';
+				
+				
+				
 					
 				foreach ($resources as $resource):
 					$resource_id = $resource->ID;
@@ -157,6 +160,9 @@
 					$resource_post = get_post($resource_id); 
 					$resource_slug = $resource_post->post_name;
 					
+					//$filetype = wp_check_filetype('image.jpg');
+					//echo $filetype['ext'];
+					
 					$resource_count++;
 					// Ignore this feature if $feature_count is lower than $min
 					if($resource_count < $min) { continue; }
@@ -166,7 +172,9 @@
 					<div class="col-xs-6 col-sm-3 col-md-3 resource-item">
 						<div class="resource-thumbnail">
 							<?php
-								echo showGridThumbnail($resource_thumbnail, $resource_type, $resource_popup_image['url'], $resource_popup_url, $resource_slug);
+								//echo '<p>file type: '.get_main_download_file($resource_id).'</p>';
+							
+								echo showGridThumbnail($resource_id, $resource_thumbnail, $resource_type, $resource_popup_image['url'], $resource_popup_url, $resource_slug);
 								echo get_audio_preview(get_field('downloads', $resource_id));
 							?>
 						</div>
@@ -203,6 +211,8 @@
 												while( have_rows('downloads', $resource_id) ): the_row();
 													$file_title = get_sub_field('file_title');
 													$downloadable_file = get_sub_field('downloadable_file');
+													$set_as_main_download_file = get_sub_field('set_as_main_download_file');
+													
 													echo '<li><a href="'.$downloadable_file['url'].'" target="_blank">'.$file_title.'</a></li>';
 													
 													array_push($downloadable_file_arr, $downloadable_file['url']);

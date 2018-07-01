@@ -317,6 +317,53 @@
 					background-size:cover;
 					background-repeat:no-repeat;
 					display:block;
+					position:relative;
+					
+					&.thumb_image{
+						&:after{
+							background-image:url(../img/common/grid-view/ic-zoom-in.svg);
+							/*width:35px;
+							height:35px;*/
+						}
+					}
+					
+					&.thumb_video{
+						&:after{
+							background-image:url(../img/common/grid-view/video-btn.svg);
+							/*width:48px;
+							height:48px;*/
+						}
+					}
+						
+					&.thumb_interactive{
+						&:after{
+							background-image:url(../img/common/grid-view/ic-touch-app-white.svg);
+							/*width:30px;
+							height:42px;*/
+						}
+					}
+						
+					&.thumb_article{
+						&:after{
+							background-image:url(../img/common/grid-view/ic-format-align-left-white.svg);
+							/*width:36px;
+							height:36px;*/
+						}
+					}
+					
+					&:after{
+						content:"";
+						display:block;
+						position:absolute;
+						left:50%;
+						top:50%;
+						width:48px;
+						height:48px;
+						transform:translate(-50%,-50%);
+						background-position:center;
+						background-size:contain;
+						background-repeat:no-repeat;
+					}
 				}
 			}
 			

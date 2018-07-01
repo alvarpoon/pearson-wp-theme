@@ -229,8 +229,61 @@ function create_zip(){
 	exit();
 }
 
-function showGridThumbnail($resource_thumbnail, $resource_type, $popup_image, $popup_url,$resource_slug){
+function get_main_download_file_type($resource_id){
+	
+	if( have_rows('downloads', $resource_id) ){
+	
+		while( have_rows('downloads', $resource_id) ): the_row();
+
+			$downloadable_file = get_sub_field('downloadable_file');
+			
+			$set_as_main_download_file = get_sub_field('set_as_main_download_file');
+			
+			if($set_as_main_download_file){
+
+				$filename = array_pop(explode('/', $downloadable_file['url']));
+
+				$filetype = wp_check_filetype($filename);
+			}
+			
+		endwhile;
+		
+	}
+	
+	return $filetype['ext'];
+}
+
+function filetype_thumbnail($filetype){
+	
+
+	switch($filetype){
+		case 'doc':
+		case 'gif':
+		case 'html':
+		case 'jpg':
+		case 'mov':
+		case 'mp4':
+		case 'mpg':
+		case 'pdf':
+		case 'png':
+		case 'ppt':
+		case 'wav':
+		case 'xls':
+		case 'zip':
+			$imgfile = $filetype.'.svg';
+			break;
+		default:
+			$imgfile = 'single-file.svg';
+			break;
+			
+	}
+	
+	return $imgfile;
+}
+
+function showGridThumbnail($resource_id, $resource_thumbnail, $resource_type, $popup_image, $popup_url,$resource_slug){
 	$path = get_stylesheet_directory_uri()."/assets/img/common/grid-view/";
+	$filetype = get_main_download_file_type($resource_id);
 
 	if(!empty($resource_thumbnail)){
 		switch ($resource_type) {
@@ -241,63 +294,65 @@ function showGridThumbnail($resource_thumbnail, $resource_type, $popup_image, $p
 				break;
 			case "image-file":
 				if(!empty($popup_image)){
-					echo '<a href="'.$popup_image.'" data-fancybox class="thumb" style="background-image:url('.$resource_thumbnail.')"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></a>';
+					echo '<a href="'.$popup_image.'" data-fancybox class="thumb thumb_image" style="background-image:url('.$resource_thumbnail.')"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></a>';
 				}else{
 					echo '<div class="thumb" style="background-image:url('.$resource_thumbnail.')"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></div>';
 				}
 				break;
 			case "video-file":
 				if(!empty($popup_url)){
-					echo '<a data-fancybox href="'.$popup_url.'" class="thumb" style="background-image:url('.$resource_thumbnail.')"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></a>';
+					echo '<a data-fancybox href="'.$popup_url.'" class="thumb thumb_video" style="background-image:url('.$resource_thumbnail.')"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></a>';
 				}else{
 					echo '<div class="thumb" style="background-image:url('.$resource_thumbnail.')"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></div>';
 				}
 				break;
 			case "interactive-file":
 				if(!empty($popup_url)){
-					echo '<a href="'.$popup_url.'" target="_blank" class="thumb" style="background-image:url('.$resource_thumbnail.')"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></a>';
+					echo '<a href="'.$popup_url.'" target="_blank" class="thumb thumb_interactive" style="background-image:url('.$resource_thumbnail.')"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></a>';
 				}else{
 					echo '<div class="thumb" style="background-image:url('.$resource_thumbnail.')"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></div>';
 				}
 				break;
 			case "article-file":
-				echo '<a href="javascript:;" data-fancybox data-src="#'.$resource_slug.'-content" class="thumb" style="background-image:url('.$resource_thumbnail.')"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></a>';
+				echo '<a href="javascript:;" data-fancybox data-src="#'.$resource_slug.'-content" class="thumb thumb_article" style="background-image:url('.$resource_thumbnail.')"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></a>';
 				break;
 		}
-	}else{
+	}else{	
 		switch ($resource_type) {
 			case "single-file":
-				echo '<div class="thumb" style="background-image:url('.$path.'single_file.svg)"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></div>';
-				break;
 			case "multiple-file":
-				echo '<div class="thumb" style="background-image:url('.$path.'multiple_files.svg)"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></div>';
+				echo '<div class="thumb" style="background-image:url('.$path.$resource_type.'.svg)"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></div>';
 				break;
 			case "image-file":
 				if(!empty($popup_image)){
-					echo '<a href="'.$popup_image.'" data-fancybox class="thumb" style="background-image:url('.$path.'single_file.svg)"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></a>';
+					echo '<a href="'.$popup_image.'" data-fancybox class="thumb" style="background-image:url('.$path.filetype_thumbnail($filetype).')"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></a>';
 				}else{
-					echo '<div class="thumb" style="background-image:url('.$path.'single_file.svg)"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></div>';
+					echo '<div class="thumb" style="background-image:url('.$path.filetype_thumbnail($filetype).'"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></div>';
 				}
 				break;
 			case "video-file":
 				if(!empty($popup_url)){
-					echo '<a data-fancybox href="'.$popup_url.'" class="thumb" style="background-image:url('.$path.'single_file.svg)"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></a>';
+					echo '<a data-fancybox href="'.$popup_url.'" class="thumb" style="background-image:url('.$path.filetype_thumbnail($filetype).')"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></a>';
 				}else{
-					echo '<div class="thumb" style="background-image:url('.$path.'single_file.svg)"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></div>';
+					echo '<div class="thumb" style="background-image:url('.$path.filetype_thumbnail($filetype).')"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></div>';
 				}
 				break;
 			case "audio-file":
-				echo '<div class="thumb" style="background-image:url('.$path.'single_file.svg)"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></div>';
+				echo '<div class="thumb" style="background-image:url('.$path.filetype_thumbnail($filetype).')"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></div>';
 				break;
 			case "interactive-file":
 				if(!empty($popup_url)){
-					echo '<a href="'.$popup_url.'" target="_blank" class="thumb" style="background-image:url('.$path.'single_file.svg)"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></a>';
+					echo '<a href="'.$popup_url.'" target="_blank" class="thumb" style="background-image:url('.$path.filetype_thumbnail($filetype).')"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></a>';
 				}else{
-					echo '<div class="thumb" style="background-image:url('.$path.'single_file.svg)"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></div>';
+					echo '<div class="thumb" style="background-image:url('.$path.filetype_thumbnail($filetype).')"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></div>';
 				}
 				break;
 			case "article-file":
-				echo '<a href="javascript:;" data-fancybox data-src="#'.$resource_slug.'-content" class="thumb" style="background-image:url('.$path.'single_file.svg)"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></a>';
+				echo '<a href="javascript:;" data-fancybox data-src="#'.$resource_slug.'-content" class="thumb" style="background-image:url('.$path.filetype_thumbnail($filetype).')"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></a>';
+				break;
+				
+			default:
+				echo '<div class="thumb" style="background-image:url('.$path.filetype_thumbnail($filetype).')"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></div>';
 				break;
 		}
 	}
@@ -499,7 +554,7 @@ function get_resource_grid(){
 			<div class="col-xs-6 col-sm-3 col-md-3 resource-item">
 				<div class="resource-thumbnail">
 					<?php
-						echo showGridThumbnail($resource_thumbnail, $resource_type, $resource_popup_image['url'], $resource_popup_url, $resource_slug);
+						echo showGridThumbnail($resource_id, $resource_thumbnail, $resource_type, $resource_popup_image['url'], $resource_popup_url, $resource_slug);
 						echo get_audio_preview(get_field('downloads', $resource_id));
 					?>
 				</div>
@@ -905,7 +960,7 @@ function openACS($inMethod, $inAsMethod, $inParameter, $inNode, $inDetailArray, 
 
 	$inNodePieces = explode("/", $inNode);
 
-	$result = '';
+	$result = [];
 
 	$j=0;
 
@@ -950,18 +1005,15 @@ function standardizePageAccess($arr){
 	$newArr = array();
 
 	foreach($arr as $a):
+	
 		$temp_arr['ROLEID'] = $a['ROLEID'];
+		
 		$temp_arr['SERVICECODE'] = $a['SERVICECODE']->post_title;
-		//echo 'ROLEID: '.$a->ROLEID;
-		//echo '<p>--</p>';
-		//echo 'SERVICECODE: '.$a['SERVICECODE']->post_title;
-		//echo '<p>--</p>';
 		
 		array_push($newArr, $temp_arr);
 		
 	endforeach;
 	
-	//print_r($newArr);
 	return $newArr;
 }
 
@@ -993,7 +1045,6 @@ function checkPageAccessRight($page_id, $dir = false){
 		
 		$permission_page_id = 291;		
 		$no_permission_url = get_permalink($permission_page_id);
-		//echo 'no permission';
 		if($redirection):?>
 		
 		<script>

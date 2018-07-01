@@ -24,26 +24,8 @@ var Roots = {
     init: function() {
       // JavaScript to be fired on all pages
 	  //console.log('JS!');
-	  function initMultipleDownload(){
-		  $('.multiple_download').each(function(){
-			$(this).find('.multiple_dl_header').click(function(){
-				if(!$(this).parent().hasClass('opened')){
-					$(this).parent().addClass('opened');	
-				}
-			});
-		  });
-		  
-		  $(window).on('click touchend', function(event) {
-			var target = $(event.target);
-			if (target.parents('div.multiple_download').length) {
-				//console.log('it is in multiple_download');	
-			}else{
-				if($('.multiple_download').hasClass('opened')) {
-					$('.multiple_download').removeClass('opened');
-				}		
-			}				
-		  });
-	  }
+	  
+	  
 	  
 	  function initNavbarToggle(){
 		$('.navbar-toggle').click(function(){
@@ -133,7 +115,7 @@ var Roots = {
 						$('.resource-container-inner').html(result);
 						// fade in this content for a smooth transition
 						$('.resource-container-inner').fadeIn();
-						
+						initMultipleDownload();
 						currentPageNum = newPageNum;
 					  },
 					  error: function(MLHttpRequest, textStatus, errorThrown){
@@ -396,6 +378,38 @@ function initAudioSetup(){
 		//console.log(source);
 		initAudioPlayer($(this), source);
 	});
+}
+
+function initMultipleDownload(){
+  console.log('initMultipleDownload start');
+  
+  function resetEvent(){
+	$('.multiple_download').each(function(){
+		$(this).find('.multiple_dl_header').unbind('click');			
+	});
+  }		  
+  resetEvent();
+  
+  $('.multiple_download').each(function(){
+	$(this).find('.multiple_dl_header').click(function(){
+		if(!$(this).parent().hasClass('opened')){
+			$(this).parent().addClass('opened');	
+		}
+	});
+  });
+  
+  $(window).on('click touchend', function(event) {
+	var target = $(event.target);
+	if (target.parents('div.multiple_download').length) {
+		//console.log('it is in multiple_download');	
+	}else{
+		if($('.multiple_download').hasClass('opened')) {
+			$('.multiple_download').removeClass('opened');
+		}		
+	}				
+  });
+  
+  console.log('initMultipleDownload end');
 }
 
 var getUrlParameter = function getUrlParameter(sParam) {

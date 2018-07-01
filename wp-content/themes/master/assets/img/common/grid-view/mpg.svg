@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="210" height="118" viewBox="0 0 210 118">
+    <defs>
+        <linearGradient id="b" x1="50%" x2="50%" y1="0%" y2="100%">
+            <stop offset="0%" stop-color="#F8F8F8"/>
+            <stop offset="100%" stop-color="#EEE"/>
+        </linearGradient>
+        <rect id="a" width="210" height="118" rx="2"/>
+        <filter id="c" width="115.4%" height="113%" x="-7.7%" y="-4.6%" filterUnits="objectBoundingBox">
+            <feOffset dy="2" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+            <feColorMatrix in="shadowBlurOuter1" result="shadowMatrixOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0"/>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+        <linearGradient id="e" x1="100%" x2="0%" y1="0%" y2="104.901%">
+            <stop offset="0%" stop-color="#CCC"/>
+            <stop offset="19.948%" stop-color="#FFF"/>
+            <stop offset="100%" stop-color="#F0F0F0"/>
+        </linearGradient>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <mask id="d" fill="#fff">
+            <use xlink:href="#a"/>
+        </mask>
+        <use fill="url(#b)" xlink:href="#a"/>
+        <g filter="url(#c)" mask="url(#d)">
+            <path fill="url(#e)" d="M7.5.5C6.673.5 6 1.173 6 2v104c0 .827.673 1.5 1.5 1.5H89c.827 0 1.5-.673 1.5-1.5V27c0-.972-.58-2.373-1.268-3.06L67.061 1.768C66.373 1.081 64.972.5 64 .5H7.5z" transform="translate(60 3)"/>
+            <path fill="#9E007E" d="M60 80h87V41H60z"/>
+            <path fill="#000" fill-opacity=".1" d="M66 83h79v-3H66z"/>
+            <text font-family="OpenSans-Bold, Open Sans" font-size="26" font-weight="bold" transform="translate(60 3)">
+                <tspan x="15.666" y="67" fill="#FFF">MPG</tspan>
+            </text>
+            <path fill="#979797" d="M125.667 5v21.333c0 1.1.9 2 2 2H149c1.1 0 1.364-.637.586-1.414L127.08 4.414c-.302-.302-.583-.447-.813-.447-.363 0-.601.36-.601 1.033z"/>
+            <path fill="#4D4338" d="M60 80h6v6z"/>
+        </g>
+    </g>
+</svg>
