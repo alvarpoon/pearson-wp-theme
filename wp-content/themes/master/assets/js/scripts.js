@@ -2356,7 +2356,7 @@ var Roots = {
     init: function() {
       // JavaScript to be fired on all pages
 	  //console.log('JS!');
-	  
+	  var myWindow;
 	  
 	  
 	  function initNavbarToggle(){
@@ -2713,7 +2713,7 @@ function initAudioSetup(){
 }
 
 function initMultipleDownload(){
-  console.log('initMultipleDownload start');
+  //console.log('initMultipleDownload start');
   
   function resetEvent(){
 	$('.multiple_download').each(function(){
@@ -2741,7 +2741,7 @@ function initMultipleDownload(){
 	}				
   });
   
-  console.log('initMultipleDownload end');
+  //console.log('initMultipleDownload end');
 }
 
 var getUrlParameter = function getUrlParameter(sParam) {
