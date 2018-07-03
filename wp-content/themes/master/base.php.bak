@@ -1,14 +1,4 @@
-<?php 
-/*require_once('/data/webdoc/science_wp/iam_saml_functions.php');
-$IAM = new SimpleSAML_HK_IAM('default-sp');
-if (!$IAM->isAuthenticated()) error_log('RALPH RALPH RALPH No LOGIN');
-$username = $IAM->__get('UserName');
-
-error_log('Ralph Get Username xxxxxxxxxxx: ' . $username);*/
-
-//echo ($username);
-
-get_template_part('templates/head'); ?>
+<?php get_template_part('templates/head'); ?>
 <body <?php body_class(); ?>>
 
   <!--[if lt IE 8]>

@@ -7495,50 +7495,60 @@ footer.content-info .footer-wrapper .footer-copyright {
   }
 }
 .page-template-template-resource .hidden-content,
-.page-template-template-resource-list .hidden-content {
+.page-template-template-resource-list .hidden-content,
+.page-template-template-all-resources .hidden-content {
   display: none;
 }
 .page-template-template-resource .page-general-info,
-.page-template-template-resource-list .page-general-info {
+.page-template-template-resource-list .page-general-info,
+.page-template-template-all-resources .page-general-info {
   margin-bottom: 30px;
 }
 .page-template-template-resource .page-general-info h1.pageTitle,
-.page-template-template-resource-list .page-general-info h1.pageTitle {
+.page-template-template-resource-list .page-general-info h1.pageTitle,
+.page-template-template-all-resources .page-general-info h1.pageTitle {
   font-size: 28px;
   color: #005a70;
   margin-bottom: 0;
 }
 .page-template-template-resource .filter-wrapper,
-.page-template-template-resource-list .filter-wrapper {
+.page-template-template-resource-list .filter-wrapper,
+.page-template-template-all-resources .filter-wrapper {
   padding-bottom: 12px;
   border-bottom: solid 1px #e7e7e7;
   margin-bottom: 20px;
 }
 .page-template-template-resource .filter-wrapper .filter-select,
-.page-template-template-resource-list .filter-wrapper .filter-select {
+.page-template-template-resource-list .filter-wrapper .filter-select,
+.page-template-template-all-resources .filter-wrapper .filter-select {
   padding: 0;
 }
 .page-template-template-resource .filter-wrapper .filter-select .filter-item,
-.page-template-template-resource-list .filter-wrapper .filter-select .filter-item {
+.page-template-template-resource-list .filter-wrapper .filter-select .filter-item,
+.page-template-template-all-resources .filter-wrapper .filter-select .filter-item {
   float: left;
   margin-right: 10px;
   margin-bottom: 5px;
 }
 .page-template-template-resource .filter-wrapper .filter-select .filter-item select,
-.page-template-template-resource-list .filter-wrapper .filter-select .filter-item select {
+.page-template-template-resource-list .filter-wrapper .filter-select .filter-item select,
+.page-template-template-all-resources .filter-wrapper .filter-select .filter-item select {
   padding: 5px;
 }
 .page-template-template-resource .filter-wrapper .view-option-wrapper,
-.page-template-template-resource-list .filter-wrapper .view-option-wrapper {
+.page-template-template-resource-list .filter-wrapper .view-option-wrapper,
+.page-template-template-all-resources .filter-wrapper .view-option-wrapper {
   padding: 0;
   text-align: right;
 }
 .page-template-template-resource .filter-wrapper .view-option-wrapper .view-option,
-.page-template-template-resource-list .filter-wrapper .view-option-wrapper .view-option {
+.page-template-template-resource-list .filter-wrapper .view-option-wrapper .view-option,
+.page-template-template-all-resources .filter-wrapper .view-option-wrapper .view-option {
   float: right;
 }
 .page-template-template-resource .filter-wrapper .view-option-wrapper .view-option a,
-.page-template-template-resource-list .filter-wrapper .view-option-wrapper .view-option a {
+.page-template-template-resource-list .filter-wrapper .view-option-wrapper .view-option a,
+.page-template-template-all-resources .filter-wrapper .view-option-wrapper .view-option a {
   border: 1px solid #cccccc;
   display: inline-block;
   font-size: 15px;
@@ -7551,12 +7561,14 @@ footer.content-info .footer-wrapper .footer-copyright {
           background-size: contain;
 }
 .page-template-template-resource .filter-wrapper .view-option-wrapper .view-option a.btn_list,
-.page-template-template-resource-list .filter-wrapper .view-option-wrapper .view-option a.btn_list {
+.page-template-template-resource-list .filter-wrapper .view-option-wrapper .view-option a.btn_list,
+.page-template-template-all-resources .filter-wrapper .view-option-wrapper .view-option a.btn_list {
   border-radius: 2px 0 0 2px;
   border-right: none;
 }
 .page-template-template-resource .filter-wrapper .view-option-wrapper .view-option a.btn_list:before,
-.page-template-template-resource-list .filter-wrapper .view-option-wrapper .view-option a.btn_list:before {
+.page-template-template-resource-list .filter-wrapper .view-option-wrapper .view-option a.btn_list:before,
+.page-template-template-all-resources .filter-wrapper .view-option-wrapper .view-option a.btn_list:before {
   content: "";
   background: url(../img/common/ic-list@2x.png) no-repeat;
   -webkit-background-size: cover;
@@ -7568,17 +7580,20 @@ footer.content-info .footer-wrapper .footer-copyright {
   left: 5px;
 }
 .page-template-template-resource .filter-wrapper .view-option-wrapper .view-option a.btn_list.active:before,
-.page-template-template-resource-list .filter-wrapper .view-option-wrapper .view-option a.btn_list.active:before {
+.page-template-template-resource-list .filter-wrapper .view-option-wrapper .view-option a.btn_list.active:before,
+.page-template-template-all-resources .filter-wrapper .view-option-wrapper .view-option a.btn_list.active:before {
   background: url(../img/common/ic-list-blue@2x.png) no-repeat;
   -webkit-background-size: cover;
           background-size: cover;
 }
 .page-template-template-resource .filter-wrapper .view-option-wrapper .view-option a.btn_grid,
-.page-template-template-resource-list .filter-wrapper .view-option-wrapper .view-option a.btn_grid {
+.page-template-template-resource-list .filter-wrapper .view-option-wrapper .view-option a.btn_grid,
+.page-template-template-all-resources .filter-wrapper .view-option-wrapper .view-option a.btn_grid {
   border-radius: 0 2px 2px 0;
 }
 .page-template-template-resource .filter-wrapper .view-option-wrapper .view-option a.btn_grid:before,
-.page-template-template-resource-list .filter-wrapper .view-option-wrapper .view-option a.btn_grid:before {
+.page-template-template-resource-list .filter-wrapper .view-option-wrapper .view-option a.btn_grid:before,
+.page-template-template-all-resources .filter-wrapper .view-option-wrapper .view-option a.btn_grid:before {
   content: "";
   background: url(../img/common/ic-view-module@2x.png) no-repeat;
   -webkit-background-size: cover;
@@ -7590,22 +7605,26 @@ footer.content-info .footer-wrapper .footer-copyright {
   left: 5px;
 }
 .page-template-template-resource .filter-wrapper .view-option-wrapper .view-option a.btn_grid.active:before,
-.page-template-template-resource-list .filter-wrapper .view-option-wrapper .view-option a.btn_grid.active:before {
+.page-template-template-resource-list .filter-wrapper .view-option-wrapper .view-option a.btn_grid.active:before,
+.page-template-template-all-resources .filter-wrapper .view-option-wrapper .view-option a.btn_grid.active:before {
   background: url(../img/common/ic-view-module-blue@2x.png) no-repeat;
   -webkit-background-size: cover;
           background-size: cover;
 }
 .page-template-template-resource .filter-wrapper .view-option-wrapper .view-option a.active,
-.page-template-template-resource-list .filter-wrapper .view-option-wrapper .view-option a.active {
+.page-template-template-resource-list .filter-wrapper .view-option-wrapper .view-option a.active,
+.page-template-template-all-resources .filter-wrapper .view-option-wrapper .view-option a.active {
   background: #fff!important;
   color: #007fa3;
 }
 .page-template-template-resource .filter-wrapper .view-option-wrapper .view-option a:hover,
-.page-template-template-resource-list .filter-wrapper .view-option-wrapper .view-option a:hover {
+.page-template-template-resource-list .filter-wrapper .view-option-wrapper .view-option a:hover,
+.page-template-template-all-resources .filter-wrapper .view-option-wrapper .view-option a:hover {
   text-decoration: none;
 }
 .page-template-template-resource .audio_container,
-.page-template-template-resource-list .audio_container {
+.page-template-template-resource-list .audio_container,
+.page-template-template-all-resources .audio_container {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -7613,31 +7632,39 @@ footer.content-info .footer-wrapper .footer-copyright {
 }
 .page-template-template-resource .audio_container.two_audio .audio_playback,
 .page-template-template-resource-list .audio_container.two_audio .audio_playback,
+.page-template-template-all-resources .audio_container.two_audio .audio_playback,
 .page-template-template-resource .audio_container.small_audio .audio_playback,
-.page-template-template-resource-list .audio_container.small_audio .audio_playback {
+.page-template-template-resource-list .audio_container.small_audio .audio_playback,
+.page-template-template-all-resources .audio_container.small_audio .audio_playback {
   width: 49.3%;
   display: inline-block;
 }
 .page-template-template-resource .audio_container.two_audio .audio_playback .player .timeleft,
 .page-template-template-resource-list .audio_container.two_audio .audio_playback .player .timeleft,
+.page-template-template-all-resources .audio_container.two_audio .audio_playback .player .timeleft,
 .page-template-template-resource .audio_container.small_audio .audio_playback .player .timeleft,
-.page-template-template-resource-list .audio_container.small_audio .audio_playback .player .timeleft {
+.page-template-template-resource-list .audio_container.small_audio .audio_playback .player .timeleft,
+.page-template-template-all-resources .audio_container.small_audio .audio_playback .player .timeleft {
   width: 100px;
 }
 .page-template-template-resource .audio_container.two_audio .audio_playback .player .gutter,
 .page-template-template-resource-list .audio_container.two_audio .audio_playback .player .gutter,
+.page-template-template-all-resources .audio_container.two_audio .audio_playback .player .gutter,
 .page-template-template-resource .audio_container.small_audio .audio_playback .player .gutter,
-.page-template-template-resource-list .audio_container.small_audio .audio_playback .player .gutter {
+.page-template-template-resource-list .audio_container.small_audio .audio_playback .player .gutter,
+.page-template-template-all-resources .audio_container.small_audio .audio_playback .player .gutter {
   display: none;
 }
 .page-template-template-resource .audio_container .audio_playback,
-.page-template-template-resource-list .audio_container .audio_playback {
+.page-template-template-resource-list .audio_container .audio_playback,
+.page-template-template-all-resources .audio_container .audio_playback {
   width: 100%;
   position: relative;
   height: 28px;
 }
 .page-template-template-resource .audio_container .audio_playback .player,
-.page-template-template-resource-list .audio_container .audio_playback .player {
+.page-template-template-resource-list .audio_container .audio_playback .player,
+.page-template-template-all-resources .audio_container .audio_playback .player {
   margin-bottom: 0;
   display: block;
   height: 28px;
@@ -7650,7 +7677,8 @@ footer.content-info .footer-wrapper .footer-copyright {
   cursor: default;
 }
 .page-template-template-resource .audio_container .audio_playback .playtoggle,
-.page-template-template-resource-list .audio_container .audio_playback .playtoggle {
+.page-template-template-resource-list .audio_container .audio_playback .playtoggle,
+.page-template-template-all-resources .audio_container .audio_playback .playtoggle {
   position: absolute;
   top: 0;
   left: 0;
@@ -7667,7 +7695,8 @@ footer.content-info .footer-wrapper .footer-copyright {
   border-radius: 4px;
 }
 .page-template-template-resource .audio_container .audio_playback .playtoggle a,
-.page-template-template-resource-list .audio_container .audio_playback .playtoggle a {
+.page-template-template-resource-list .audio_container .audio_playback .playtoggle a,
+.page-template-template-all-resources .audio_container .audio_playback .playtoggle a {
   color: #007fa3;
   display: inline-block;
   background: url(../img/common/ic-volume-down.svg) no-repeat left center;
@@ -7675,14 +7704,18 @@ footer.content-info .footer-wrapper .footer-copyright {
 }
 .page-template-template-resource .audio_container .audio_playback .playtoggle a:hover,
 .page-template-template-resource-list .audio_container .audio_playback .playtoggle a:hover,
+.page-template-template-all-resources .audio_container .audio_playback .playtoggle a:hover,
 .page-template-template-resource .audio_container .audio_playback .playtoggle a:focus,
 .page-template-template-resource-list .audio_container .audio_playback .playtoggle a:focus,
+.page-template-template-all-resources .audio_container .audio_playback .playtoggle a:focus,
 .page-template-template-resource .audio_container .audio_playback .playtoggle a:active,
-.page-template-template-resource-list .audio_container .audio_playback .playtoggle a:active {
+.page-template-template-resource-list .audio_container .audio_playback .playtoggle a:active,
+.page-template-template-all-resources .audio_container .audio_playback .playtoggle a:active {
   text-decoration: none;
 }
 .page-template-template-resource .audio_container .audio_playback .playtoggle.playing,
-.page-template-template-resource-list .audio_container .audio_playback .playtoggle.playing {
+.page-template-template-resource-list .audio_container .audio_playback .playtoggle.playing,
+.page-template-template-all-resources .audio_container .audio_playback .playtoggle.playing {
   width: 30px;
   background: url(../img/common/player.png) no-repeat 0 0;
   float: left;
@@ -7690,7 +7723,8 @@ footer.content-info .footer-wrapper .footer-copyright {
   border: none;
 }
 .page-template-template-resource .audio_container .audio_playback .timeleft,
-.page-template-template-resource-list .audio_container .audio_playback .timeleft {
+.page-template-template-resource-list .audio_container .audio_playback .timeleft,
+.page-template-template-all-resources .audio_container .audio_playback .timeleft {
   line-height: 28px;
   position: absolute;
   top: 0;
@@ -7701,7 +7735,8 @@ footer.content-info .footer-wrapper .footer-copyright {
   color: #fff;
 }
 .page-template-template-resource .audio_container .audio_playback .gutter,
-.page-template-template-resource-list .audio_container .audio_playback .gutter {
+.page-template-template-resource-list .audio_container .audio_playback .gutter,
+.page-template-template-all-resources .audio_container .audio_playback .gutter {
   position: absolute;
   top: 12px;
   left: 30px;
@@ -7710,7 +7745,8 @@ footer.content-info .footer-wrapper .footer-copyright {
   background: #888888;
 }
 .page-template-template-resource .audio_container .audio_playback .loading,
-.page-template-template-resource-list .audio_container .audio_playback .loading {
+.page-template-template-resource-list .audio_container .audio_playback .loading,
+.page-template-template-all-resources .audio_container .audio_playback .loading {
   background: #fff;
   background: #939eaa;
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#eaeef1), to(#c7cfd8));
@@ -7729,7 +7765,8 @@ footer.content-info .footer-wrapper .footer-copyright {
   height: 6px;
 }
 .page-template-template-resource .audio_container .audio_playback .handle,
-.page-template-template-resource-list .audio_container .audio_playback .handle {
+.page-template-template-resource-list .audio_container .audio_playback .handle,
+.page-template-template-all-resources .audio_container .audio_playback .handle {
   position: absolute;
   left: 0;
   width: 5px;
@@ -7738,39 +7775,45 @@ footer.content-info .footer-wrapper .footer-copyright {
   cursor: pointer;
 }
 .page-template-template-resource .resource-footer,
-.page-template-template-resource-list .resource-footer {
+.page-template-template-resource-list .resource-footer,
+.page-template-template-all-resources .resource-footer {
   text-align: center;
   margin-top: 11px;
   position: relative;
 }
 .page-template-template-resource .resource-footer .pagination,
-.page-template-template-resource-list .resource-footer .pagination {
+.page-template-template-resource-list .resource-footer .pagination,
+.page-template-template-all-resources .resource-footer .pagination {
   margin: 0 0 5px 0;
   display: inline-block;
   text-align: center;
 }
 .page-template-template-resource .resource-footer .pagination select,
-.page-template-template-resource-list .resource-footer .pagination select {
+.page-template-template-resource-list .resource-footer .pagination select,
+.page-template-template-all-resources .resource-footer .pagination select {
   float: left;
   min-height: 28px;
   padding-left: 10px;
 }
 .page-template-template-resource .resource-footer .pagination span,
-.page-template-template-resource-list .resource-footer .pagination span {
+.page-template-template-resource-list .resource-footer .pagination span,
+.page-template-template-all-resources .resource-footer .pagination span {
   display: inline-block;
   float: left;
   margin: 0 5px;
   line-height: 1.9;
 }
 .page-template-template-resource .resource-footer .pagination .btn_gopage,
-.page-template-template-resource-list .resource-footer .pagination .btn_gopage {
+.page-template-template-resource-list .resource-footer .pagination .btn_gopage,
+.page-template-template-all-resources .resource-footer .pagination .btn_gopage {
   float: left;
   border: solid 1px #cccccc;
   border-radius: 2px;
   background-image: url(../img/common/bg_gradient_view.png);
 }
 .page-template-template-resource .resource-footer .pagination .btn_gopage:after,
-.page-template-template-resource-list .resource-footer .pagination .btn_gopage:after {
+.page-template-template-resource-list .resource-footer .pagination .btn_gopage:after,
+.page-template-template-all-resources .resource-footer .pagination .btn_gopage:after {
   content: "";
   background: url(../img/common/ic-arrow-drop-right-blue.svg) no-repeat center;
   width: 24px;
@@ -7778,57 +7821,68 @@ footer.content-info .footer-wrapper .footer-copyright {
   display: block;
 }
 .page-template-template-resource .resource-footer .download_all,
-.page-template-template-resource-list .resource-footer .download_all {
+.page-template-template-resource-list .resource-footer .download_all,
+.page-template-template-all-resources .resource-footer .download_all {
   text-align: right;
 }
 .page-template-template-resource .resource-footer .download_all .btn_single_download,
-.page-template-template-resource-list .resource-footer .download_all .btn_single_download {
+.page-template-template-resource-list .resource-footer .download_all .btn_single_download,
+.page-template-template-all-resources .resource-footer .download_all .btn_single_download {
   background-image: url(../img/common/bg_gradient_view.png);
   border: solid 1px #cccccc;
   color: #007fa3;
 }
 .page-template-template-resource .resource-footer .download_all .btn_single_download:before,
-.page-template-template-resource-list .resource-footer .download_all .btn_single_download:before {
+.page-template-template-resource-list .resource-footer .download_all .btn_single_download:before,
+.page-template-template-all-resources .resource-footer .download_all .btn_single_download:before {
   background-image: url(../img/common/ic-file-download-blue.svg);
 }
-.page-template-template-resource .resource-container .resource-item {
+.page-template-template-resource .resource-container .resource-item,
+.page-template-template-all-resources .resource-container .resource-item {
   margin-bottom: 50px;
   padding-left: 3px;
   padding-right: 3px;
   height: 295px;
 }
-.page-template-template-resource .resource-container .resource-item .resource-thumbnail {
+.page-template-template-resource .resource-container .resource-item .resource-thumbnail,
+.page-template-template-all-resources .resource-container .resource-item .resource-thumbnail {
   position: relative;
   margin-bottom: 13px;
 }
-.page-template-template-resource .resource-container .resource-item .resource-thumbnail .thumb {
+.page-template-template-resource .resource-container .resource-item .resource-thumbnail .thumb,
+.page-template-template-all-resources .resource-container .resource-item .resource-thumbnail .thumb {
   -webkit-background-size: cover;
           background-size: cover;
   background-repeat: no-repeat;
   display: block;
   position: relative;
 }
-.page-template-template-resource .resource-container .resource-item .resource-thumbnail .thumb.thumb_image:after {
+.page-template-template-resource .resource-container .resource-item .resource-thumbnail .thumb.thumb_image:after,
+.page-template-template-all-resources .resource-container .resource-item .resource-thumbnail .thumb.thumb_image:after {
   background-image: url(../img/common/grid-view/ic-zoom-in.svg);
   /*width:35px;
 							height:35px;*/
 }
-.page-template-template-resource .resource-container .resource-item .resource-thumbnail .thumb.thumb_video:after {
+.page-template-template-resource .resource-container .resource-item .resource-thumbnail .thumb.thumb_video:after,
+.page-template-template-all-resources .resource-container .resource-item .resource-thumbnail .thumb.thumb_video:after {
   background-image: url(../img/common/grid-view/video-btn.svg);
   /*width:48px;
 							height:48px;*/
 }
-.page-template-template-resource .resource-container .resource-item .resource-thumbnail .thumb.thumb_interactive:after {
+.page-template-template-resource .resource-container .resource-item .resource-thumbnail .thumb.thumb_interactive:after,
+.page-template-template-all-resources .resource-container .resource-item .resource-thumbnail .thumb.thumb_interactive:after {
   background-image: url(../img/common/grid-view/ic-touch-app-white.svg);
   /*width:30px;
 							height:42px;*/
 }
-.page-template-template-resource .resource-container .resource-item .resource-thumbnail .thumb.thumb_article:after {
+.page-template-template-resource .resource-container .resource-item .resource-thumbnail .thumb.thumb_article:after,
+.page-template-template-all-resources .resource-container .resource-item .resource-thumbnail .thumb.thumb_article:after {
   background-image: url(../img/common/grid-view/ic-format-align-left-white.svg);
   /*width:36px;
 							height:36px;*/
 }
-.page-template-template-resource .resource-container .resource-item .resource-thumbnail .thumb:after {
+.page-template-template-resource .resource-container .resource-item .resource-thumbnail .thumb:after,
+.page-template-template-all-resources .resource-container .resource-item .resource-thumbnail .thumb:after {
   content: "";
   display: block;
   position: absolute;
@@ -7845,32 +7899,41 @@ footer.content-info .footer-wrapper .footer-copyright {
           background-size: contain;
   background-repeat: no-repeat;
 }
-.page-template-template-resource .resource-container .resource-item .resource-title-wrapper {
+.page-template-template-resource .resource-container .resource-item .resource-title-wrapper,
+.page-template-template-all-resources .resource-container .resource-item .resource-title-wrapper {
   position: relative;
   height: 50px;
   overflow-y: hidden;
 }
-.page-template-template-resource .resource-container .resource-item .resource-title-wrapper .resource-title {
+.page-template-template-resource .resource-container .resource-item .resource-title-wrapper .resource-title,
+.page-template-template-all-resources .resource-container .resource-item .resource-title-wrapper .resource-title {
   font-size: 14px;
   padding-right: 27px;
 }
-.page-template-template-resource .resource-container .resource-item .resource-title-wrapper .resource-title a {
+.page-template-template-resource .resource-container .resource-item .resource-title-wrapper .resource-title a,
+.page-template-template-all-resources .resource-container .resource-item .resource-title-wrapper .resource-title a {
   color: #505759;
 }
-.page-template-template-resource .resource-container .resource-item .resource-title-wrapper .resource-title a:hover {
+.page-template-template-resource .resource-container .resource-item .resource-title-wrapper .resource-title a:hover,
+.page-template-template-all-resources .resource-container .resource-item .resource-title-wrapper .resource-title a:hover {
   color: #007FA3;
 }
 .page-template-template-resource .resource-container .resource-item .resource-title-wrapper .resource-title a:hover,
+.page-template-template-all-resources .resource-container .resource-item .resource-title-wrapper .resource-title a:hover,
 .page-template-template-resource .resource-container .resource-item .resource-title-wrapper .resource-title a:focus,
-.page-template-template-resource .resource-container .resource-item .resource-title-wrapper .resource-title a:active {
+.page-template-template-all-resources .resource-container .resource-item .resource-title-wrapper .resource-title a:focus,
+.page-template-template-resource .resource-container .resource-item .resource-title-wrapper .resource-title a:active,
+.page-template-template-all-resources .resource-container .resource-item .resource-title-wrapper .resource-title a:active {
   text-decoration: none;
 }
-.page-template-template-resource .resource-container .resource-item .resource-title-wrapper .resource-note {
+.page-template-template-resource .resource-container .resource-item .resource-title-wrapper .resource-note,
+.page-template-template-all-resources .resource-container .resource-item .resource-title-wrapper .resource-note {
   position: absolute;
   right: 0;
   top: 0;
 }
-.page-template-template-resource .resource-container .resource-item .resource-title-wrapper .resource-note .icon-note {
+.page-template-template-resource .resource-container .resource-item .resource-title-wrapper .resource-note .icon-note,
+.page-template-template-all-resources .resource-container .resource-item .resource-title-wrapper .resource-note .icon-note {
   width: 20px;
   height: 20px;
   background: url(../img/common/icon_notes.png) no-repeat center;
@@ -7878,19 +7941,23 @@ footer.content-info .footer-wrapper .footer-copyright {
           background-size: cover;
   display: inline-block;
 }
-.page-template-template-resource .resource-container .resource-item .resource-type {
+.page-template-template-resource .resource-container .resource-item .resource-type,
+.page-template-template-all-resources .resource-container .resource-item .resource-type {
   font-size: 12px;
   line-height: 1.33;
   color: #666666;
   margin-bottom: 10px;
 }
-.page-template-template-resource .resource-container .resource-item .resource-download-wrapper .multiple_download {
+.page-template-template-resource .resource-container .resource-item .resource-download-wrapper .multiple_download,
+.page-template-template-all-resources .resource-container .resource-item .resource-download-wrapper .multiple_download {
   position: relative;
 }
-.page-template-template-resource .resource-container .resource-item .resource-download-wrapper .multiple_download.opened .multiple_dl_content {
+.page-template-template-resource .resource-container .resource-item .resource-download-wrapper .multiple_download.opened .multiple_dl_content,
+.page-template-template-all-resources .resource-container .resource-item .resource-download-wrapper .multiple_download.opened .multiple_dl_content {
   display: block;
 }
-.page-template-template-resource .resource-container .resource-item .resource-download-wrapper .multiple_download .multiple_dl_header {
+.page-template-template-resource .resource-container .resource-item .resource-download-wrapper .multiple_download .multiple_dl_header,
+.page-template-template-all-resources .resource-container .resource-item .resource-download-wrapper .multiple_download .multiple_dl_header {
   cursor: pointer;
   padding: 5px 35px;
   color: #fff;
@@ -7903,7 +7970,8 @@ footer.content-info .footer-wrapper .footer-copyright {
           box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
   position: relative;
 }
-.page-template-template-resource .resource-container .resource-item .resource-download-wrapper .multiple_download .multiple_dl_header:before {
+.page-template-template-resource .resource-container .resource-item .resource-download-wrapper .multiple_download .multiple_dl_header:before,
+.page-template-template-all-resources .resource-container .resource-item .resource-download-wrapper .multiple_download .multiple_dl_header:before {
   content: "";
   width: 24px;
   height: 24px;
@@ -7916,7 +7984,8 @@ footer.content-info .footer-wrapper .footer-copyright {
   top: 5px;
   left: 5px;
 }
-.page-template-template-resource .resource-container .resource-item .resource-download-wrapper .multiple_download .multiple_dl_header:after {
+.page-template-template-resource .resource-container .resource-item .resource-download-wrapper .multiple_download .multiple_dl_header:after,
+.page-template-template-all-resources .resource-container .resource-item .resource-download-wrapper .multiple_download .multiple_dl_header:after {
   content: "";
   width: 29px;
   background: url(../img/common/ic-file-more-white.svg) no-repeat center;
@@ -7927,7 +7996,8 @@ footer.content-info .footer-wrapper .footer-copyright {
   top: 0;
   height: 100%;
 }
-.page-template-template-resource .resource-container .resource-item .resource-download-wrapper .multiple_download .multiple_dl_content {
+.page-template-template-resource .resource-container .resource-item .resource-download-wrapper .multiple_download .multiple_dl_content,
+.page-template-template-all-resources .resource-container .resource-item .resource-download-wrapper .multiple_download .multiple_dl_content {
   border-radius: 5px;
   background-color: #ffffff;
   -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
@@ -7936,23 +8006,27 @@ footer.content-info .footer-wrapper .footer-copyright {
   z-index: 999;
   display: none;
 }
-.page-template-template-resource .resource-container .resource-item .resource-download-wrapper .multiple_download .multiple_dl_content ul {
+.page-template-template-resource .resource-container .resource-item .resource-download-wrapper .multiple_download .multiple_dl_content ul,
+.page-template-template-all-resources .resource-container .resource-item .resource-download-wrapper .multiple_download .multiple_dl_content ul {
   padding: 0;
   margin-bottom: 0;
 }
-.page-template-template-resource .resource-container .resource-item .resource-download-wrapper .multiple_download .multiple_dl_content ul li {
+.page-template-template-resource .resource-container .resource-item .resource-download-wrapper .multiple_download .multiple_dl_content ul li,
+.page-template-template-all-resources .resource-container .resource-item .resource-download-wrapper .multiple_download .multiple_dl_content ul li {
   padding: 0;
   list-style: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   min-width: 230px;
 }
-.page-template-template-resource .resource-container .resource-item .resource-download-wrapper .multiple_download .multiple_dl_content ul li a {
+.page-template-template-resource .resource-container .resource-item .resource-download-wrapper .multiple_download .multiple_dl_content ul li a,
+.page-template-template-all-resources .resource-container .resource-item .resource-download-wrapper .multiple_download .multiple_dl_content ul li a {
   display: block;
   padding: 10px 30px 10px 15px;
   font-size: 15px;
   color: #505759;
 }
-.page-template-template-resource .resource-footer {
+.page-template-template-resource .resource-footer,
+.page-template-template-all-resources .resource-footer {
   border-top: 2px solid #e7e7e7;
   padding-top: 10px;
 }
@@ -8139,15 +8213,18 @@ footer.content-info .footer-wrapper .footer-copyright {
 }
 @media (min-width: 768px) {
   .page-template-template-resource .resource-footer .download_all,
-  .page-template-template-resource-list .resource-footer .download_all {
+  .page-template-template-resource-list .resource-footer .download_all,
+  .page-template-template-all-resources .resource-footer .download_all {
     position: absolute;
     top: 0px;
     right: 0;
   }
-  .page-template-template-resource .resource-container .resource-item {
+  .page-template-template-resource .resource-container .resource-item,
+  .page-template-template-all-resources .resource-container .resource-item {
     height: 250px;
   }
-  .page-template-template-resource .resource-footer .download_all {
+  .page-template-template-resource .resource-footer .download_all,
+  .page-template-template-all-resources .resource-footer .download_all {
     top: 10px;
   }
   .page-template-template-resource-list .resource-container .resource-item .resource-title-wrapper table tr td {
@@ -8162,7 +8239,8 @@ footer.content-info .footer-wrapper .footer-copyright {
 }
 @media (min-width: 992px) {
   .page-template-template-resource .filter-wrapper .filter-select .filter-item,
-  .page-template-template-resource-list .filter-wrapper .filter-select .filter-item {
+  .page-template-template-resource-list .filter-wrapper .filter-select .filter-item,
+  .page-template-template-all-resources .filter-wrapper .filter-select .filter-item {
     margin-bottom: 0;
   }
   .page-template-template-resource-list .resource-container .resource-item .file-download-wrapper a {

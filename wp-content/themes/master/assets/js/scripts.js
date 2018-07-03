@@ -2437,9 +2437,9 @@ var Roots = {
 					  url: ajaxurl,
 					  type: 'post',
 					  data: {
-						action: 'get_resource_grid', // the name of the function in your php file
-						page: newPageNum, // access in php function via $_POST['page']
-						resource_listID: resource_listID, // access in php function via $_POST['bikeID']
+						action: 'get_resource_grid', 
+						page: newPageNum, 
+						resource_listID: resource_listID, 
 						filters: filter_1+','+filter_2+','+filter_3
 					  },
 					  success: function( result ) {

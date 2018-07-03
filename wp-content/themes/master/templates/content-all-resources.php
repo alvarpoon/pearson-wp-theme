@@ -2,7 +2,40 @@
 <?php //wp_link_pages(array('before' => '<nav class="pagination">', 'after' => '</nav>')); ?>
 
 <?php
-	$resource_list = get_field('resource_list');
+	$args = [
+		'post_type' => 'page',
+		'fields' => 'ids',
+		'nopaging' => true,
+		'meta_key' => '_wp_page_template',
+		'meta_value' => 'template-resource.php',
+		'hierarchical' => 0
+	];
+	
+	$all_resources = [];
+	
+	$all_resources_pages = get_posts( $args );
+	foreach ( $all_resources_pages as $resources_page ):
+		$temp_arr = [];
+		$temp_resource_list = get_field('resource_list', $resources_page);
+		$temp_resources = get_field('resources', $temp_resource_list[0]->ID); 
+		
+		//print_r($temp_resources);
+		
+		if(!empty($temp_resources)):
+		
+			foreach($temp_resources	as $temp_resource):
+			
+				$temp_arr['pageid'] = $resources_page;
+				
+				$temp_arr['resource_id'] = $temp_resource->ID;
+				
+				array_push($all_resources, $temp_arr);
+				
+			endforeach;
+			
+		endif;
+		
+	endforeach;
 ?>
 <div class="container-fluid">
 	<div class="row">
@@ -41,8 +74,8 @@
 				<div class="clearfix">
 					<div class="filter-item">
 						<?php
-							$filter_title_1 = get_field('filter_title_1', $resource_list[0]->ID);
-							$filter_1 = get_field('filter_1', $resource_list[0]->ID);
+							$filter_title_1 = get_field('filter_title_1', $post->ID);
+							$filter_1 = get_field('filter_1', $post->ID);
 							if(count($filter_1) > 0 && !empty($filter_title_1)):
 							
 							echo '<select id="filter_1" class="resource_filtering">';
@@ -61,8 +94,8 @@
 					</div>
 					<div class="filter-item">
 						<?php 
-							$filter_title_2 = get_field('filter_title_2', $resource_list[0]->ID);
-							$filter_2 = get_field('filter_2', $resource_list[0]->ID);
+							$filter_title_2 = get_field('filter_title_2', $post->ID);
+							$filter_2 = get_field('filter_2', $post->ID);
 							if(count($filter_2) > 0 && !empty($filter_title_2)):
 							
 							echo '<select id="filter_2" class="resource_filtering">';
@@ -81,8 +114,8 @@
 					</div>
 					<div class="filter-item">
 						<?php 
-							$filter_title_3 = get_field('filter_title_3', $resource_list[0]->ID);
-							$filter_3 = get_field('filter_3', $resource_list[0]->ID);
+							$filter_title_3 = get_field('filter_title_3', $post->ID);
+							$filter_3 = get_field('filter_3', $post->ID);
 							if(count($filter_3) > 0 && !empty($filter_title_3)):
 							
 							echo '<select id="filter_3" class="resource_filtering">';
@@ -115,7 +148,7 @@
 			
 		<?php
 				
-				$resources = get_field('resources', $resource_list[0]->ID); 
+				//$resources = get_field('resources', $resource_list[0]->ID); 
 				
 				$url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 				$parts = parse_url($url);
@@ -128,7 +161,7 @@
 				
 				$resource_count      = 0;
 				$resources_per_page  = 20; // How many features to display on each page
-				$total              = count( $resources );
+				$total              = count( $all_resources );
 				$pages              = ceil( $total / $resources_per_page );
 				$min                = ( ( $page * $resources_per_page ) - $resources_per_page ) + 1;
 				$max                = ( $min + $resources_per_page ) - 1;
@@ -136,7 +169,7 @@
 		?>
 				
 				<script>
-					var resource_listID = '<?=$resource_list[0]->ID?>';
+					//var resource_listID = '<? //=$resource_list[0]->ID?>';
 					var currentPageNum = '<?=$page?>';
 					//console.log('resource_listID: '+resource_listID);
 				</script>
@@ -147,8 +180,10 @@
 				
 				
 					
-				foreach ($resources as $resource):
-					$resource_id = $resource->ID;
+				foreach ($all_resources as $resource):
+					$resource_parent = $resource['pageid'];
+					$resource_id = $resource['resource_id'];
+					
 					$resource_type = get_field('resource_type', $resource_id);
 					$resource_display_title = get_field('display_title', $resource_id);
 					$resource_thumbnail = get_the_post_thumbnail_url($resource_id,'full');
@@ -196,7 +231,7 @@
 							</div>
 							<?php } ?>
 						</div>
-						<!--<div class="resource-type">File Downlaod</div>-->
+						<div class="resource-type"><?php echo get_the_title($resource_parent);?></div>
 						<div class="resource-download-wrapper">
 							<?php
 								if($download_count > 1){ ?>
@@ -291,9 +326,6 @@
 				</select>
 				<span>/<?=$pages?></span>
 				<button class="btn_gopage"></button>
-			</div>
-			<div class="download_all">
-				<a href="#" class="btn_single_download">Download All</a>
 			</div>
 		</div>
 	</div>

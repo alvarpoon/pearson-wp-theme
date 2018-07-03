@@ -2,13 +2,6 @@
 	//$body = wp_remote_retrieve_body( wp_remote_get( 'http://leap.beta.ilongman.com/acs-web/App/ACSGateway.do?method=getProfile&asMethod=get&loginId=ts12081887' ) );
 
 	//print_r($body);
-
-/*require_once('/data/webdoc/science_wp/iam_saml_functions.php');
-$IAM = new SimpleSAML_HK_IAM('default-sp');
-if (!$IAM->isAuthenticated()) error_log('RALPH RALPH RALPH No LOGIN');
-$username = $IAM->__get('UserName');
-
-error_log('Ralph Get Username mmmmmmmmmmmmmmm: ' . $username);*/
 ?>
 
 
@@ -31,17 +24,9 @@ error_log('Ralph Get Username mmmmmmmmmmmmmmm: ' . $username);*/
 					<a href="#">中文</a>
 					<a href="#">English</a>			
 				</div>
-				<?php
-
-error_log('Ralph Get Username: ' . $username);
-
-					if ($username) {
-						echo('<div class="login-wrapper"><a href="/login_iam.php?logout">' . $username . ' (Logout)</a></div>');
-					}
-					else
-						echo('<div class="login-wrapper"><a href="/login_iam.php">Sign in</a></div>');
-
-				?>
+				<div class="login-wrapper">
+					<a href="#">Sign in</a>
+				</div>
 			</div>
 		</div>
 	  </div>
