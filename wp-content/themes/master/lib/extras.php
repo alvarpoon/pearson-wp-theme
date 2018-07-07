@@ -7,6 +7,17 @@ function roots_excerpt_more() {
 }
 add_filter('excerpt_more', 'roots_excerpt_more');
 
+//* Redirect Resource Archive Page to Homepage
+add_action( 'template_redirect', 'wpse_128636_redirect_post' );
+
+function wpse_128636_redirect_post() {
+  $queried_post_type = get_query_var('post_type');
+  if ( is_single() && 'resource' ==  $queried_post_type || is_single() && 'resourcelist' ==  $queried_post_type ) {
+    wp_redirect( home_url(), 301 );
+    exit;
+  }
+}
+
 function wpsax_filter_option( $value, $option_name ) {
     $defaults = array(
         /**

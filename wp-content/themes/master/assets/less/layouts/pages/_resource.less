@@ -124,7 +124,8 @@
 				//float:left;
 				.player{
 					.timeleft{
-						width:100px;
+						//width:100px;
+						width:80px;
 					}
 					
 					.gutter{
@@ -188,6 +189,14 @@
 				border:none;
 			}
 			
+			.playtoggle.pause {
+				width: 30px;
+				background: url(../img/common/player.png) no-repeat -30px 0;
+				float:left;
+				text-indent:-9999px;
+				border:none;
+			}
+			
 			.playtoggle:active {
 				//top: 10px;
 			}
@@ -196,7 +205,8 @@
 				line-height: 28px;
 				position: absolute;
 				top: 0;
-				right: 10px;
+				//right: 10px;
+				right:0;
 				width: 70px;
 				text-align: center;
 				font-size: 12px;
@@ -308,7 +318,7 @@
 			margin-bottom:50px;
 			padding-left: 3px;
 		    padding-right: 3px;
-			height:295px;
+			height:245px;
 			
 			.resource-thumbnail{
 				position:relative;
@@ -370,7 +380,7 @@
 			.resource-title-wrapper{
 				position:relative;
 				//margin-bottom:23px;
-				height:50px;
+				height:62px;
 				overflow-y:hidden;
 				
 				.resource-title{
@@ -407,6 +417,8 @@
 			  line-height: 1.33;
 			  color: #666666;
 			  margin-bottom:10px;
+			  height:30px;
+			  overflow:hidden;
 			}
 			
 			.resource-download-wrapper{
@@ -558,18 +570,20 @@
 			.resource-title-wrapper{
 				//padding-left:0;
 				padding-left:35px;
-				background-position:0 15px;
+				background-position:0 0;
 				background-repeat:no-repeat;
 				
 				table{
 					tr{
 						td{
-							height:64px;
+							
 							vertical-align:middle;
 							float:left;	
 							
 							&.title{
 								width:100%;
+								min-height:64px;
+								vertical-align: top;
 							}
 							
 							&.audio{
@@ -584,7 +598,9 @@
 					
 					
 					.resource-title{
-						min-height:40px;
+						min-height:60px;
+						max-height:60px;
+						overflow:hidden;
 						font-size:16px;
 						line-height:1.25;
 						
@@ -757,7 +773,7 @@
 	.page-template-template-resource, .page-template-template-all-resources{	
 		.resource-container{
 			.resource-item{
-				height:250px;
+				height:270px;
 			}
 		}
 		
@@ -809,7 +825,13 @@
 			}
 		}
 		
-		
+		.audio_container{
+			.audio_playback{
+				.timeleft{
+					right:10px;		
+				}
+			}
+		}
 	}
 	
 	.page-template-template-resource-list, .page-template-template-all-resources-list{

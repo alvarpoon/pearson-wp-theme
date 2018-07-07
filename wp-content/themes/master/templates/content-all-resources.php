@@ -5,10 +5,8 @@
 	$all_resources = get_all_resource_page();
 ?>
 <div class="container-fluid">
-	<div class="row">
-		<div class="top-banner-container" style="background-image:url('<?=get_stylesheet_directory_uri()?>/assets/img/home/banner-top.png');">
-			<img src="<?=get_stylesheet_directory_uri()?>/assets/img/home/banner-top.png" class="img-responsive hidden-xs hidden-sm hidden-md hidden-lg" />
-		</div>
+	<div class="top-banner-container" style="background-image:url('<?=get_stylesheet_directory_uri()?>/assets/img/home/banner-top.png');">
+		<img src="<?=get_stylesheet_directory_uri()?>/assets/img/home/banner-top.png" class="img-responsive hidden-xs hidden-sm hidden-md hidden-lg" />
 	</div>
 </div>
 <div class="container">
@@ -104,10 +102,14 @@
 			<div class="col-md-3 view-option-wrapper">
 				<div class="view-option clearfix">
 					<?php 
-						$alternative_view = get_field('alternative_view');
+					$alternative_view = get_field('alternative_view');
+						
+					if(!empty($alternative_view)):
 					?>
 					<a href="<?=$alternative_view?>" class="btn_list">List</a>
-					<a href="javascript:;" class="btn_grid active">Grid</a>
+					<a href="javascript:;" class="btn_grid">Grid</a>
+					
+					<?php endif; ?>
 				</div>
 			</div>
 		</div>

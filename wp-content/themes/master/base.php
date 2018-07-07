@@ -1,5 +1,7 @@
 <?php 
-/*require_once('/data/webdoc/science_wp/iam_saml_functions.php');
+/*require_once('/var/www/html/pearson.catus.tech/public_html/wp-content/themes/master/iam_saml_functions.php');
+//echo get_stylesheet_directory().'/iam_saml_functions.php';
+//require_once(get_stylesheet_directory().'/iam_saml_functions.php');
 $IAM = new SimpleSAML_HK_IAM('default-sp');
 if (!$IAM->isAuthenticated()) error_log('RALPH RALPH RALPH No LOGIN');
 $username = $IAM->__get('UserName');

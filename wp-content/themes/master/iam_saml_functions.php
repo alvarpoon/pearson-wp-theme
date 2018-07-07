@@ -1,6 +1,6 @@
 <?php
 
-require_once('/data/webdoc/science_wp/simplesamlphp/lib/_autoload.php');
+require_once('/var/www/html/pearson.catus.tech/public_html/simplesamlphp/lib/_autoload.php');
 
 class SimpleSAML_HK_IAM {
 

@@ -2,7 +2,7 @@
 
 // IAM Integration
 //require_once '/data/webdoc/science_wp/simplesamlphp/lib/_autoload.php';  //Please update according the setup path
-require_once('/data/webdoc/science_wp/iam_saml_functions.php');
+require_once('/var/www/html/pearson.catus.tech/public_html/wp-content/themes/master/iam_saml_functions.php');
 
 //$auth = new \SimpleSAML\Auth\Simple('default-sp');
 $auth = new SimpleSAML_HK_IAM('default-sp');

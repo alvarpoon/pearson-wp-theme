@@ -1,14 +1,10 @@
 <?php
-	//$body = wp_remote_retrieve_body( wp_remote_get( 'http://leap.beta.ilongman.com/acs-web/App/ACSGateway.do?method=getProfile&asMethod=get&loginId=ts12081887' ) );
-
-	//print_r($body);
-
-/*require_once('/data/webdoc/science_wp/iam_saml_functions.php');
+/*require_once('/var/www/html/pearson.catus.tech/public_html/wp-content/themes/master/iam_saml_functions.php');
 $IAM = new SimpleSAML_HK_IAM('default-sp');
 if (!$IAM->isAuthenticated()) error_log('RALPH RALPH RALPH No LOGIN');
-$username = $IAM->__get('UserName');
+$username = $IAM->__get('UserName');*/
 
-error_log('Ralph Get Username mmmmmmmmmmmmmmm: ' . $username);*/
+//error_log('Ralph Get Username mmmmmmmmmmmmmmm: ' . $username);
 ?>
 
 
@@ -33,7 +29,7 @@ error_log('Ralph Get Username mmmmmmmmmmmmmmm: ' . $username);*/
 				</div>
 				<?php
 
-error_log('Ralph Get Username: ' . $username);
+					error_log('Ralph Get Username: ' . $username);
 
 					if ($username) {
 						echo('<div class="login-wrapper"><a href="/login_iam.php?logout">' . $username . ' (Logout)</a></div>');
@@ -63,3 +59,4 @@ error_log('Ralph Get Username: ' . $username);
 	</div>
   </div>
 </header>
+<div class="menu_bg hidden-md hidden-lg hidden-xl"></div>
