@@ -10,10 +10,10 @@ if(isset($_GET["file"]) && isset($_GET["pageid"])){
 	
 	$access_service_roles = get_field('access_service_code_with_role', $page_id);
 	
-	echo '<p>access_service_roles</p>';
-	echo empty($access_service_roles);
+	//echo '<p>access_service_roles</p>';
+	//echo empty($access_service_roles);
 	
-	echo '<p>checkPageAccessRight: '.checkPageAccessRight($page_id).'</p>';
+	//echo '<p>checkPageAccessRight: '.checkPageAccessRight($page_id).'</p>';
 	
 	if(checkPageAccessRight($page_id) || empty($access_service_roles)){ //check media url when user have page access right
 		

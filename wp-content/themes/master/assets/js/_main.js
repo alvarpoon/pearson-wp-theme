@@ -83,7 +83,9 @@ var Roots = {
 			function ajax_action_grid(){
 				var ajaxurl = '/wp-admin/admin-ajax.php';
 				var newPageNum = $('#pagination-select').val();
-				var filter_1,filter_2,filter3 = 0;
+				var filter_1 = 0,
+					filter_2 = 0,
+					filter_3 = 0;
 				
 				if($('#filter_1').length > 0){
 					filter_1 = $('#filter_1').val();
@@ -116,6 +118,8 @@ var Roots = {
 						// fade in this content for a smooth transition
 						$('.resource-container-inner').fadeIn();
 						initMultipleDownload();
+						initAudioSetup();
+						createZip();
 						currentPageNum = newPageNum;
 					  },
 					  error: function(MLHttpRequest, textStatus, errorThrown){
@@ -149,7 +153,9 @@ var Roots = {
 			function ajax_action_list(){
 				var ajaxurl = '/wp-admin/admin-ajax.php';
 				var newPageNum = $('#pagination-select').val();
-				var filter_1,filter_2,filter3 = 0;
+				var filter_1 = 0,
+					filter_2 = 0,
+					filter_3 = 0;
 				
 				if($('#filter_1').length > 0){
 					filter_1 = $('#filter_1').val();
@@ -181,7 +187,7 @@ var Roots = {
 						$('.resource-container-inner').html(result);
 						// fade in this content for a smooth transition
 						$('.resource-container-inner').fadeIn();
-						
+						initAudioSetup();
 						currentPageNum = newPageNum;
 					  },
 					  error: function(MLHttpRequest, textStatus, errorThrown){
@@ -208,6 +214,144 @@ var Roots = {
 			get_post_list();
 		});
 	}
+  },
+  page_template_template_all_resources:{
+	init: function() {
+		function get_all_resources(){
+			function ajax_action_grid(){
+				var ajaxurl = '/wp-admin/admin-ajax.php';
+				var newPageNum = $('#pagination-select').val();
+				var filter_1 = 0,
+					filter_2 = 0,
+					filter_3 = 0;
+				
+				if($('#filter_1').length > 0){
+					filter_1 = $('#filter_1').val();
+				}
+				
+				if($('#filter_2').length > 0){
+					filter_2 = $('#filter_2').val();
+				}
+				
+				if($('#filter_3').length > 0){
+					filter_3 = $('#filter_3').val();
+				}
+				
+				if(newPageNum !== currentPageNum || filter_1 !== 0 || filter_2 !== 0 || filter_3 !== 0){
+					//return;	
+					$('.resource-container-inner').fadeOut();
+					
+					$.ajax({
+					  url: ajaxurl,
+					  type: 'post',
+					  data: {
+						action: 'get_all_resources_grid', 
+						page: newPageNum, 
+						//resource_listID: resource_listID, 
+						filters: filter_1+','+filter_2+','+filter_3
+					  },
+					  success: function( result ) {
+						// Replace the content of the container div w/ the output from dl_bikeFeatures()
+						$('.resource-container-inner').html(result);
+						// fade in this content for a smooth transition
+						$('.resource-container-inner').fadeIn();
+						initMultipleDownload();
+						initAudioSetup();
+						createZip();
+						currentPageNum = newPageNum;
+					  },
+					  error: function(MLHttpRequest, textStatus, errorThrown){
+						alert('Sorry, something went wrong. Please try again.');
+					  }
+					});
+				}else{
+					return;	
+				}
+			}
+			
+			$('.btn_gopage').on('click touchstart', function(){															 
+				ajax_action_grid();
+			});
+			
+			$('.resource_filtering').on('change', function(){
+				ajax_action_grid();											   
+			});
+		}
+		
+		$('document').ready(function(){
+			initAudioSetup();
+			createZip();
+			get_all_resources();
+		});
+	}
+  },
+  page_template_template_all_resources_list:{
+	init: function() {
+		function get_all_resources_list(){
+			function ajax_action_list(){
+				var ajaxurl = '/wp-admin/admin-ajax.php';
+				var newPageNum = $('#pagination-select').val();
+				var filter_1 = 0,
+					filter_2 = 0,
+					filter_3 = 0;
+				
+				if($('#filter_1').length > 0){
+					filter_1 = $('#filter_1').val();
+				}
+				
+				if($('#filter_2').length > 0){
+					filter_2 = $('#filter_2').val();
+				}
+				
+				if($('#filter_3').length > 0){
+					filter_3 = $('#filter_3').val();
+				}
+				
+				if(newPageNum !== currentPageNum || filter_1 !== 0 || filter_2 !== 0 || filter_3 !== 0){
+					
+					$('.resource-container-inner').fadeOut();
+					
+					$.ajax({
+					  url: ajaxurl,
+					  type: 'post',
+					  data: {
+						action: 'get_all_resources_list', // the name of the function in your php file
+						page: newPageNum, // access in php function via $_POST['page']
+						//resource_listID: resource_listID, // access in php function via $_POST['bikeID']
+						filters: filter_1+','+filter_2+','+filter_3
+					  },
+					  success: function( result ) {
+						// Replace the content of the container div w/ the output from dl_bikeFeatures()
+						$('.resource-container-inner').html(result);
+						// fade in this content for a smooth transition
+						$('.resource-container-inner').fadeIn();
+						initAudioSetup();
+						currentPageNum = newPageNum;
+					  },
+					  error: function(MLHttpRequest, textStatus, errorThrown){
+						alert('Sorry, something went wrong. Please try again.');
+					  }
+					});
+
+				}else{
+					return;
+				}
+			}
+			
+			$('.btn_gopage').on('click touchstart', function(){															 
+				ajax_action_list();
+			});
+			
+			$('.resource_filtering').on('change', function(){
+				ajax_action_list();											   
+			});
+		}
+		
+		$('document').ready(function(){
+			initAudioSetup();
+			get_all_resources_list();
+		});
+	}
   }
 };
 
@@ -231,6 +375,8 @@ var UTIL = {
 };
 
 function createZip(){
+	$('.createzip').unbind('click');
+	
 	$('.createzip').click(function(){
 		//console.log('in createZip');
 		var ajaxurl = '/wp-admin/admin-ajax.php';

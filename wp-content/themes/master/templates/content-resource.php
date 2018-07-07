@@ -182,7 +182,7 @@
 							<div class="resource-title">
 							<?php
 								if(empty($resource_display_title)){
-									echo get_the_title( $resource->ID );
+									echo get_the_title( $resource_id );
 								}else{
 									echo $resource_display_title;
 								}
@@ -213,7 +213,7 @@
 													$downloadable_file = get_sub_field('downloadable_file');
 													$set_as_main_download_file = get_sub_field('set_as_main_download_file');
 													
-													echo '<li><a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'">'.$file_title.'</a></li>';
+													echo '<li><a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" target="_blank">'.$file_title.'</a></li>';
 													//echo '<li><a href="'.$downloadable_file['url'].'" target="_blank">'.$file_title.'</a></li>';
 													
 													array_push($downloadable_file_arr, $downloadable_file['url']);
@@ -232,7 +232,7 @@
 										while( have_rows('downloads', $resource_id) ): the_row();
 											$downloadable_file = get_sub_field('downloadable_file');
 											//echo '<a href="'.$downloadable_file['url'].'" class="btn_single_download" target="_blank">Download</a>';
-											echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="btn_single_download">Download</a>';
+											echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="btn_single_download" target="_blank">Download</a>';
 										endwhile;
 									}
 								}
@@ -251,7 +251,7 @@
 											$file_type = get_sub_field('file_type');
 											//echo '<a href="'.$downloadable_file['url'].'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
 											
-											echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_type.'">'.$file_title.'</a>';
+											echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
 										endwhile;
 									}									
 									?>

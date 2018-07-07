@@ -497,6 +497,7 @@ function get_resource_grid(){
 		foreach ($resources as $resource):
 			$resource_id = $resource->ID;
 			$resource_type = get_field('resource_type', $resource_id);
+			$resource_display_title = get_field('display_title', $resource_id);
 			$resource_thumbnail = get_the_post_thumbnail_url($resource_id,'full');
 			$note = get_field('note', $resource_id);
 			$resource_popup_image = get_field('resource_popup_image', $resource_id);
@@ -582,7 +583,9 @@ function get_resource_grid(){
 										while( have_rows('downloads', $resource_id) ): the_row();
 											$file_title = get_sub_field('file_title');
 											$downloadable_file = get_sub_field('downloadable_file');
-											echo '<li><a href="'.$downloadable_file['url'].'" target="_blank">'.$file_title.'</a></li>';
+											//echo '<li><a href="'.$downloadable_file['url'].'" target="_blank">'.$file_title.'</a></li>';
+											
+											echo '<li><a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" target="_blank">'.$file_title.'</a></li>';
 											
 											array_push($downloadable_file_arr, $downloadable_file['url']);
 										endwhile;
@@ -599,7 +602,8 @@ function get_resource_grid(){
 							if( have_rows('downloads', $resource_id) ){
 								while( have_rows('downloads', $resource_id) ): the_row();
 									$downloadable_file = get_sub_field('downloadable_file');
-									echo '<a href="'.$downloadable_file['url'].'" class="btn_single_download" target="_blank">Download</a>';
+									//echo '<a href="'.$downloadable_file['url'].'" class="btn_single_download" target="_blank">Download</a>';
+									echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="btn_single_download" target="_blank">Download</a>';
 								endwhile;
 							}
 						}
@@ -616,7 +620,281 @@ function get_resource_grid(){
 									$file_title = get_sub_field('file_title');
 									$downloadable_file = get_sub_field('downloadable_file');
 									$file_type = get_sub_field('file_type');
-									echo '<a href="'.$downloadable_file['url'].'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
+									//echo '<a href="'.$downloadable_file['url'].'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
+									echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
+								endwhile;
+							}									
+							?>
+						</div>
+						<div class="clearfix">
+							<?php if(!empty($resource_thumbnail)){ ?>
+
+							<div class="img-container"><img src="<?=$resource_thumbnail?>" class="img-responsive" /></div>
+							<?php } ?>
+							<div class="content-container">
+								<?php 
+									$content_post = get_post($resource_id);
+									$article_content = $content_post->post_content;
+									$article_content = apply_filters('the_content', $article_content);
+									echo $article_content;
+								?>
+							</div>
+						</div>
+					</div>
+				</div>
+				<?php } ?>
+			</div>
+	<?php endforeach;
+		
+		if($resource_match_count == 0){
+			echo '<p>No resources found, please refine your filter.</p>';
+		}
+	
+		echo '</div>'; 
+	endif; //end if ($features)
+	wp_reset_postdata();
+	
+	die();
+}
+
+function get_all_resource_page(){
+	$args = [
+		'post_type' => 'page',
+		'fields' => 'ids',
+		'nopaging' => true,
+		'meta_key' => '_wp_page_template',
+		'meta_value' => 'template-resource.php',
+		'hierarchical' => 0
+	];
+	
+	$all_resources = [];
+	
+	$all_resources_pages = get_posts( $args );
+	foreach ( $all_resources_pages as $resources_page ):
+		$temp_arr = [];
+		
+		if(checkPageAccessRight($resources_page)):
+			
+			$temp_resource_list = get_field('resource_list', $resources_page);
+			$temp_resources = get_field('resources', $temp_resource_list[0]->ID);
+			
+			if(!empty($temp_resources)):
+			
+				foreach($temp_resources	as $temp_resource):
+				
+					$temp_arr['pageid'] = $resources_page;
+					
+					$temp_arr['resource_id'] = $temp_resource->ID;
+					
+					array_push($all_resources, $temp_arr);
+					
+				endforeach;
+				
+			endif;
+		
+		endif;
+		
+	endforeach;
+	
+	return $all_resources;
+}
+
+add_action( 'wp_ajax_nopriv_get_all_resources_grid', 'get_all_resources_grid' );
+add_action( 'wp_ajax_get_all_resources_grid', 'get_all_resources_grid' );
+function get_all_resources_grid(){
+	global $post;
+	
+	/*if ($post->ID) {
+		// On initial page load, just grab the post ID...
+		//$page_id = $post->ID;
+		$resource_list_id = get_field('resource_list',$post->ID);
+	} else {
+		// ... but once you're using Ajax, need to get the ID via Ajax
+		$resource_list_id = $_POST['resource_listID'];
+	}*/
+	
+	if (isset($_POST['page'])) {
+		// Set $page to data from Ajax, if available
+		$page = $_POST['page'];
+	} else {
+		// ... if not, set default to 1 (for initial page load)
+		$page = 1;
+	}
+	
+	if (isset($_POST['filters'])) {
+		// Set $page to data from Ajax, if available
+		$filters = $_POST['filters'];
+	}
+	
+	//echo $filters;
+	
+	$filters_arr = explode(',', $filters);	
+	$filters_arr = array_values(array_diff( $filters_arr, [0]));
+	
+	//print_r($filters_arr);
+	
+	//$resources = get_field('resources', $resource_list_id);
+	
+	$all_resources = get_all_resource_page();
+	
+	//print_r($all_resources);
+	
+	// Pagination variables
+	$resource_count      = 0;
+	$resource_match_count = 0;
+	$resources_per_page  = 20; // How many features to display on each page
+	$total              = count( $all_resources );
+	//$pages              = ceil( $total / $resources_per_page );
+	$min                = ( ( $page * $resources_per_page ) - $resources_per_page ) + 1;
+	$max                = ( $min + $resources_per_page ) - 1;
+	
+	if( $all_resources ):
+		//$i = 1;
+		//$resource_list = get_field('resource_list');
+		//$resources = get_field('resources', $resource_list[0]->ID);
+		
+		echo '<div class="resource-container-inner">';
+		
+		foreach ($all_resources as $resource):
+			$resource_parent = $resource['pageid'];
+			$resource_id = $resource['resource_id'];
+			
+			$resource_type = get_field('resource_type', $resource_id);
+			$resource_display_title = get_field('display_title', $resource_id);
+			$resource_thumbnail = get_the_post_thumbnail_url($resource_id,'full');
+			$note = get_field('note', $resource_id);
+			$resource_popup_image = get_field('resource_popup_image', $resource_id);
+			$resource_popup_url = get_field('resource_popup_url', $resource_id);
+			$download_count = count(get_field('downloads', $resource_id));
+			
+			$resource_post = get_post($resource_id); 
+			$resource_slug = $resource_post->post_name;
+			$term_arr = array();
+			
+			$terms = get_the_terms( $resource_id, 'resource_category' );
+			if ($terms) {
+				foreach($terms as $term) {
+				  //echo '<p>'.$term->term_id.'</p>';
+				  array_push($term_arr,$term->term_id);
+				} 
+			}
+			
+			$matched = false;
+			
+			switch(count($filters_arr)){
+				case 1:
+					if(in_array($filters_arr[0],$term_arr)){
+						$matched = true;
+					}
+					break;
+				case 2:
+					if(in_array($filters_arr[0],$term_arr) && in_array($filters_arr[1],$term_arr)){
+						$matched = true;
+					}
+					break;
+				case 3:
+					if(in_array($filters_arr[0],$term_arr) && in_array($filters_arr[1],$term_arr) && in_array($filters_arr[2],$term_arr)){
+						$matched = true;
+					}
+					break;
+				default:
+					$matched = true;
+					break;
+			}
+			
+			if(!$matched){
+				continue; 
+			}else{
+				$resource_match_count++;
+			}
+			
+			$resource_count++;
+			// Ignore this feature if $feature_count is lower than $min
+			if($resource_count < $min ) { continue; }
+			// Stop loop completely if $feature_count is higher than $max
+			if($resource_count > $max) { break; } 
+	?>
+	
+			<div class="col-xs-6 col-sm-3 col-md-3 resource-item">
+				<div class="resource-thumbnail">
+					<?php
+						echo showGridThumbnail($resource_id, $resource_thumbnail, $resource_type, $resource_popup_image['url'], $resource_popup_url, $resource_slug);
+						echo get_audio_preview(get_field('downloads', $resource_id));
+					?>
+				</div>
+				<div class="resource-title-wrapper">
+					<div class="resource-title">
+						<?php
+							if(empty($resource_display_title)){
+								echo get_the_title( $resource_id );
+							}else{
+								echo $resource_display_title;
+							}
+						?>
+					</div>
+					<?php if(!empty($note)){ ?>
+					<div class="resource-note">
+						<a class="icon-note" data-fancybox data-src="#<?=$resource_slug.'-note'?>" href="javascript:;"></a>
+						<div id="<?=$resource_slug.'-note'?>" class="hidden-content fancybox-content file-download"><?=$note?>	</div>
+					</div>
+					<?php } ?>
+				</div>
+				<div class="resource-type"><?php echo get_the_title($resource_parent);?></div>
+				<div class="resource-download-wrapper">
+					<?php
+						if($download_count > 1){ ?>
+							<div class="multiple_download">
+								<div class="multiple_dl_header">Download (<?=$download_count?>)</div>
+								<div class="multiple_dl_content">
+									<ul>
+									<?php	
+									$downloadable_file_arr = array();
+									
+									if( have_rows('downloads', $resource_id) ){
+										while( have_rows('downloads', $resource_id) ): the_row();
+											$file_title = get_sub_field('file_title');
+											$downloadable_file = get_sub_field('downloadable_file');
+											//echo '<li><a href="'.$downloadable_file['url'].'" target="_blank">'.$file_title.'</a></li>';
+											
+											echo '<li><a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$resource_parent.'">'.$file_title.'</a></li>';
+											
+											array_push($downloadable_file_arr, $downloadable_file['url']);
+										endwhile;
+										
+										$downloadable_file_string = implode(',',$downloadable_file_arr);
+									}?>
+									
+									<li><a href="javascript:;" data-file="<?=$downloadable_file_string?>" data-filename="testing123" class="createzip">Download All (<?=$download_count?> files)</a></li>
+									</ul>
+								</div>
+							</div>
+					<?php
+						}else{
+							if( have_rows('downloads', $resource_id) ){
+								while( have_rows('downloads', $resource_id) ): the_row();
+									$downloadable_file = get_sub_field('downloadable_file');
+									//echo '<a href="'.$downloadable_file['url'].'" class="btn_single_download" target="_blank">Download</a>';
+									
+									echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$resource_parent.'" class="btn_single_download">Download</a>';
+								endwhile;
+							}
+						}
+					?>
+				</div>
+				<?php if($resource_type == 'article-file') {?>
+				<div id="<?=$resource_slug.'-content'?>" class="hidden-content fancybox-content article-lightbox">
+					<h3><?=get_the_title( $resource->ID );?></h3>
+					<div class="article-content">
+						<div class="media-container">
+							<?php 
+							if( have_rows('downloads', $resource_id) ){
+								while( have_rows('downloads', $resource_id) ): the_row();
+									$file_title = get_sub_field('file_title');
+									$downloadable_file = get_sub_field('downloadable_file');
+									$file_type = get_sub_field('file_type');
+									//echo '<a href="'.$downloadable_file['url'].'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
+									
+									echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$resource_parent.'" class="media-file '.$file_type.'">'.$file_title.'</a>';
 								endwhile;
 							}									
 							?>
@@ -797,7 +1075,8 @@ function get_resource_list(){
 								$file_title = get_sub_field('file_title');
 								$downloadable_file = get_sub_field('downloadable_file');
 								$file_type = get_sub_field('file_type');
-								echo '<a href="'.$downloadable_file['url'].'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
+								//echo '<a href="'.$downloadable_file['url'].'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
+								echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_type.' target="_blank"">'.$file_title.'</a>';
 							endwhile;
 						}
 						?>
@@ -814,7 +1093,8 @@ function get_resource_list(){
 										$downloadable_file = get_sub_field('downloadable_file');
 										$file_type = get_sub_field('file_type');
 										//echo '<a href="'.$downloadable_file['url'].'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
-										echo '<option val="'.$downloadable_file['url'].'">'.$file_title.'</option>';
+										//echo '<option val="'.$downloadable_file['url'].'">'.$file_title.'</option>';
+										echo '<option val="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'">'.$file_title.'</option>';
 									endwhile;
 								}
 								?>
@@ -829,11 +1109,13 @@ function get_resource_list(){
 								$downloadable_file = get_sub_field('downloadable_file'); 
 								$file_type = get_sub_field('file_type');
 								echo '<div class="hidden-xs hidden-sm">';
-								echo '<a href="'.$downloadable_file['url'].'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>'; 
+								//echo '<a href="'.$downloadable_file['url'].'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>'; 
+								echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
 								echo '</div>';
 								
 								echo '<div class="hidden-md hidden-lg">';
-								echo '<a href="'.$downloadable_file['url'].'" class="media-file all" target="_blank">Download</a>';; 
+								//echo '<a href="'.$downloadable_file['url'].'" class="media-file all" target="_blank">Download</a>';; 
+								echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file all" target="_blank">Download</a>';
 								echo '</div>'; 
 					 
 					 		endwhile;
@@ -886,6 +1168,249 @@ function get_resource_list(){
 	
 	die();
 }
+
+add_action( 'wp_ajax_nopriv_get_all_resources_list', 'get_all_resources_list' );
+add_action( 'wp_ajax_get_all_resources_list', 'get_all_resources_list' );
+function get_all_resources_list(){
+	global $post;
+	
+	if ($post->ID) {
+		// On initial page load, just grab the post ID...
+		//$page_id = $post->ID;
+		$resource_list_id = get_field('resource_list',$post->ID);
+	} else {
+		// ... but once you're using Ajax, need to get the ID via Ajax
+		$resource_list_id = $_POST['resource_listID'];
+	}
+	
+	if (isset($_POST['page'])) {
+		// Set $page to data from Ajax, if available
+		$page = $_POST['page'];
+	} else {
+		// ... if not, set default to 1 (for initial page load)
+		$page = 1;
+	}
+	
+	if (isset($_POST['filters'])) {
+		// Set $page to data from Ajax, if available
+		$filters = $_POST['filters'];
+	}
+	
+	//echo $filters;
+	
+	$filters_arr = explode(',', $filters);	
+	$filters_arr = array_values(array_diff( $filters_arr, [0]));
+	
+	//$resources = get_field('resources', $resource_list_id);
+	
+	$all_resources = get_all_resource_page();
+	
+	//print_r($resources);
+	
+	// Pagination variables
+	$resource_count      = 0;
+	$resource_match_count = 0;
+	$resources_per_page  = 20; // How many features to display on each page
+	$total              = count( $all_resources );
+	//$pages              = ceil( $total / $resources_per_page );
+	$min                = ( ( $page * $resources_per_page ) - $resources_per_page ) + 1;
+	$max                = ( $min + $resources_per_page ) - 1;
+	
+	if( $all_resources ):
+		//$i = 1;
+		//$resource_list = get_field('resource_list');
+		//$resources = get_field('resources', $resource_list[0]->ID);
+		
+		echo '<div class="resource-container-inner">';
+		
+		foreach ($all_resources as $resource):
+			$resource_parent = $resource['pageid'];
+			$resource_id = $resource['resource_id'];
+			
+			$resource_type = get_field('resource_type', $resource_id);
+			$resource_thumbnail = get_the_post_thumbnail_url($resource_id,'full');
+			$note = get_field('note', $resource_id);
+			$resource_popup_image = get_field('resource_popup_image', $resource_id);
+			$resource_popup_url = get_field('resource_popup_url', $resource_id);
+			$download_count = count(get_field('downloads', $resource_id));
+			
+			$resource_post = get_post($resource_id); 
+			$resource_slug = $resource_post->post_name;
+			$term_arr = array();
+			
+			$terms = get_the_terms( $resource_id, 'resource_category' );
+			if ($terms) {
+				foreach($terms as $term) {
+				  //echo '<p>'.$term->term_id.'</p>';
+				  array_push($term_arr,$term->term_id);
+				} 
+			}
+			
+			$matched = false;
+			
+			switch(count($filters_arr)){
+				case 1:
+					if(in_array($filters_arr[0],$term_arr)){
+						$matched = true;
+					}
+					break;
+				case 2:
+					if(in_array($filters_arr[0],$term_arr) && in_array($filters_arr[1],$term_arr)){
+						$matched = true;
+					}
+					break;
+				case 3:
+					if(in_array($filters_arr[0],$term_arr) && in_array($filters_arr[1],$term_arr) && in_array($filters_arr[2],$term_arr)){
+						$matched = true;
+					}
+					break;
+				default:
+					$matched = true;
+					break;
+			}
+			
+			if(!$matched){
+				continue; 
+			}else{
+				$resource_match_count++;
+			}
+			
+			$resource_count++;
+			// Ignore this feature if $feature_count is lower than $min
+			if($resource_count < $min) { continue; }
+			// Stop loop completely if $feature_count is higher than $max
+			if($resource_count > $max) { break; } 
+	?>
+	
+			<div class="resource-item <?=$resource_type?> clearfix">
+				<div class="resource-title-wrapper col-xs-9 col-sm-10 col-md-5">
+					<div class="clearfix">
+						<table cellpadding="0" cellspacing="0" border="0" width="90%">
+							<tr>
+								<td class="title">
+									<div class="resource-title-div">
+										<div class="resource-title">
+											<?php echo showListTitle($resource_id, $resource_type, $resource_popup_image['url'], $resource_popup_url, $resource_slug);?>
+										</div>
+										<div class="resource-type"><?=$resource_type?></div>
+									</div>
+								</td>
+								<td class="audio">
+									<?php echo get_audio_preview(get_field('downloads', $resource_id));?>
+								</td>
+							</tr>
+						</table>
+						<?php if(!empty($note)){ ?>
+						<div class="resource-note">
+							<a class="icon-note" data-fancybox data-src="#<?=$resource_slug.'-note'?>" href="javascript:;"></a>
+							<div id="<?=$resource_slug.'-note'?>" class="hidden-content fancybox-content file-download"><?=$note?>	</div>
+						</div>
+						<?php } ?>
+					</div>
+				</div>
+				<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
+					<?php if($download_count > 1): ?>
+					<div class="hidden-xs hidden-sm">
+						<?php 
+						if( have_rows('downloads', $resource_id) ){
+							while( have_rows('downloads', $resource_id) ): the_row();
+								$file_title = get_sub_field('file_title');
+								$downloadable_file = get_sub_field('downloadable_file');
+								$file_type = get_sub_field('file_type');
+								//echo '<a href="'.$downloadable_file['url'].'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
+								echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_type.' target="_blank"">'.$file_title.'</a>';
+							endwhile;
+						}
+						?>
+						<!--<a href="#" class="media-file all">All</a>-->
+					</div>
+					
+					<div class="hidden-md hidden-lg">
+						<div class="mobile_download_wrapper">
+							<select class="mobile_download">
+								<?php 
+								if( have_rows('downloads', $resource_id) ){
+									while( have_rows('downloads', $resource_id) ): the_row();
+										$file_title = get_sub_field('file_title');
+										$downloadable_file = get_sub_field('downloadable_file');
+										$file_type = get_sub_field('file_type');
+										//echo '<a href="'.$downloadable_file['url'].'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
+										//echo '<option val="'.$downloadable_file['url'].'">'.$file_title.'</option>';
+										echo '<option val="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'">'.$file_title.'</option>';
+									endwhile;
+								}
+								?>
+								<!--<option>Download All</option>-->
+							</select>
+							<div class="download_text">Download</div>
+						</div>
+					</div>
+					<?php else:
+						if( have_rows('downloads', $resource_id) ):
+							while( have_rows('downloads', $resource_id) ): the_row();
+								$downloadable_file = get_sub_field('downloadable_file'); 
+								$file_type = get_sub_field('file_type');
+								echo '<div class="hidden-xs hidden-sm">';
+								//echo '<a href="'.$downloadable_file['url'].'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>'; 
+								echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
+								echo '</div>';
+								
+								echo '<div class="hidden-md hidden-lg">';
+								//echo '<a href="'.$downloadable_file['url'].'" class="media-file all" target="_blank">Download</a>';; 
+								echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file all" target="_blank">Download</a>';
+								echo '</div>'; 
+					 
+					 		endwhile;
+					 endif; ?>
+					<?php endif; ?>
+				</div>
+				
+				<?php if($resource_type == 'article-file') {?>
+				<div id="<?=$resource_slug.'-content'?>" class="hidden-content fancybox-content article-lightbox">
+					<h3><?=get_the_title( $resource->ID );?></h3>
+					<div class="article-content">
+						<div class="media-container">
+							<?php 
+							if( have_rows('downloads', $resource_id) ){
+								while( have_rows('downloads', $resource_id) ): the_row();
+									$file_title = get_sub_field('file_title');
+									$downloadable_file = get_sub_field('downloadable_file');
+									$file_type = get_sub_field('file_type');
+									echo '<a href="'.$downloadable_file['url'].'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
+								endwhile;
+							}									
+							?>
+						</div>
+						<div class="clearfix">
+							<?php if(!empty($resource_thumbnail)){ ?>
+							<div class="img-container"><img src="<?=$resource_thumbnail?>" class="img-responsive" /></div>
+							<?php } ?>
+							<div class="content-container">
+								<?php 
+									$content_post = get_post($resource_id);
+									$article_content = $content_post->post_content;
+									$article_content = apply_filters('the_content', $article_content);
+									echo $article_content;
+								?>
+							</div>
+						</div>
+					</div>
+				</div>
+				<?php } ?>
+			</div>
+	<?php endforeach;
+			
+		if($resource_match_count == 0){
+			echo '<p>No resources found, please refine your filter.</p>';
+		}
+	
+		echo '</div>'; 
+	endif; //end if ($features)
+	wp_reset_postdata();
+	
+	die();
+}
+
 
 define('ACSGATE',	'http://leap.beta.ilongman.com/acs-web/App/ACSGateway.do?');
 
@@ -1057,6 +1582,8 @@ function checkPageAccessRight($page_id, $dir = false){
 		
 		endif;
 		return false;
+	}else{
+		return true;
 	}
 }
 
