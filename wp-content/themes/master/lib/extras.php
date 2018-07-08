@@ -450,6 +450,111 @@ function get_audio_preview($downloads){
 	return $previewer;
 }
 
+add_action( 'wp_ajax_nopriv_get_resource_pagination', 'get_resource_pagination' );
+add_action( 'wp_ajax_get_resource_pagination', 'get_resource_pagination' );
+function get_resource_pagination(){
+	global $post;
+	
+	$resource_list_id = $_POST['resource_listID'];
+	
+	if (isset($_POST['filters'])) {
+		$filters = $_POST['filters'];
+	}
+	
+	$filters_arr = explode(',', $filters);	
+	$filters_arr = array_values(array_diff( $filters_arr, [0]));
+	
+	$resources = get_field('resources', $resource_list_id);
+	
+	// Pagination variables
+	$resource_match_count = 0;
+	$resources_per_page  = 20; // How many features to display on each page	
+	
+	if( $resources ):
+			
+		foreach ($resources as $resource):
+			$resource_id = $resource->ID;
+			$term_arr = array();
+			
+			$terms = get_the_terms( $resource_id, 'resource_category' );
+			if ($terms) {
+				foreach($terms as $term) {
+				  array_push($term_arr,$term->term_id);
+				} 
+			}
+			
+			$matched = false;
+			
+			switch(count($filters_arr)){
+				case 1:
+					if(in_array($filters_arr[0],$term_arr)){
+						$matched = true;
+					}
+					break;
+				case 2:
+					if(in_array($filters_arr[0],$term_arr) && in_array($filters_arr[1],$term_arr)){
+						$matched = true;
+					}
+					break;
+				case 3:
+					if(in_array($filters_arr[0],$term_arr) && in_array($filters_arr[1],$term_arr) && in_array($filters_arr[2],$term_arr)){
+						$matched = true;
+					}
+					break;
+				default:
+					$matched = true;
+					break;
+			}
+			
+			if(!$matched){
+				continue; 
+			}else{
+				$resource_match_count++;
+			}
+			
+		endforeach;
+	
+	endif;
+	
+	$pages = ceil( $resource_match_count / $resources_per_page ); 
+	
+	
+	if (isset($_POST['page'])) {
+		if($_POST['page'] > $pages || $_POST['page'] == 0){
+			$page = 1;
+		}else{
+			$page = $_POST['page'];
+		}
+	} else {
+		$page = 1;
+	}
+	
+	if($pages > 1): 
+	
+		if($page > 1):
+			echo '<button class="btn_gopage_prev"></button>';
+		endif;
+		
+		echo '<select id="pagination-select">';		
+		for($i = 1; $i <= $pages; $i++){
+			$selected = '';
+			if($i == $page){
+				$selected = 'selected="selected"';
+			}
+			echo '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
+		}		
+		echo '</select>';
+		echo '<span>/'.$pages.'</span>';
+	
+		if($page < $pages):
+			echo '<button class="btn_gopage_next"></button> ';
+		endif;
+	
+	endif;
+	
+	die();
+}
+
 // Hook this function to WordPress' Ajax actions
 add_action( 'wp_ajax_nopriv_get_resource_grid', 'get_resource_grid' );
 add_action( 'wp_ajax_get_resource_grid', 'get_resource_grid' );

@@ -280,14 +280,31 @@
 				line-height:1.9;
 			}
 			
-			.btn_gopage{
+			.btn_gopage_next{
 				float:left;
 				border: solid 1px #cccccc;
 				border-radius:2px;
 				background-image:url(../img/common/bg_gradient_view.png);
+				margin-left:10px;
 				&:after{
 					content:"";
 					background:url(../img/common/ic-arrow-drop-right-blue.svg) no-repeat center;
+					width:24px;
+					height:24px;
+					display:block;
+				}
+			}
+			
+			.btn_gopage_prev{
+				float:left;
+				border: solid 1px #cccccc;
+				border-radius:2px;
+				background-image:url(../img/common/bg_gradient_view.png);
+				margin-right:10px;
+				&:after{
+					content:"";
+					background:url(../img/common/ic-arrow-drop-right-blue.svg) no-repeat center;
+					transform:rotate(180deg);
 					width:24px;
 					height:24px;
 					display:block;

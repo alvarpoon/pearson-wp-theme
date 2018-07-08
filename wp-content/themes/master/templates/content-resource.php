@@ -283,6 +283,7 @@
 		</div>
 		<div class="resource-footer">
 			<div class="pagination clearfix">
+				<!--<button class="btn_gopage_prev"></button>-->
 				<select id="pagination-select">
 					<?php
 					
@@ -293,7 +294,7 @@
 					?>
 				</select>
 				<span>/<?=$pages?></span>
-				<button class="btn_gopage"></button>
+				<button class="btn_gopage_next"></button>
 			</div>
 			<div class="download_all">
 				<a href="#" class="btn_single_download">Download All</a>
