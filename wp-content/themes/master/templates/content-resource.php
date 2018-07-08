@@ -20,13 +20,14 @@
 				}
 			?>
 			<h1 class="pageTitle"><?=$display_title?></h1>
-			<nav aria-label="breadcrumb">
-			  <ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="#">Home</a></li>
-				<li class="breadcrumb-item"><a href="#">Resource</a></li>
-				<li class="breadcrumb-item active" aria-current="page">Template Here</li>
-			  </ol>
-			</nav>
+			<div class="breadcrumbs" typeof="BreadcrumbList" vocab="http://schema.org/">
+				<?php
+					if(function_exists('bcn_display'))
+					{
+						bcn_display();
+					}
+				?>
+			</div>
 			<div class="page-description">
 				<?php 
 					$content = apply_filters('the_content', $post->post_content); 

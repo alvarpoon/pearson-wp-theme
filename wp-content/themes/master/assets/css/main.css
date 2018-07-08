@@ -6784,17 +6784,43 @@ a {
 .noPadding {
   padding: 0!important;
 }
-.breadcrumb {
-  background: #fff;
-  padding: 0;
-  border-radius: 0;
+/*.breadcrumb{
+	background:#fff;
+	padding:0;
+	border-radius:0;
+	margin-top:5px;
+	
+	& > li + li:before{
+		content:"\003e";
+	}
+	
+	a{
+		color:#505759;
+	}
+}*/
+.breadcrumbs {
   margin-top: 5px;
+  margin-bottom: 20px;
+  color: #cccccc;
 }
-.breadcrumb > li + li:before {
-  content: "\003e";
+.breadcrumbs > span {
+  padding: 0 5px;
 }
-.breadcrumb a {
+.breadcrumbs > span:first-child {
+  padding-left: 0;
+}
+.breadcrumbs > span:last-child {
+  padding-right: 0;
+}
+.breadcrumbs span {
   color: #505759;
+}
+.breadcrumbs span a {
+  color: #505759;
+}
+.breadcrumbs span a:hover {
+  text-decoration: none;
+  color: #27ae60;
 }
 .img-responsive,
 .thumbnail > img,

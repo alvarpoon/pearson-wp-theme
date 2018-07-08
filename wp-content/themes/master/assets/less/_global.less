@@ -29,7 +29,7 @@ a{
 	padding:0!important;
 }
 
-.breadcrumb{
+/*.breadcrumb{
 	background:#fff;
 	padding:0;
 	border-radius:0;
@@ -41,6 +41,36 @@ a{
 	
 	a{
 		color:#505759;
+	}
+}*/
+
+.breadcrumbs{
+	margin-top:5px;
+	margin-bottom:20px;
+	color: #cccccc;
+	
+	& > span{
+		padding:0 5px;
+		&:first-child{
+			padding-left:0;
+		}
+		
+		&:last-child{
+			padding-right:0;
+		}
+	}
+	
+	span{
+		color:#505759;
+		
+		a{
+			color:#505759;
+			
+			&:hover{
+				text-decoration:none;
+				color:#27ae60;
+			}
+		}
 	}
 }
 
