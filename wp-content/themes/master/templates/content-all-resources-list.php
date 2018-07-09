@@ -196,6 +196,8 @@
 					<?php if($download_count > 1): ?>
 					<div class="hidden-xs hidden-sm">
 						<?php 
+						$downloadable_file_arr = array();
+						
 						if( have_rows('downloads', $resource_id) ){
 							while( have_rows('downloads', $resource_id) ): the_row();
 								$file_title = get_sub_field('file_title');
@@ -205,9 +207,13 @@
 								//echo '<a href="'.$downloadable_file['url'].'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
 								
 								echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_type.' target="_blank"">'.$file_title.'</a>';
+								array_push($downloadable_file_arr, $downloadable_file['url']);
 							endwhile;
+							
+							$downloadable_file_string = implode(',',$downloadable_file_arr);
 						}
 						?>
+						<a href="javascript:;" data-file="<?=$downloadable_file_string?>" data-filename="testing123" class="media-file all createzip">All</a>
 						<!--<a href="#" class="media-file all">All</a>-->
 					</div>
 					
@@ -221,7 +227,7 @@
 										$downloadable_file = get_sub_field('downloadable_file');
 										$file_type = get_sub_field('file_type');
 										//echo '<a href="'.$downloadable_file['url'].'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
-										echo '<option val="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'">'.$file_title.'</option>';
+										echo '<option value="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'">'.$file_title.'</option>';
 									endwhile;
 								}
 								?>
@@ -268,9 +274,9 @@
 								?>
 							</div>
 							<div class="clearfix">
-								<?php if(!empty($resource_thumbnail)){ ?>
-								<div class="img-container"><img src="<?=$resource_thumbnail?>" class="img-responsive" /></div>
-								<?php } ?>
+								<?php //if(!empty($resource_thumbnail)){ ?>
+									<!--<div class="img-container"><img src="<? //=$resource_thumbnail?>" class="img-responsive" /></div>-->
+									<?php //} ?>
 								<div class="content-container">
 									<?php 
 										$content_post = get_post($resource_id);

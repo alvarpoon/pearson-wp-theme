@@ -30,13 +30,10 @@ var Roots = {
 	  function initNavbarToggle(){
 		$('.navbar-toggle').unbind('click');
 		$('.navbar-toggle').click(function(){
-			console.log('clicked');
 			if($(this).hasClass('collapsed')){
-				console.log('remove class');
 				$(this).removeClass('collapsed');
 				$('.menu_bg').fadeIn();
 			}else{
-				console.log('add class');
 				$(this).addClass('collapsed');
 				$('.menu_bg').fadeOut();
 			}
@@ -343,6 +340,7 @@ var Roots = {
 		$('document').ready(function(){
 			initAudioSetup();
 			get_post_list();
+			createZip();
 		});
 	}
   },
@@ -608,6 +606,7 @@ var Roots = {
 		$('document').ready(function(){
 			initAudioSetup();
 			get_all_resources_list();
+			createZip();
 		});
 	}
   }
@@ -676,7 +675,7 @@ function initAudioSetup(){
 		});
 	}
 	
-	function initAudioPlayer(obj, source){	
+	function initAudioPlayer(obj, source, title){	
 		var supportsAudio = !!document.createElement('audio').canPlayType,
 				audio,
 				loadingIndicator,
@@ -690,7 +689,7 @@ function initAudioSetup(){
 			//var episodeTitle = $('body')[0].id;
 			
 			var player = '<p class="player">';
-			player += '<span class="playtoggle"><a href="javascript:;">Listen</a></span>';
+			player += '<span class="playtoggle"><a href="javascript:;">'+title+'</a></span>';
 			player += '<span class="gutter">';
 			player += '<span class="loading" />';
 			player += '<span class="handle ui-slider-handle" />';
@@ -783,8 +782,9 @@ function initAudioSetup(){
 	
 	$('.audio_playback').each(function(){
 		var source = $(this).attr('data-source');
+		var title = $(this).attr('data-title');
 		//console.log(source);
-		initAudioPlayer($(this), source);
+		initAudioPlayer($(this), source, title);
 	});
 }
 
@@ -803,6 +803,17 @@ function initMultipleDownload(){
 		if(!$(this).parent().hasClass('opened')){
 			$(this).parent().addClass('opened');	
 		}
+	});
+  });
+  
+  $('.mobile_download').each(function(){
+	$(this).change(function(){
+		var url = $(this).val(); // get selected value
+		//console.log(url);
+		if (url) { // require a URL
+			window.location = url; // redirect
+		}
+		return false;						
 	});
   });
   

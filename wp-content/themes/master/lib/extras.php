@@ -416,21 +416,29 @@ function get_audio_preview($downloads){
 	
 	if($count > 1){
 		foreach($downloads as $download){
-			$file_type = $download['file_type'];
+			$file_title = $download['file_title'];
+			//$file_type = $download['file_type'];
 			$downloadable_file = $download['downloadable_file']['url'];
 			$audio_preview = $download['audio_preview'];
+			$temp_arr = [];
 			
 			if($audio_preview){
-				array_push($audio_url_array,$downloadable_file);
+				$temp_arr['title'] = $file_title;
+				$temp_arr['url'] = $downloadable_file;
+				array_push($audio_url_array,$temp_arr);
 			}
 		}
 	}else{
-		$file_type = $downloads[0]['file_type'];
+		//$file_type = $downloads[0]['file_type'];
+		$file_title = $downloads[0]['file_title'];
 		$downloadable_file = $downloads[0]['downloadable_file']['url'];
 		$audio_preview = $downloads[0]['audio_preview'];
+		$temp_arr = [];
 		
 		if($audio_preview){			
-			array_push($audio_url_array,$downloadable_file);
+			$temp_arr['title'] = $file_title;
+			$temp_arr['url'] = $downloadable_file;
+			array_push($audio_url_array,$temp_arr);
 		}
 	}
 	
@@ -441,8 +449,8 @@ function get_audio_preview($downloads){
 	}
 	
 	if(count($audio_url_array) > 0){
-		foreach($audio_url_array as $audio_url){
-			$previewer .= '<div class="audio_playback" data-source="'.$audio_url.'"></div>';
+		foreach($audio_url_array as $audio){
+			$previewer .= '<div class="audio_playback" data-source="'.$audio['url'].'" data-title="'.$audio['title'].'"></div>';
 		}
 		$previewer .=  '</div>';
 	}

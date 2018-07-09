@@ -172,13 +172,21 @@
 			}
 			
 			.playtoggle a{
-				color:#007fa3;
+				
 				&:hover, &:focus, &:active{
 					text-decoration:none;
 				}
+				
+				color:#007fa3;
 				display:inline-block;
 				background:url(../img/common/ic-volume-down.svg) no-repeat left center;
 				padding-left:25px;
+			    max-width: 130px;
+				height: 28px;
+				overflow: hidden;
+				text-align: left;
+				white-space: nowrap;
+				text-overflow: ellipsis;
 			}
 			
 			.playtoggle.playing {
@@ -335,7 +343,7 @@
 			margin-bottom:50px;
 			padding-left: 3px;
 		    padding-right: 3px;
-			height:245px;
+			//height:245px;
 			
 			.resource-thumbnail{
 				position:relative;
@@ -433,13 +441,12 @@
 			  font-size: 12px;
 			  line-height: 1.33;
 			  color: #666666;
-			  margin-bottom:10px;
+			  margin-bottom:5px;
 			  height:30px;
 			  overflow:hidden;
 			}
 			
 			.resource-download-wrapper{
-							
 				.multiple_download{
 					position:relative;
 					
@@ -451,7 +458,8 @@
 					
 					.multiple_dl_header{
 						cursor:pointer;
-						padding:5px 35px;
+						padding:0 35px;
+						height:30px;
 						color:#fff;
 						background:url(../img/common/bg_gradient_download.png) repeat-x;
 						background-size: contain;
@@ -459,6 +467,7 @@
 						display:inline-block;
 						box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
 						position:relative;
+						
 						
 						&:before{
 							content:"";
@@ -483,6 +492,16 @@
 							right: 0;
 							top: 0;
 							height: 100%;
+						}
+						
+						span{
+							display:inline-block;
+							white-space: nowrap;
+							text-overflow: ellipsis;
+							max-width:87px;
+							height:25px;
+							padding-top:5px;
+							overflow:hidden;
 						}
 					}
 					
@@ -528,6 +547,16 @@
 		padding-bottom:0;
 		margin-bottom:15px;
 		border:none;
+	}
+	
+	.audio_container{
+		.audio_playback{
+			.playtoggle{
+				a{
+					max-width:90px;
+				}
+			}
+		}
 	}
 	
 	.resource-container{
@@ -790,7 +819,7 @@
 	.page-template-template-resource, .page-template-template-all-resources{	
 		.resource-container{
 			.resource-item{
-				height:270px;
+				//height:270px;
 			}
 		}
 		

@@ -204,7 +204,7 @@
 							<?php
 								if($download_count > 1){ ?>
 									<div class="multiple_download">
-										<div class="multiple_dl_header">Download (<?=$download_count?>)</div>
+										<div class="multiple_dl_header"><span>Download (<?=$download_count?>)</span></div>
 										<div class="multiple_dl_content">
 											<ul>
 											<?php	
@@ -229,6 +229,8 @@
 											</ul>
 										</div>
 									</div>
+									
+									
 							<?php
 								}else{
 									if( have_rows('downloads', $resource_id) ){
@@ -260,9 +262,9 @@
 									?>
 								</div>
 								<div class="clearfix">
-									<?php if(!empty($resource_thumbnail)){ ?>
-									<div class="img-container"><img src="<?=$resource_thumbnail?>" class="img-responsive" /></div>
-									<?php } ?>
+									<?php //if(!empty($resource_thumbnail)){ ?>
+									<!--<div class="img-container"><img src="<? //=$resource_thumbnail?>" class="img-responsive" /></div>-->
+									<?php //} ?>
 									<div class="content-container">
 										<?php 
 											$content_post = get_post($resource_id);
