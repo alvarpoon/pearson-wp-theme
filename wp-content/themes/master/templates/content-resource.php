@@ -203,7 +203,7 @@
 						<div class="resource-download-wrapper">
 							<?php
 								if($download_count > 1){ ?>
-									<div class="multiple_download">
+									<div class="multiple_download hidden-xs hidden-sm">
 										<div class="multiple_dl_header"><span>Download (<?=$download_count?>)</span></div>
 										<div class="multiple_dl_content">
 											<ul>
@@ -230,7 +230,25 @@
 										</div>
 									</div>
 									
-									
+									<div class="hidden-md hidden-lg">
+										<div class="mobile_download_wrapper">
+											<select class="mobile_download">
+												<?php 
+												if( have_rows('downloads', $resource_id) ){
+													while( have_rows('downloads', $resource_id) ): the_row();
+														$file_title = get_sub_field('file_title');
+														$downloadable_file = get_sub_field('downloadable_file');
+														$file_type = get_sub_field('file_type');
+														//echo '<a href="'.$downloadable_file['url'].'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
+														echo '<option value="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'">'.$file_title.'</option>';
+													endwhile;
+												}
+												?>
+												<!--<option>Download All</option>-->
+											</select>
+											<div class="download_text">Download (<?=$download_count?>)</div>
+										</div>
+									</div>
 							<?php
 								}else{
 									if( have_rows('downloads', $resource_id) ){

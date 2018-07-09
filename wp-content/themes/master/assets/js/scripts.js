@@ -2381,6 +2381,10 @@ var Roots = {
 			event.stopPropagation(); 
 			$(this).parent().siblings().removeClass('open');
 			$(this).parent().toggleClass('open');
+			
+			$( '.dropdown' ).on( 'show.bs.dropdown', function() {
+				$( this ).find( '.dropdown-menu' ).first().stop( true, true ).slideDown( 150 );
+			  } );
 		});
 	  });
     }

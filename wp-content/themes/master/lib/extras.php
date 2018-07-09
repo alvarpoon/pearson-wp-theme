@@ -696,7 +696,7 @@ function get_resource_grid(){
 				<div class="resource-download-wrapper">
 					<?php
 						if($download_count > 1){ ?>
-							<div class="multiple_download">
+							<div class="multiple_download hidden-xs hidden-sm">
 								<div class="multiple_dl_header">Download (<?=$download_count?>)</div>
 								<div class="multiple_dl_content">
 									<ul>
@@ -719,6 +719,26 @@ function get_resource_grid(){
 									
 									<li><a href="javascript:;" data-file="<?=$downloadable_file_string?>" data-filename="testing123" class="createzip">Download All (<?=$download_count?> files)</a></li>
 									</ul>
+								</div>
+							</div>
+							
+							<div class="hidden-md hidden-lg">
+								<div class="mobile_download_wrapper">
+									<select class="mobile_download">
+										<?php 
+										if( have_rows('downloads', $resource_id) ){
+											while( have_rows('downloads', $resource_id) ): the_row();
+												$file_title = get_sub_field('file_title');
+												$downloadable_file = get_sub_field('downloadable_file');
+												$file_type = get_sub_field('file_type');
+												//echo '<a href="'.$downloadable_file['url'].'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
+												echo '<option value="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'">'.$file_title.'</option>';
+											endwhile;
+										}
+										?>
+										<!--<option>Download All</option>-->
+									</select>
+									<div class="download_text">Download (<?=$download_count?>)</div>
 								</div>
 							</div>
 					<?php
@@ -1074,7 +1094,7 @@ function get_all_resources_grid(){
 				<div class="resource-download-wrapper">
 					<?php
 						if($download_count > 1){ ?>
-							<div class="multiple_download">
+							<div class="multiple_download hidden-xs hidden-sm">
 								<div class="multiple_dl_header">Download (<?=$download_count?>)</div>
 								<div class="multiple_dl_content">
 									<ul>
@@ -1097,6 +1117,26 @@ function get_all_resources_grid(){
 									
 									<li><a href="javascript:;" data-file="<?=$downloadable_file_string?>" data-filename="testing123" class="createzip">Download All (<?=$download_count?> files)</a></li>
 									</ul>
+								</div>
+							</div>
+							
+							<div class="hidden-md hidden-lg">
+								<div class="mobile_download_wrapper">
+									<select class="mobile_download">
+										<?php 
+										if( have_rows('downloads', $resource_id) ){
+											while( have_rows('downloads', $resource_id) ): the_row();
+												$file_title = get_sub_field('file_title');
+												$downloadable_file = get_sub_field('downloadable_file');
+												$file_type = get_sub_field('file_type');
+												//echo '<a href="'.$downloadable_file['url'].'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
+												echo '<option value="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'">'.$file_title.'</option>';
+											endwhile;
+										}
+										?>
+										<!--<option>Download All</option>-->
+									</select>
+									<div class="download_text">Download (<?=$download_count?>)</div>
 								</div>
 							</div>
 					<?php
