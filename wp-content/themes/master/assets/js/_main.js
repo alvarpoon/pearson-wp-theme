@@ -216,61 +216,127 @@ var Roots = {
   },
   page_template_template_resource_list:{
 	init: function() {
-		function get_post_list(){
-			function ajax_action_list(){
-				var ajaxurl = '/wp-admin/admin-ajax.php';
-				var newPageNum = $('#pagination-select').val();
-				var filter_1 = 0,
-					filter_2 = 0,
-					filter_3 = 0;
-				
-				if($('#filter_1').length > 0){
-					filter_1 = $('#filter_1').val();
-				}
-				
-				if($('#filter_2').length > 0){
-					filter_2 = $('#filter_2').val();
-				}
-				
-				if($('#filter_3').length > 0){
-					filter_3 = $('#filter_3').val();
-				}
-				
-				if(newPageNum !== currentPageNum || filter_1 !== 0 || filter_2 !== 0 || filter_3 !== 0){
-					
-					$('.resource-container-inner').fadeOut();
-					
-					$.ajax({
-					  url: ajaxurl,
-					  type: 'post',
-					  data: {
-						action: 'get_resource_list', 
-						page: newPageNum, 
-						resource_listID: resource_listID, 
-						filters: filter_1+','+filter_2+','+filter_3
-					  },
-					  success: function( result ) {
-						$('.resource-container-inner').html(result);
-						$('.resource-container-inner').fadeIn();
-						initAudioSetup();
-						currentPageNum = newPageNum;
-					  },
-					  error: function(MLHttpRequest, textStatus, errorThrown){
-						alert('Sorry, something went wrong. Please try again.');
-					  }
-					});
-
-				}else{
-					return;
-				}
+		function ajax_action_list(pageNum){			
+			var ajaxurl = '/wp-admin/admin-ajax.php';
+			
+			var filter_1 = 0,
+				filter_2 = 0,
+				filter_3 = 0;
+			
+			if($('#filter_1').length > 0){
+				filter_1 = $('#filter_1').val();
 			}
 			
-			$('.btn_gopage').on('click touchstart', function(){															 
-				ajax_action_list();
+			if($('#filter_2').length > 0){
+				filter_2 = $('#filter_2').val();
+			}
+			
+			if($('#filter_3').length > 0){
+				filter_3 = $('#filter_3').val();
+			}
+			
+			$('.resource-container-inner').fadeOut();
+			$('.pagination').fadeOut();
+			
+			var result1;
+			var result2;
+			$.when(
+				$.ajax({
+				  url: ajaxurl,
+				  type: 'post',
+				  data: {
+					action: 'get_resource_list', 
+					page: pageNum,
+					resource_listID: resource_listID, 
+					filters: filter_1+','+filter_2+','+filter_3
+				  },
+				  success: function( result ) {
+					result1 = result;
+				  },
+				  error: function(MLHttpRequest, textStatus, errorThrown){
+					alert('Sorry, something went wrong. Please try again.');
+				  }
+				}),
+				
+				$.ajax({
+				  url: ajaxurl,
+				  type: 'post',
+				  data: {
+					action: 'get_resource_pagination', 
+					page: pageNum,
+					resource_listID: resource_listID, 
+					filters: filter_1+','+filter_2+','+filter_3
+				  },
+				  success: function( result ) {
+					result2 = result;
+				  },
+				  error: function(MLHttpRequest, textStatus, errorThrown){
+					alert('Sorry, something went wrong. Please try again.');
+				  }
+				})
+			).then(function(){
+				//update resource
+				$('.resource-container-inner').html(result1);
+				$('.resource-container-inner').fadeIn();
+				initMultipleDownload();
+				initAudioSetup();
+				createZip();
+				
+				//update pagination
+				$('.pagination').html(result2);
+				$('.pagination').fadeIn();
+				get_post_list();
+				
+				if(typeof pageNum !== 'undefined'){
+					currentPageNum = pageNum;
+				}else{
+					currentPageNum = 1;
+				}
+			});
+		}
+		
+		function get_post_list(){
+			if($('.btn_gopage_next').length > 0){
+				$('.btn_gopage_next').unbind('click');	
+				$('.btn_gopage_next').on('click touchstart', function(){
+					//console.log('currentPageNum: '+currentPageNum);
+					
+					var lastValue = $('#pagination-select option:last-child').val();
+					var newPageNum = 0;
+					
+					if(parseInt(currentPageNum) < lastValue){
+						newPageNum = parseInt(currentPageNum)+1;
+					}
+					
+					//console.log('newPageNum: '+newPageNum);
+					ajax_action_list(newPageNum);
+				});
+			}
+			
+			if($('.btn_gopage_prev').length > 0){
+				$('.btn_gopage_prev').unbind('click');	
+				$('.btn_gopage_prev').on('click touchstart', function(){
+					currentPageNum = $('#pagination-select').val();
+					//console.log('currentPageNum: '+currentPageNum);
+					var newPageNum = 0;
+					
+					if(parseInt(currentPageNum) > 1){
+						newPageNum = parseInt(currentPageNum)-1;
+					}
+					
+					//console.log('newPageNum: '+newPageNum);
+					ajax_action_list(newPageNum);
+				});
+			}
+			
+			$('.resource_filtering').unbind('change');
+			$('.resource_filtering').on('change', function(){
+				ajax_action_list();									   
 			});
 			
-			$('.resource_filtering').on('change', function(){
-				ajax_action_list();											   
+			$('#pagination-select').unbind('change');
+			$('#pagination-select').on('change', function(){			
+				ajax_action_list($(this).val());									   
 			});
 		}
 		
@@ -282,64 +348,127 @@ var Roots = {
   },
   page_template_template_all_resources:{
 	init: function() {
-		function get_all_resources(){
-			function ajax_action_grid(){
-				var ajaxurl = '/wp-admin/admin-ajax.php';
-				var newPageNum = $('#pagination-select').val();
-				var filter_1 = 0,
-					filter_2 = 0,
-					filter_3 = 0;
-				
-				if($('#filter_1').length > 0){
-					filter_1 = $('#filter_1').val();
-				}
-				
-				if($('#filter_2').length > 0){
-					filter_2 = $('#filter_2').val();
-				}
-				
-				if($('#filter_3').length > 0){
-					filter_3 = $('#filter_3').val();
-				}
-				
-				if(newPageNum !== currentPageNum || filter_1 !== 0 || filter_2 !== 0 || filter_3 !== 0){
-					//return;	
-					$('.resource-container-inner').fadeOut();
-					
-					$.ajax({
-					  url: ajaxurl,
-					  type: 'post',
-					  data: {
-						action: 'get_all_resources_grid', 
-						page: newPageNum, 
-						//resource_listID: resource_listID, 
-						filters: filter_1+','+filter_2+','+filter_3
-					  },
-					  success: function( result ) {
-						// Replace the content of the container div w/ the output from dl_bikeFeatures()
-						$('.resource-container-inner').html(result);
-						// fade in this content for a smooth transition
-						$('.resource-container-inner').fadeIn();
-						initMultipleDownload();
-						initAudioSetup();
-						createZip();
-						currentPageNum = newPageNum;
-					  },
-					  error: function(MLHttpRequest, textStatus, errorThrown){
-						alert('Sorry, something went wrong. Please try again.');
-					  }
-					});
-				}else{
-					return;	
-				}
+		function ajax_action_grid(pageNum){			
+			var ajaxurl = '/wp-admin/admin-ajax.php';
+			
+			var filter_1 = 0,
+				filter_2 = 0,
+				filter_3 = 0;
+			
+			if($('#filter_1').length > 0){
+				filter_1 = $('#filter_1').val();
 			}
 			
-			$('.btn_gopage').on('click touchstart', function(){															 
-				ajax_action_grid();
+			if($('#filter_2').length > 0){
+				filter_2 = $('#filter_2').val();
+			}
+			
+			if($('#filter_3').length > 0){
+				filter_3 = $('#filter_3').val();
+			}
+			
+			$('.resource-container-inner').fadeOut();
+			$('.pagination').fadeOut();
+			
+			var result1;
+			var result2;
+			$.when(
+				$.ajax({
+				  url: ajaxurl,
+				  type: 'post',
+				  data: {
+					action: 'get_all_resources_grid', 
+					page: pageNum,
+					//resource_listID: resource_listID, 
+					filters: filter_1+','+filter_2+','+filter_3
+				  },
+				  success: function( result ) {
+					result1 = result;
+				  },
+				  error: function(MLHttpRequest, textStatus, errorThrown){
+					alert('Sorry, something went wrong. Please try again.');
+				  }
+				}),
+				
+				$.ajax({
+				  url: ajaxurl,
+				  type: 'post',
+				  data: {
+					action: 'get_all_resource_pagination', 
+					page: pageNum,
+					//resource_listID: resource_listID, 
+					filters: filter_1+','+filter_2+','+filter_3
+				  },
+				  success: function( result ) {
+					result2 = result;
+				  },
+				  error: function(MLHttpRequest, textStatus, errorThrown){
+					alert('Sorry, something went wrong. Please try again.');
+				  }
+				})
+			).then(function(){
+				//update resource
+				$('.resource-container-inner').html(result1);
+				$('.resource-container-inner').fadeIn();
+				initMultipleDownload();
+				initAudioSetup();
+				createZip();
+				
+				//update pagination
+				$('.pagination').html(result2);
+				$('.pagination').fadeIn();
+				get_all_resources();
+				
+				if(typeof pageNum !== 'undefined'){
+					currentPageNum = pageNum;
+				}else{
+					currentPageNum = 1;
+				}
+			});
+		}
+		
+		function get_all_resources(){
+			if($('.btn_gopage_next').length > 0){
+				$('.btn_gopage_next').unbind('click');	
+				$('.btn_gopage_next').on('click touchstart', function(){
+					//console.log('currentPageNum: '+currentPageNum);
+					
+					var lastValue = $('#pagination-select option:last-child').val();
+					var newPageNum = 0;
+					
+					if(parseInt(currentPageNum) < lastValue){
+						newPageNum = parseInt(currentPageNum)+1;
+					}
+					
+					//console.log('newPageNum: '+newPageNum);
+					ajax_action_grid(newPageNum);
+				});
+			}
+			
+			if($('.btn_gopage_prev').length > 0){
+				$('.btn_gopage_prev').unbind('click');	
+				$('.btn_gopage_prev').on('click touchstart', function(){
+					currentPageNum = $('#pagination-select').val();
+					//console.log('currentPageNum: '+currentPageNum);
+					var newPageNum = 0;
+					
+					if(parseInt(currentPageNum) > 1){
+						newPageNum = parseInt(currentPageNum)-1;
+					}
+					
+					//console.log('newPageNum: '+newPageNum);
+					ajax_action_grid(newPageNum);
+				});
+			}
+			
+			$('.resource_filtering').unbind('change');
+			$('.resource_filtering').on('change', function(){
+				ajax_action_grid();									   
 			});
 			
-			$('.resource_filtering').on('change', function(){
-				ajax_action_grid();											   
+			$('#pagination-select').unbind('change');
+			$('#pagination-select').on('change', function(){			
+				ajax_action_grid($(this).val());									   
 			});
 		}
 		
@@ -352,63 +481,127 @@ var Roots = {
   },
   page_template_template_all_resources_list:{
 	init: function() {
-		function get_all_resources_list(){
-			function ajax_action_list(){
-				var ajaxurl = '/wp-admin/admin-ajax.php';
-				var newPageNum = $('#pagination-select').val();
-				var filter_1 = 0,
-					filter_2 = 0,
-					filter_3 = 0;
-				
-				if($('#filter_1').length > 0){
-					filter_1 = $('#filter_1').val();
-				}
-				
-				if($('#filter_2').length > 0){
-					filter_2 = $('#filter_2').val();
-				}
-				
-				if($('#filter_3').length > 0){
-					filter_3 = $('#filter_3').val();
-				}
-				
-				if(newPageNum !== currentPageNum || filter_1 !== 0 || filter_2 !== 0 || filter_3 !== 0){
-					
-					$('.resource-container-inner').fadeOut();
-					
-					$.ajax({
-					  url: ajaxurl,
-					  type: 'post',
-					  data: {
-						action: 'get_all_resources_list', // the name of the function in your php file
-						page: newPageNum, // access in php function via $_POST['page']
-						//resource_listID: resource_listID, // access in php function via $_POST['bikeID']
-						filters: filter_1+','+filter_2+','+filter_3
-					  },
-					  success: function( result ) {
-						// Replace the content of the container div w/ the output from dl_bikeFeatures()
-						$('.resource-container-inner').html(result);
-						// fade in this content for a smooth transition
-						$('.resource-container-inner').fadeIn();
-						initAudioSetup();
-						currentPageNum = newPageNum;
-					  },
-					  error: function(MLHttpRequest, textStatus, errorThrown){
-						alert('Sorry, something went wrong. Please try again.');
-					  }
-					});
-
-				}else{
-					return;
-				}
+		function ajax_action_list(pageNum){			
+			var ajaxurl = '/wp-admin/admin-ajax.php';
+			
+			var filter_1 = 0,
+				filter_2 = 0,
+				filter_3 = 0;
+			
+			if($('#filter_1').length > 0){
+				filter_1 = $('#filter_1').val();
 			}
 			
-			$('.btn_gopage').on('click touchstart', function(){															 
+			if($('#filter_2').length > 0){
+				filter_2 = $('#filter_2').val();
+			}
+			
+			if($('#filter_3').length > 0){
+				filter_3 = $('#filter_3').val();
+			}
+			
+			$('.resource-container-inner').fadeOut();
+			$('.pagination').fadeOut();
+			
+			var result1;
+			var result2;
+			$.when(
+				$.ajax({
+				  url: ajaxurl,
+				  type: 'post',
+				  data: {
+					action: 'get_all_resources_list', 
+					page: pageNum,
+					//resource_listID: resource_listID, 
+					filters: filter_1+','+filter_2+','+filter_3
+				  },
+				  success: function( result ) {
+					result1 = result;
+				  },
+				  error: function(MLHttpRequest, textStatus, errorThrown){
+					alert('Sorry, something went wrong. Please try again.');
+				  }
+				}),
+				
+				$.ajax({
+				  url: ajaxurl,
+				  type: 'post',
+				  data: {
+					action: 'get_all_resource_pagination', 
+					page: pageNum,
+					//resource_listID: resource_listID, 
+					filters: filter_1+','+filter_2+','+filter_3
+				  },
+				  success: function( result ) {
+					result2 = result;
+				  },
+				  error: function(MLHttpRequest, textStatus, errorThrown){
+					alert('Sorry, something went wrong. Please try again.');
+				  }
+				})
+			).then(function(){
+				//update resource
+				$('.resource-container-inner').html(result1);
+				$('.resource-container-inner').fadeIn();
+				initMultipleDownload();
+				initAudioSetup();
+				createZip();
+				
+				//update pagination
+				$('.pagination').html(result2);
+				$('.pagination').fadeIn();
+				get_all_resources_list();
+				
+				if(typeof pageNum !== 'undefined'){
+					currentPageNum = pageNum;
+				}else{
+					currentPageNum = 1;
+				}
+			});
+		}
+		
+		function get_all_resources_list(){
+			if($('.btn_gopage_next').length > 0){
+				$('.btn_gopage_next').unbind('click');	
+				$('.btn_gopage_next').on('click touchstart', function(){
+					//console.log('currentPageNum: '+currentPageNum);
+					
+					var lastValue = $('#pagination-select option:last-child').val();
+					var newPageNum = 0;
+					
+					if(parseInt(currentPageNum) < lastValue){
+						newPageNum = parseInt(currentPageNum)+1;
+					}
+					
+					//console.log('newPageNum: '+newPageNum);
+					ajax_action_list(newPageNum);
+				});
+			}
+			
+			if($('.btn_gopage_prev').length > 0){
+				$('.btn_gopage_prev').unbind('click');	
+				$('.btn_gopage_prev').on('click touchstart', function(){
+					currentPageNum = $('#pagination-select').val();
+					//console.log('currentPageNum: '+currentPageNum);
+					var newPageNum = 0;
+					
+					if(parseInt(currentPageNum) > 1){
+						newPageNum = parseInt(currentPageNum)-1;
+					}
+					
+					//console.log('newPageNum: '+newPageNum);
+					ajax_action_list(newPageNum);
+				});
+			}
+			
+			$('.resource_filtering').unbind('change');
+			$('.resource_filtering').on('change', function(){
 				ajax_action_list();
 			});
 			
-			$('.resource_filtering').on('change', function(){
-				ajax_action_list();											   
+			$('#pagination-select').unbind('change');
+			$('#pagination-select').on('change', function(){			
+				ajax_action_list($(this).val());									   
 			});
 		}
 		
