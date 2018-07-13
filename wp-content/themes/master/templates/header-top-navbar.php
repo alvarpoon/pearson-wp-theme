@@ -24,8 +24,20 @@ $username = $IAM->__get('UserName');*/
 			</div>
 			<div class="navbar-header-right hidden-xs hidden-sm visible-md visible-lg">
 				<div class="lang-wrapper">
-					<a href="#">中文</a>
-					<a href="#">English</a>			
+					<?php
+						
+						$lang_arr = icl_get_languages('skip_missing=0&orderby=id&order=desc');
+						//print_r($lang_arr);
+						//$lang_len = sizeof($lang_arr);
+						//$i = 0;
+						foreach( $lang_arr as $lang ){
+						  echo '<a class="'.$lang_class.'" href="'.$lang['url'].'" data-original-href="'.strtok($lang['url'], '?').'">'.$lang['native_name'].'</a>';
+						}
+					
+					?>
+				
+					<!--<a href="#">中文</a>
+					<a href="#">English</a>-->			
 				</div>
 				<?php
 

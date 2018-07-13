@@ -1,6 +1,22 @@
-.page-template-template-resource, .page-template-template-resource-list, .page-template-template-all-resources, .page-template-template-all-resources-list{
+.page-template-template-resource, 
+.page-template-template-resource-list, 
+.page-template-template-all-resources, 
+.page-template-template-all-resources-list,
+.page-template-template-group-resource, 
+.page-template-template-group-resource-list{
 	.hidden-content{
 		display:none;
+	}
+	
+	.group-title{
+		font-size:20px;
+		padding-bottom:20px;
+		//border-bottom:1px solid #000;
+		margin-top:50px;
+		margin-bottom:10px;
+		/*&:first-child{
+			margin-top:0;
+		}*/
 	}
 
 	.page-general-info{
@@ -337,7 +353,9 @@
 }
 
 
-.page-template-template-resource, .page-template-template-all-resources{	
+.page-template-template-resource, 
+.page-template-template-all-resources,
+.page-template-template-group-resource{	
 	.resource-container{
 		.resource-item{
 			margin-bottom:50px;
@@ -519,7 +537,7 @@
 					
 					.multiple_dl_header{
 						cursor:pointer;
-						padding:0 35px;
+						padding:0px 35px 5px 35px;
 						height:30px;
 						color:#fff;
 						background:url(../img/common/bg_gradient_download.png) repeat-x;
@@ -603,7 +621,7 @@
 	}
 }
 
-.page-template-template-resource-list, .page-template-template-all-resources-list{
+.page-template-template-resource-list, .page-template-template-all-resources-list, .page-template-template-group-resource-list{
 	.filter-wrapper{
 		padding-bottom:0;
 		margin-bottom:15px;
@@ -867,7 +885,12 @@
 //===============================================================================
 //===============================================================================
 @media (min-width: @screen-sm-min) {
-	.page-template-template-resource, .page-template-template-resource-list, .page-template-template-all-resources, .page-template-template-all-resources-list{
+	.page-template-template-resource, 
+	.page-template-template-resource-list, 
+	.page-template-template-all-resources, 
+	.page-template-template-all-resources-list,
+	.page-template-template-group-resource,
+	.page-template-template-group-resource-list{
 		.resource-footer{		
 			.download_all{
 				position:absolute;
@@ -877,7 +900,9 @@
 		}	
 	}
 
-	.page-template-template-resource, .page-template-template-all-resources{	
+	.page-template-template-resource,
+	.page-template-template-group-resource,
+	.page-template-template-all-resources{	
 		.resource-container{
 			.resource-item{
 				//height:270px;
@@ -891,7 +916,7 @@
 		}
 	}
 	
-	.page-template-template-resource-list, .page-template-template-all-resources-list{
+	.page-template-template-resource-list, .page-template-template-all-resources-list, .page-template-template-group-resource-list{
 		.resource-container{
 			.resource-item{
 				.resource-title-wrapper{
@@ -923,7 +948,12 @@
 //===============================================================================
 //===============================================================================
 @media (min-width: @screen-md-min) {
-	.page-template-template-resource, .page-template-template-resource-list, .page-template-template-all-resources, .page-template-template-all-resources-list{
+	.page-template-template-resource, 
+	.page-template-template-resource-list, 
+	.page-template-template-all-resources, 
+	.page-template-template-all-resources-list,
+	.page-template-template-group-resource,
+	.page-template-template-group-resource-list{
 		.filter-wrapper{
 			.filter-select{
 				.filter-item{
@@ -941,7 +971,7 @@
 		}
 	}
 	
-	.page-template-template-resource-list, .page-template-template-all-resources-list{
+	.page-template-template-resource-list, .page-template-template-all-resources-list, .page-template-template-group-resource-list{
 		.resource-container{
 			.resource-item{
 				.file-download-wrapper{
@@ -965,7 +995,7 @@
 //===============================================================================
 //===============================================================================
 @media (min-width: @screen-lg-min) {
-	.page-template-template-resource-list, .page-template-template-all-resources-list{
+	.page-template-template-resource-list, .page-template-template-all-resources-list, .page-template-template-group-resource-list{
 		.resource-container{
 			.resource-item{
 				.file-download-wrapper{

@@ -2945,6 +2945,136 @@ var Roots = {
 			createZip();
 		});
 	}
+  },
+  page_template_template_group_resource:{
+	init: function() {
+		function ajax_action_grid(){			
+			var ajaxurl = '/wp-admin/admin-ajax.php';
+			
+			var filter_1 = 0,
+				filter_2 = 0,
+				filter_3 = 0;
+			
+			if($('#filter_1').length > 0){
+				filter_1 = $('#filter_1').val();
+			}
+			
+			if($('#filter_2').length > 0){
+				filter_2 = $('#filter_2').val();
+			}
+			
+			if($('#filter_3').length > 0){
+				filter_3 = $('#filter_3').val();
+			}
+			
+			$('.group-resource-container').fadeOut();
+			
+			var result1;
+		
+			$.when(
+				$.ajax({
+				  url: ajaxurl,
+				  type: 'post',
+				  data: {
+					action: 'get_group_resources_grid', 
+					pageID: pageID,
+					filters: filter_1+','+filter_2+','+filter_3
+				  },
+				  success: function( result ) {
+					result1 = result;
+				  },
+				  error: function(MLHttpRequest, textStatus, errorThrown){
+					alert('Sorry, something went wrong. Please try again.');
+				  }
+				})
+			).then(function(){
+				//update resource
+				$('.group-resource-container').html(result1);
+				$('.group-resource-container').fadeIn();
+				initMultipleDownload();
+				initAudioSetup();
+				createZip();
+			});
+		}
+		
+		function get_group_resources(){
+			$('.resource_filtering').unbind('change');
+			$('.resource_filtering').on('change', function(){
+				ajax_action_grid();									   
+			});
+		}
+		
+		$('document').ready(function(){
+			initAudioSetup();
+			createZip();
+			get_group_resources();
+		});
+	}
+  },
+  page_template_template_group_resource_list:{
+	init: function() {
+		function ajax_action_list(){
+			var ajaxurl = '/wp-admin/admin-ajax.php';
+			
+			var filter_1 = 0,
+				filter_2 = 0,
+				filter_3 = 0;
+			
+			if($('#filter_1').length > 0){
+				filter_1 = $('#filter_1').val();
+			}
+			
+			if($('#filter_2').length > 0){
+				filter_2 = $('#filter_2').val();
+			}
+			
+			if($('#filter_3').length > 0){
+				filter_3 = $('#filter_3').val();
+			}
+			
+			$('.group-resource-container').fadeOut();
+			
+			var result1;
+		
+			$.when(
+				$.ajax({
+				  url: ajaxurl,
+				  type: 'post',
+				  data: {
+					action: 'get_group_resources_list', 
+					pageID: pageID,
+					filters: filter_1+','+filter_2+','+filter_3
+				  },
+				  success: function( result ) {
+					result1 = result;
+				  },
+				  error: function(MLHttpRequest, textStatus, errorThrown){
+					alert('Sorry, something went wrong. Please try again.');
+				  }
+				})
+			).then(function(){
+				//update resource
+				$('.group-resource-container').html(result1);
+				$('.group-resource-container').fadeIn();
+				initMultipleDownload();
+				initAudioSetup();
+				createZip();
+			});
+		}
+		
+		function get_group_resources_list(){
+			$('.resource_filtering').unbind('change');
+			$('.resource_filtering').on('change', function(){
+				ajax_action_list();									   
+			});
+		}
+		
+		$('document').ready(function(){
+			initAudioSetup();
+			createZip();
+			get_group_resources_list();
+		});
+	}
   }
 };
 
