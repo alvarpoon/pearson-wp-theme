@@ -164,7 +164,8 @@
 					$resource_popup_image = get_field('resource_popup_image', $resource_id);
 					$resource_popup_url = get_field('resource_popup_url', $resource_id);
 					$downloads = get_field('downloads', $resource_id);
-					$download_count = is_array( $downloads ) ? count( $downloads ) : 0;
+					//$download_count = is_array( $downloads ) ? count( $downloads ) : 0;
+					$download_count = getDownload_count($resource_id);
 					
 					$resource_post = get_post($resource_id); 
 					$resource_slug = $resource_post->post_name;
@@ -221,17 +222,20 @@
 													$file_title = get_sub_field('file_title');
 													$downloadable_file = get_sub_field('downloadable_file');
 													$set_as_main_download_file = get_sub_field('set_as_main_download_file');
+													$preview_only = get_sub_field('preview_only');
 													
-													echo '<li><a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$resource_parent.'" target="_blank">'.$file_title.'</a></li>';
-													//echo '<li><a href="'.$downloadable_file['url'].'" target="_blank">'.$file_title.'</a></li>';
-													
-													array_push($downloadable_file_arr, $downloadable_file['url']);
+													if(!$preview_only){
+														echo '<li><a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$resource_parent.'" target="_blank">'.$file_title.'</a></li>';
+														//echo '<li><a href="'.$downloadable_file['url'].'" target="_blank">'.$file_title.'</a></li>';
+														
+														array_push($downloadable_file_arr, $downloadable_file['url']);
+													}
 												endwhile;
 												
 												$downloadable_file_string = implode(',',$downloadable_file_arr);
+												
+												echo '<li><a href="javascript:;" data-file="'.$downloadable_file_string.'" data-filename="testing123" class="createzip">Download All ('.$download_count.' files)</a></li>';
 											}?>
-											
-											<li><a href="javascript:;" data-file="<?=$downloadable_file_string?>" data-filename="testing123" class="createzip">Download All (<?=$download_count?> files)</a></li>
 											</ul>
 										</div>
 									</div>
@@ -245,8 +249,11 @@
 														$file_title = get_sub_field('file_title');
 														$downloadable_file = get_sub_field('downloadable_file');
 														$file_type = get_sub_field('file_type');
-														//echo '<a href="'.$downloadable_file['url'].'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
-														echo '<option value="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'">'.$file_title.'</option>';
+														$preview_only = get_sub_field('preview_only');
+														if(!$preview_only){
+															//echo '<a href="'.$downloadable_file['url'].'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
+															echo '<option value="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'">'.$file_title.'</option>';
+														}
 													endwhile;
 												}
 												?>
@@ -260,8 +267,11 @@
 									if( have_rows('downloads', $resource_id) ){
 										while( have_rows('downloads', $resource_id) ): the_row();
 											$downloadable_file = get_sub_field('downloadable_file');
-											//echo '<a href="'.$downloadable_file['url'].'" class="btn_single_download" target="_blank">Download</a>';
-											echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$resource_parent.'" class="btn_single_download" target="_blank">Download</a>';
+											$preview_only = get_sub_field('preview_only');
+											if(!$preview_only){
+												//echo '<a href="'.$downloadable_file['url'].'" class="btn_single_download" target="_blank">Download</a>';
+												echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$resource_parent.'" class="btn_single_download" target="_blank">Download</a>';
+											}
 										endwhile;
 									}
 								}
@@ -278,9 +288,12 @@
 											$file_title = get_sub_field('file_title');
 											$downloadable_file = get_sub_field('downloadable_file');
 											$file_type = get_sub_field('file_type');
-											//echo '<a href="'.$downloadable_file['url'].'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
-											
-											echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$resource_parent.'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
+											$preview_only = get_sub_field('preview_only');
+											if(!$preview_only){
+												//echo '<a href="'.$downloadable_file['url'].'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
+												
+												echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$resource_parent.'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
+											}
 										endwhile;
 									}									
 									?>
