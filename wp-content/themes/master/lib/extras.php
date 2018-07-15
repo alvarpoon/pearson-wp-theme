@@ -243,7 +243,6 @@ function create_zip(){
 function get_main_download_file_type($resource_id){
 	
 	if( have_rows('downloads', $resource_id) ){
-	
 		while( have_rows('downloads', $resource_id) ): the_row();
 
 			$downloadable_file = get_sub_field('downloadable_file');
@@ -259,9 +258,8 @@ function get_main_download_file_type($resource_id){
 			
 		endwhile;
 		
+		return $filetype['ext'];
 	}
-	
-	return $filetype['ext'];
 }
 
 function filetype_thumbnail($filetype){
@@ -295,6 +293,7 @@ function filetype_thumbnail($filetype){
 function showGridThumbnail($resource_id, $resource_thumbnail, $resource_type, $popup_image, $popup_url,$resource_slug){
 	$path = get_stylesheet_directory_uri()."/assets/img/common/grid-view/";
 	$filetype = get_main_download_file_type($resource_id);
+	//echo '<p>filetype: '.$filetype.'</p>';
 
 	if(!empty($resource_thumbnail)){
 		switch ($resource_type) {
@@ -410,7 +409,7 @@ function showListTitle($resource_id, $resource_type, $popup_image, $popup_url, $
 }
 
 function get_audio_preview($downloads){
-	$count = count($downloads);
+	$count = is_array( $downloads ) ? count( $downloads ) : 0;
 	$audio_url_array = array();
 	$previewer;
 	
@@ -606,7 +605,7 @@ function get_resource_grid(){
 	$resource_count      = 0;
 	$resource_match_count = 0;
 	$resources_per_page  = 20; // How many features to display on each page
-	$total              = count( $resources );
+	$total              = is_array( $resources ) ? count( $resources ) : 0;
 	//$pages              = ceil( $total / $resources_per_page );
 	$min                = ( ( $page * $resources_per_page ) - $resources_per_page ) + 1;
 	$max                = ( $min + $resources_per_page ) - 1;
@@ -618,6 +617,8 @@ function get_resource_grid(){
 		
 		echo '<div class="resource-container-inner">';
 		
+		$separator_count = 0;
+		
 		foreach ($resources as $resource):
 			$resource_id = $resource->ID;
 			$resource_type = get_field('resource_type', $resource_id);
@@ -626,7 +627,8 @@ function get_resource_grid(){
 			$note = get_field('note', $resource_id);
 			$resource_popup_image = get_field('resource_popup_image', $resource_id);
 			$resource_popup_url = get_field('resource_popup_url', $resource_id);
-			$download_count = count(get_field('downloads', $resource_id));
+			$downloads = get_field('downloads', $resource_id);
+			$download_count = is_array( $downloads ) ? count( $downloads ) : 0;
 			
 			$resource_post = get_post($resource_id); 
 			$resource_slug = $resource_post->post_name;
@@ -788,7 +790,18 @@ function get_resource_grid(){
 				</div>
 				<?php } ?>
 			</div>
-	<?php endforeach;
+	<?php 
+			$separator_count++;
+					
+			if($separator_count%2 == 0 && $separator_count != 0){
+				echo '<div class="clearfix hidden-sm hidden-md hidden-lg hidden-xl"></div>';
+			}
+			
+			if($separator_count%4 == 0 && $separator_count != 0){
+				echo '<div class="clearfix hidden-xs"></div>';
+			}
+			
+		endforeach;
 		
 		if($resource_match_count == 0){
 			echo '<p>No resources found, please refine your filter.</p>';
@@ -994,7 +1007,7 @@ function get_all_resources_grid(){
 	$resource_count      = 0;
 	$resource_match_count = 0;
 	$resources_per_page  = 20; // How many features to display on each page
-	$total              = count( $all_resources );
+	$total              = is_array( $all_resources ) ? count( $all_resources ) : 0;
 	//$pages              = ceil( $total / $resources_per_page );
 	$min                = ( ( $page * $resources_per_page ) - $resources_per_page ) + 1;
 	$max                = ( $min + $resources_per_page ) - 1;
@@ -1006,6 +1019,8 @@ function get_all_resources_grid(){
 		
 		echo '<div class="resource-container-inner">';
 		
+		$separator_count = 0;
+		
 		foreach ($all_resources as $resource):
 			$resource_parent = $resource['pageid'];
 			$resource_id = $resource['resource_id'];
@@ -1016,7 +1031,8 @@ function get_all_resources_grid(){
 			$note = get_field('note', $resource_id);
 			$resource_popup_image = get_field('resource_popup_image', $resource_id);
 			$resource_popup_url = get_field('resource_popup_url', $resource_id);
-			$download_count = count(get_field('downloads', $resource_id));
+			$downloads = get_field('downloads', $resource_id);
+			$download_count = is_array( $downloads ) ? count( $downloads ) : 0;
 			
 			$resource_post = get_post($resource_id); 
 			$resource_slug = $resource_post->post_name;
@@ -1188,7 +1204,19 @@ function get_all_resources_grid(){
 				</div>
 				<?php } ?>
 			</div>
-	<?php endforeach;
+	<?php 
+		
+			$separator_count++;
+					
+			if($separator_count%2 == 0 && $separator_count != 0){
+				echo '<div class="clearfix hidden-sm hidden-md hidden-lg hidden-xl"></div>';
+			}
+			
+			if($separator_count%4 == 0 && $separator_count != 0){
+				echo '<div class="clearfix hidden-xs"></div>';
+			}
+		
+		endforeach;
 		
 		if($resource_match_count == 0){
 			echo '<p>No resources found, please refine your filter.</p>';
@@ -1242,7 +1270,7 @@ function get_resource_list(){
 	$resource_count      = 0;
 	$resource_match_count = 0;
 	$resources_per_page  = 20; // How many features to display on each page
-	$total              = count( $resources );
+	$total              = is_array( $resources ) ? count( $resources ) : 0;
 	//$pages              = ceil( $total / $resources_per_page );
 	$min                = ( ( $page * $resources_per_page ) - $resources_per_page ) + 1;
 	$max                = ( $min + $resources_per_page ) - 1;
@@ -1261,7 +1289,8 @@ function get_resource_list(){
 			$note = get_field('note', $resource_id);
 			$resource_popup_image = get_field('resource_popup_image', $resource_id);
 			$resource_popup_url = get_field('resource_popup_url', $resource_id);
-			$download_count = count(get_field('downloads', $resource_id));
+			$downloads = get_field('downloads', $resource_id);
+			$download_count = is_array( $downloads ) ? count( $downloads ) : 0;
 			
 			$resource_post = get_post($resource_id); 
 			$resource_slug = $resource_post->post_name;
@@ -1482,7 +1511,7 @@ function get_all_resources_list(){
 	$resource_count      = 0;
 	$resource_match_count = 0;
 	$resources_per_page  = 20; // How many features to display on each page
-	$total              = count( $all_resources );
+	$total              = is_array( $all_resources ) ? count( $all_resources ) : 0;
 	//$pages              = ceil( $total / $resources_per_page );
 	$min                = ( ( $page * $resources_per_page ) - $resources_per_page ) + 1;
 	$max                = ( $min + $resources_per_page ) - 1;
@@ -1503,7 +1532,8 @@ function get_all_resources_list(){
 			$note = get_field('note', $resource_id);
 			$resource_popup_image = get_field('resource_popup_image', $resource_id);
 			$resource_popup_url = get_field('resource_popup_url', $resource_id);
-			$download_count = count(get_field('downloads', $resource_id));
+			$downloads = get_field('downloads', $resource_id);
+			$download_count = is_array( $downloads ) ? count( $downloads ) : 0;
 			
 			$resource_post = get_post($resource_id); 
 			$resource_slug = $resource_post->post_name;
@@ -1708,7 +1738,11 @@ function get_group_resources_grid(){
 	
 	//print_r($resource_lists);
 	
+	
+	
 	foreach($resource_lists as $resource_list):
+	
+		$separator_count = 0;
 			
 		echo '<div class="resource-container clearfix">';
 		
@@ -1726,7 +1760,8 @@ function get_group_resources_grid(){
 			$note = get_field('note', $resource_id);
 			$resource_popup_image = get_field('resource_popup_image', $resource_id);
 			$resource_popup_url = get_field('resource_popup_url', $resource_id);
-			$download_count = count(get_field('downloads', $resource_id));
+			$downloads = get_field('downloads', $resource_id);
+			$download_count = is_array( $downloads ) ? count( $downloads ) : 0;
 			
 			$resource_post = get_post($resource_id); 
 			$resource_slug = $resource_post->post_name; 
@@ -1897,7 +1932,19 @@ function get_group_resources_grid(){
 				<?php } ?>
 			</div>
 			
-	<?php endforeach; 
+	<?php 
+		
+			$separator_count++;
+					
+			if($separator_count%2 == 0 && $separator_count != 0){
+				echo '<div class="clearfix hidden-sm hidden-md hidden-lg hidden-xl"></div>';
+			}
+			
+			if($separator_count%4 == 0 && $separator_count != 0){
+				echo '<div class="clearfix hidden-xs"></div>';
+			}
+		
+		endforeach; 
 	
 		if($resource_match_count == 0){
 			echo '<p>No resources found, please refine your filter.</p>';
@@ -1961,7 +2008,8 @@ function get_group_resources_list(){
 			$note = get_field('note', $resource_id);
 			$resource_popup_image = get_field('resource_popup_image', $resource_id);
 			$resource_popup_url = get_field('resource_popup_url', $resource_id);
-			$download_count = count(get_field('downloads', $resource_id));
+			$downloads = get_field('downloads', $resource_id);
+			$download_count = is_array( $downloads ) ? count( $downloads ) : 0;
 			
 			$resource_post = get_post($resource_id); 
 			$resource_slug = $resource_post->post_name;

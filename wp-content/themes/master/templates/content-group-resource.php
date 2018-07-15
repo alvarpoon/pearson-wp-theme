@@ -47,7 +47,8 @@
 						<?php
 							$filter_title_1 = get_field('filter_title_1');
 							$filter_1 = get_field('filter_1');
-							if(count($filter_1) > 0 && !empty($filter_title_1)):
+							$filer_1_count = is_array( $filter_1 ) ? count( $filter_1 ) : 0;
+							if($filer_1_count > 0 && !empty($filter_title_1)):
 							
 							echo '<select id="filter_1" class="resource_filtering">';
 							echo '<option value="0">'.$filter_title_1.'</option>';
@@ -67,7 +68,8 @@
 						<?php 
 							$filter_title_2 = get_field('filter_title_2');
 							$filter_2 = get_field('filter_2');
-							if(count($filter_2) > 0 && !empty($filter_title_2)):
+							$filter_2_count = is_array( $filter_2 ) ? count( $filter_2 ) : 0;
+							if($filter_2_count > 0 && !empty($filter_title_2)):
 							
 							echo '<select id="filter_2" class="resource_filtering">';
 							echo '<option value="0">'.$filter_title_2.'</option>';
@@ -87,7 +89,8 @@
 						<?php 
 							$filter_title_3 = get_field('filter_title_3');
 							$filter_3 = get_field('filter_3');
-							if(count($filter_3) > 0 && !empty($filter_title_3)):
+							$filter_3_count = is_array( $filter_3 ) ? count( $filter_3 ) : 0;
+							if($filter_3_count > 0 && !empty($filter_title_3)):
 							
 							echo '<select id="filter_3" class="resource_filtering">';
 							echo '<option value="0">'.$filter_title_3.'</option>';
@@ -131,6 +134,8 @@
 			
 				echo '<div class="resource-container-inner">';
 			
+				$separator_count = 0;
+			
 				$resources = get_field('resources', $resource_list->ID); 
 				
 				foreach ($resources as $resource):
@@ -141,7 +146,8 @@
 					$note = get_field('note', $resource_id);
 					$resource_popup_image = get_field('resource_popup_image', $resource_id);
 					$resource_popup_url = get_field('resource_popup_url', $resource_id);
-					$download_count = count(get_field('downloads', $resource_id));
+					$downloads = get_field('downloads', $resource_id);
+					$download_count = is_array( $downloads ) ? count( $downloads ) : 0;
 					
 					$resource_post = get_post($resource_id); 
 					$resource_slug = $resource_post->post_name; ?>
@@ -271,7 +277,18 @@
 						<?php } ?>
 					</div>
 					
-			<?php endforeach; 
+			<?php 
+					$separator_count++;
+					
+					if($separator_count%2 == 0 && $separator_count != 0){
+						echo '<div class="clearfix hidden-sm hidden-md hidden-lg hidden-xl"></div>';
+					}
+					
+					if($separator_count%4 == 0 && $separator_count != 0){
+						echo '<div class="clearfix hidden-xs"></div>';
+					}
+				
+				endforeach; 
 			
 				echo '</div>';
 				

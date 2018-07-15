@@ -40,7 +40,8 @@
 						<?php
 							$filter_title_1 = get_field('filter_title_1', $resource_list[0]->ID);
 							$filter_1 = get_field('filter_1', $resource_list[0]->ID);
-							if(count($filter_1) > 0 && !empty($filter_title_1)):
+							$filer_1_count = is_array( $filter_1 ) ? count( $filter_1 ) : 0;
+							if($filer_1_count > 0 && !empty($filter_title_1)):
 							
 							echo '<select id="filter_1" class="resource_filtering">';
 							echo '<option value="0">'.$filter_title_1.'</option>';
@@ -60,7 +61,8 @@
 						<?php 
 							$filter_title_2 = get_field('filter_title_2', $resource_list[0]->ID);
 							$filter_2 = get_field('filter_2', $resource_list[0]->ID);
-							if(count($filter_2) > 0 && !empty($filter_title_2)):
+							$filter_2_count = is_array( $filter_2 ) ? count( $filter_2 ) : 0;
+							if($filter_2_count > 0 && !empty($filter_title_2)):
 							
 							echo '<select id="filter_2" class="resource_filtering">';
 							echo '<option value="0">'.$filter_title_2.'</option>';
@@ -80,7 +82,8 @@
 						<?php 
 							$filter_title_3 = get_field('filter_title_3', $resource_list[0]->ID);
 							$filter_3 = get_field('filter_3', $resource_list[0]->ID);
-							if(count($filter_3) > 0 && !empty($filter_title_3)):
+							$filter_3_count = is_array( $filter_3 ) ? count( $filter_3 ) : 0;
+							if($filter_3_count > 0 && !empty($filter_title_3)):
 							
 							echo '<select id="filter_3" class="resource_filtering">';
 							echo '<option value="0">'.$filter_title_3.'</option>';
@@ -105,7 +108,7 @@
 						
 					if(!empty($alternative_view)):
 					?>
-					<a href="javascript:;" class="btn_list">List</a>
+					<a href="javascript:;" class="btn_list active">List</a>
 					<a href="<?=$alternative_view?>" class="btn_grid">Grid</a>
 					
 					<?php endif; ?>
@@ -121,10 +124,10 @@
 				
 				$resources = get_field('resources', $resource_list[0]->ID);
 				
-				$url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+				/*$url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 				$parts = parse_url($url);
 				parse_str($parts['query'], $query);
-				$page = $query['page'];
+				$page = $query['page'];*/
 				
 				if(empty($page)){
 					$page = 1;
@@ -132,7 +135,7 @@
 				
 				$resource_count      = 0;
 				$resources_per_page  = 20; // How many features to display on each page
-				$total              = count( $resources );
+				$total              = is_array( $resources ) ? count( $resources ) : 0;
 				$pages              = ceil( $total / $resources_per_page );
 				$min                = ( ( $page * $resources_per_page ) - $resources_per_page ) + 1;
 				$max                = ( $min + $resources_per_page ) - 1;
@@ -154,7 +157,8 @@
 					$note = get_field('note', $resource_id);
 					$resource_popup_image = get_field('resource_popup_image', $resource_id);
 					$resource_popup_url = get_field('resource_popup_url', $resource_id);
-					$download_count = count(get_field('downloads', $resource_id));
+					$downloads = get_field('downloads', $resource_id);
+					$download_count = is_array( $downloads ) ? count( $downloads ) : 0;
 					
 					$resource_post = get_post($resource_id); 
 					$resource_slug = $resource_post->post_name;
@@ -311,7 +315,11 @@
 				<button class="btn_gopage_next"></button>
 			</div>
 			<div class="download_all">
-				<a href="#" class="btn_single_download">Download All</a>
+				<?php
+					$download_all = get_field('download_all',$resource_list[0]->ID);
+					
+					echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$download_all['ID'].'&pageid='.$post->ID.'" class="btn_single_download" '.$file_type.'" target="_blank">Download All</a>';
+				?>
 			</div>
 		</div>
 	</div>

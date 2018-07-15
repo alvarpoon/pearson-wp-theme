@@ -93,7 +93,16 @@
 							$link_target = get_sub_field('link_target');
 							
 							echo '<div class="banner-item">';
-							echo '<a href="'.$link.'" target="'.$link_target.'"><img src="'.$image.'" class="img-responsive" /></a>';
+							
+							switch($link_target){
+								case '_blank':
+									echo '<a href="'.$link.'" target="'.$link_target.'"><img src="'.$image.'" class="img-responsive" /></a>';
+									break;
+								case 'lightbox':
+									echo '<a href="'.$link.'" data-fancybox><img src="'.$image.'" class="img-responsive" /></a>';
+									break;
+							}
+							
 							echo '</div>';
 						
 						endif;
