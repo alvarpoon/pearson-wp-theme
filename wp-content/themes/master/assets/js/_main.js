@@ -893,8 +893,13 @@ function initAudioSetup(){
 				}
 				
 			}).bind('play',function(){
+				$('.audio_playback .playtoggle').removeClass('pause');
+				$('.audio_playback .playtoggle').removeClass('playing');
+				
 				$(obj).find(".playtoggle").removeClass('pause');
 				$(obj).find(".playtoggle").addClass('playing');
+				
+				
 			}).bind('pause', function() {
 				$(obj).find(".playtoggle").addClass('pause');
 			}).bind('ended', function() {
