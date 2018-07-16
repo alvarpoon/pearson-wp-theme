@@ -108,8 +108,8 @@
 						
 					if(!empty($alternative_view)):
 					?>
-					<a href="javascript:;" class="btn_list active">List</a>
-					<a href="<?=$alternative_view?>" class="btn_grid">Grid</a>
+					<a href="javascript:;" class="btn_list active"><?=__('List', 'Pearson-master');?></a>
+					<a href="<?=$alternative_view?>" class="btn_grid"><?=__('Grid', 'Pearson-master');?></a>
 					
 					<?php endif; ?>
 				</div>
@@ -117,8 +117,8 @@
 		</div>
 		<div class="resource-container clearfix">
 			<div class="clearfix resource-header">
-				<div class="col-xs-9 col-sm-10 col-md-5 no-padding">Items</div>
-				<div class="col-xs-3 col-sm-2 col-md-7 no-padding">Download</div>
+				<div class="col-xs-9 col-sm-10 col-md-5 no-padding"><?=__('Items', 'Pearson-master');?></div>
+				<div class="col-xs-3 col-sm-2 col-md-7 no-padding"><?=__('Download', 'Pearson-master');?></div>
 			</div>
 			<?php
 				
@@ -219,7 +219,7 @@
 							
 							$downloadable_file_string = implode(',',$downloadable_file_arr);
 							
-							echo '<a href="javascript:;" data-file="'.$downloadable_file_string.'" data-filename="testing123" class="media-file all createzip">Download All</a>';
+							echo '<a href="javascript:;" data-file="'.$downloadable_file_string.'" data-filename="testing123" class="media-file all createzip">'.__('Download All', 'Pearson-master').'</a>';
 						}
 						?>
 					</div>
@@ -243,7 +243,7 @@
 								?>
 								<!--<option>Download All</option>-->
 							</select>
-							<div class="download_text">Download</div>
+							<div class="download_text"><?=__('Download', 'Pearson-master');?></div>
 						</div>
 					</div>
 					<?php else:
@@ -260,7 +260,7 @@
 									
 									echo '<div class="hidden-md hidden-lg">';
 									//echo '<a href="'.$downloadable_file['url'].'" class="media-file all" target="_blank">Download</a>';
-									echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file all" target="_blank">Download</a>';
+									echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file all" target="_blank">'.__('Download', 'Pearson-master').'</a>';
 									echo '</div>'; 
 								}
 					 
@@ -330,7 +330,7 @@
 				<?php
 					$download_all = get_field('download_all',$resource_list[0]->ID);
 					
-					echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$download_all['ID'].'&pageid='.$post->ID.'" class="btn_single_download" '.$file_type.'" target="_blank">Download All</a>';
+					echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$download_all['ID'].'&pageid='.$post->ID.'" class="btn_single_download" '.$file_type.'" target="_blank">'.__('Download All').'</a>';
 				?>
 			</div>
 		</div>

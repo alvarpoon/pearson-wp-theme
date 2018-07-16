@@ -18,14 +18,15 @@
 			
 			foreach($main_banners as $main_banner):
 				$banner_link = get_field('banner_link', $main_banner);
+				$banner_link_target = get_field('link_target', $main_banner);
 				$banner_mobile = get_field('banner_mobile', $main_banner);
 				$banner_tablet = get_field('banner_tablet', $main_banner);
 				$banner_desktop = get_field('banner_desktop', $main_banner);
 				
 				echo '<div class="slider-item">';
-				echo '<img src="'.$banner_mobile.'" class="img-responsive visible-xs hidden-sm hidden-md hidden-lg" />';
-				echo '<img src="'.$banner_tablet.'" class="img-responsive hidden-xs visible-sm visible-md hidden-lg" />';
-				echo '<img src="'.$banner_desktop.'" class="img-responsive hidden-xs hidden-sm hidden-md visible-lg" />';
+				echo '<a href="'.$banner_link.'" target="'.$banner_link_target.'"><img src="'.$banner_mobile.'" class="img-responsive visible-xs hidden-sm hidden-md hidden-lg" /></a>';
+				echo '<a href="'.$banner_link.'" target="'.$banner_link_target.'"><img src="'.$banner_tablet.'" class="img-responsive hidden-xs visible-sm visible-md hidden-lg" /></a>';
+				echo '<a href="'.$banner_link.'" target="'.$banner_link_target.'"><img src="'.$banner_desktop.'" class="img-responsive hidden-xs hidden-sm hidden-md visible-lg" /></a>';
 				echo '</div>';
 				
 			endforeach;

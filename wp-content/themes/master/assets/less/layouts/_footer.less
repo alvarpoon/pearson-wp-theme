@@ -12,24 +12,36 @@ footer{
 			
 			.footer-links{
 				display:inline-block;
-				a{
-					color:#fff;
-					text-decoration:underline;
-					display:inline-block;
-					&:after{
-						content:"|";
+				
+				ul.menu{
+					padding:0;
+					li{
 						display:inline-block;
-						padding:0 5px;
-						text-decoration:none;
-					}
-					
-					&:last-child{
-						&:after{
-							padding-right:0;
-							display:none;
+						list-style:none;
+						
+						a{
+							color:#fff;
+							text-decoration:underline;
+							display:inline-block;
+							&:after{
+								content:"|";
+								display:inline-block;
+								padding:0 5px;
+								text-decoration:none;
+							}
+						}
+						
+						&:last-child{
+							a{
+								&:after{
+									padding-right:0;
+									display:none;
+								}
+							}
 						}
 					}
 				}
+				
 			}
 			
 			.footer-copyright{

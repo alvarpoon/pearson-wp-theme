@@ -115,8 +115,8 @@
 						
 					if(!empty($alternative_view)):
 					?>
-					<a href="<?=$alternative_view?>" class="btn_list">List</a>
-					<a href="javascript:;" class="btn_grid active">Grid</a>
+					<a href="<?=$alternative_view?>" class="btn_list"><?=__('List', 'Pearson-master');?></a>
+					<a href="javascript:;" class="btn_grid active"><?=__('Grid', 'Pearson-master');?></a>
 					
 					<?php endif; ?>
 				</div>
@@ -185,7 +185,7 @@
 							<?php
 								if($download_count > 1){ ?>
 									<div class="multiple_download hidden-xs hidden-sm">
-										<div class="multiple_dl_header"><span>Download (<?=$download_count?>)</span></div>
+										<div class="multiple_dl_header"><span><?=__('Download', 'Pearson-master');?> (<?=$download_count?>)</span></div>
 										<div class="multiple_dl_content">
 											<ul>
 											<?php	
@@ -208,7 +208,7 @@
 												
 												$downloadable_file_string = implode(',',$downloadable_file_arr);
 												
-												echo '<li><a href="javascript:;" data-file="'.$downloadable_file_string.'" data-filename="testing123" class="createzip">Download All ('.$download_count.' files)</a></li>';
+												echo '<li><a href="javascript:;" data-file="'.$downloadable_file_string.'" data-filename="testing123" class="createzip">'.__('Download All', 'Pearson-master').' ('.$download_count.__(' files', 'Pearson-master').')</a></li>';
 											}?>
 											</ul>
 										</div>
@@ -233,7 +233,7 @@
 												?>
 												<!--<option>Download All</option>-->
 											</select>
-											<div class="download_text">Download (<?=$download_count?>)</div>
+											<div class="download_text"><?=__('Download');?> (<?=$download_count?>)</div>
 										</div>
 									</div>
 							<?php
@@ -244,7 +244,7 @@
 											$preview_only = get_sub_field('preview_only');
 											if(!$preview_only){
 												//echo '<a href="'.$downloadable_file['url'].'" class="btn_single_download" target="_blank">Download</a>';
-												echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="btn_single_download" target="_blank">Download</a>';
+												echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="btn_single_download" target="_blank">'.__('Download', 'Pearson-master').'</a>';
 											}
 										endwhile;
 									}

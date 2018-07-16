@@ -44,10 +44,10 @@ $username = $IAM->__get('UserName');*/
 					error_log('Ralph Get Username: ' . $username);
 
 					if ($username) {
-						echo('<div class="login-wrapper"><a href="/login_iam.php?logout">' . $username . ' (Logout)</a></div>');
+						echo('<div class="login-wrapper"><a href="/login_iam.php?logout">' . $username . ' ('.__('Logout', 'Pearson-master').')</a></div>');
 					}
 					else
-						echo('<div class="login-wrapper"><a href="/login_iam.php">Sign in</a></div>');
+						echo('<div class="login-wrapper"><a href="/login_iam.php">'.__('Sign in', 'Pearson-master').'</a></div>');
 
 				?>
 			</div>
