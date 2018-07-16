@@ -345,7 +345,9 @@
 					?>
 				</select>
 				<span>/<?=$pages?></span>
-				<button class="btn_gopage_next"></button>
+				<?php if($pages > 1){
+					echo '<button class="btn_gopage_next"></button>';
+				} ?>
 			</div>
 			<div class="download_all">
 				<?php

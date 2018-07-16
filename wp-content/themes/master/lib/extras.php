@@ -712,7 +712,7 @@ function get_resource_grid(){
 					</div>
 					<?php } ?>
 				</div>
-				<div class="resource-type">File Downlaod</div>
+				<!--<div class="resource-type">File Downlaod</div>-->
 				<div class="resource-download-wrapper">
 					<?php
 						if($download_count > 1){ ?>
@@ -1396,7 +1396,7 @@ function get_resource_list(){
 										<div class="resource-title">
 											<?php echo showListTitle($resource_id, $resource_type, $resource_popup_image['url'], $resource_popup_url, $resource_slug);?>
 										</div>
-										<div class="resource-type"><?=$resource_type?></div>
+										<!--<div class="resource-type"><?=$resource_type?></div>-->
 									</div>
 								</td>
 								<td class="audio">
@@ -1656,7 +1656,7 @@ function get_all_resources_list(){
 										<div class="resource-title">
 											<?php echo showListTitle($resource_id, $resource_type, $resource_popup_image['url'], $resource_popup_url, $resource_slug);?>
 										</div>
-										<div class="resource-type"><?=$resource_type?></div>
+										<div class="resource-type"><?php echo get_the_title($resource_parent);?></div>
 									</div>
 								</td>
 								<td class="audio">

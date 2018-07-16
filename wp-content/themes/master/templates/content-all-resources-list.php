@@ -182,7 +182,7 @@
 										<div class="resource-title">
 											<?php echo showListTitle($resource_id, $resource_type, $resource_popup_image['url'], $resource_popup_url, $resource_slug);?>
 										</div>
-										<div class="resource-type"><?=$resource_type?></div>
+										<div class="resource-type"><?php echo get_the_title($resource_parent);?></div>
 									</div>
 								</td>
 								<td class="audio">
