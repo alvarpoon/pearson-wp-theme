@@ -3,13 +3,8 @@
 <?php
 	$my_postid = $post->ID;
 	
-	//echo 'post id: '.$my_postid;
+	get_header_banner();
 ?>
-<div class="container-fluid">
-	<div class="top-banner-container" style="background-image:url('<?=get_stylesheet_directory_uri()?>/assets/img/home/banner-top.png');">
-		<img src="<?=get_stylesheet_directory_uri()?>/assets/img/home/banner-top.png" class="img-responsive hidden-xs hidden-sm hidden-md hidden-lg" />
-	</div>
-</div>
 
 <div class="container">
 	<div class="home-slider">
@@ -44,7 +39,7 @@
 							'order'            => 'DESC',
 							'post_type'        => 'post',
 							'post_status'      => 'publish',
-							'suppress_filters' => true
+							'suppress_filters' => false
 						);
 						$postlist = get_posts($args);
 						

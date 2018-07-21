@@ -2,12 +2,10 @@
 <?php //wp_link_pages(array('before' => '<nav class="pagination">', 'after' => '</nav>')); ?>
 <?php
 	$resource_list = get_field('resource_list');
+	
+	get_header_banner();
 ?>
-<div class="container-fluid">
-	<div class="top-banner-container" style="background-image:url('<?=get_stylesheet_directory_uri()?>/assets/img/home/banner-top.png');">
-		<img src="<?=get_stylesheet_directory_uri()?>/assets/img/home/banner-top.png" class="img-responsive hidden-xs hidden-sm hidden-md hidden-lg" />
-	</div>
-</div>
+
 <div class="container">
 	<div class="page-content-wrapper">
 		<div class="page-general-info">
@@ -124,11 +122,6 @@
 				
 				$resources = get_field('resources', $resource_list[0]->ID);
 				
-				/*$url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-				$parts = parse_url($url);
-				parse_str($parts['query'], $query);
-				$page = $query['page'];*/
-				
 				if(empty($page)){
 					$page = 1;
 				}
@@ -145,7 +138,6 @@
 				<script>
 					var resource_listID = '<?=$resource_list[0]->ID?>';
 					var currentPageNum = '<?=$page?>';
-					//console.log('resource_listID: '+resource_listID);
 				</script>
 				
 		<?php
@@ -158,7 +150,6 @@
 					$resource_popup_image = get_field('resource_popup_image', $resource_id);
 					$resource_popup_url = get_field('resource_popup_url', $resource_id);
 					$downloads = get_field('downloads', $resource_id);
-					//$download_count = is_array( $downloads ) ? count( $downloads ) : 0;
 					$download_count = getDownload_count($resource_id);
 					
 					$resource_post = get_post($resource_id); 
@@ -181,7 +172,6 @@
 										<div class="resource-title">
 											<?php echo showListTitle($resource_id, $resource_type, $resource_popup_image['url'], $resource_popup_url, $resource_slug);?>
 										</div>
-										<!--<div class="resource-type"><? //=$resource_type?></div>-->
 									</div>
 								</td>
 								<td class="audio">
@@ -208,62 +198,102 @@
 								$file_title = get_sub_field('file_title');
 								$downloadable_file = get_sub_field('downloadable_file');
 								$file_type = get_sub_field('file_type');
+								$file_extension = strtolower(substr(strrchr($downloadable_file['url'],"."),1));
 								$preview_only = get_sub_field('preview_only');
 								
-								//echo '<a href="'.$downloadable_file['url'].'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
 								if(!$preview_only){
-									echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_type.' target="_blank"">'.$file_title.'</a>';
+									switch($file_type){
+										case 'image':
+										case 'video':
+											echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_extension.'" target="_blank">'.$file_title.'</a>';		
+											break;
+										default:
+											echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
+											break;
+									}
 									array_push($downloadable_file_arr, $downloadable_file['url']);
 								}
+								
+								unset($file_title);
+								unset($downloadable_file);
+								unset($file_type);
+								unset($file_extension);
+								unset($preview_only);	
 							endwhile;
 							
 							$downloadable_file_string = implode(',',$downloadable_file_arr);
 							
 							echo '<a href="javascript:;" data-file="'.$downloadable_file_string.'" data-filename="testing123" class="media-file all createzip">'.__('Download All', 'Pearson-master').'</a>';
+							
+							unset($downloadable_file_arr);
+							unset($downloadable_file_string);
 						}
 						?>
 					</div>
 					
 					<div class="hidden-md hidden-lg">
 						<div class="mobile_download_wrapper">
-							<select class="mobile_download">
+							
 								<?php 
 								if( have_rows('downloads', $resource_id) ){
+									echo '<select class="mobile_download">';
 									while( have_rows('downloads', $resource_id) ): the_row();
 										$file_title = get_sub_field('file_title');
 										$downloadable_file = get_sub_field('downloadable_file');
 										$file_type = get_sub_field('file_type');
 										$preview_only = get_sub_field('preview_only');
 										if(!$preview_only){
-										//echo '<a href="'.$downloadable_file['url'].'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
 											echo '<option value="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'">'.$file_title.'</option>';
 										}
+										
+										unset($file_title);
+										unset($downloadable_file);
+										unset($file_type);
+										unset($preview_only);
 									endwhile;
+									
+									echo '</select>';
+									echo '<div class="download_text">'.__('Download', 'Pearson-master').'</div>';
 								}
 								?>
 								<!--<option>Download All</option>-->
-							</select>
-							<div class="download_text"><?=__('Download', 'Pearson-master');?></div>
+							
+							
 						</div>
 					</div>
 					<?php else:
 						if( have_rows('downloads', $resource_id) ):
 							while( have_rows('downloads', $resource_id) ): the_row();
+								$file_title = get_sub_field('file_title');
 								$downloadable_file = get_sub_field('downloadable_file'); 
 								$file_type = get_sub_field('file_type');
+								$file_extension = strtolower(substr(strrchr($downloadable_file['url'],"."),1));
 								$preview_only = get_sub_field('preview_only');
+								
 								if(!$preview_only){
 									echo '<div class="hidden-xs hidden-sm">';
-									//echo '<a href="'.$downloadable_file['url'].'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>'; 
-									echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
+									
+									switch($file_type){
+										case 'image':
+										case 'video':
+											echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_extension.'" target="_blank">'.$file_title.'</a>';		
+											break;
+										default:
+											echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
+											break;
+									}									
 									echo '</div>';
 									
 									echo '<div class="hidden-md hidden-lg">';
-									//echo '<a href="'.$downloadable_file['url'].'" class="media-file all" target="_blank">Download</a>';
 									echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file all" target="_blank">'.__('Download', 'Pearson-master').'</a>';
 									echo '</div>'; 
 								}
-					 
+								
+								unset($file_title);
+								unset($downloadable_file);
+								unset($file_type);
+								unset($file_extension);
+								unset($preview_only);
 					 		endwhile;
 					 endif; ?>
 					<?php endif; ?>
@@ -273,26 +303,42 @@
 					<div id="<?=$resource_slug.'-content'?>" class="hidden-content fancybox-content article-lightbox">
 						<h3><?=get_the_title( $resource->ID );?></h3>
 						<div class="article-content">
-							<div class="media-container">
+							
 								<?php 
 								if( have_rows('downloads', $resource_id) ){
+								
+									echo '<div class="media-container">';
+									
 									while( have_rows('downloads', $resource_id) ): the_row();
 										$file_title = get_sub_field('file_title');
 										$downloadable_file = get_sub_field('downloadable_file');
 										$file_type = get_sub_field('file_type');
+										$file_extension = strtolower(substr(strrchr($downloadable_file['url'],"."),1));
 										$preview_only = get_sub_field('preview_only');
 										if(!$preview_only){
-											//echo '<a href="'.$downloadable_file['url'].'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
-											echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
+											switch($file_type){
+												case 'image':
+												case 'video':
+													echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_extension.'" target="_blank">'.$file_title.'</a>';		
+													break;
+												default:
+													echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
+													break;
+											}
 										}
+										
+										unset($file_title);
+										unset($downloadable_file);
+										unset($file_type);
+										unset($file_extension);
+										unset($preview_only);
 									endwhile;
-								}									
+									
+									echo '</div>';
+								}
 								?>
-							</div>
+							
 							<div class="clearfix">
-								<?php //if(!empty($resource_thumbnail)){ ?>
-									<!--<div class="img-container"><img src="<? //=$resource_thumbnail?>" class="img-responsive" /></div>-->
-									<?php //} ?>
 								<div class="content-container">
 									<?php 
 										$content_post = get_post($resource_id);

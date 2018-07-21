@@ -1,4 +1,4 @@
-.page-template-template-home{
+.page-template-template-home, .page-template-template-about-authors{
 	
 	.home-slider{
 		margin-bottom:40px;
@@ -29,7 +29,7 @@
 			}
 		}
 		
-		.content-right{		
+		.content-right{
 			margin-bottom:20px;
 			.section-title{
 			  font-size: 20px;
@@ -93,6 +93,34 @@
 					}
 				}
 			}
+			
+			&.about-authors{
+				.section-title{
+					font-size: 28px;
+					color: #005a70;
+					margin-bottom: 0;
+				}
+				
+				.long-content{
+					.content-title{
+						font-weight:bold;
+						font-size:15px;
+						margin-bottom:20px;
+					}
+					
+					.content-block-div{
+						.content-block{
+							padding-bottom:20px;
+							margin-bottom:20px;
+							border-bottom:solid 1px #e7e7e7;
+							
+							.img-container{
+								//padding-left:0;
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 }
@@ -103,7 +131,7 @@
 //===============================================================================
 //===============================================================================
 @media (min-width: @screen-sm-min) {
-	.page-template-template-home{	
+	.page-template-template-home, .page-template-template-about-authors{
 		.home-slider{
 			.slider-item{
 				/*width:100%;
@@ -126,6 +154,19 @@
 				padding-left:320px;
 				.scrollable-content-wrapper{
 					height:550px;
+				}
+				
+				&.about-authors{
+					.long-content{
+						min-height:600px;
+						.content-block-div{
+							.content-block{
+								.img-container{
+									padding:0;
+								}
+							}
+						}
+					}
 				}
 			}
 		}

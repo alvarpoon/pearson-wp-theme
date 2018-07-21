@@ -4,7 +4,25 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <title><?php
+	/*
+	 * Print the <title> tag based on what is being viewed.
+	 */
+	
+	wp_title( '|', true, 'right' );
+	
+	// Add the blog name.
+	bloginfo( 'name' );
+	
+	// Add the blog description for the home/front page.
+	$display_title = get_field('display_title');
+				
+	if(empty($display_title)){
+		$display_title = get_the_title($post->ID);
+	}
+	
+  ?></title>
+  
   <link rel="alternate" type="application/rss+xml" title="<?php echo get_bloginfo('name'); ?> Feed" href="<?php echo esc_url(get_feed_link()); ?>">
 
   <?php wp_head(); ?>

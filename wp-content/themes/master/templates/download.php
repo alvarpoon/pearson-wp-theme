@@ -23,17 +23,45 @@ if(isset($_GET["file"]) && isset($_GET["pageid"])){
 		
 		$destination_path = $_SERVER['DOCUMENT_ROOT'].$destination_path;
 		
+		/* Figure out the MIME type (if not specified) */
+		$known_mime_types=array(
+			"pdf" => "application/pdf",
+			"txt" => "text/plain",
+			"html" => "text/html",
+			"htm" => "text/html",
+			"exe" => "application/octet-stream",
+			"zip" => "application/zip",
+			"doc" => "application/msword",
+			"xls" => "application/vnd.ms-excel",
+			"ppt" => "application/vnd.ms-powerpoint",
+			"gif" => "image/gif",
+			"png" => "image/png",
+			"jpeg"=> "image/jpg",
+			"jpg" =>  "image/jpg",
+			"php" => "text/plain"
+		);
+		 
+		if($mime_type==''){
+			$file_extension = strtolower(substr(strrchr($destination_path,"."),1));
+			if(array_key_exists($file_extension, $known_mime_types)){
+				$mime_type=$known_mime_types[$file_extension];
+			} else {
+				$mime_type="application/force-download";
+			};
+		};
+		
 		// Process download
 		if(file_exists($destination_path)) {
 			header('Content-Description: File Transfer');
-			header('Content-Type: application/octet-stream');
-			header('Content-Disposition: attachment; filename="'.basename($filepath).'"');
+			header('Content-Type: '.$mime_type);
+			header('Content-Disposition: attachment; filename="'.basename($destination_path).'"');
 			header('Expires: 0');
 			header('Cache-Control: must-revalidate');
 			header('Pragma: public');
-			header('Content-Length: ' . filesize($filepath));
+			header('Content-Length: ' . filesize($destination_path));
+			
 			flush(); // Flush system output buffer
-			readfile($filepath);
+			readfile($destination_path);
 			//
 		}
 	}else{

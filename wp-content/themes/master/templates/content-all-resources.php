@@ -3,12 +3,9 @@
 
 <?php
 	$all_resources = get_all_resource_page();
+	
+	get_header_banner();
 ?>
-<div class="container-fluid">
-	<div class="top-banner-container" style="background-image:url('<?=get_stylesheet_directory_uri()?>/assets/img/home/banner-top.png');">
-		<img src="<?=get_stylesheet_directory_uri()?>/assets/img/home/banner-top.png" class="img-responsive hidden-xs hidden-sm hidden-md hidden-lg" />
-	</div>
-</div>
 <div class="container">
 	<div class="page-content-wrapper">
 		<div class="page-general-info">
@@ -230,11 +227,19 @@
 														
 														array_push($downloadable_file_arr, $downloadable_file['url']);
 													}
+													
+													unset($file_title);
+													unset($downloadable_file);
+													unset($file_type);
+													unset($preview_only);
 												endwhile;
 												
 												$downloadable_file_string = implode(',',$downloadable_file_arr);
 												
 												echo '<li><a href="javascript:;" data-file="'.$downloadable_file_string.'" data-filename="testing123" class="createzip">'.__('Download All', 'Pearson-master').'('.$download_count.__(' files', 'Pearson-master').')</a></li>';
+												
+												unset($downloadable_file_arr);
+												unset($downloadable_file_string);
 											}?>
 											</ul>
 										</div>
@@ -254,12 +259,17 @@
 															//echo '<a href="'.$downloadable_file['url'].'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
 															echo '<option value="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'">'.$file_title.'</option>';
 														}
+														
+														unset($file_title);
+														unset($downloadable_file);
+														unset($file_type);
+														unset($preview_only);
 													endwhile;
 												}
 												?>
 												<!--<option>Download All</option>-->
 											</select>
-											<div class="download_text"><?=__('Download');?> (<?=$download_count?>)</div>
+											<div class="download_text"><?=__('Download', 'Pearson-master');?> (<?=$download_count?>)</div>
 										</div>
 									</div>
 							<?php
@@ -272,6 +282,11 @@
 												//echo '<a href="'.$downloadable_file['url'].'" class="btn_single_download" target="_blank">Download</a>';
 												echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$resource_parent.'" class="btn_single_download" target="_blank">'.__('Download', 'Pearson-master').'</a>';
 											}
+											
+											//unset($file_title);
+											unset($downloadable_file);
+											//unset($file_type);
+											unset($preview_only);
 										endwhile;
 									}
 								}
@@ -288,14 +303,28 @@
 											$file_title = get_sub_field('file_title');
 											$downloadable_file = get_sub_field('downloadable_file');
 											$file_type = get_sub_field('file_type');
+											$file_extension = strtolower(substr(strrchr($downloadable_file['url'],"."),1));
 											$preview_only = get_sub_field('preview_only');
+
 											if(!$preview_only){
-												//echo '<a href="'.$downloadable_file['url'].'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
-												
-												echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$resource_parent.'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
+												switch($file_type){
+													case 'image':
+													case 'video':
+														echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_extension.'" target="_blank">'.$file_title.'</a>';		
+														break;
+													default:
+														echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
+														break;
+												}
 											}
+											
+											unset($file_title);
+											unset($downloadable_file);
+											unset($file_type);
+											unset($file_extension);
+											unset($preview_only);
 										endwhile;
-									}									
+									}						
 									?>
 								</div>
 								<div class="clearfix">

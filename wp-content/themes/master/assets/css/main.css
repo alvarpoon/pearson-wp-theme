@@ -6896,8 +6896,20 @@ a.media-file.pdf {
 a.media-file.mpg {
   background-image: url(../img/common/mpg.svg);
 }
+a.media-file.mp4 {
+  background-image: url(../img/common/mp4.svg);
+}
+a.media-file.mov {
+  background-image: url(../img/common/mov.svg);
+}
 a.media-file.jpg {
   background-image: url(../img/common/jpg.svg);
+}
+a.media-file.gif {
+  background-image: url(../img/common/gif.svg);
+}
+a.media-file.png {
+  background-image: url(../img/common/png.svg);
 }
 a.media-file.html {
   background-image: url(../img/common/html.svg);
@@ -7461,76 +7473,94 @@ footer.content-info .footer-wrapper .footer-copyright {
     display: inline-block;
   }
 }
-.page-template-template-home .home-slider {
+.page-template-template-home .home-slider,
+.page-template-template-about-authors .home-slider {
   margin-bottom: 40px;
 }
-.page-template-template-home .home-slider .slider-item {
+.page-template-template-home .home-slider .slider-item,
+.page-template-template-about-authors .home-slider .slider-item {
   /*width:300px;
 			height:180px;
 			background-position:left center;
 			background-size:cover;*/
 }
-.page-template-template-home .home-slider .slick-dots li {
+.page-template-template-home .home-slider .slick-dots li,
+.page-template-template-about-authors .home-slider .slick-dots li {
   margin: 0;
 }
-.page-template-template-home .home-content-wrapper {
+.page-template-template-home .home-content-wrapper,
+.page-template-template-about-authors .home-content-wrapper {
   position: relative;
 }
-.page-template-template-home .home-content-wrapper .content-left {
+.page-template-template-home .home-content-wrapper .content-left,
+.page-template-template-about-authors .home-content-wrapper .content-left {
   width: 100%;
   z-index: 900;
 }
-.page-template-template-home .home-content-wrapper .content-left .banner-item {
+.page-template-template-home .home-content-wrapper .content-left .banner-item,
+.page-template-template-about-authors .home-content-wrapper .content-left .banner-item {
   margin-bottom: 6px;
 }
-.page-template-template-home .home-content-wrapper .content-left .banner-item:last-child {
+.page-template-template-home .home-content-wrapper .content-left .banner-item:last-child,
+.page-template-template-about-authors .home-content-wrapper .content-left .banner-item:last-child {
   margin-bottom: 0;
 }
-.page-template-template-home .home-content-wrapper .content-right {
+.page-template-template-home .home-content-wrapper .content-right,
+.page-template-template-about-authors .home-content-wrapper .content-right {
   margin-bottom: 20px;
 }
-.page-template-template-home .home-content-wrapper .content-right .section-title {
+.page-template-template-home .home-content-wrapper .content-right .section-title,
+.page-template-template-about-authors .home-content-wrapper .content-right .section-title {
   font-size: 20px;
   font-weight: bold;
   color: #005a70;
 }
-.page-template-template-home .home-content-wrapper .content-right .scrollable-content-wrapper {
+.page-template-template-home .home-content-wrapper .content-right .scrollable-content-wrapper,
+.page-template-template-about-authors .home-content-wrapper .content-right .scrollable-content-wrapper {
   border-top: solid 1px #005a70;
   border-bottom: solid 1px #005a70;
   height: 230px;
   overflow-y: scroll;
 }
-.page-template-template-home .home-content-wrapper .content-right .scrollable-content-wrapper .scrollable-content .news-item {
+.page-template-template-home .home-content-wrapper .content-right .scrollable-content-wrapper .scrollable-content .news-item,
+.page-template-template-about-authors .home-content-wrapper .content-right .scrollable-content-wrapper .scrollable-content .news-item {
   padding-left: 6px;
   border-bottom: 1px solid #dedede;
 }
-.page-template-template-home .home-content-wrapper .content-right .scrollable-content-wrapper .scrollable-content .news-item:last-child {
+.page-template-template-home .home-content-wrapper .content-right .scrollable-content-wrapper .scrollable-content .news-item:last-child,
+.page-template-template-about-authors .home-content-wrapper .content-right .scrollable-content-wrapper .scrollable-content .news-item:last-child {
   border-bottom: none;
 }
-.page-template-template-home .home-content-wrapper .content-right .scrollable-content-wrapper .scrollable-content .news-item .news-date {
+.page-template-template-home .home-content-wrapper .content-right .scrollable-content-wrapper .scrollable-content .news-item .news-date,
+.page-template-template-about-authors .home-content-wrapper .content-right .scrollable-content-wrapper .scrollable-content .news-item .news-date {
   font-size: 14px;
   font-weight: bold;
   line-height: 1.57;
   margin: 8px 0;
 }
-.page-template-template-home .home-content-wrapper .content-right .scrollable-content-wrapper .scrollable-content .news-item .news-content a {
+.page-template-template-home .home-content-wrapper .content-right .scrollable-content-wrapper .scrollable-content .news-item .news-content a,
+.page-template-template-about-authors .home-content-wrapper .content-right .scrollable-content-wrapper .scrollable-content .news-item .news-content a {
   color: #007fa3;
   text-decoration: underline;
 }
-.page-template-template-home .home-content-wrapper .content-right .scrollable-content-wrapper .scrollable-content .news-item .news-content p {
+.page-template-template-home .home-content-wrapper .content-right .scrollable-content-wrapper .scrollable-content .news-item .news-content p,
+.page-template-template-about-authors .home-content-wrapper .content-right .scrollable-content-wrapper .scrollable-content .news-item .news-content p {
   font-size: 14px;
   line-height: 1.57;
   margin-bottom: 0;
 }
-.page-template-template-home .home-content-wrapper .content-right .scrollable-content-wrapper .scrollable-content .news-item .news-content ul {
+.page-template-template-home .home-content-wrapper .content-right .scrollable-content-wrapper .scrollable-content .news-item .news-content ul,
+.page-template-template-about-authors .home-content-wrapper .content-right .scrollable-content-wrapper .scrollable-content .news-item .news-content ul {
   padding-left: 0;
 }
-.page-template-template-home .home-content-wrapper .content-right .scrollable-content-wrapper .scrollable-content .news-item .news-content ul li {
+.page-template-template-home .home-content-wrapper .content-right .scrollable-content-wrapper .scrollable-content .news-item .news-content ul li,
+.page-template-template-about-authors .home-content-wrapper .content-right .scrollable-content-wrapper .scrollable-content .news-item .news-content ul li {
   list-style: none;
   position: relative;
   padding-left: 15px;
 }
-.page-template-template-home .home-content-wrapper .content-right .scrollable-content-wrapper .scrollable-content .news-item .news-content ul li:before {
+.page-template-template-home .home-content-wrapper .content-right .scrollable-content-wrapper .scrollable-content .news-item .news-content ul li:before,
+.page-template-template-about-authors .home-content-wrapper .content-right .scrollable-content-wrapper .scrollable-content .news-item .news-content ul li:before {
   content: "";
   width: 10px;
   height: 1px;
@@ -7539,27 +7569,58 @@ footer.content-info .footer-wrapper .footer-copyright {
   background: #505759;
   position: absolute;
 }
+.page-template-template-home .home-content-wrapper .content-right.about-authors .section-title,
+.page-template-template-about-authors .home-content-wrapper .content-right.about-authors .section-title {
+  font-size: 28px;
+  color: #005a70;
+  margin-bottom: 0;
+}
+.page-template-template-home .home-content-wrapper .content-right.about-authors .long-content .content-title,
+.page-template-template-about-authors .home-content-wrapper .content-right.about-authors .long-content .content-title {
+  font-weight: bold;
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+.page-template-template-home .home-content-wrapper .content-right.about-authors .long-content .content-block-div .content-block,
+.page-template-template-about-authors .home-content-wrapper .content-right.about-authors .long-content .content-block-div .content-block {
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: solid 1px #e7e7e7;
+}
 @media (min-width: 768px) {
-  .page-template-template-home .home-slider .slider-item {
+  .page-template-template-home .home-slider .slider-item,
+  .page-template-template-about-authors .home-slider .slider-item {
     /*width:100%;
 				height:250px;*/
   }
-  .page-template-template-home .home-content-wrapper {
+  .page-template-template-home .home-content-wrapper,
+  .page-template-template-about-authors .home-content-wrapper {
     position: relative;
   }
-  .page-template-template-home .home-content-wrapper .content-left {
+  .page-template-template-home .home-content-wrapper .content-left,
+  .page-template-template-about-authors .home-content-wrapper .content-left {
     position: absolute;
     width: 300px;
     top: 0;
     left: 0;
     z-index: 900;
   }
-  .page-template-template-home .home-content-wrapper .content-right {
+  .page-template-template-home .home-content-wrapper .content-right,
+  .page-template-template-about-authors .home-content-wrapper .content-right {
     margin-bottom: 0;
     padding-left: 320px;
   }
-  .page-template-template-home .home-content-wrapper .content-right .scrollable-content-wrapper {
+  .page-template-template-home .home-content-wrapper .content-right .scrollable-content-wrapper,
+  .page-template-template-about-authors .home-content-wrapper .content-right .scrollable-content-wrapper {
     height: 550px;
+  }
+  .page-template-template-home .home-content-wrapper .content-right.about-authors .long-content,
+  .page-template-template-about-authors .home-content-wrapper .content-right.about-authors .long-content {
+    min-height: 600px;
+  }
+  .page-template-template-home .home-content-wrapper .content-right.about-authors .long-content .content-block-div .content-block .img-container,
+  .page-template-template-about-authors .home-content-wrapper .content-right.about-authors .long-content .content-block-div .content-block .img-container {
+    padding: 0;
   }
 }
 .page-template-template-resource .hidden-content,
@@ -8430,47 +8491,69 @@ footer.content-info .footer-wrapper .footer-copyright {
   padding-bottom: 10px;
   padding-top: 10px;
 }
-.page-template-template-resource-list .resource-container .resource-item.single-file .resource-title-wrapper,
-.page-template-template-all-resources-list .resource-container .resource-item.single-file .resource-title-wrapper,
-.page-template-template-group-resource-list .resource-container .resource-item.single-file .resource-title-wrapper {
+.page-template-template-resource-list .resource-container .resource-item.single-file .resource-title-wrapper .resource-title-div .resource-title a,
+.page-template-template-all-resources-list .resource-container .resource-item.single-file .resource-title-wrapper .resource-title-div .resource-title a,
+.page-template-template-group-resource-list .resource-container .resource-item.single-file .resource-title-wrapper .resource-title-div .resource-title a,
+.page-template-template-resource-list .resource-container .resource-item.single-file .resource-title-wrapper .resource-title-div .resource-title span,
+.page-template-template-all-resources-list .resource-container .resource-item.single-file .resource-title-wrapper .resource-title-div .resource-title span,
+.page-template-template-group-resource-list .resource-container .resource-item.single-file .resource-title-wrapper .resource-title-div .resource-title span {
   background-image: url(../img/common/ic-insert-drive-file-ui.svg);
 }
-.page-template-template-resource-list .resource-container .resource-item.multiple-file .resource-title-wrapper,
-.page-template-template-all-resources-list .resource-container .resource-item.multiple-file .resource-title-wrapper,
-.page-template-template-group-resource-list .resource-container .resource-item.multiple-file .resource-title-wrapper {
+.page-template-template-resource-list .resource-container .resource-item.multiple-file .resource-title-wrapper .resource-title-div .resource-title a,
+.page-template-template-all-resources-list .resource-container .resource-item.multiple-file .resource-title-wrapper .resource-title-div .resource-title a,
+.page-template-template-group-resource-list .resource-container .resource-item.multiple-file .resource-title-wrapper .resource-title-div .resource-title a,
+.page-template-template-resource-list .resource-container .resource-item.multiple-file .resource-title-wrapper .resource-title-div .resource-title span,
+.page-template-template-all-resources-list .resource-container .resource-item.multiple-file .resource-title-wrapper .resource-title-div .resource-title span,
+.page-template-template-group-resource-list .resource-container .resource-item.multiple-file .resource-title-wrapper .resource-title-div .resource-title span {
   background-image: url(../img/common/ic-insert-drive-file-multi-ui.svg);
+  min-height: 26px;
 }
-.page-template-template-resource-list .resource-container .resource-item.image-file .resource-title-wrapper,
-.page-template-template-all-resources-list .resource-container .resource-item.image-file .resource-title-wrapper,
-.page-template-template-group-resource-list .resource-container .resource-item.image-file .resource-title-wrapper {
+.page-template-template-resource-list .resource-container .resource-item.image-file .resource-title-wrapper .resource-title-div .resource-title a,
+.page-template-template-all-resources-list .resource-container .resource-item.image-file .resource-title-wrapper .resource-title-div .resource-title a,
+.page-template-template-group-resource-list .resource-container .resource-item.image-file .resource-title-wrapper .resource-title-div .resource-title a,
+.page-template-template-resource-list .resource-container .resource-item.image-file .resource-title-wrapper .resource-title-div .resource-title span,
+.page-template-template-all-resources-list .resource-container .resource-item.image-file .resource-title-wrapper .resource-title-div .resource-title span,
+.page-template-template-group-resource-list .resource-container .resource-item.image-file .resource-title-wrapper .resource-title-div .resource-title span {
   background-image: url(../img/common/ic-image-ui.svg);
 }
-.page-template-template-resource-list .resource-container .resource-item.video-file .resource-title-wrapper,
-.page-template-template-all-resources-list .resource-container .resource-item.video-file .resource-title-wrapper,
-.page-template-template-group-resource-list .resource-container .resource-item.video-file .resource-title-wrapper {
+.page-template-template-resource-list .resource-container .resource-item.video-file .resource-title-wrapper .resource-title-div .resource-title a,
+.page-template-template-all-resources-list .resource-container .resource-item.video-file .resource-title-wrapper .resource-title-div .resource-title a,
+.page-template-template-group-resource-list .resource-container .resource-item.video-file .resource-title-wrapper .resource-title-div .resource-title a,
+.page-template-template-resource-list .resource-container .resource-item.video-file .resource-title-wrapper .resource-title-div .resource-title span,
+.page-template-template-all-resources-list .resource-container .resource-item.video-file .resource-title-wrapper .resource-title-div .resource-title span,
+.page-template-template-group-resource-list .resource-container .resource-item.video-file .resource-title-wrapper .resource-title-div .resource-title span {
   background-image: url(../img/common/ic-videocam-ui.svg);
 }
-.page-template-template-resource-list .resource-container .resource-item.audio-file .resource-title-wrapper,
-.page-template-template-all-resources-list .resource-container .resource-item.audio-file .resource-title-wrapper,
-.page-template-template-group-resource-list .resource-container .resource-item.audio-file .resource-title-wrapper {
+.page-template-template-resource-list .resource-container .resource-item.audio-file .resource-title-wrapper .resource-title-div .resource-title a,
+.page-template-template-all-resources-list .resource-container .resource-item.audio-file .resource-title-wrapper .resource-title-div .resource-title a,
+.page-template-template-group-resource-list .resource-container .resource-item.audio-file .resource-title-wrapper .resource-title-div .resource-title a,
+.page-template-template-resource-list .resource-container .resource-item.audio-file .resource-title-wrapper .resource-title-div .resource-title span,
+.page-template-template-all-resources-list .resource-container .resource-item.audio-file .resource-title-wrapper .resource-title-div .resource-title span,
+.page-template-template-group-resource-list .resource-container .resource-item.audio-file .resource-title-wrapper .resource-title-div .resource-title span {
   background-image: url(../img/common/ic-volume-down-ui.svg);
 }
-.page-template-template-resource-list .resource-container .resource-item.interactive-file .resource-title-wrapper,
-.page-template-template-all-resources-list .resource-container .resource-item.interactive-file .resource-title-wrapper,
-.page-template-template-group-resource-list .resource-container .resource-item.interactive-file .resource-title-wrapper {
+.page-template-template-resource-list .resource-container .resource-item.interactive-file .resource-title-wrapper .resource-title-div .resource-title a,
+.page-template-template-all-resources-list .resource-container .resource-item.interactive-file .resource-title-wrapper .resource-title-div .resource-title a,
+.page-template-template-group-resource-list .resource-container .resource-item.interactive-file .resource-title-wrapper .resource-title-div .resource-title a,
+.page-template-template-resource-list .resource-container .resource-item.interactive-file .resource-title-wrapper .resource-title-div .resource-title span,
+.page-template-template-all-resources-list .resource-container .resource-item.interactive-file .resource-title-wrapper .resource-title-div .resource-title span,
+.page-template-template-group-resource-list .resource-container .resource-item.interactive-file .resource-title-wrapper .resource-title-div .resource-title span {
   background-image: url(../img/common/ic-touch-app-ui.svg);
 }
-.page-template-template-resource-list .resource-container .resource-item.article-file .resource-title-wrapper,
-.page-template-template-all-resources-list .resource-container .resource-item.article-file .resource-title-wrapper,
-.page-template-template-group-resource-list .resource-container .resource-item.article-file .resource-title-wrapper {
+.page-template-template-resource-list .resource-container .resource-item.article-file .resource-title-wrapper .resource-title-div .resource-title a,
+.page-template-template-all-resources-list .resource-container .resource-item.article-file .resource-title-wrapper .resource-title-div .resource-title a,
+.page-template-template-group-resource-list .resource-container .resource-item.article-file .resource-title-wrapper .resource-title-div .resource-title a,
+.page-template-template-resource-list .resource-container .resource-item.article-file .resource-title-wrapper .resource-title-div .resource-title span,
+.page-template-template-all-resources-list .resource-container .resource-item.article-file .resource-title-wrapper .resource-title-div .resource-title span,
+.page-template-template-group-resource-list .resource-container .resource-item.article-file .resource-title-wrapper .resource-title-div .resource-title span {
   background-image: url(../img/common/ic-format-align-left-ui.svg);
 }
 .page-template-template-resource-list .resource-container .resource-item .resource-title-wrapper,
 .page-template-template-all-resources-list .resource-container .resource-item .resource-title-wrapper,
 .page-template-template-group-resource-list .resource-container .resource-item .resource-title-wrapper {
-  padding-left: 35px;
-  background-position: 0 0;
-  background-repeat: no-repeat;
+  /*padding-left:35px;
+				background-position:0 0;
+				background-repeat:no-repeat;*/
 }
 .page-template-template-resource-list .resource-container .resource-item .resource-title-wrapper table tr td,
 .page-template-template-all-resources-list .resource-container .resource-item .resource-title-wrapper table tr td,
@@ -8499,9 +8582,25 @@ footer.content-info .footer-wrapper .footer-copyright {
   font-size: 16px;
   line-height: 1.25;
 }
+.page-template-template-resource-list .resource-container .resource-item .resource-title-wrapper .resource-title-div .resource-title span,
+.page-template-template-all-resources-list .resource-container .resource-item .resource-title-wrapper .resource-title-div .resource-title span,
+.page-template-template-group-resource-list .resource-container .resource-item .resource-title-wrapper .resource-title-div .resource-title span {
+  padding-left: 35px;
+  background-position: 0 2px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  padding-top: 4px;
+  min-height: 22px;
+}
 .page-template-template-resource-list .resource-container .resource-item .resource-title-wrapper .resource-title-div .resource-title a,
 .page-template-template-all-resources-list .resource-container .resource-item .resource-title-wrapper .resource-title-div .resource-title a,
 .page-template-template-group-resource-list .resource-container .resource-item .resource-title-wrapper .resource-title-div .resource-title a {
+  padding-left: 35px;
+  background-position: 0 2px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  padding-top: 4px;
+  min-height: 22px;
   color: #505759;
 }
 .page-template-template-resource-list .resource-container .resource-item .resource-title-wrapper .resource-title-div .resource-title a:hover,

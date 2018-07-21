@@ -39,8 +39,11 @@ unset($file, $filepath);
 function register_my_menus() {
   register_nav_menus(
     array(
-      'footer-menu' => __( 'Footer menu' )
+      'footer-menu' => __( 'Footer menu' ),
+	  'corners-menu' => __( 'Corners menu' )
     )
   );
 }
 add_action( 'init', 'register_my_menus' );
+
+//add_theme_support( 'title-tag' );
