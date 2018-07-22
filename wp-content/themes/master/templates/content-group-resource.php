@@ -118,9 +118,9 @@
 				</div>
 			</div>
 		</div>
-		
+		<div class="loading-box"></div>
 		<div class="group-resource-container">
-		
+			
 		<?php
 			foreach($resource_lists as $resource_list):
 			

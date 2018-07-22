@@ -115,7 +115,7 @@
 			</div>
 		</div>
 		<div class="resource-container clearfix">
-			
+			<div class="loading-box"></div>
 		<?php
 				
 				$resources = get_field('resources', $resource_list[0]->ID); 
@@ -387,8 +387,9 @@
 			<div class="download_all">
 				<?php
 					$download_all = get_field('download_all',$resource_list[0]->ID);
-					
-					echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$download_all['ID'].'&pageid='.$post->ID.'" class="btn_single_download" '.$file_type.'" target="_blank">'.__('Download All', 'Pearson-master').'</a>';
+					if(!empty($download_all)):
+						echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$download_all['ID'].'&pageid='.$post->ID.'" class="btn_single_download" target="_blank">'.__('Download All', 'Pearson-master').'</a>';
+					endif;
 				?>
 			</div>
 		</div>

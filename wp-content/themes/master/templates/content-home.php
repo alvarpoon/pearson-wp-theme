@@ -30,7 +30,7 @@
 	
 	<div class="home-content-wrapper">
 		<div class="content-right col-md-12">
-			<div class="section-title">What's New</div>
+			<div class="section-title"><?=__("What's New", 'Pearson-master');?></div>
 			<div class="scrollable-content-wrapper">
 				<div class="scrollable-content">
 					<?php

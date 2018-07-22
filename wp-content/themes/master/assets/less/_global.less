@@ -1,6 +1,17 @@
+html{
+	height:100%;
+}
+
 body{
 	font-family: 'Open Sans', sans-serif;
 	color: #505759;
+	height:100%;
+	
+	&.fixed{
+		//position:fixed;
+		width:100%;
+		overflow:hidden;
+	}
 }
 
 a{
@@ -12,6 +23,7 @@ a{
 	padding-left:0!important;
 	padding-right:0!important;
 	padding-top:61px;
+	min-height: 100%!important;
 }
 
 .clearfix{
@@ -43,6 +55,21 @@ a{
 		color:#505759;
 	}
 }*/
+
+.footer-padding{
+	padding-bottom:200px;
+}
+
+.page-header{
+	padding:0;
+	margin:0;
+	border:none;
+	h1{
+		font-size: 28px;
+		color: #005a70;
+		margin-bottom: 0;
+	}
+}
 
 .breadcrumbs{
 	margin-top:5px;
@@ -188,6 +215,15 @@ select::-ms-expand {
 			color: #505759;
 		}
 	}
+}
+
+.loading-box{
+  background-image:url("../img/common/Spinner-1s-200px.svg");
+  height:250px;
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:50px;
+  display:none;
 }
 
 //===============================================================================

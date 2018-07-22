@@ -6696,9 +6696,17 @@ button.close {
     display: none !important;
   }
 }
+html {
+  height: 100%;
+}
 body {
   font-family: 'Open Sans', sans-serif;
   color: #505759;
+  height: 100%;
+}
+body.fixed {
+  width: 100%;
+  overflow: hidden;
 }
 a {
   text-underline-position: under;
@@ -6708,6 +6716,7 @@ a {
   padding-left: 0!important;
   padding-right: 0!important;
   padding-top: 61px;
+  min-height: 100%!important;
 }
 .clearfix,
 .dl-horizontal dd,
@@ -6798,6 +6807,19 @@ a {
 		color:#505759;
 	}
 }*/
+.footer-padding {
+  padding-bottom: 200px;
+}
+.page-header {
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+.page-header h1 {
+  font-size: 28px;
+  color: #005a70;
+  margin-bottom: 0;
+}
 .breadcrumbs {
   margin-top: 5px;
   margin-bottom: 20px;
@@ -6957,6 +6979,15 @@ select::-ms-expand {
   font-size: 16px;
   color: #505759;
 }
+.loading-box {
+  background-image: url("../img/common/Spinner-1s-200px.svg");
+  height: 250px;
+  background-repeat: no-repeat;
+  background-position: center;
+  -webkit-background-size: 50px 50px;
+          background-size: 50px;
+  display: none;
+}
 @media (min-width: 768px) {
   .main {
     padding-top: 68px;
@@ -7078,6 +7109,9 @@ figure.alignnone {
 .navbar-header {
   background-color: #fff;
 }
+.mobile-menu-wrapper {
+  overflow-y: scroll;
+}
 .menu_bg {
   position: fixed;
   width: 100%;
@@ -7163,7 +7197,8 @@ figure.alignnone {
   float: right;
 }
 .navbar-header-right .lang-wrapper,
-.navbar-header-right .login-wrapper {
+.navbar-header-right .login-wrapper,
+.navbar-header-right .corners-menu {
   display: inline-block;
 }
 .navbar-header-right .lang-wrapper {
@@ -7179,6 +7214,31 @@ figure.alignnone {
   padding: 0 5px;
 }
 .navbar-header-right .lang-wrapper a:last-child:after {
+  display: none;
+}
+.navbar-header-right .corners-menu {
+  padding: 25px 0;
+  margin-right: 20px;
+}
+.navbar-header-right .corners-menu ul {
+  padding: 0;
+  margin: 0;
+}
+.navbar-header-right .corners-menu ul li {
+  list-style: none;
+  display: inline-block;
+}
+.navbar-header-right .corners-menu ul li a {
+  padding: 0;
+  display: inline-block;
+  color: #000;
+}
+.navbar-header-right .corners-menu ul li a:after {
+  content: "|";
+  display: inline-block;
+  padding: 0 5px;
+}
+.navbar-header-right .corners-menu ul li:last-child a:after {
   display: none;
 }
 .navbar-header-right .login-wrapper a {
@@ -7333,7 +7393,7 @@ figure.alignnone {
   .mainmenu .collapse ul li {
     position: relative;
   }
-  .mainmenu .collapse ul li:hover > ul {
+  .mainmenu .collapse ul li.open > ul {
     display: block!important;
   }
   .mainmenu .collapse ul ul {
@@ -7346,7 +7406,7 @@ figure.alignnone {
   .mainmenu .collapse ul ul li {
     position: relative;
   }
-  .mainmenu .collapse ul ul li:hover > ul {
+  .mainmenu .collapse ul ul li.open > ul {
     display: block!important;
   }
   .mainmenu .collapse ul ul ul {
@@ -7359,7 +7419,7 @@ figure.alignnone {
   .mainmenu .collapse ul ul ul li {
     position: relative;
   }
-  .mainmenu .collapse ul ul ul li:hover ul {
+  .mainmenu .collapse ul ul ul li.open ul {
     display: block!important;
   }
   .mainmenu .collapse ul ul ul ul {
@@ -7372,8 +7432,20 @@ figure.alignnone {
   }
 }
 @media (min-width: 992px) {
+  .mobile-menu-wrapper {
+    overflow: unset;
+  }
   .mainmenu {
     position: relative;
+  }
+  .mainmenu .collapse ul li:hover > ul {
+    display: block!important;
+  }
+  .mainmenu .collapse ul ul li:hover > ul {
+    display: block!important;
+  }
+  .mainmenu .collapse ul ul ul li:hover ul {
+    display: block!important;
   }
   .mainmenu .navbar-collapse ul li a,
   .mainmenu .navbar-collapse ul li a.dropdown-toggle {
@@ -7420,6 +7492,11 @@ figure.alignnone {
     float: left;
     width: 33.33333333%;
   }
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 footer.content-info {
   margin-top: 100px;
@@ -8181,11 +8258,25 @@ footer.content-info .footer-wrapper .footer-copyright {
 .page-template-template-resource .resource-container .resource-item .resource-thumbnail .thumb,
 .page-template-template-all-resources .resource-container .resource-item .resource-thumbnail .thumb,
 .page-template-template-group-resource .resource-container .resource-item .resource-thumbnail .thumb {
-  -webkit-background-size: cover;
-          background-size: cover;
+  -webkit-background-size: contain;
+          background-size: contain;
   background-repeat: no-repeat;
   display: block;
   position: relative;
+}
+.page-template-template-resource .resource-container .resource-item .resource-thumbnail .thumb.thumb_image:before,
+.page-template-template-all-resources .resource-container .resource-item .resource-thumbnail .thumb.thumb_image:before,
+.page-template-template-group-resource .resource-container .resource-item .resource-thumbnail .thumb.thumb_image:before,
+.page-template-template-resource .resource-container .resource-item .resource-thumbnail .thumb.thumb_video:before,
+.page-template-template-all-resources .resource-container .resource-item .resource-thumbnail .thumb.thumb_video:before,
+.page-template-template-group-resource .resource-container .resource-item .resource-thumbnail .thumb.thumb_video:before,
+.page-template-template-resource .resource-container .resource-item .resource-thumbnail .thumb.thumb_interactive:before,
+.page-template-template-all-resources .resource-container .resource-item .resource-thumbnail .thumb.thumb_interactive:before,
+.page-template-template-group-resource .resource-container .resource-item .resource-thumbnail .thumb.thumb_interactive:before,
+.page-template-template-resource .resource-container .resource-item .resource-thumbnail .thumb.thumb_article:before,
+.page-template-template-all-resources .resource-container .resource-item .resource-thumbnail .thumb.thumb_article:before,
+.page-template-template-group-resource .resource-container .resource-item .resource-thumbnail .thumb.thumb_article:before {
+  display: block;
 }
 .page-template-template-resource .resource-container .resource-item .resource-thumbnail .thumb.thumb_image:after,
 .page-template-template-all-resources .resource-container .resource-item .resource-thumbnail .thumb.thumb_image:after,
@@ -8214,6 +8305,18 @@ footer.content-info .footer-wrapper .footer-copyright {
   background-image: url(../img/common/grid-view/ic-format-align-left-white.svg);
   /*width:36px;
 							height:36px;*/
+}
+.page-template-template-resource .resource-container .resource-item .resource-thumbnail .thumb:before,
+.page-template-template-all-resources .resource-container .resource-item .resource-thumbnail .thumb:before,
+.page-template-template-group-resource .resource-container .resource-item .resource-thumbnail .thumb:before {
+  content: "";
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.3);
 }
 .page-template-template-resource .resource-container .resource-item .resource-thumbnail .thumb:after,
 .page-template-template-all-resources .resource-container .resource-item .resource-thumbnail .thumb:after,

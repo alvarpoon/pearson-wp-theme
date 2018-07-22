@@ -25,10 +25,14 @@ get_template_part('templates/head'); ?>
   ?>
 
       <main class="main" role="main">
+	  	<div class="footer-padding">
 	        <?php include roots_template_path(); ?>
+		</div>
+			
+			<?php get_template_part('templates/footer'); ?>
       </main>
 
-  <?php get_template_part('templates/footer'); ?>
+  
 
 </body>
 </html>

@@ -115,7 +115,7 @@
 			</div>
 		</div>
 		<div class="resource-container clearfix">
-			
+			<div class="loading-box"></div>
 		<?php
 				
 				//$resources = get_field('resources', $resource_list[0]->ID); 

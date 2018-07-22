@@ -1,0 +1,59 @@
+/*
+ Theme Name:   Master Child
+ Theme URI:    
+ Description:  Preschool child theme based on Master theme
+ Author:       Catus Tech
+ Author URI:   http://www.catus.tech
+ Template:     master
+ Version:      1.0.0
+ License:      GNU General Public License v2 or later
+ License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+ Tags:         
+ Text Domain:  Master Child Pearson
+*/
+
+body{
+	background-color: #fffcf4;
+	font-size:18px;
+}
+
+.fancybox-content.article-lightbox .content-container{
+	font-size:18px;
+}
+
+header, .mainmenu .navbar-collapse ul li a{
+	font-size:16px;
+}
+
+/* Home page start here */
+.page-template-template-home .home-content-wrapper .content-right .scrollable-content-wrapper .scrollable-content .news-item .news-date, 
+.page-template-template-home .home-content-wrapper .content-right .scrollable-content-wrapper .scrollable-content .news-item .news-content,
+.page-template-template-home .home-content-wrapper .content-right .scrollable-content-wrapper .scrollable-content .news-item .news-content p{
+	font-size:16px;
+}
+/* Home page end here */
+
+.page-template-template-resource .filter-wrapper .filter-select .filter-item, .page-template-template-resource-list .filter-wrapper .filter-select .filter-item, .page-template-template-all-resources .filter-wrapper .filter-select .filter-item, .page-template-template-all-resources-list .filter-wrapper .filter-select .filter-item, .page-template-template-group-resource .filter-wrapper .filter-select .filter-item, .page-template-template-group-resource-list .filter-wrapper .filter-select .filter-item{
+	font-size:16px;
+	background:#fff;
+}
+
+.page-template-template-resource .filter-wrapper .view-option-wrapper .view-option a, .page-template-template-resource-list .filter-wrapper .view-option-wrapper .view-option a, .page-template-template-all-resources .filter-wrapper .view-option-wrapper .view-option a, .page-template-template-all-resources-list .filter-wrapper .view-option-wrapper .view-option a, .page-template-template-group-resource .filter-wrapper .view-option-wrapper .view-option a, .page-template-template-group-resource-list .filter-wrapper .view-option-wrapper .view-option a{
+	font-size:16px;
+}
+
+.page-template-template-resource .resource-container .resource-item .resource-title-wrapper .resource-title, .page-template-template-all-resources .resource-container .resource-item .resource-title-wrapper .resource-title, .page-template-template-group-resource .resource-container .resource-item .resource-title-wrapper .resource-title{
+	font-size:16px;
+}
+
+.page-template-template-resource .resource-container .resource-item .resource-download-wrapper a.btn_single_download{
+	font-size:14px;
+}
+
+.page-template-template-resource .resource-container .resource-item .resource-download-wrapper .multiple_download .multiple_dl_header span, .page-template-template-all-resources .resource-container .resource-item .resource-download-wrapper .multiple_download .multiple_dl_header span, .page-template-template-group-resource .resource-container .resource-item .resource-download-wrapper .multiple_download .multiple_dl_header span{
+	font-size:14px;
+}
+
+.page-template-template-resource .resource-footer .pagination span, .page-template-template-resource-list .resource-footer .pagination span, .page-template-template-all-resources .resource-footer .pagination span, .page-template-template-all-resources-list .resource-footer .pagination span, .page-template-template-group-resource .resource-footer .pagination span, .page-template-template-group-resource-list .resource-footer .pagination span{
+	line-height:1.5;
+}

@@ -17,6 +17,10 @@
 	//background-color:rgba(0,0,0,0.7);
 }
 
+.mobile-menu-wrapper{
+	overflow-y:scroll;
+}
+
 .menu_bg{
 	position:fixed;
 	width:100%;
@@ -96,7 +100,7 @@
 	margin-right:15px;
 	float:right;
 	
-	.lang-wrapper, .login-wrapper{
+	.lang-wrapper, .login-wrapper, .corners-menu{
 		display:inline-block;
 	}
 	
@@ -117,6 +121,40 @@
 			&:last-child{
 				&:after{
 					display:none;
+				}
+			}
+		}
+	}
+	
+	.corners-menu{	
+		padding:25px 0;
+		margin-right:20px;
+		
+		ul{
+			padding:0;
+			margin:0;
+			li{
+				list-style:none;
+				display:inline-block;
+				a{
+					padding:0;
+					display:inline-block;
+					color:#000;
+					
+					&:after{
+						content:"|";
+						display:inline-block;
+						padding:0 5px;
+						
+					}
+				}
+				
+				&:last-child{
+					a{
+						&:after{
+							display:none;
+						}
+					}
 				}
 			}
 		}
@@ -249,15 +287,15 @@
 	}
 	
 	.mainmenu .collapse ul li{position:relative;}
-	.mainmenu .collapse ul li:hover> ul{display:block!important;}
+	.mainmenu .collapse ul li.open > ul{display:block!important;}
 	.mainmenu .collapse ul ul{position:absolute;top:100%;left:0;min-width:250px;display:none}
 	
 	.mainmenu .collapse ul ul li{position:relative;}
-	.mainmenu .collapse ul ul li:hover> ul{display:block!important;}
+	.mainmenu .collapse ul ul li.open> ul{display:block!important;}
 	.mainmenu .collapse ul ul ul{position:absolute;top:0;left:100%;min-width:250px;display:none}
 	
 	.mainmenu .collapse ul ul ul li{position:relative;}
-	.mainmenu .collapse ul ul ul li:hover ul{display:block!important;}
+	.mainmenu .collapse ul ul ul li.open ul{display:block!important;}
 	.mainmenu .collapse ul ul ul ul{position:absolute;top:0;left:-100%;min-width:250px;display:none;z-index:1}
 }
 
@@ -267,8 +305,16 @@
 //===============================================================================
 //===============================================================================
 @media (min-width: @screen-md-min) {
+	.mobile-menu-wrapper{
+		overflow:unset;
+	}
+
 	.mainmenu{position:relative;}
 	//.mainmenu .navbar-collapse{padding:0 15px;}
+	.mainmenu .collapse ul li:hover > ul{display:block!important;}
+	.mainmenu .collapse ul ul li:hover > ul{display:block!important;}
+	.mainmenu .collapse ul ul ul li:hover ul{display:block!important;}
+	
 	.mainmenu .navbar-collapse ul li a, .mainmenu .navbar-collapse ul li a.dropdown-toggle{padding:10px 15px;}
 	.mainmenu .navbar-collapse ul ul > li > a, .mainmenu .navbar-collapse ul ul.dropdown-menu > li > a, .mainmenu .navbar-collapse ul ul ul > li > a, .mainmenu .navbar-collapse ul ul ul.dropdown-menu > li > a{padding:10px 27px 10px 15px;}
 	

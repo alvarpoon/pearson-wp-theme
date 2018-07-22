@@ -286,11 +286,13 @@ function get_main_download_file_type($resource_id){
 				$filename = array_pop(explode('/', $downloadable_file['url']));
 
 				$filetype = wp_check_filetype($filename);
+				
+				return $filetype['ext'];
 			}
 			
 		endwhile;
 		
-		return $filetype['ext'];
+		
 	}
 }
 
@@ -460,7 +462,7 @@ function showListTitle($resource_id, $resource_type, $popup_image, $popup_url, $
 function get_audio_preview($downloads){
 	$count = is_array( $downloads ) ? count( $downloads ) : 0;
 	$audio_url_array = array();
-	$previewer;
+	$previewer = '';
 	
 	if($count > 1){
 		foreach($downloads as $download){

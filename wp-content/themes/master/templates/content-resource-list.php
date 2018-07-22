@@ -118,6 +118,8 @@
 				<div class="col-xs-9 col-sm-10 col-md-5 no-padding"><?=__('Items', 'Pearson-master');?></div>
 				<div class="col-xs-3 col-sm-2 col-md-7 no-padding"><?=__('Download', 'Pearson-master');?></div>
 			</div>
+			
+			<div class="loading-box"></div>
 			<?php
 				
 				$resources = get_field('resources', $resource_list[0]->ID);
@@ -378,7 +380,10 @@
 				<?php
 					$download_all = get_field('download_all',$resource_list[0]->ID);
 					
-					echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$download_all['ID'].'&pageid='.$post->ID.'" class="btn_single_download" '.$file_type.'" target="_blank">'.__('Download All').'</a>';
+					
+					if(!empty($download_all)):
+						echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$download_all['ID'].'&pageid='.$post->ID.'" class="btn_single_download" target="_blank">'.__('Download All').'</a>';
+					endif;
 				?>
 			</div>
 		</div>

@@ -4,9 +4,9 @@ $IAM = new SimpleSAML_HK_IAM('default-sp');
 if (!$IAM->isAuthenticated()) error_log('RALPH RALPH RALPH No LOGIN');
 $username = $IAM->__get('UserName');*/
 
-//error_log('Ralph Get Username mmmmmmmmmmmmmmm: ' . $username);
-?>
+$lang_arr = icl_get_languages('skip_missing=1&orderby=id&order=desc');
 
+?>
 
 <header class="banner navbar navbar-default mainmenu" role="banner">
 	<div class="topbar-wrapper">
@@ -23,32 +23,30 @@ $username = $IAM->__get('UserName');*/
 			  <a class="navbar-brand" href="<?php echo home_url(); ?>/"><img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/pearson-logo@2x.png" class="img-responsive"></a>
 			</div>
 			<div class="navbar-header-right hidden-xs hidden-sm visible-md visible-lg">
+				<div class="clearfix corners-menu">
+					<?php
+						if (has_nav_menu('corners-menu')) :
+							 
+						  wp_nav_menu(array('theme_location' => 'corners-menu', 'menu_class' => '', 'depth' => 3));
+						  
+						endif;
+					?>
+				</div>
 				<div class="lang-wrapper">
 					<?php
-						
-						$lang_arr = icl_get_languages('skip_missing=0&orderby=id&order=desc');
-						//print_r($lang_arr);
-						//$lang_len = sizeof($lang_arr);
-						//$i = 0;
-						foreach( $lang_arr as $lang ){
-						  echo '<a class="'.$lang_class.'" href="'.$lang['url'].'" data-original-href="'.strtok($lang['url'], '?').'">'.$lang['native_name'].'</a>';
-						}
+					$lang_class = '';
+					foreach( $lang_arr as $lang ){
+					  echo '<a class="'.$lang_class.'" href="'.$lang['url'].'" data-original-href="'.strtok($lang['url'], '?').'">'.$lang['native_name'].'</a>';
+					}
 					
 					?>
-				
-					<!--<a href="#">中文</a>
-					<a href="#">English</a>-->			
 				</div>
 				<?php
-
-					error_log('Ralph Get Username: ' . $username);
-
-					if ($username) {
+					if (!empty($username)) {
 						echo('<div class="login-wrapper"><a href="/login_iam.php?logout">' . $username . ' ('.__('Logout', 'Pearson-master').')</a></div>');
 					}
 					else
 						echo('<div class="login-wrapper"><a href="/login_iam.php">'.__('Sign in', 'Pearson-master').'</a></div>');
-
 				?>
 			</div>
 		</div>
@@ -58,6 +56,7 @@ $username = $IAM->__get('UserName');*/
 	<div class="container-fluid">
 		<div class="row">
 			<nav class="collapse navbar-collapse" role="navigation">
+				<div class="mobile-menu-wrapper">
 				<?php
 					//Main menu
 					if (has_nav_menu('primary_navigation')) :
@@ -66,6 +65,38 @@ $username = $IAM->__get('UserName');*/
 					  
 					endif;
 				?>
+					<div class="hidden-md hidden-lg hidden-xl">
+						<?php
+						
+						if (has_nav_menu('corners-menu')) :
+							 
+						  wp_nav_menu(array('theme_location' => 'corners-menu', 'menu_class' => 'nav navbar-nav', 'depth' => 3));
+						  
+						endif;
+						
+						?>
+					
+						<ul class="nav navbar-nav">
+						<?php
+							foreach( $lang_arr as $lang ){
+							  echo '<li><a class="'.$lang_class.'" href="'.$lang['url'].'" data-original-href="'.strtok($lang['url'], '?').'">'.$lang['native_name'].'</a></li>';
+							}
+						?>
+						</ul>
+						
+						<ul class="nav navbar-nav">
+						<?php
+						
+						if ($username) {
+							echo('<li><a href="/login_iam.php?logout">' . $username . ' ('.__('Logout', 'Pearson-master').')</a></li>');
+						}
+						else
+							echo('<li><a href="/login_iam.php">'.__('Sign in', 'Pearson-master').'</a></li>');
+						
+						?>
+						</ul>
+					</div>
+				</div>
 			</nav>
 		</div>
 	</div>
