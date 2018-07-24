@@ -2,7 +2,7 @@
   <div class="container">
     <?php //dynamic_sidebar('sidebar-footer'); ?>
 	<div class="footer-wrapper">
-		<div class="footer-links">
+		<div class="footer-links clearfix">
 			<?php wp_nav_menu( array( 'theme_location' => 'footer-menu' ) ); ?>
 			<!--<a href="#" target="_blank">Pearson Hong Kong</a>
 			<a href="#" target="_blank">Terms of Use</a>

@@ -209,7 +209,7 @@
 												
 												$downloadable_file_string = implode(',',$downloadable_file_arr);
 												
-												echo '<li><a href="javascript:;" data-file="'.$downloadable_file_string.'" data-filename="testing123" class="createzip">'.__('Download All', 'Pearson-master').' ('.$download_count.__(' files', 'Pearson-master').')</a></li>';
+												echo '<li><a href="javascript:;" data-file="'.$downloadable_file_string.'" data-filename="download" class="createzip">'.__('Download All', 'Pearson-master').' ('.$download_count.__(' files', 'Pearson-master').')</a></li>';
 												
 												unset($downloadable_file_arr);
 												unset($downloadable_file_string);
@@ -333,6 +333,21 @@
 			
 				echo '</div>';
 				
+			echo '</div>';
+			
+			echo '<div class="resource-footer">';
+			
+			echo '<div class="download_all">';
+			
+			$download_all = get_field('download_all',$resource_list->ID);
+			
+			
+			if(!empty($download_all)):
+				echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$download_all['ID'].'&pageid='.$post->ID.'" class="btn_single_download" target="_blank">'.__('Download All').'</a>';
+			endif;
+
+			echo '</div>';
+			
 			echo '</div>';
 			
 			endforeach;	?>

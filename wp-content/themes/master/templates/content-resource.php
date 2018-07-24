@@ -235,7 +235,7 @@
 												
 												$downloadable_file_string = implode(',',$downloadable_file_arr);
 												
-												echo '<li><a href="javascript:;" data-file="'.$downloadable_file_string.'" data-filename="testing123" class="createzip">'.__('Download All', 'Pearson-master').'('.$download_count.__(' files', 'Pearson-master').')</a></li>';
+												echo '<li><a href="javascript:;" data-file="'.$downloadable_file_string.'" data-filename="download" class="createzip">'.__('Download All', 'Pearson-master').'('.$download_count.__(' files', 'Pearson-master').')</a></li>';
 												
 												unset($downloadable_file_arr);
 												unset($downloadable_file_string);

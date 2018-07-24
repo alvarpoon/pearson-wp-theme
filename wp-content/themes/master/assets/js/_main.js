@@ -76,7 +76,9 @@ var Roots = {
 		  if($('.home-slider').length > 0){
 			  $('.home-slider').slick({
 				dots: true,	
-				arrows: false
+				arrows: false,
+				autoplay: true,
+			  	autoplaySpeed: 5000
 			  });
 		  }
 	  }
@@ -87,6 +89,8 @@ var Roots = {
 		  
 		  if($(window).width() > 767){
 			  $('.scrollable-content-wrapper').css('height', sidebanner_height);
+		  }else{
+		  	  $('.scrollable-content-wrapper').css('height', 300);  
 		  }
 	  }
 	  

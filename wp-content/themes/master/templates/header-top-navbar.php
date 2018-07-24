@@ -20,7 +20,7 @@ $lang_arr = icl_get_languages('skip_missing=1&orderby=id&order=desc');
 				<span class="icon-bar bottom-bar"></span>
 			  </button>
 			  <a href="javascript:;" class="menu-label hidden-xs hidden-sm hidden-md hidden-lg" data-toggle="collapse" data-target=".navbar-collapse">menu</a>
-			  <a class="navbar-brand" href="<?php echo home_url(); ?>/"><img src="<?=get_stylesheet_directory_uri()?>/assets/img/common/pearson-logo@2x.png" class="img-responsive"></a>
+			  <a class="navbar-brand" href="<?php echo home_url(); ?>/"><img src="<?=get_stylesheet_directory_uri()?>/assets/img/pearson-logo.svg" class="img-responsive"></a>
 			</div>
 			<div class="navbar-header-right hidden-xs hidden-sm visible-md visible-lg">
 				<div class="clearfix corners-menu">

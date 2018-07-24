@@ -57,3 +57,99 @@ header, .mainmenu .navbar-collapse ul li a{
 .page-template-template-resource .resource-footer .pagination span, .page-template-template-resource-list .resource-footer .pagination span, .page-template-template-all-resources .resource-footer .pagination span, .page-template-template-all-resources-list .resource-footer .pagination span, .page-template-template-group-resource .resource-footer .pagination span, .page-template-template-group-resource-list .resource-footer .pagination span{
 	line-height:1.5;
 }
+
+/*-----*/
+/*--- For Pre-Primary ---*/
+
+body{
+	font-size:18px;
+    font-family: 'Open Sans', sans-serif,'微軟正黑體',Microsoft JhengHei,'蘋果儷中黑',Apple LiGothic Medium,'黑体',SimHei;
+    margin:0;
+    /*color:#000;*/
+    background-color:#FFFCF3;
+}
+
+.page-template-template-home .home-content-wrapper .content-right .scrollable-content-wrapper .scrollable-content .news-item .news-content p{
+	font-size:16px;
+}
+
+.navbar-default .navbar-nav > li > a{
+    /*color:#000;*/
+}
+
+/*---List/Grid View ---*/
+
+
+.page-general-info{
+    font-size:0.95em;
+
+}
+.breadcrumb{
+    background:none;
+}
+/*---Filter+View---*/
+
+.filter-wrapper{
+	font-size:0.9em;
+}
+
+.page-template-template-resource .filter-wrapper .view-option-wrapper .view-option a, .page-template-template-resource-list .filter-wrapper .view-option-wrapper .view-option a{
+    font-size:18px;
+}
+.page-template-template-resource .filter-wrapper .view-option-wrapper .view-option a.btn_list:before, .page-template-template-resource-list .filter-wrapper .view-option-wrapper .view-option a.btn_list:before, .page-template-template-resource .filter-wrapper .view-option-wrapper .view-option a.btn_grid:before, .page-template-template-resource-list .filter-wrapper .view-option-wrapper .view-option a.btn_grid:before{
+    top:6px;
+}
+
+/*---Resource Item---*/
+.page-template-template-resource .resource-container .resource-item .resource-title-wrapper .resource-title{
+    font-size:0.8em;
+    line-height:1.3em;
+}
+
+
+.page-template-template-resource .resource-container .resource-item .resource-download-wrapper{
+    font-size:0.8em;
+}
+
+
+
+/*---Fix the scroll----*/
+
+.top-banner-container{
+    /*margin:0 auto 20px auto;*/
+}
+
+/*---End of Fix the scroll----*/
+
+
+/*---Fix for all theme---*/
+.filter-item select, .pagination select{
+    background-color:#FFF;
+}
+/*---End of Fix for all theme---*/
+
+
+.page-template-template-resource .filter-wrapper .view-option-wrapper .view-option a, .page-template-template-resource-list .filter-wrapper .view-option-wrapper .view-option a, .page-template-template-all-resources .filter-wrapper .view-option-wrapper .view-option a, .page-template-template-all-resources-list .filter-wrapper .view-option-wrapper .view-option a, .page-template-template-group-resource .filter-wrapper .view-option-wrapper .view-option a, .page-template-template-group-resource-list .filter-wrapper .view-option-wrapper .view-option a{
+	font-size:18px;
+}
+.page-template-template-resource .filter-wrapper .view-option-wrapper .view-option a.btn_list:before, .page-template-template-resource-list .filter-wrapper .view-option-wrapper .view-option a.btn_list:before, .page-template-template-all-resources .filter-wrapper .view-option-wrapper .view-option a.btn_list:before, .page-template-template-all-resources-list .filter-wrapper .view-option-wrapper .view-option a.btn_list:before, .page-template-template-group-resource .filter-wrapper .view-option-wrapper .view-option a.btn_list:before, .page-template-template-group-resource-list .filter-wrapper .view-option-wrapper .view-option a.btn_list:before, .page-template-template-resource .filter-wrapper .view-option-wrapper .view-option a.btn_grid:before, .page-template-template-resource-list .filter-wrapper .view-option-wrapper .view-option a.btn_grid:before, .page-template-template-all-resources .filter-wrapper .view-option-wrapper .view-option a.btn_grid:before, .page-template-template-all-resources-list .filter-wrapper .view-option-wrapper .view-option a.btn_grid:before, .page-template-template-group-resource .filter-wrapper .view-option-wrapper .view-option a.btn_grid:before, .page-template-template-group-resource-list .filter-wrapper .view-option-wrapper .view-option a.btn_grid:before{
+	top:6px;
+}
+
+/*-----Download Button -----*/
+.btn_single_download{
+	font-size:14px;
+}
+
+.page-template-template-resource .resource-container .resource-item .resource-download-wrapper .multiple_download .multiple_dl_header span, .page-template-template-all-resources .resource-container .resource-item .resource-download-wrapper .multiple_download .multiple_dl_header span, .page-template-template-group-resource .resource-container .resource-item .resource-download-wrapper .multiple_download .multiple_dl_header span{
+    max-width:95px;
+}
+
+/*---Mobile Download button---*/
+.page-template-template-resource .resource-container .resource-item .resource-download-wrapper .mobile_download_wrapper .download_text, .page-template-template-all-resources .resource-container .resource-item .resource-download-wrapper .mobile_download_wrapper .download_text, .page-template-template-group-resource .resource-container .resource-item .resource-download-wrapper .mobile_download_wrapper .download_text{
+	font-size:14px;
+    line-height:1.42;
+}
+.mobile_download{
+	display:block;
+}

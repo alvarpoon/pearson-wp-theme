@@ -194,10 +194,10 @@
 										switch($file_type){
 											case 'image':
 											case 'video':
-												echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_extension.'" target="_blank">'.$file_title.'</a>';		
+												echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_extension.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';		
 												break;
 											default:
-												echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
+												echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_type.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';
 												break;
 										}
 										array_push($downloadable_file_arr, $downloadable_file['url']);
@@ -212,7 +212,7 @@
 								
 								$downloadable_file_string = implode(',',$downloadable_file_arr);
 								
-								echo '<a href="javascript:;" data-file="'.$downloadable_file_string.'" data-filename="testing123" class="media-file all createzip">'.__('Download All', 'Pearson-master').'</a>';
+								echo '<a href="javascript:;" data-file="'.$downloadable_file_string.'" data-filename="download" class="media-file all createzip">'.__('Download All', 'Pearson-master').'</a>';
 								
 								unset($downloadable_file_arr);
 								unset($downloadable_file_string);
@@ -267,10 +267,10 @@
 										switch($file_type){
 											case 'image':
 											case 'video':
-												echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_extension.'" target="_blank">'.$file_title.'</a>';		
+												echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_extension.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';		
 												break;
 											default:
-												echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
+												echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_type.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';
 												break;
 										}									
 										echo '</div>';
@@ -309,10 +309,10 @@
 												switch($file_type){
 													case 'image':
 													case 'video':
-														echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_extension.'" target="_blank">'.$file_title.'</a>';		
+														echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_extension.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';		
 														break;
 													default:
-														echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
+														echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_type.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';
 														break;
 												}
 											}
@@ -346,6 +346,23 @@
 					
 		<?php endforeach; 
 			echo '</div>';
+			
+		echo '</div>';
+		
+		echo '<div class="resource-footer">';
+			
+		echo '<div class="download_all">';
+		
+		$download_all = get_field('download_all',$resource_list->ID);
+		
+		
+		if(!empty($download_all)):
+			echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$download_all['ID'].'&pageid='.$post->ID.'" class="btn_single_download" target="_blank">'.__('Download All').'</a>';
+		endif;
+
+		echo '</div>';
+		
+		echo '</div>';
 			
 		endforeach;
 		?>

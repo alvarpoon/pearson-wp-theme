@@ -45,7 +45,8 @@
 						
 						//echo count($postlist);
 						foreach($postlist as $p):
-							$pfx_date = get_the_date( 'jS F,Y', $p->ID );
+							//$pfx_date = get_the_date( 'jS F,Y', $p->ID );
+							$pfx_date = get_the_date( 'd-m-Y', $p->ID );
 							$content = $p->post_content;
 							$content = apply_filters('the_content', $content);
 							$post_content = '';
