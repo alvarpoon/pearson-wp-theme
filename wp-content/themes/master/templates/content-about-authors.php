@@ -11,7 +11,14 @@
 <div class="container">	
 	<div class="home-content-wrapper">
 		<div class="content-right about-authors col-md-12">
-			<div class="section-title"><?=get_the_title($post->ID);?></div>
+			<?php
+				$display_title = get_field('display_title');
+				
+				if(empty($display_title)){
+					$display_title = get_the_title($post->ID);
+				}
+			?>
+			<div class="section-title"><?=$display_title?></div>
 			<div class="breadcrumbs" typeof="BreadcrumbList" vocab="http://schema.org/">
 				<?php
 					if(function_exists('bcn_display'))

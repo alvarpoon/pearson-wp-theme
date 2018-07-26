@@ -174,36 +174,50 @@ function is_url_exist($url){
    return $status;
 }
 
+function generateRandomString($length = 10) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
 
 add_action( 'wp_ajax_create-zip', 'create_zip' );
 // We allow non-logged in users to access our pagination
-add_action( 'wp_ajax_nopriv_create-zip', 'create_zip' ); 
+add_action( 'wp_ajax_nopriv_create-zip', 'create_zip' );
 
 function create_zip(){
 	global $wpdb;
 	$overwrite = true;
-	$filepath = $_POST['filepaths'];	
+	$filepath = $_POST['filepaths'];
 	$files = explode(',', $filepath);
 	
-	if(extension_loaded('zip')):
-		$zip = new ZipArchive();            // Load zip library 
-        $zip_name = $_POST['zipname'].".zip";
+	if(extension_loaded('zip')){
+		$zip = new ZipArchive(); // Load zip library 
 		
-		$destination_path = parse_url('http://local.pearson-master.com/wp-content/uploads/zip/', PHP_URL_PATH);
-	
+		date_default_timezone_set("Asia/Hong_Kong"); //Asia/Hong_Kong
+		$current_date_time = date("Y-m-d-H-i-s");
+		
+        $zip_name = $_POST['zipname'].'-'.$current_date_time.'-'.generateRandomString().".zip";
+		
+		//$destination_path = parse_url('http://local.pearson-master.com/wp-content/uploads/zip/', PHP_URL_PATH);
+		$destination_path = '/wp-content/uploads/zip/';
+		
 		$zip_name = $_SERVER['DOCUMENT_ROOT'].$destination_path.$zip_name;
 		
-		$result = $zip->open($zip_name, ZIPARCHIVE::OVERWRITE);
+		$result = $zip->open($zip_name, ZIPARCHIVE::CREATE | ZIPARCHIVE::OVERWRITE);
 		
 		if($result === TRUE){
 			if(is_array($files)) {
 			  foreach($files as $file) {
 				$file_path = parse_url($file, PHP_URL_PATH);
+				
 				$file_root_path = $_SERVER['DOCUMENT_ROOT'].$file_path;
 				$onlyfilename = substr(strrchr($file_root_path, "/"), 1);
 			  
 				 if(file_exists($file_root_path)) {
-					//$validFiles[] = $file_root_path;
 					$zip->addFile( $file_root_path, $onlyfilename );
 				 }
 			  }
@@ -214,6 +228,7 @@ function create_zip(){
 			};
 			
 			$zipfile = $zip_name;
+			
 			if (file_exists($zipfile)) {
 				/*header('Content-Description: File Transfer');
 				header('Content-Type: application/octet-stream');
@@ -228,14 +243,15 @@ function create_zip(){
 				$zipfile_path_arr = explode("/",$zipfile);
 				$output = array_slice($zipfile_path_arr, -4, 4);
 				$output = $_SERVER['SERVER_NAME'].'/'.implode('/',$output);
-				//echo $zipfile;
 				echo $output;
 				exit;
 			}
 		}else{
 			$error .=  "* Sorry ZIP creation failed at this time<br/>";
 		}
-	endif;
+	}else{
+		echo 'no zip function in php';
+	}
 	
 	exit();
 }
@@ -738,7 +754,16 @@ function get_resource_grid(){
 					?>
 				</div>
 				<div class="resource-title-wrapper">
-					<div class="resource-title"><?=get_the_title( $resource->ID );?></div>
+					<div class="resource-title">
+					<?php
+						if(empty($resource_display_title)){
+							echo get_the_title( $resource_id );
+						}else{
+							echo $resource_display_title;
+						}
+					?>
+					
+					</div>
 					<?php if(!empty($note)){ ?>
 					<div class="resource-note">
 						<a class="icon-note" data-fancybox data-src="#<?=$resource_slug.'-note'?>" href="javascript:;"></a>
@@ -900,7 +925,7 @@ function get_resource_grid(){
 		endforeach;
 		
 		if($resource_match_count == 0){
-			echo '<p>'.__('No resources found, please refine your filter.').'</p>';
+			echo '<p>'.__('No resources found, please refine your filter.', 'Pearson-master').'</p>';
 		}
 	
 		echo '</div>'; 
@@ -1357,7 +1382,7 @@ function get_all_resources_grid(){
 		endforeach;
 		
 		if($resource_match_count == 0){
-			echo '<p>'.__('No resources found, please refine your filter.').'</p>';
+			echo '<p>'.__('No resources found, please refine your filter.', 'Pearson-master').'</p>';
 		}
 	
 		echo '</div>'; 
@@ -1679,7 +1704,7 @@ function get_resource_list(){
 	<?php endforeach;
 			
 		if($resource_match_count == 0){
-			echo '<p>'.__('No resources found, please refine your filter.').'</p>';
+			echo '<p>'.__('No resources found, please refine your filter.', 'Pearson-master').'</p>';
 		}
 	
 		echo '</div>'; 
@@ -2006,7 +2031,7 @@ function get_all_resources_list(){
 	<?php endforeach;
 			
 		if($resource_match_count == 0){
-			echo '<p>'.__('No resources found, please refine your filter.').'</p>';
+			echo '<p>'.__('No resources found, please refine your filter.', 'Pearson-master').'</p>';
 		}
 	
 		echo '</div>'; 
@@ -2050,7 +2075,17 @@ function get_group_resources_grid(){
 			
 		echo '<div class="resource-container clearfix">';
 		
-		echo '<div class="group-title">'.get_the_title($resource_list->ID).'</div>';
+		echo '<div class="group-title">';
+				
+		$resource_list_display_title = get_field('display_title', $resource_list->ID);
+			
+		if(empty($resource_list_display_title)){
+			echo get_the_title($resource_list->ID);
+		}else{
+			echo $resource_list_display_title;
+		}
+		
+		echo '</div>';
 	
 		echo '<div class="resource-container-inner">';
 	
@@ -2076,7 +2111,7 @@ function get_group_resources_grid(){
 			$terms = get_the_terms( $resource_id, 'resource_category' );
 			if ($terms) {
 				foreach($terms as $term) {
-				  //echo '<p>'.$term->term_id.'</p>';
+				 // echo '<p>'.$term->term_id.'</p>';
 				  array_push($term_arr,$term->term_id);
 				} 
 			}
@@ -2296,7 +2331,7 @@ function get_group_resources_grid(){
 		endforeach; 
 	
 		if($resource_match_count == 0){
-			echo '<p>'.__('No resources found, please refine your filter.').'</p>';
+			echo '<p>'.__('No resources found, please refine your filter.', 'Pearson-master').'</p>';
 		}
 	
 		echo '</div>';
@@ -2340,7 +2375,17 @@ function get_group_resources_list(){
 			
 		echo '<div class="resource-container clearfix">';
 							
-		echo '<div class="group-title">'.get_the_title($resource_list->ID).'</div>';
+		echo '<div class="group-title">';
+				
+		$resource_list_display_title = get_field('display_title', $resource_list->ID);
+			
+		if(empty($resource_list_display_title)){
+			echo get_the_title($resource_list->ID);
+		}else{
+			echo $resource_list_display_title;
+		}
+		
+		echo '</div>';
 		
 		echo '<div class="clearfix resource-header">';
 			echo '<div class="col-xs-9 col-sm-10 col-md-5 no-padding">'.__('Items').'</div>';
@@ -2604,7 +2649,7 @@ function get_group_resources_list(){
 	<?php endforeach; 
 	
 		if($resource_match_count == 0){
-			echo '<p>'.__('No resources found, please refine your filter.').'</p>';
+			echo '<p>'.__('No resources found, please refine your filter.', 'Pearson-master').'</p>';
 		}
 	
 		echo '</div>';

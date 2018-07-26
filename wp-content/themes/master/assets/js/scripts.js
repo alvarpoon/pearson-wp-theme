@@ -3172,12 +3172,14 @@ function createZip(){
 			console.log('createzip done');
 			
 	    }).done(function(response){
-			console.log(window.location.protocol + "//" + response);
+			//console.log(response);
+			//console.log(window.location.protocol + "//" + response);
 			//window.location.href = response;
 			
 			window.location.href = window.location.protocol + "//" + response;
 	    }).fail(function(response){
 			//console.log('createzip fail');
+			console.log('fail: '+response);
 	    });
 		
 	});

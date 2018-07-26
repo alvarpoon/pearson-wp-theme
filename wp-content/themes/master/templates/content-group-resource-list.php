@@ -122,10 +122,21 @@
 		
 		<?php
 			foreach($resource_lists as $resource_list):
-			
+				
+				
 				echo '<div class="resource-container clearfix">';
 							
-				echo '<div class="group-title">'.get_the_title($resource_list->ID).'</div>';
+				echo '<div class="group-title">';
+				
+				$resource_list_display_title = get_field('display_title', $resource_list->ID);
+					
+				if(empty($resource_list_display_title)){
+					echo get_the_title($resource_list->ID);
+				}else{
+					echo $resource_list_display_title;
+				}
+				
+				echo '</div>';
 				
 				echo '<div class="clearfix resource-header">';
 					echo '<div class="col-xs-9 col-sm-10 col-md-5 no-padding">'.__('Items', 'Pearson-master').'</div>';

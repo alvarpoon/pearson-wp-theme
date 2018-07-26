@@ -126,7 +126,17 @@
 			
 				echo '<div class="resource-container clearfix">';
 				
-				echo '<div class="group-title">'.get_the_title($resource_list->ID).'</div>';
+				echo '<div class="group-title">';
+				
+				$resource_list_display_title = get_field('display_title', $resource_list->ID);
+					
+				if(empty($resource_list_display_title)){
+					echo get_the_title($resource_list->ID);
+				}else{
+					echo $resource_list_display_title;
+				}
+				
+				echo '</div>';
 			
 				echo '<div class="resource-container-inner">';
 			

@@ -23,30 +23,43 @@ $lang_arr = icl_get_languages('skip_missing=1&orderby=id&order=desc');
 			  <a class="navbar-brand" href="<?php echo home_url(); ?>/"><img src="<?=get_stylesheet_directory_uri()?>/assets/img/pearson-logo.svg" class="img-responsive"></a>
 			</div>
 			<div class="navbar-header-right hidden-xs hidden-sm visible-md visible-lg">
-				<div class="clearfix corners-menu">
-					<?php
-						if (has_nav_menu('corners-menu')) :
-							 
-						  wp_nav_menu(array('theme_location' => 'corners-menu', 'menu_class' => '', 'depth' => 3));
-						  
-						endif;
-					?>
-				</div>
-				<div class="lang-wrapper">
-					<?php
+				<?php
+				if (has_nav_menu('corners-menu')) :
+				
+					echo '<div class="clearfix corners-menu">';
+					
+					wp_nav_menu(array('theme_location' => 'corners-menu', 'menu_class' => '', 'depth' => 3));
+					
+					echo '</div>';		  
+					
+				endif;
+					
+				if ( function_exists('icl_object_id') ) {
+					
 					$lang_class = '';
-					foreach( $lang_arr as $lang ){
-					  echo '<a class="'.$lang_class.'" href="'.$lang['url'].'" data-original-href="'.strtok($lang['url'], '?').'">'.$lang['native_name'].'</a>';
+					
+					if(sizeof($lang_arr) > 1){
+					
+						echo '<div class="lang-wrapper">';
+						
+						foreach( $lang_arr as $lang ){
+						  echo '<a class="'.$lang_class.'" href="'.$lang['url'].'" data-original-href="'.strtok($lang['url'], '?').'">'.$lang['native_name'].'</a>';
+						}
+						
+						echo '</div>';
 					}
 					
-					?>
-				</div>
-				<?php
-					if (!empty($username)) {
-						echo('<div class="login-wrapper"><a href="/login_iam.php?logout">' . $username . ' ('.__('Logout', 'Pearson-master').')</a></div>');
-					}
-					else
-						echo('<div class="login-wrapper"><a href="/login_iam.php">'.__('Sign in', 'Pearson-master').'</a></div>');
+				}
+				
+				if (!empty($username)) {
+				
+					echo('<div class="login-wrapper"><a href="/login_iam.php?logout">' . $username . ' ('.__('Logout', 'Pearson-master').')</a></div>');
+				
+				}else{
+					
+					echo('<div class="login-wrapper"><a href="/login_iam.php">'.__('Sign in', 'Pearson-master').'</a></div>');
+					
+				}
 				?>
 			</div>
 		</div>
@@ -74,15 +87,18 @@ $lang_arr = icl_get_languages('skip_missing=1&orderby=id&order=desc');
 						  
 						endif;
 						
-						?>
-					
-						<ul class="nav navbar-nav">
-						<?php
-							foreach( $lang_arr as $lang ){
-							  echo '<li><a class="'.$lang_class.'" href="'.$lang['url'].'" data-original-href="'.strtok($lang['url'], '?').'">'.$lang['native_name'].'</a></li>';
+						
+						if ( function_exists('icl_object_id') ) {
+							if(sizeof($lang_arr) > 1){
+								echo '<ul class="nav navbar-nav">';
+								foreach( $lang_arr as $lang ){
+								  echo '<li><a class="'.$lang_class.'" href="'.$lang['url'].'" data-original-href="'.strtok($lang['url'], '?').'">'.$lang['native_name'].'</a></li>';
+								}
+								echo '</ul>';
 							}
+						}
+						
 						?>
-						</ul>
 						
 						<ul class="nav navbar-nav">
 						<?php
@@ -90,8 +106,9 @@ $lang_arr = icl_get_languages('skip_missing=1&orderby=id&order=desc');
 						if ($username) {
 							echo('<li><a href="/login_iam.php?logout">' . $username . ' ('.__('Logout', 'Pearson-master').')</a></li>');
 						}
-						else
+						else{
 							echo('<li><a href="/login_iam.php">'.__('Sign in', 'Pearson-master').'</a></li>');
+						}
 						
 						?>
 						</ul>

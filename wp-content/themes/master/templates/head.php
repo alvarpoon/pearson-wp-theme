@@ -10,17 +10,19 @@
 	 * Print the <title> tag based on what is being viewed.
 	 */
 	
-	wp_title( '|', true, 'right' );
+	//wp_title( '|', true, 'right' );
+	
+	// Add the blog description for the home/front page.
+	$display_title = get_field('display_title', $post->ID);
+				
+	if(empty($display_title)){		
+		wp_title( '|', true, 'right' );
+	}else{
+		echo $display_title.' | ';	
+	}
 	
 	// Add the blog name.
 	bloginfo( 'name' );
-	
-	// Add the blog description for the home/front page.
-	$display_title = get_field('display_title');
-				
-	if(empty($display_title)){
-		$display_title = get_the_title($post->ID);
-	}
 	
   ?></title>
   
