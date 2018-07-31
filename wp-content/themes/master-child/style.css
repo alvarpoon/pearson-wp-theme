@@ -111,7 +111,10 @@ body{
     font-size:0.8em;
 }
 
-
+.page-template-template-resource-list .resource-container .resource-item .resource-title-wrapper .resource-title-div .resource-title, .page-template-template-all-resources-list .resource-container .resource-item .resource-title-wrapper .resource-title-div .resource-title, .page-template-template-group-resource-list .resource-container .resource-item .resource-title-wrapper .resource-title-div .resource-title{
+	min-height: 65px;
+    max-height: 65px;
+}
 
 /*---Fix the scroll----*/
 

@@ -32,13 +32,16 @@ if(isset($_GET["file"]) && isset($_GET["pageid"])){
 			"exe" => "application/octet-stream",
 			"zip" => "application/zip",
 			"doc" => "application/msword",
-			"xls" => "application/vnd.ms-excel",
 			"ppt" => "application/vnd.ms-powerpoint",
+			"xls" => "application/vnd.ms-excel",
+			'xlsx' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+			'pptx' => 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+			'docx' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 			"gif" => "image/gif",
 			"png" => "image/png",
 			"jpeg"=> "image/jpg",
 			"jpg" =>  "image/jpg",
-			"php" => "text/plain"
+			"php" => "text/plain",
 		);
 		 
 		if($mime_type==''){

@@ -19,9 +19,9 @@
 			<h1 class="pageTitle"><?=$display_title?></h1>
 			<div class="breadcrumbs" typeof="BreadcrumbList" vocab="http://schema.org/">
 				<?php
-					if(function_exists('bcn_display'))
+					if(function_exists('custom_breadcrumbs'))
 					{
-						bcn_display();
+						custom_breadcrumbs();
 					}
 				?>
 			</div>
@@ -129,7 +129,7 @@
 				}
 				
 				$resource_count      = 0;
-				$resources_per_page  = 20; // How many features to display on each page
+				$resources_per_page  = 40; // How many features to display on each page
 				$total              = is_array( $resources ) ? count( $resources ) : 0;
 				$pages              = ceil( $total / $resources_per_page );
 				$min                = ( ( $page * $resources_per_page ) - $resources_per_page ) + 1;
@@ -204,15 +204,7 @@
 								$preview_only = get_sub_field('preview_only');
 								
 								if(!$preview_only){
-									switch($file_type){
-										case 'image':
-										case 'video':
-											echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_extension.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';		
-											break;
-										default:
-											echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_type.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';
-											break;
-									}
+									echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title);
 									array_push($downloadable_file_arr, $downloadable_file['url']);
 								}
 								
@@ -274,16 +266,7 @@
 								
 								if(!$preview_only){
 									echo '<div class="hidden-xs hidden-sm">';
-									
-									switch($file_type){
-										case 'image':
-										case 'video':
-											echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_extension.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';		
-											break;
-										default:
-											echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_type.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';
-											break;
-									}									
+									echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title);
 									echo '</div>';
 									
 									echo '<div class="hidden-md hidden-lg">';
@@ -318,15 +301,7 @@
 										$file_extension = strtolower(substr(strrchr($downloadable_file['url'],"."),1));
 										$preview_only = get_sub_field('preview_only');
 										if(!$preview_only){
-											switch($file_type){
-												case 'image':
-												case 'video':
-													echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_extension.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';		
-													break;
-												default:
-													echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_type.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';
-													break;
-											}
+											echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title);
 										}
 										
 										unset($file_title);

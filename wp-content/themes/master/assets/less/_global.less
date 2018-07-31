@@ -41,21 +41,6 @@ a{
 	padding:0!important;
 }
 
-/*.breadcrumb{
-	background:#fff;
-	padding:0;
-	border-radius:0;
-	margin-top:5px;
-	
-	& > li + li:before{
-		content:"\003e";
-	}
-	
-	a{
-		color:#505759;
-	}
-}*/
-
 .footer-padding{
 	padding-bottom:200px;
 }
@@ -71,7 +56,7 @@ a{
 	}
 }
 
-.breadcrumbs{
+/*.breadcrumbs{
 	margin-top:5px;
 	margin-bottom:20px;
 	color: #cccccc;
@@ -99,6 +84,36 @@ a{
 			}
 		}
 	}
+}*/
+
+#breadcrumbs{
+    list-style:none;
+    margin:10px 0;
+    overflow:hidden;
+	padding-left:0;
+}
+  
+#breadcrumbs li{
+    display:inline-block;
+    vertical-align:middle;
+    margin-right:15px;
+	//color:#cccccc;
+	color:#505759;
+	
+	a{
+		color:#505759;
+		
+		&:hover{
+			text-decoration:none;
+			color:#27ae60!important;
+		}
+	}
+}
+  
+#breadcrumbs .separator{
+    font-size:18px;
+    font-weight:100;
+    color:#505759;
 }
 
 .img-responsive{
@@ -149,8 +164,8 @@ a{
 		overflow:hidden;
 		
 		&.all{ background-image:url(../img/common/download-all.svg); }
-		&.doc{ background-image:url(../img/common/doc.svg); }
-		&.ppt{ background-image:url(../img/common/ppt.svg); }
+		&.doc, &.docx{ background-image:url(../img/common/doc.svg); }
+		&.ppt, &.pptx{ background-image:url(../img/common/ppt.svg); }
 		&.wav{ background-image:url(../img/common/wav.svg); }
 		&.zip{ background-image:url(../img/common/zip.svg); }
 		&.pdf{ background-image:url(../img/common/pdf.svg); }
@@ -161,6 +176,11 @@ a{
 		&.gif{ background-image:url(../img/common/gif.svg); }
 		&.png{ background-image:url(../img/common/png.svg); }
 		&.html{ background-image:url(../img/common/html.svg); }
+		&.flv{ background-image:url(../img/common/flv.svg); }
+		
+		&.default-file{ background-image:url(../img/common/default-file.svg); }
+		&.video{ background-image:url(../img/common/video.svg); }
+		&.audio{ background-image:url(../img/common/audio.svg); }
 	}
 }
 

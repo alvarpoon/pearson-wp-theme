@@ -2382,21 +2382,41 @@ var Roots = {
 		});
 	  }
 	  
+	  function initDropdownMenu(){
+		  $('.mobile-menu-wrapper li').removeClass('open');
+		  /*$('ul.dropdown-menu [data-toggle=dropdown]').unbind('click');
+		  $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
+			event.preventDefault(); 
+			event.stopPropagation(); 
+			
+			if($(window).width() < 992){
+				$(this).parent().toggleClass('open');
+			}else{
+				$('.mobile-menu-wrapper li').removeClass('open');
+			}
+		  });*/
+		  
+		  $('li.dropdown [data-toggle=dropdown]').unbind('click');
+		  $('li.dropdown [data-toggle=dropdown]').on('click', function(event) {
+			event.preventDefault(); 
+			event.stopPropagation(); 
+			
+			if($(window).width() < 992){
+				$(this).parent().toggleClass('open');
+			}else{
+				$('.mobile-menu-wrapper li').removeClass('open');
+			}
+		  });
+	  }
+	  
 	  $(document).ready(function(){
 		initMultipleDownload();			
 		initNavbarToggle();
-		
-		$('ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
-			event.preventDefault(); 
-			event.stopPropagation(); 
-			//$(this).parent().siblings().removeClass('open');
-			//$(this).parent().toggleClass('open');
-			$(this).parent().toggleClass('open');
-			
-			/*$( '.dropdown' ).on( 'show.bs.dropdown', function() {
-				$( this ).find( '.dropdown-menu' ).first().stop( true, true ).slideDown( 150 );
-			  } );*/
-		});
+		initDropdownMenu();
+	  });
+	  
+	  $(window).resize(function(){
+		initDropdownMenu();						
 	  });
     }
   },
@@ -2408,6 +2428,7 @@ var Roots = {
 		  if($('.home-slider').length > 0){
 			  $('.home-slider').slick({
 				dots: true,	
+				slidesToScroll: 1,
 				arrows: false,
 				autoplay: true,
 			  	autoplaySpeed: 5000
@@ -2445,6 +2466,7 @@ var Roots = {
   page_template_template_resource:{
 	init: function() {	
 		function ajax_action_grid(pageNum){
+			$("html, body").animate({ scrollTop: 0 });
 			var ajaxurl = '/wp-admin/admin-ajax.php';
 			
 			var filter_1 = 0,
@@ -2570,7 +2592,7 @@ var Roots = {
 			
 			$('#pagination-select').unbind('change');
 			$('#pagination-select').on('change', function(){			
-				ajax_action_grid($(this).val());									   
+				ajax_action_grid($(this).val());
 			});
 		}
 		
@@ -2583,7 +2605,8 @@ var Roots = {
   },
   page_template_template_resource_list:{
 	init: function() {
-		function ajax_action_list(pageNum){			
+		function ajax_action_list(pageNum){
+			$("html, body").animate({ scrollTop: 0 });
 			var ajaxurl = '/wp-admin/admin-ajax.php';
 			
 			var filter_1 = 0,
@@ -2681,6 +2704,7 @@ var Roots = {
 					
 					//console.log('newPageNum: '+newPageNum);
 					ajax_action_list(newPageNum);
+					$("html, body").animate({ scrollTop: 0 });
 				});
 			}
 			
@@ -2697,6 +2721,7 @@ var Roots = {
 					
 					//console.log('newPageNum: '+newPageNum);
 					ajax_action_list(newPageNum);
+					$("html, body").animate({ scrollTop: 0 });
 				});
 			}
 			
@@ -2707,7 +2732,8 @@ var Roots = {
 			
 			$('#pagination-select').unbind('change');
 			$('#pagination-select').on('change', function(){			
-				ajax_action_list($(this).val());									   
+				ajax_action_list($(this).val());	
+				$("html, body").animate({ scrollTop: 0 });
 			});
 		}
 		
@@ -2720,7 +2746,8 @@ var Roots = {
   },
   page_template_template_all_resources:{
 	init: function() {
-		function ajax_action_grid(pageNum){			
+		function ajax_action_grid(pageNum){
+			$("html, body").animate({ scrollTop: 0 });
 			var ajaxurl = '/wp-admin/admin-ajax.php';
 			
 			var filter_1 = 0,
@@ -2857,7 +2884,8 @@ var Roots = {
   },
   page_template_template_all_resources_list:{
 	init: function() {
-		function ajax_action_list(pageNum){			
+		function ajax_action_list(pageNum){
+			$("html, body").animate({ scrollTop: 0 });
 			var ajaxurl = '/wp-admin/admin-ajax.php';
 			
 			var filter_1 = 0,
@@ -2994,7 +3022,8 @@ var Roots = {
   },
   page_template_template_group_resource:{
 	init: function() {
-		function ajax_action_grid(){			
+		function ajax_action_grid(){
+			$("html, body").animate({ scrollTop: 0 });
 			var ajaxurl = '/wp-admin/admin-ajax.php';
 			
 			var filter_1 = 0,
@@ -3065,6 +3094,7 @@ var Roots = {
   page_template_template_group_resource_list:{
 	init: function() {
 		function ajax_action_list(){
+			$("html, body").animate({ scrollTop: 0 });
 			var ajaxurl = '/wp-admin/admin-ajax.php';
 			
 			var filter_1 = 0,

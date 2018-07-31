@@ -329,9 +329,7 @@ function getDownload_count($resource_id){
 	
 }
 
-function filetype_thumbnail($filetype){
-	
-
+function filetype_thumbnail($filetype, $resource_type){
 	switch($filetype){
 		case 'doc':
 		case 'gif':
@@ -346,15 +344,57 @@ function filetype_thumbnail($filetype){
 		case 'wav':
 		case 'xls':
 		case 'zip':
+		case 'flv':
 			$imgfile = $filetype.'.svg';
 			break;
-		default:
-			$imgfile = 'single-file.svg';
+		default:		
+			if($resource_type == 'video-file'){
+				$imgfile = 'video.svg';
+			}else if($resource_type == 'audio-file'){
+				$imgfile = 'audio.svg';
+			}else{
+				$imgfile = 'default-file.svg';				
+			}
 			break;
-			
 	}
 	
 	return $imgfile;
+}
+
+function get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title){
+	$thumbnail_link = '';
+
+	switch($file_extension){
+		case 'doc':
+		case 'docx':
+		case 'gif':
+		case 'html':
+		case 'jpg':
+		case 'mov':
+		case 'mp4':
+		case 'mpg':
+		case 'pdf':
+		case 'png':
+		case 'ppt':
+		case 'pptx':
+		case 'wav':
+		case 'xls':
+		case 'zip':
+		case 'flv':
+			$thumbnail_link = '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_extension.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';
+			break;
+		default:		
+			if($file_type == 'video'){
+				$thumbnail_link = '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file video" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';
+			}else if($file_type == 'wav'){
+				$thumbnail_link = '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file audio" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';
+			}else{
+				$thumbnail_link = '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file default-file" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';		
+			}
+			break;	
+	}
+	
+	return $thumbnail_link;
 }
 
 function showGridThumbnail($resource_id, $resource_thumbnail, $resource_type, $popup_image, $popup_url,$resource_slug){
@@ -402,34 +442,34 @@ function showGridThumbnail($resource_id, $resource_thumbnail, $resource_type, $p
 				break;
 			case "image-file":
 				if(!empty($popup_image)){
-					echo '<a href="'.$popup_image.'" data-fancybox class="thumb" style="background-image:url('.$path.filetype_thumbnail($filetype).')"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></a>';
+					echo '<a href="'.$popup_image.'" data-fancybox class="thumb" style="background-image:url('.$path.filetype_thumbnail($filetype, $resource_type).')"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></a>';
 				}else{
 					echo '<div class="thumb" style="background-image:url('.$path.filetype_thumbnail($filetype).'"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></div>';
 				}
 				break;
 			case "video-file":
 				if(!empty($popup_url)){
-					echo '<a data-fancybox href="'.$popup_url.'" class="thumb" style="background-image:url('.$path.filetype_thumbnail($filetype).')"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></a>';
+					echo '<a data-fancybox href="'.$popup_url.'" class="thumb" style="background-image:url('.$path.filetype_thumbnail($filetype, $resource_type).')"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></a>';
 				}else{
-					echo '<div class="thumb" style="background-image:url('.$path.filetype_thumbnail($filetype).')"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></div>';
+					echo '<div class="thumb" style="background-image:url('.$path.filetype_thumbnail($filetype, $resource_type).')"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></div>';
 				}
 				break;
 			case "audio-file":
-				echo '<div class="thumb" style="background-image:url('.$path.filetype_thumbnail($filetype).')"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></div>';
+				echo '<div class="thumb" style="background-image:url('.$path.filetype_thumbnail($filetype, $resource_type).')"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></div>';
 				break;
 			case "interactive-file":
 				if(!empty($popup_url)){
-					echo '<a href="'.$popup_url.'" target="_blank" class="thumb" style="background-image:url('.$path.filetype_thumbnail($filetype).')"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></a>';
+					echo '<a href="'.$popup_url.'" target="_blank" class="thumb" style="background-image:url('.$path.filetype_thumbnail($filetype, $resource_type).')"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></a>';
 				}else{
-					echo '<div class="thumb" style="background-image:url('.$path.filetype_thumbnail($filetype).')"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></div>';
+					echo '<div class="thumb" style="background-image:url('.$path.filetype_thumbnail($filetype, $resource_type).')"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></div>';
 				}
 				break;
 			case "article-file":
-				echo '<a href="javascript:;" data-fancybox data-src="#'.$resource_slug.'-content" class="thumb" style="background-image:url('.$path.filetype_thumbnail($filetype).')"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></a>';
+				echo '<a href="javascript:;" data-fancybox data-src="#'.$resource_slug.'-content" class="thumb" style="background-image:url('.$path.filetype_thumbnail($filetype, $resource_type).')"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></a>';
 				break;
 				
 			default:
-				echo '<div class="thumb" style="background-image:url('.$path.filetype_thumbnail($filetype).')"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></div>';
+				echo '<div class="thumb" style="background-image:url('.$path.filetype_thumbnail($filetype, $resource_type).')"><img src="'.$path.'grid-view-spacer.png" class="img-responsive" /></div>';
 				break;
 		}
 	}
@@ -542,7 +582,7 @@ function get_resource_pagination(){
 	
 	// Pagination variables
 	$resource_match_count = 0;
-	$resources_per_page  = 20; // How many features to display on each page	
+	$resources_per_page  = 40; // How many features to display on each page	
 	
 	if( $resources ):
 			
@@ -671,7 +711,7 @@ function get_resource_grid(){
 	// Pagination variables
 	$resource_count      = 0;
 	$resource_match_count = 0;
-	$resources_per_page  = 20; // How many features to display on each page
+	$resources_per_page  = 40; // How many features to display on each page
 	$total              = is_array( $resources ) ? count( $resources ) : 0;
 	//$pages              = ceil( $total / $resources_per_page );
 	$min                = ( ( $page * $resources_per_page ) - $resources_per_page ) + 1;
@@ -755,14 +795,7 @@ function get_resource_grid(){
 				</div>
 				<div class="resource-title-wrapper">
 					<div class="resource-title">
-					<?php
-						if(empty($resource_display_title)){
-							echo get_the_title( $resource_id );
-						}else{
-							echo $resource_display_title;
-						}
-					?>
-					
+						<?php echo showListTitle($resource_id, $resource_type, $resource_popup_image['url'], $resource_popup_url, $resource_slug);?>
 					</div>
 					<?php if(!empty($note)){ ?>
 					<div class="resource-note">
@@ -803,7 +836,7 @@ function get_resource_grid(){
 										
 										$downloadable_file_string = implode(',',$downloadable_file_arr);
 										
-										echo '<li><a href="javascript:;" data-file="'.$downloadable_file_string.'" data-filename="download" class="createzip">'.__('Download All', 'Pearson-master').'('.$download_count.__(' files', 'Pearson-master').')</a></li>';
+										echo '<li><a href="javascript:;" data-file="'.$downloadable_file_string.'" data-filename="download" class="createzip">'.__('Download All', 'Pearson-master').' ('.$download_count.__(' files', 'Pearson-master').')</a></li>';
 									}?>
 									</ul>
 								</div>
@@ -873,15 +906,7 @@ function get_resource_grid(){
 									$preview_only = get_sub_field('preview_only');
 
 									if(!$preview_only){
-										switch($file_type){
-											case 'image':
-											case 'video':
-												echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_extension.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';		
-												break;
-											default:
-												echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_type.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';
-												break;
-										}
+										echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title);
 									}
 									
 									unset($file_title);
@@ -941,12 +966,14 @@ function get_all_resource_page(){
 		'fields' => 'ids',
 		'nopaging' => true,
 		'meta_key' => '_wp_page_template',
-		'meta_value' => 'template-resource.php',
+		'meta_value' => array('template-resource.php','template-resource-list.php', 'template-group-resource.php', 'template-group-resource-list.php'),
 		'hierarchical' => 0,
 		'suppress_filters' => false
 	];
 	
 	$all_resources = [];
+	
+	$check_resources_exist = [];
 	
 	$all_resources_pages = get_posts( $args );
 	foreach ( $all_resources_pages as $resources_page ):
@@ -954,22 +981,32 @@ function get_all_resource_page(){
 		
 		if(checkPageAccessRight($resources_page)):
 			
-			$temp_resource_list = get_field('resource_list', $resources_page);
-			$temp_resources = get_field('resources', $temp_resource_list[0]->ID);
-			
-			if(!empty($temp_resources)):
-			
-				foreach($temp_resources	as $temp_resource):
+			$temp_resource_lists = get_field('resource_list', $resources_page);
+			//$temp_resource_list_count = is_array( $temp_resource_list ) ? count( $temp_resource_list ) : 0;
+			foreach($temp_resource_lists as $temp_resource_list):
+				$temp_resources = get_field('resources', $temp_resource_list->ID);
 				
-					$temp_arr['pageid'] = $resources_page;
-					
-					$temp_arr['resource_id'] = $temp_resource->ID;
-					
-					array_push($all_resources, $temp_arr);
-					
-				endforeach;
+				if(!empty($temp_resources)):
 				
-			endif;
+					foreach($temp_resources	as $key => $temp_resource):
+					
+						if(!in_array($temp_resource->ID, $check_resources_exist)){
+					
+							$temp_arr['pageid'] = $resources_page;
+							
+							$temp_arr['resource_id'] = $temp_resource->ID;
+							
+							array_push($check_resources_exist, $temp_resource->ID);
+							
+							array_push($all_resources, $temp_arr);
+							
+						}
+						
+					endforeach;
+					
+				endif;
+				
+			endforeach;
 		
 		endif;
 		
@@ -996,7 +1033,7 @@ function get_all_resource_pagination(){
 	
 	// Pagination variables
 	$resource_match_count = 0;
-	$resources_per_page  = 20; // How many features to display on each page	
+	$resources_per_page  = 40; // How many features to display on each page	
 	
 	$all_resources = get_all_resource_page();
 	
@@ -1128,7 +1165,7 @@ function get_all_resources_grid(){
 	// Pagination variables
 	$resource_count      = 0;
 	$resource_match_count = 0;
-	$resources_per_page  = 20; // How many features to display on each page
+	$resources_per_page  = 40; // How many features to display on each page
 	$total              = is_array( $all_resources ) ? count( $all_resources ) : 0;
 	//$pages              = ceil( $total / $resources_per_page );
 	$min                = ( ( $page * $resources_per_page ) - $resources_per_page ) + 1;
@@ -1214,13 +1251,7 @@ function get_all_resources_grid(){
 				</div>
 				<div class="resource-title-wrapper">
 					<div class="resource-title">
-						<?php
-							if(empty($resource_display_title)){
-								echo get_the_title( $resource_id );
-							}else{
-								echo $resource_display_title;
-							}
-						?>
+						<?php echo showListTitle($resource_id, $resource_type, $resource_popup_image['url'], $resource_popup_url, $resource_slug);?>
 					</div>
 					<?php if(!empty($note)){ ?>
 					<div class="resource-note">
@@ -1260,7 +1291,7 @@ function get_all_resources_grid(){
 										
 										$downloadable_file_string = implode(',',$downloadable_file_arr);
 										
-										echo '<li><a href="javascript:;" data-file="'.$downloadable_file_string.'" data-filename="download" class="createzip">'.__('Download All', 'Pearson-master').'('.$download_count.__(' files', 'Pearson-master').')</a></li>';
+										echo '<li><a href="javascript:;" data-file="'.$downloadable_file_string.'" data-filename="download" class="createzip">'.__('Download All', 'Pearson-master').' ('.$download_count.__(' files', 'Pearson-master').')</a></li>';
 										
 										unset($downloadable_file_arr);
 										unset($downloadable_file_string);
@@ -1333,15 +1364,7 @@ function get_all_resources_grid(){
 									$preview_only = get_sub_field('preview_only');
 
 									if(!$preview_only){
-										switch($file_type){
-											case 'image':
-											case 'video':
-												echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_extension.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';		
-												break;
-											default:
-												echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_type.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';
-												break;
-										}
+										echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title);
 									}
 									
 									unset($file_title);
@@ -1432,7 +1455,7 @@ function get_resource_list(){
 	// Pagination variables
 	$resource_count      = 0;
 	$resource_match_count = 0;
-	$resources_per_page  = 20; // How many features to display on each page
+	$resources_per_page  = 40; // How many features to display on each page
 	$total              = is_array( $resources ) ? count( $resources ) : 0;
 	//$pages              = ceil( $total / $resources_per_page );
 	$min                = ( ( $page * $resources_per_page ) - $resources_per_page ) + 1;
@@ -1545,16 +1568,7 @@ function get_resource_list(){
 								$preview_only = get_sub_field('preview_only');
 								
 								if(!$preview_only){
-									switch($file_type){
-										case 'image':
-										case 'video':
-											echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_extension.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';		
-											break;
-										default:
-											echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_type.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';
-											break;
-									}
-									
+									echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title);
 									array_push($downloadable_file_arr, $downloadable_file['url']);
 								}
 								
@@ -1616,16 +1630,7 @@ function get_resource_list(){
 								
 								if(!$preview_only){
 									echo '<div class="hidden-xs hidden-sm">';
-									
-									switch($file_type){
-										case 'image':
-										case 'video':
-											echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_extension.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';		
-											break;
-										default:
-											echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_type.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';
-											break;
-									}									
+									echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title);
 									echo '</div>';
 									
 									echo '<div class="hidden-md hidden-lg">';
@@ -1662,15 +1667,7 @@ function get_resource_list(){
 									$file_extension = strtolower(substr(strrchr($downloadable_file['url'],"."),1));
 									$preview_only = get_sub_field('preview_only');
 									if(!$preview_only){
-										switch($file_type){
-											case 'image':
-											case 'video':
-												echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_extension.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';		
-												break;
-											default:
-												echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_type.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';
-												break;
-										}
+										echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title);
 									}
 									
 									unset($file_title);
@@ -1755,7 +1752,7 @@ function get_all_resources_list(){
 	// Pagination variables
 	$resource_count      = 0;
 	$resource_match_count = 0;
-	$resources_per_page  = 20; // How many features to display on each page
+	$resources_per_page  = 40; // How many features to display on each page
 	$total              = is_array( $all_resources ) ? count( $all_resources ) : 0;
 	//$pages              = ceil( $total / $resources_per_page );
 	$min                = ( ( $page * $resources_per_page ) - $resources_per_page ) + 1;
@@ -1859,6 +1856,8 @@ function get_all_resources_list(){
 					<?php if($download_count > 1): ?>
 					<div class="hidden-xs hidden-sm">
 						<?php 
+						$downloadable_file_arr = array();
+						
 						if( have_rows('downloads', $resource_id) ){
 							while( have_rows('downloads', $resource_id) ): the_row();
 								$file_title = get_sub_field('file_title');
@@ -1868,15 +1867,7 @@ function get_all_resources_list(){
 								$preview_only = get_sub_field('preview_only');
 								
 								if(!$preview_only){
-									switch($file_type){
-										case 'image':
-										case 'video':
-											echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_extension.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';		
-											break;
-										default:
-											echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_type.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';
-											break;
-									}
+									echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title);
 									array_push($downloadable_file_arr, $downloadable_file['url']);
 								}
 								
@@ -1944,16 +1935,7 @@ function get_all_resources_list(){
 								
 								if(!$preview_only){
 									echo '<div class="hidden-xs hidden-sm">';
-									
-									switch($file_type){
-										case 'image':
-										case 'video':
-											echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_extension.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';		
-											break;
-										default:
-											echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_type.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';
-											break;
-									}									
+									echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title);
 									echo '</div>';
 									
 									echo '<div class="hidden-md hidden-lg">';
@@ -1989,15 +1971,7 @@ function get_all_resources_list(){
 									$file_extension = strtolower(substr(strrchr($downloadable_file['url'],"."),1));
 									$preview_only = get_sub_field('preview_only');
 									if(!$preview_only){
-										switch($file_type){
-											case 'image':
-											case 'video':
-												echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_extension.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';		
-												break;
-											default:
-												echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_type.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';
-												break;
-										}
+										echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title);
 									}
 									
 									unset($file_title);
@@ -2158,14 +2132,7 @@ function get_group_resources_grid(){
 				</div>
 				<div class="resource-title-wrapper">
 					<div class="resource-title">
-					<?php
-						if(empty($resource_display_title)){
-							echo get_the_title( $resource_id );
-						}else{
-							echo $resource_display_title;
-						}
-					?>
-					
+						<?php echo showListTitle($resource_id, $resource_type, $resource_popup_image['url'], $resource_popup_url, $resource_slug);?>
 					</div>
 					<?php if(!empty($note)){ ?>
 					<div class="resource-note">
@@ -2207,7 +2174,7 @@ function get_group_resources_grid(){
 										
 										$downloadable_file_string = implode(',',$downloadable_file_arr);
 										
-										echo '<li><a href="javascript:;" data-file="'.$downloadable_file_string.'" data-filename="download" class="createzip">'.__('Download All', 'Pearson-master').'('.$download_count.__(' files', 'Pearson-master').')</a></li>';
+										echo '<li><a href="javascript:;" data-file="'.$downloadable_file_string.'" data-filename="download" class="createzip">'.__('Download All', 'Pearson-master').' ('.$download_count.__(' files', 'Pearson-master').')</a></li>';
 										
 										unset($downloadable_file_arr);
 										unset($downloadable_file_string);
@@ -2278,15 +2245,7 @@ function get_group_resources_grid(){
 									$preview_only = get_sub_field('preview_only');
 
 									if(!$preview_only){
-										switch($file_type){
-											case 'image':
-											case 'video':
-												echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_extension.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';		
-												break;
-											default:
-												echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_type.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';
-												break;
-										}
+										echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title);
 									}
 									
 									unset($file_title);
@@ -2491,15 +2450,7 @@ function get_group_resources_list(){
 								$preview_only = get_sub_field('preview_only');
 								
 								if(!$preview_only){
-									switch($file_type){
-										case 'image':
-										case 'video':
-											echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_extension.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';		
-											break;
-										default:
-											echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_type.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';
-											break;
-									}
+									echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title);
 									array_push($downloadable_file_arr, $downloadable_file['url']);
 								}
 								
@@ -2561,16 +2512,7 @@ function get_group_resources_list(){
 								
 								if(!$preview_only){
 									echo '<div class="hidden-xs hidden-sm">';
-									
-									switch($file_type){
-										case 'image':
-										case 'video':
-											echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_extension.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';		
-											break;
-										default:
-											echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_type.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';
-											break;
-									}									
+									echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title);
 									echo '</div>';
 									
 									echo '<div class="hidden-md hidden-lg">';
@@ -2606,15 +2548,7 @@ function get_group_resources_list(){
 										$file_extension = strtolower(substr(strrchr($downloadable_file['url'],"."),1));
 										$preview_only = get_sub_field('preview_only');
 										if(!$preview_only){
-											switch($file_type){
-												case 'image':
-												case 'video':
-													echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_extension.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';		
-													break;
-												default:
-													echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_type.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';
-													break;
-											}
+											echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title);
 										}
 										
 										unset($file_title);

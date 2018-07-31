@@ -23,9 +23,9 @@
 			<h1 class="pageTitle"><?=$display_title?></h1>
 			<div class="breadcrumbs" typeof="BreadcrumbList" vocab="http://schema.org/">
 				<?php
-					if(function_exists('bcn_display'))
+					if(function_exists('custom_breadcrumbs'))
 					{
-						bcn_display();
+						custom_breadcrumbs();
 					}
 				?>
 			</div>
@@ -170,14 +170,7 @@
 						</div>
 						<div class="resource-title-wrapper">
 							<div class="resource-title">
-							<?php
-								if(empty($resource_display_title)){
-									echo get_the_title( $resource_id );
-								}else{
-									echo $resource_display_title;
-								}
-							?>
-							
+								<?php echo showListTitle($resource_id, $resource_type, $resource_popup_image['url'], $resource_popup_url, $resource_slug);?>
 							</div>
 							<?php if(!empty($note)){ ?>
 							<div class="resource-note">

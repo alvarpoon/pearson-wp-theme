@@ -19,9 +19,14 @@
 			<h1 class="pageTitle"><?=$display_title?></h1>
 			<div class="breadcrumbs" typeof="BreadcrumbList" vocab="http://schema.org/">
 				<?php
-					if(function_exists('bcn_display'))
+					/*if(function_exists('bcn_display'))
 					{
 						bcn_display();
+					}*/
+					
+					if(function_exists('custom_breadcrumbs'))
+					{
+						custom_breadcrumbs();
 					}
 				?>
 			</div>
@@ -130,7 +135,7 @@
 				}
 				
 				$resource_count      = 0;
-				$resources_per_page  = 20; // How many features to display on each page
+				$resources_per_page  = 40; // How many features to display on each page
 				$total              = is_array( $resources ) ? count( $resources ) : 0;
 				$pages              = ceil( $total / $resources_per_page );
 				$min                = ( ( $page * $resources_per_page ) - $resources_per_page ) + 1;
@@ -178,22 +183,13 @@
 					<div class="col-xs-6 col-sm-3 col-md-3 resource-item">
 						<div class="resource-thumbnail">
 							<?php
-								//echo '<p>file type: '.get_main_download_file($resource_id).'</p>';
-							
 								echo showGridThumbnail($resource_id, $resource_thumbnail, $resource_type, $resource_popup_image['url'], $resource_popup_url, $resource_slug);
 								echo get_audio_preview(get_field('downloads', $resource_id));
 							?>
 						</div>
 						<div class="resource-title-wrapper">
 							<div class="resource-title">
-							<?php
-								if(empty($resource_display_title)){
-									echo get_the_title( $resource_id );
-								}else{
-									echo $resource_display_title;
-								}
-							?>
-							
+								<?php echo showListTitle($resource_id, $resource_type, $resource_popup_image['url'], $resource_popup_url, $resource_slug);?>
 							</div>
 							<?php if(!empty($note)){ ?>
 							<div class="resource-note">
@@ -235,7 +231,7 @@
 												
 												$downloadable_file_string = implode(',',$downloadable_file_arr);
 												
-												echo '<li><a href="javascript:;" data-file="'.$downloadable_file_string.'" data-filename="download" class="createzip">'.__('Download All', 'Pearson-master').'('.$download_count.__(' files', 'Pearson-master').')</a></li>';
+												echo '<li><a href="javascript:;" data-file="'.$downloadable_file_string.'" data-filename="download" class="createzip">'.__('Download All', 'Pearson-master').' ('.$download_count.__(' files', 'Pearson-master').')</a></li>';
 												
 												unset($downloadable_file_arr);
 												unset($downloadable_file_string);

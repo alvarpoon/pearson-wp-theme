@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="210" height="118" viewBox="0 0 210 118">
+    <defs>
+        <linearGradient id="b" x1="50%" x2="50%" y1="0%" y2="100%">
+            <stop offset="0%" stop-color="#F8F8F8"/>
+            <stop offset="100%" stop-color="#EEE"/>
+        </linearGradient>
+        <rect id="a" width="210" height="118" rx="2"/>
+        <filter id="c" width="116.5%" height="113%" x="-8.2%" y="-4.6%" filterUnits="objectBoundingBox">
+            <feOffset dy="2" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+            <feColorMatrix in="shadowBlurOuter1" result="shadowMatrixOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0"/>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+        <linearGradient id="e" x1="100%" x2="0%" y1="0%" y2="104.901%">
+            <stop offset="0%" stop-color="#CCC"/>
+            <stop offset="19.948%" stop-color="#FFF"/>
+            <stop offset="100%" stop-color="#F0F0F0"/>
+        </linearGradient>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g>
+            <mask id="d" fill="#fff">
+                <use xlink:href="#a"/>
+            </mask>
+            <use fill="url(#b)" xlink:href="#a"/>
+            <g filter="url(#c)" mask="url(#d)">
+                <path fill="url(#e)" d="M1.5.5C.673.5 0 1.173 0 2v104c0 .827.673 1.5 1.5 1.5H83c.827 0 1.5-.673 1.5-1.5V27c0-.972-.58-2.373-1.268-3.06L61.061 1.768C60.373 1.081 58.972.5 58 .5H1.5z" transform="translate(66 3)"/>
+                <path fill="#979797" d="M125.667 5v21.333c0 1.1.9 2 2 2H149c1.1 0 1.364-.637.586-1.414L127.08 4.414c-.302-.302-.583-.447-.813-.447-.363 0-.601.36-.601 1.033z"/>
+            </g>
+        </g>
+        <path d="M84 35h48v48H84z"/>
+        <path fill="#B6B6B6" d="M118 56v-7c0-1.1-.9-2-2-2H92c-1.1 0-2 .9-2 2v20c0 1.1.9 2 2 2h24c1.1 0 2-.9 2-2v-7l8 8V48l-8 8z"/>
+    </g>
+</svg>

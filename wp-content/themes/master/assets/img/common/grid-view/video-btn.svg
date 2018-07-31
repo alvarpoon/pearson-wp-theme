@@ -1,6 +1,31 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="46" height="46" viewBox="0 0 46 46">
+    <defs>
+        <path id="b" d="M20.1 14.58L14 10v18l6.1-4.58L26 19l-5.9-4.42zm0 0L14 10v18l6.1-4.58L26 19l-5.9-4.42zm0 0L14 10v18l6.1-4.58L26 19l-5.9-4.42z"/>
+        <filter id="a" width="216.7%" height="177.8%" x="-58.3%" y="-27.8%" filterUnits="objectBoundingBox">
+            <feOffset dy="2" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+            <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0"/>
+        </filter>
+        <circle id="d" cx="18" cy="18" r="18"/>
+        <filter id="c" width="144.4%" height="144.4%" x="-22.2%" y="-16.7%" filterUnits="objectBoundingBox">
+            <feMorphology in="SourceAlpha" operator="dilate" radius="1" result="shadowSpreadOuter1"/>
+            <feOffset dy="2" in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
+            <feMorphology in="SourceAlpha" radius="1" result="shadowInner"/>
+            <feOffset dy="2" in="shadowInner" result="shadowInner"/>
+            <feComposite in="shadowOffsetOuter1" in2="shadowInner" operator="out" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+            <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0"/>
+        </filter>
+    </defs>
     <g fill="none" fill-rule="evenodd">
-        <path fill="#FFF" d="M13.36 9.008l-4.13-3.1v12.184l4.13-3.1L17.354 12 13.36 9.008zm0 0l-4.13-3.1v12.184l4.13-3.1L17.354 12 13.36 9.008zm0 0l-4.13-3.1v12.184l4.13-3.1L17.354 12 13.36 9.008z"/>
-        <circle cx="12" cy="12" r="11" stroke="#FFF" stroke-width="2"/>
+        <path d="M-1-3h48v48H-1z"/>
+        <g transform="translate(5 3)">
+            <use fill="#000" filter="url(#a)" xlink:href="#b"/>
+            <use fill="#FFF" xlink:href="#b"/>
+        </g>
+        <g transform="translate(5 3)">
+            <use fill="#000" filter="url(#c)" xlink:href="#d"/>
+            <use stroke="#FFF" stroke-width="2" xlink:href="#d"/>
+        </g>
     </g>
 </svg>

@@ -19,9 +19,9 @@
 			<h1 class="pageTitle"><?=$display_title?></h1>
 			<div class="breadcrumbs" typeof="BreadcrumbList" vocab="http://schema.org/">
 				<?php
-					if(function_exists('bcn_display'))
+					if(function_exists('custom_breadcrumbs'))
 					{
-						bcn_display();
+						custom_breadcrumbs();
 					}
 				?>
 			</div>
@@ -130,7 +130,7 @@
 				}
 				
 				$resource_count      = 0;
-				$resources_per_page  = 20; // How many features to display on each page
+				$resources_per_page  = 40; // How many features to display on each page
 				$total              = is_array( $all_resources ) ? count( $all_resources ) : 0;
 				$pages              = ceil( $total / $resources_per_page );
 				$min                = ( ( $page * $resources_per_page ) - $resources_per_page ) + 1;
@@ -187,14 +187,7 @@
 						</div>
 						<div class="resource-title-wrapper">
 							<div class="resource-title">
-							<?php
-								if(empty($resource_display_title)){
-									echo get_the_title( $resource_id );
-								}else{
-									echo $resource_display_title;
-								}
-							?>
-							
+								<?php echo showListTitle($resource_id, $resource_type, $resource_popup_image['url'], $resource_popup_url, $resource_slug);?>
 							</div>
 							<?php if(!empty($note)){ ?>
 							<div class="resource-note">
@@ -236,7 +229,7 @@
 												
 												$downloadable_file_string = implode(',',$downloadable_file_arr);
 												
-												echo '<li><a href="javascript:;" data-file="'.$downloadable_file_string.'" data-filename="download" class="createzip">'.__('Download All', 'Pearson-master').'('.$download_count.__(' files', 'Pearson-master').')</a></li>';
+												echo '<li><a href="javascript:;" data-file="'.$downloadable_file_string.'" data-filename="download" class="createzip">'.__('Download All', 'Pearson-master').' ('.$download_count.__(' files', 'Pearson-master').')</a></li>';
 												
 												unset($downloadable_file_arr);
 												unset($downloadable_file_string);
@@ -267,7 +260,6 @@
 													endwhile;
 												}
 												?>
-												<!--<option>Download All</option>-->
 											</select>
 											<div class="download_text"><?=__('Download', 'Pearson-master');?> (<?=$download_count?>)</div>
 										</div>

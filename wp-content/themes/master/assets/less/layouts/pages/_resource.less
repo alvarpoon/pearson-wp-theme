@@ -377,9 +377,9 @@
 					position:relative;
 					
 					&.thumb_image, &.thumb_video, &.thumb_interactive, &.thumb_article{
-						&:before{
+						/*&:before{
 							display:block;
-						}
+						}*/
 					}
 					
 					&.thumb_image{
@@ -414,7 +414,7 @@
 						}
 					}
 					
-					&:before{
+					/*&:before{
 						content:"";
 						display:none;
 						position:absolute;
@@ -423,7 +423,7 @@
 						top:0;
 						left:0;
 						background:rgba(0,0,0,0.3);
-					}
+					}*/
 					
 					&:after{
 						content:"";
@@ -444,12 +444,15 @@
 			.resource-title-wrapper{
 				position:relative;
 				//margin-bottom:23px;
-				height:62px;
+				max-height:62px;
+				min-height:40px;
 				overflow-y:hidden;
 				
 				.resource-title{
 				  font-size: 14px;
 				  padding-right:27px;
+				  margin-bottom:10px;
+				  
 				  a{
 				  	color:#505759;
 					&:hover{
@@ -893,6 +896,7 @@
 						text-align:center;
 						position:relative;
 						outline:none!important;
+						z-index:800;
 					}
 					
 					.download_text{
