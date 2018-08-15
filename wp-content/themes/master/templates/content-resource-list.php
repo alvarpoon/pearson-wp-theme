@@ -98,8 +98,6 @@
 								endforeach;	
 							echo '</select>';
 							
-							
-							
 						endif;
 						echo '</div>';
 						

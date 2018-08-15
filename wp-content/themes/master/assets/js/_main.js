@@ -271,6 +271,7 @@ var Roots = {
 					
 					//console.log('newPageNum: '+newPageNum);
 					ajax_action_grid(newPageNum);
+					$("html, body").animate({ scrollTop: 0 });
 				});
 			}
 			
@@ -287,6 +288,7 @@ var Roots = {
 					
 					//console.log('newPageNum: '+newPageNum);
 					ajax_action_grid(newPageNum);
+					$("html, body").animate({ scrollTop: 0 });
 				});
 			}
 			
@@ -300,6 +302,7 @@ var Roots = {
 			$('#pagination-select').unbind('change');
 			$('#pagination-select').on('change', function(){			
 				ajax_action_grid($(this).val());
+				$("html, body").animate({ scrollTop: 0 });
 			});
 		}
 		
@@ -312,7 +315,7 @@ var Roots = {
   },
   page_template_template_resource_list:{
 	init: function() {
-		function ajax_action_list(pageNum){
+		function ajax_action_list(pageNum, current_filter){
 			$("html, body").animate({ scrollTop: 0 });
 			var ajaxurl = '/wp-admin/admin-ajax.php';
 			
@@ -325,7 +328,9 @@ var Roots = {
 			}
 			
 			if($('#filter_2').length > 0){
-				filter_2 = $('#filter_2').val();
+				if(parseInt(filter_dependence) === 1 && current_filter !== 1 || parseInt(filter_dependence) !== 1){
+					filter_2 = $('#filter_2').val();
+				}
 			}
 			
 			if($('#filter_3').length > 0){
@@ -335,11 +340,36 @@ var Roots = {
 			$('.resource-container-inner').fadeOut(300, function(){
 				$('.loading-box').fadeIn();													 
 			});
+			
 			$('.pagination').fadeOut();
+			
+			if(parseInt(filter_dependence) === 1 && current_filter === 1){
+				$('#filter_2_container').hide();	
+			}
+			
 			
 			var result1;
 			var result2;
+			var result_filter;
 			$.when(
+				
+				$.ajax({
+					url: ajaxurl,
+					type: 'post',
+					data:{
+						action: 'get_resource_dependence_filter',
+						parent_filter: filter_1,
+						dependence: filter_dependence,
+						filter_title: filter2_title
+					},
+					success: function( result ) {
+						result_filter = result;
+					},
+					error: function(MLHttpRequest, textStatus, errorThrown){
+						alert('Sorry, something went wrong. Please try again.');
+					}  
+				}),
+				   
 				$.ajax({
 				  url: ajaxurl,
 				  type: 'post',
@@ -385,6 +415,12 @@ var Roots = {
 					//update pagination
 					$('.pagination').html(result2);
 					$('.pagination').fadeIn();
+					
+					if(parseInt(filter_dependence) === 1 && current_filter === 1){
+						$('#filter_2_container').html(result_filter);
+						$('#filter_2_container').show();
+					}
+					
 					get_post_list();
 					
 					if(typeof pageNum !== 'undefined'){
@@ -434,12 +470,14 @@ var Roots = {
 			
 			$('.resource_filtering').unbind('change');
 			$('.resource_filtering').on('change', function(){
-				ajax_action_list();									   
+				
+				var current_filter = parseInt($(this).attr('data-filter'));
+				ajax_action_list(1, current_filter);
 			});
 			
 			$('#pagination-select').unbind('change');
 			$('#pagination-select').on('change', function(){			
-				ajax_action_list($(this).val());	
+				ajax_action_list($(this).val());
 				$("html, body").animate({ scrollTop: 0 });
 			});
 		}
@@ -453,7 +491,7 @@ var Roots = {
   },
   page_template_template_all_resources:{
 	init: function() {
-		function ajax_action_grid(pageNum){
+		function ajax_action_grid(pageNum, current_filter){
 			$("html, body").animate({ scrollTop: 0 });
 			var ajaxurl = '/wp-admin/admin-ajax.php';
 			
@@ -466,7 +504,9 @@ var Roots = {
 			}
 			
 			if($('#filter_2').length > 0){
-				filter_2 = $('#filter_2').val();
+				if(parseInt(filter_dependence) === 1 && current_filter !== 1 || parseInt(filter_dependence) !== 1){
+					filter_2 = $('#filter_2').val();
+				}
 			}
 			
 			if($('#filter_3').length > 0){
@@ -478,9 +518,33 @@ var Roots = {
 			});
 			$('.pagination').fadeOut();
 			
+			if(parseInt(filter_dependence) === 1 && current_filter === 1){
+				$('#filter_2_container').hide();	
+			}
+			
+			
 			var result1;
 			var result2;
+			var result_filter;
 			$.when(
+				
+				$.ajax({
+					url: ajaxurl,
+					type: 'post',
+					data:{
+						action: 'get_resource_dependence_filter',
+						parent_filter: filter_1,
+						dependence: filter_dependence,
+						filter_title: filter2_title
+					},
+					success: function( result ) {
+						result_filter = result;
+					},
+					error: function(MLHttpRequest, textStatus, errorThrown){
+						alert('Sorry, something went wrong. Please try again.');
+					}  
+				}),
+				   
 				$.ajax({
 				  url: ajaxurl,
 				  type: 'post',
@@ -526,6 +590,12 @@ var Roots = {
 					//update pagination
 					$('.pagination').html(result2);
 					$('.pagination').fadeIn();
+					
+					if(parseInt(filter_dependence) === 1 && current_filter === 1){
+						$('#filter_2_container').html(result_filter);
+						$('#filter_2_container').show();
+					}
+					
 					get_all_resources();
 					
 					if(typeof pageNum !== 'undefined'){
@@ -552,6 +622,7 @@ var Roots = {
 					
 					//console.log('newPageNum: '+newPageNum);
 					ajax_action_grid(newPageNum);
+					$("html, body").animate({ scrollTop: 0 });
 				});
 			}
 			
@@ -568,17 +639,21 @@ var Roots = {
 					
 					//console.log('newPageNum: '+newPageNum);
 					ajax_action_grid(newPageNum);
+					$("html, body").animate({ scrollTop: 0 });
 				});
 			}
 			
 			$('.resource_filtering').unbind('change');
 			$('.resource_filtering').on('change', function(){
-				ajax_action_grid();									   
+				
+				var current_filter = parseInt($(this).attr('data-filter'));
+				ajax_action_grid(1, current_filter);									   
 			});
 			
 			$('#pagination-select').unbind('change');
 			$('#pagination-select').on('change', function(){			
 				ajax_action_grid($(this).val());									   
+				$("html, body").animate({ scrollTop: 0 });
 			});
 		}
 		
@@ -591,7 +666,7 @@ var Roots = {
   },
   page_template_template_all_resources_list:{
 	init: function() {
-		function ajax_action_list(pageNum){
+		function ajax_action_list(pageNum, current_filter){
 			$("html, body").animate({ scrollTop: 0 });
 			var ajaxurl = '/wp-admin/admin-ajax.php';
 			
@@ -604,7 +679,9 @@ var Roots = {
 			}
 			
 			if($('#filter_2').length > 0){
-				filter_2 = $('#filter_2').val();
+				if(parseInt(filter_dependence) === 1 && current_filter !== 1 || parseInt(filter_dependence) !== 1){
+					filter_2 = $('#filter_2').val();
+				}
 			}
 			
 			if($('#filter_3').length > 0){
@@ -616,9 +693,33 @@ var Roots = {
 			});
 			$('.pagination').fadeOut();
 			
+			if(parseInt(filter_dependence) === 1 && current_filter === 1){
+				$('#filter_2_container').hide();	
+			}
+			
+			
 			var result1;
 			var result2;
+			var result_filter;
 			$.when(
+				
+				$.ajax({
+					url: ajaxurl,
+					type: 'post',
+					data:{
+						action: 'get_resource_dependence_filter',
+						parent_filter: filter_1,
+						dependence: filter_dependence,
+						filter_title: filter2_title
+					},
+					success: function( result ) {
+						result_filter = result;
+					},
+					error: function(MLHttpRequest, textStatus, errorThrown){
+						alert('Sorry, something went wrong. Please try again.');
+					}  
+				}),
+				   
 				$.ajax({
 				  url: ajaxurl,
 				  type: 'post',
@@ -664,6 +765,12 @@ var Roots = {
 					//update pagination
 					$('.pagination').html(result2);
 					$('.pagination').fadeIn();
+					
+					if(parseInt(filter_dependence) === 1 && current_filter === 1){
+						$('#filter_2_container').html(result_filter);
+						$('#filter_2_container').show();
+					}
+					
 					get_all_resources_list();
 					
 					if(typeof pageNum !== 'undefined'){
@@ -690,6 +797,7 @@ var Roots = {
 					
 					//console.log('newPageNum: '+newPageNum);
 					ajax_action_list(newPageNum);
+					$("html, body").animate({ scrollTop: 0 });
 				});
 			}
 			
@@ -706,17 +814,20 @@ var Roots = {
 					
 					//console.log('newPageNum: '+newPageNum);
 					ajax_action_list(newPageNum);
+					$("html, body").animate({ scrollTop: 0 });
 				});
 			}
 			
 			$('.resource_filtering').unbind('change');
 			$('.resource_filtering').on('change', function(){
-				ajax_action_list();
+				var current_filter = parseInt($(this).attr('data-filter'));
+				ajax_action_list(1, current_filter);
 			});
 			
 			$('#pagination-select').unbind('change');
 			$('#pagination-select').on('change', function(){			
 				ajax_action_list($(this).val());									   
+				$("html, body").animate({ scrollTop: 0 });
 			});
 		}
 		
@@ -729,7 +840,7 @@ var Roots = {
   },
   page_template_template_group_resource:{
 	init: function() {
-		function ajax_action_grid(){
+		function ajax_action_grid(current_filter){
 			$("html, body").animate({ scrollTop: 0 });
 			var ajaxurl = '/wp-admin/admin-ajax.php';
 			
@@ -742,21 +853,46 @@ var Roots = {
 			}
 			
 			if($('#filter_2').length > 0){
-				filter_2 = $('#filter_2').val();
+				if(parseInt(filter_dependence) === 1 && current_filter !== 1 || parseInt(filter_dependence) !== 1){
+					filter_2 = $('#filter_2').val();
+				}
 			}
 			
 			if($('#filter_3').length > 0){
 				filter_3 = $('#filter_3').val();
 			}
 			
-			//$('.group-resource-container').fadeOut();
 			$('.group-resource-container').fadeOut(300, function(){
 				$('.loading-box').fadeIn();													 
 			});
 			
+			
+			if(parseInt(filter_dependence) === 1 && current_filter === 1){
+				$('#filter_2_container').hide();	
+			}
+			
+			
 			var result1;
-		
+			var result_filter;
 			$.when(
+				
+				$.ajax({
+					url: ajaxurl,
+					type: 'post',
+					data:{
+						action: 'get_resource_dependence_filter',
+						parent_filter: filter_1,
+						dependence: filter_dependence,
+						filter_title: filter2_title
+					},
+					success: function( result ) {
+						result_filter = result;
+					},
+					error: function(MLHttpRequest, textStatus, errorThrown){
+						alert('Sorry, something went wrong. Please try again.');
+					}  
+				}),
+				   
 				$.ajax({
 				  url: ajaxurl,
 				  type: 'post',
@@ -780,6 +916,13 @@ var Roots = {
 					initMultipleDownload();
 					initAudioSetup();
 					createZip();
+
+					if(parseInt(filter_dependence) === 1 && current_filter === 1){
+						$('#filter_2_container').html(result_filter);
+						$('#filter_2_container').show();
+					}
+					
+					get_group_resources();
 				});
 			});
 		}
@@ -787,7 +930,9 @@ var Roots = {
 		function get_group_resources(){
 			$('.resource_filtering').unbind('change');
 			$('.resource_filtering').on('change', function(){
-				ajax_action_grid();									   
+				var current_filter = parseInt($(this).attr('data-filter'));
+				ajax_action_grid(current_filter);
+
 			});
 		}
 		
@@ -800,7 +945,7 @@ var Roots = {
   },
   page_template_template_group_resource_list:{
 	init: function() {
-		function ajax_action_list(){
+		function ajax_action_list(current_filter){
 			$("html, body").animate({ scrollTop: 0 });
 			var ajaxurl = '/wp-admin/admin-ajax.php';
 			
@@ -813,7 +958,9 @@ var Roots = {
 			}
 			
 			if($('#filter_2').length > 0){
-				filter_2 = $('#filter_2').val();
+				if(parseInt(filter_dependence) === 1 && current_filter !== 1 || parseInt(filter_dependence) !== 1){
+					filter_2 = $('#filter_2').val();
+				}
 			}
 			
 			if($('#filter_3').length > 0){
@@ -824,9 +971,33 @@ var Roots = {
 				$('.loading-box').fadeIn();													 
 			});
 			
+			
+			if(parseInt(filter_dependence) === 1 && current_filter === 1){
+				$('#filter_2_container').hide();	
+			}
+			
+			
 			var result1;
-		
+			var result_filter;
 			$.when(
+				
+				$.ajax({
+					url: ajaxurl,
+					type: 'post',
+					data:{
+						action: 'get_resource_dependence_filter',
+						parent_filter: filter_1,
+						dependence: filter_dependence,
+						filter_title: filter2_title
+					},
+					success: function( result ) {
+						result_filter = result;
+					},
+					error: function(MLHttpRequest, textStatus, errorThrown){
+						alert('Sorry, something went wrong. Please try again.');
+					}  
+				}),
+				   
 				$.ajax({
 				  url: ajaxurl,
 				  type: 'post',
@@ -850,6 +1021,13 @@ var Roots = {
 					initMultipleDownload();
 					initAudioSetup();
 					createZip();
+
+					if(parseInt(filter_dependence) === 1 && current_filter === 1){
+						$('#filter_2_container').html(result_filter);
+						$('#filter_2_container').show();
+					}
+					
+					get_group_resources_list();
 				});
 			});
 		}
@@ -857,7 +1035,9 @@ var Roots = {
 		function get_group_resources_list(){
 			$('.resource_filtering').unbind('change');
 			$('.resource_filtering').on('change', function(){
-				ajax_action_list();									   
+				var current_filter = parseInt($(this).attr('data-filter'));
+				ajax_action_list(current_filter);
+
 			});
 		}
 		

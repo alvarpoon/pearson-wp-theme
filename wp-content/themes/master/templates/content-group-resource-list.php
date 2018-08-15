@@ -38,35 +38,60 @@
 		<div class="filter-wrapper clearfix">	
 			<div class="col-md-9 filter-select">
 				<div class="clearfix">
-					<div class="filter-item">
-						<?php
-							$filter_title_1 = get_field('filter_title_1');
-							$filter_1 = get_field('filter_1');
-							$filer_1_count = is_array( $filter_1 ) ? count( $filter_1 ) : 0;
-							if($filer_1_count > 0 && !empty($filter_title_1)):
+					<?php
+						
+						$filter_dependence = get_field('filter_dependence', $resource_list[0]->ID);
+						if(empty($filter_dependence)){
+							$filter_dependence = 0;
+						}
+						
+						$dependence_filter_title = get_field('dependence_filter_title', $resource_list[0]->ID);
+						
+						$filter_title_1 = get_field('filter_title_1', $resource_list[0]->ID);
+						$filter_1 = get_field('filter_1', $resource_list[0]->ID);
+						$filer_1_count = is_array( $filter_1 ) ? count( $filter_1 ) : 0;
+						
+						$filter_title_2 = get_field('filter_title_2', $resource_list[0]->ID);
+						$filter_2 = get_field('filter_2', $resource_list[0]->ID);
+						$filter_2_count = is_array( $filter_2 ) ? count( $filter_2 ) : 0;
+						
+						$filter_title_3 = get_field('filter_title_3', $resource_list[0]->ID);
+						$filter_3 = get_field('filter_3', $resource_list[0]->ID);
+						$filter_3_count = is_array( $filter_3 ) ? count( $filter_3 ) : 0;
+						
+					?>
+					
+					<script type="text/javascript">						
+						
+						var filter_dependence = <?=$filter_dependence?>
+						
+						var filter2_title = '<?=$dependence_filter_title?>';
+						
+					</script>
+					<?php
+						if($filer_1_count > 0 && !empty($filter_title_1)):
+							echo '<div class="filter-item">';
+						
+							echo '<select id="filter_1" class="resource_filtering" data-filter="1">';
 							
-							echo '<select id="filter_1" class="resource_filtering">';
 							echo '<option value="0">'.$filter_title_1.'</option>';
 								foreach($filter_1 as $f1):
 									$term = get_term_by('id', $f1, 'resource_category');
 									$name = $term->name;
 									
 									echo '<option value="'.$f1.'">'.$name.'</option>';
-								endforeach;	
-								
+								endforeach;		
 							echo '</select>';
 							
-							endif;
-						?>
-					</div>
-					<div class="filter-item">
-						<?php 
-							$filter_title_2 = get_field('filter_title_2');
-							$filter_2 = get_field('filter_2');
-							$filter_2_count = is_array( $filter_2 ) ? count( $filter_2 ) : 0;
-							if($filter_2_count > 0 && !empty($filter_title_2)):
+							echo '</div>';
 							
-							echo '<select id="filter_2" class="resource_filtering">';
+						endif;
+
+						echo '<div class="filter-item" id="filter_2_container">';
+						if(!$filter_dependence && $filter_2_count > 0 && !empty($filter_title_2)):
+						
+							echo '<select id="filter_2" class="resource_filtering" data-filter="2">';
+							
 							echo '<option value="0">'.$filter_title_2.'</option>';
 								foreach($filter_2 as $f2):
 									$term = get_term_by('id', $f2, 'resource_category');
@@ -74,20 +99,16 @@
 									
 									echo '<option value="'.$f2.'">'.$name.'</option>';
 								endforeach;	
-								
 							echo '</select>';
 							
-							endif;
-						?>
-					</div>
-					<div class="filter-item">
-						<?php 
-							$filter_title_3 = get_field('filter_title_3');
-							$filter_3 = get_field('filter_3');
-							$filter_3_count = is_array( $filter_3 ) ? count( $filter_3 ) : 0;
-							if($filter_3_count > 0 && !empty($filter_title_3)):
+						endif;
+						echo '</div>';
+						
+						if($filter_3_count > 0 && !empty($filter_title_3)):
+						
+							echo '<div class="filter-item">';
 							
-							echo '<select id="filter_3" class="resource_filtering">';
+							echo '<select id="filter_3" class="resource_filtering" data-filter="3">';
 							echo '<option value="0">'.$filter_title_3.'</option>';
 								foreach($filter_3 as $f3):
 									$term = get_term_by('id', $f3, 'resource_category');
@@ -98,9 +119,10 @@
 								
 							echo '</select>';
 							
-							endif;
-						?>
-					</div>
+							echo '</div>';
+						
+						endif;
+					?>
 				</div>
 			</div>
 			<div class="col-md-3 view-option-wrapper">
