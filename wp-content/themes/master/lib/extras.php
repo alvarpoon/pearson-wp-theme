@@ -669,6 +669,46 @@ function get_resource_pagination(){
 	die();
 }
 
+
+// Hook this function to WordPress' Ajax actions
+add_action( 'wp_ajax_nopriv_get_resource_dependence_filter', 'get_resource_dependence_filter' );
+add_action( 'wp_ajax_get_resource_dependence_filter', 'get_resource_dependence_filter' );
+function get_resource_dependence_filter(){
+	global $post;
+	
+	if(isset($_POST['parent_filter'])){
+		$filter = $_POST['parent_filter'];
+		$taxonomy_name = 'resource_category';
+		$term_children = get_term_children( $filter, $taxonomy_name );
+	}
+	
+	if(isset($_POST['dependence'])){
+		$filter_dependence = $_POST['dependence'];
+	}
+	
+	if(isset($_POST['filter_title'])){
+		$filter_title = $_POST['filter_title'];
+	}
+	
+	if($filter_dependence && sizeof($term_children) > 0){
+		//print_r($term_children);
+		
+		echo '<select id="filter_2" class="resource_filtering" data-filter="2">';
+		echo '<option value="0">'.$filter_title.'</option>';
+			foreach($term_children as $f2):
+				$term = get_term_by('id', $f2, 'resource_category');
+				$name = $term->name;
+				
+				echo '<option value="'.$f2.'">'.$name.'</option>';
+			endforeach;	
+		echo '</select>';
+	}
+	
+	//wp_reset_postdata();
+	
+	die();
+}
+
 // Hook this function to WordPress' Ajax actions
 add_action( 'wp_ajax_nopriv_get_resource_grid', 'get_resource_grid' );
 add_action( 'wp_ajax_get_resource_grid', 'get_resource_grid' );
