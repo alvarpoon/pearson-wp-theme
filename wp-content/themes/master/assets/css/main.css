@@ -6902,15 +6902,18 @@ a.media-file {
   font-size: 12px;
   line-height: 1.33;
   color: #505759;
-  width: 92px;
+  max-width: 92px;
   height: 70px;
   background-repeat: no-repeat;
   background-position: top center;
   text-align: center;
   padding-top: 40px;
-  margin-right: 4px;
+  margin-right: 10px;
   float: left;
   overflow: hidden;
+}
+a.media-file:last-child {
+  margin-right: 0;
 }
 a.media-file.all {
   background-image: url(../img/common/download-all.svg);
@@ -6965,9 +6968,13 @@ a.media-file.video {
 a.media-file.audio {
   background-image: url(../img/common/audio.svg);
 }
+a.media-file.createzip {
+  width: auto;
+}
 select {
   color: #000;
   -webkit-appearance: none;
+  -moz-appearance: none;
   background: url(../img/common/pull-down-arrow.svg) no-repeat right center;
   -webkit-background-size: contain;
           background-size: contain;
@@ -6994,12 +7001,17 @@ select::-ms-expand {
   float: none;
   height: 30px;
   padding: 0;
-  text-align: right;
+  text-align: left;
   padding-left: 32px;
-  width: 66px;
   background-position: left;
   vertical-align: middle;
   line-height: 2.5;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.fancybox-content.article-lightbox .media-container a.createzip {
+  width: auto!important;
+  max-width: none!important;
 }
 .fancybox-content.article-lightbox .img-container {
   margin-bottom: 25px;
@@ -7016,6 +7028,17 @@ select::-ms-expand {
   -webkit-background-size: 50px 50px;
           background-size: 50px;
   display: none;
+}
+/*.admin-bar .navbar-fixed-top {
+    margin-top: 30px;
+}
+@media (max-width: 800px) {
+    .admin-bar .navbar-fixed-top {
+        margin-top: 46px;
+    }
+}*/
+#wpadminbar {
+  position: fixed!important;
 }
 @media (min-width: 768px) {
   .main {
@@ -7331,10 +7354,7 @@ figure.alignnone {
 }
 .mainmenu .collapse ul li.external-link a:after {
   content: '';
-  -webkit-mask: url(../img/common/ic-open-in-new-small.svg) no-repeat;
-  mask: url(../img/common/ic-open-in-new-small.svg) no-repeat;
-  -webkit-mask-size: cover;
-  mask-size: cover;
+  background: url(../img/common/ic-open-in-new-small.svg) no-repeat;
   display: inline-block;
   width: 24px;
   height: 23px;
@@ -7345,10 +7365,9 @@ figure.alignnone {
       -ms-transform: translateY(-50%);
        -o-transform: translateY(-50%);
           transform: translateY(-50%);
-  background-color: #777777;
 }
 .mainmenu .collapse ul li.external-link a:hover:after {
-  background-color: #fff;
+  background: url(../img/common/ic-open-in-new-small-white.svg) no-repeat;
 }
 .mainmenu .navbar-nav {
   margin: 0;
@@ -7473,7 +7492,7 @@ figure.alignnone {
 }
 @media (min-width: 992px) {
   .mobile-menu-wrapper {
-    overflow: unset;
+    overflow: visible;
   }
   .mainmenu {
     position: relative;
@@ -8342,7 +8361,7 @@ footer.content-info .footer-wrapper .footer-copyright {
 .page-template-template-resource .resource-container .resource-item .resource-thumbnail .thumb.thumb_video:after,
 .page-template-template-all-resources .resource-container .resource-item .resource-thumbnail .thumb.thumb_video:after,
 .page-template-template-group-resource .resource-container .resource-item .resource-thumbnail .thumb.thumb_video:after {
-  background-image: url(../img/common/grid-view/video-btn.svg);
+  background-image: url(../img/common/grid-view/video-btn-2.svg);
   /*width:48px;
 							height:48px;*/
 }
@@ -8844,7 +8863,7 @@ footer.content-info .footer-wrapper .footer-copyright {
 .page-template-template-resource-list .resource-container .resource-item .file-download-wrapper .mobile_download_wrapper select.mobile_download,
 .page-template-template-all-resources-list .resource-container .resource-item .file-download-wrapper .mobile_download_wrapper select.mobile_download,
 .page-template-template-group-resource-list .resource-container .resource-item .file-download-wrapper .mobile_download_wrapper select.mobile_download {
-  width: 92px;
+  width: 57px;
   height: 40px;
   background-image: url(../img/common/download-all.svg);
   -webkit-background-size: 25px auto;
@@ -8862,7 +8881,7 @@ footer.content-info .footer-wrapper .footer-copyright {
 .page-template-template-group-resource-list .resource-container .resource-item .file-download-wrapper .mobile_download_wrapper .download_text {
   position: absolute;
   top: 40px;
-  width: 92px;
+  width: 57px;
   text-align: center;
   left: 0;
   font-size: 12px;

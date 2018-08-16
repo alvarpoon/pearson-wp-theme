@@ -990,7 +990,7 @@ function get_resource_grid(){
 		endforeach;
 		
 		if($resource_match_count == 0){
-			echo '<p>'.__('No resources found, please refine your filter.', 'Pearson-master').'</p>';
+			echo '<p>'.__('No resources found. Please refine your filter(s).', 'Pearson-master').'</p>';
 		}
 	
 		echo '</div>'; 
@@ -1445,7 +1445,7 @@ function get_all_resources_grid(){
 		endforeach;
 		
 		if($resource_match_count == 0){
-			echo '<p>'.__('No resources found, please refine your filter.', 'Pearson-master').'</p>';
+			echo '<p>'.__('No resources found. Please refine your filter(s).', 'Pearson-master').'</p>';
 		}
 	
 		echo '</div>'; 
@@ -1741,7 +1741,7 @@ function get_resource_list(){
 	<?php endforeach;
 			
 		if($resource_match_count == 0){
-			echo '<p>'.__('No resources found, please refine your filter.', 'Pearson-master').'</p>';
+			echo '<p>'.__('No resources found. Please refine your filter(s).', 'Pearson-master').'</p>';
 		}
 	
 		echo '</div>'; 
@@ -2045,7 +2045,7 @@ function get_all_resources_list(){
 	<?php endforeach;
 			
 		if($resource_match_count == 0){
-			echo '<p>'.__('No resources found, please refine your filter.', 'Pearson-master').'</p>';
+			echo '<p>'.__('No resources found. Please refine your filter(s).', 'Pearson-master').'</p>';
 		}
 	
 		echo '</div>'; 
@@ -2330,7 +2330,7 @@ function get_group_resources_grid(){
 		endforeach; 
 	
 		if($resource_match_count == 0){
-			echo '<p>'.__('No resources found, please refine your filter.', 'Pearson-master').'</p>';
+			echo '<p>'.__('No resources found. Please refine your filter(s).', 'Pearson-master').'</p>';
 		}
 	
 		echo '</div>';
@@ -2623,7 +2623,7 @@ function get_group_resources_list(){
 	<?php endforeach; 
 	
 		if($resource_match_count == 0){
-			echo '<p>'.__('No resources found, please refine your filter.', 'Pearson-master').'</p>';
+			echo '<p>'.__('No resources found. Please refine your filter(s).', 'Pearson-master').'</p>';
 		}
 	
 		echo '</div>';

@@ -262,6 +262,8 @@
 										<div class="mobile_download_wrapper">
 											
 												<?php 
+												$downloadable_file_arr = array();
+												
 												if( have_rows('downloads', $resource_id) ){
 												
 													echo '<select class="mobile_download">';
@@ -274,6 +276,8 @@
 														if(!$preview_only){
 															//echo '<a href="'.$downloadable_file['url'].'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
 															echo '<option value="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'">'.$file_title.'</option>';
+															
+															array_push($downloadable_file_arr, $downloadable_file['url']);
 														}
 														
 														unset($file_title);
@@ -282,9 +286,16 @@
 														unset($preview_only);
 													endwhile;
 													
+													$downloadable_file_string = implode(',',$downloadable_file_arr);
+												
+														echo '<option data-file="'.$downloadable_file_string.'" data-filename="download" value="createzip">'.__('Download All', 'Pearson-master').' ('.$download_count.__(' files', 'Pearson-master').')</option>';
+													
 													echo '</select>';
 													
 													echo '<div class="download_text">'.__('Download', 'Pearson-master').' ('.$download_count.')</div>';
+													
+													unset($downloadable_file_arr);
+													unset($downloadable_file_string);
 												}
 												?>
 												<!--<option>Download All</option>-->
@@ -318,6 +329,8 @@
 							<div class="article-content">
 								<div class="media-container">
 									<?php 
+									$downloadable_file_arr = array();
+									
 									if( have_rows('downloads', $resource_id) ){
 										while( have_rows('downloads', $resource_id) ): the_row();
 											$file_title = get_sub_field('file_title');
@@ -325,17 +338,9 @@
 											$file_type = get_sub_field('file_type');
 											$file_extension = strtolower(substr(strrchr($downloadable_file['url'],"."),1));
 											$preview_only = get_sub_field('preview_only');
-
 											if(!$preview_only){
-												switch($file_type){
-													case 'image':
-													case 'video':
-														echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_extension.'" target="_blank">'.$file_title.'</a>';		
-														break;
-													default:
-														echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
-														break;
-												}
+												echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title);
+												array_push($downloadable_file_arr, $downloadable_file['url']);
 											}
 											
 											unset($file_title);
@@ -344,13 +349,22 @@
 											unset($file_extension);
 											unset($preview_only);
 										endwhile;
+										
+										$downloadable_file_string = implode(',',$downloadable_file_arr);
+								
+										if(sizeof($downloadable_file_arr) > 1){
+											echo '<a href="javascript:;" data-file="'.$downloadable_file_string.'" data-filename="download" class="media-file all createzip">'.__('Download All', 'Pearson-master').'</a>';
+										}
+										
+										unset($downloadable_file_arr);
+										unset($downloadable_file_string);
 									}									
 									?>
 								</div>
 								<div class="clearfix">
 									<?php //if(!empty($resource_thumbnail)){ ?>
-									<!--<div class="img-container"><img src="<? //=$resource_thumbnail?>" class="img-responsive" /></div>-->
-									<?php //} ?>
+										<!--<div class="img-container"><img src="<? //=$resource_thumbnail?>" class="img-responsive" /></div>-->
+										<?php //} ?>
 									<div class="content-container">
 										<?php 
 											$content_post = get_post($resource_id);

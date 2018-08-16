@@ -153,15 +153,19 @@ a{
 		font-size: 12px;
 		line-height: 1.33;
 		color: #505759;
-		width:92px;
+		max-width:92px;
 		height:70px;
 		background-repeat: no-repeat;
 		background-position: top center;
 		text-align: center;
 		padding-top: 40px;
-		margin-right:4px;
+		margin-right:10px;
 		float:left;
 		overflow:hidden;
+		
+		&:last-child{
+			margin-right:0;
+		}
 		
 		&.all{ background-image:url(../img/common/download-all.svg); }
 		&.doc, &.docx{ background-image:url(../img/common/doc.svg); }
@@ -181,12 +185,15 @@ a{
 		&.default-file{ background-image:url(../img/common/default-file.svg); }
 		&.video{ background-image:url(../img/common/video.svg); }
 		&.audio{ background-image:url(../img/common/audio.svg); }
+		
+		&.createzip{width:auto;}
 	}
 }
 
 select{
 	color:#000;
 	-webkit-appearance: none;
+	-moz-appearance: none;
 	background:url(../img/common/pull-down-arrow.svg) no-repeat right center;
 	background-size:contain;
 	border-radius: 2px;
@@ -217,12 +224,19 @@ select::-ms-expand {
 				float: none;
 				height: 30px;
 				padding: 0;
-				text-align: right;
+				text-align: left;
 				padding-left: 32px;
-				width: 66px;
+				//width: 66px;
 				background-position: left;
 				vertical-align: middle;
 				line-height: 2.5;
+				white-space:nowrap;
+				text-overflow: ellipsis;
+				
+				&.createzip{
+					width:auto!important;
+					max-width:none!important;
+				}
 			}
 		}
 		
@@ -244,6 +258,19 @@ select::-ms-expand {
   background-position:center;
   background-size:50px;
   display:none;
+}
+
+/*.admin-bar .navbar-fixed-top {
+    margin-top: 30px;
+}
+@media (max-width: 800px) {
+    .admin-bar .navbar-fixed-top {
+        margin-top: 46px;
+    }
+}*/
+
+#wpadminbar{
+	position:fixed!important;
 }
 
 //===============================================================================

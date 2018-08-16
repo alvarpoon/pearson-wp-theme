@@ -3585,10 +3585,32 @@ function initMultipleDownload(){
   
   $('.mobile_download').each(function(){
 	$(this).change(function(){
-		var url = $(this).val(); // get selected value
-		//console.log(url);
-		if (url) { // require a URL
-			window.location = url; // redirect
+		if($(this).val() === 'createzip'){
+			
+			//console.log('createzip');
+			var ajaxurl = '/wp-admin/admin-ajax.php';
+			var filepath = $(this).find(':selected').attr('data-file');
+			var filename = $(this).find(':selected').attr('data-filename');
+			
+			var data = {
+				filepaths: filepath,
+				zipname: filename,
+				action: 'create-zip'
+			};
+			
+			$.post(ajaxurl, data, function(response) {
+				//console.log('createzip done');
+			}).done(function(response){
+				window.location.href = window.location.protocol + "//" + response;
+			}).fail(function(response){
+				console.log('fail: '+response);
+			});
+		}else{
+			var url = $(this).val(); // get selected value
+			//console.log(url);
+			if (url) { // require a URL
+				window.location = url; // redirect
+			}
 		}
 		return false;						
 	});
