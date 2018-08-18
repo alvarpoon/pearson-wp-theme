@@ -7400,6 +7400,7 @@ figure.alignnone {
 .mainmenu .navbar-collapse ul ul.dropdown-menu {
   background: #f0f0f0;
   padding: 0;
+  list-style-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=);
 }
 .mainmenu .navbar-collapse ul ul > li > a,
 .mainmenu .navbar-collapse ul ul.dropdown-menu > li > a {

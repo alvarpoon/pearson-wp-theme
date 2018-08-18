@@ -3455,7 +3455,7 @@ function initAudioSetup(){
 				timeleft,
 				loaded = false,
 				manualSeek = false;
-	
+		console.log('supportsAudio: '+supportsAudio);
 		if (supportsAudio) {
 			
 			//var episodeTitle = $('body')[0].id;
@@ -3467,8 +3467,8 @@ function initAudioSetup(){
 			player += '<span class="handle ui-slider-handle" />';
 			player += '</span>';
 			player += '<span class="timeleft" />';
-			player += '<audio preload="metadata">';
-			player += '<source src="' + source + '" type="audio/wav"></source>';
+			player += '<audio src="' + source + '" preload="metadata">';
+			//player += '<source src="' + source + '" type="audio/wav"></source>';
 			player += '</audio>';
 			player += '</p>';
 			
@@ -3479,13 +3479,11 @@ function initAudioSetup(){
 			positionIndicator = $('.player .handle');
 			timeleft = $('.player .timeleft');*/
 			
-			audio = $(obj).find('.player audio').get(0);
+			audio = $(obj).find('.player audio')[0];
 			loadingIndicator = $(obj).find('.player .loading');
 			positionIndicator = $(obj).find('.player .handle');
 			timeleft = $(obj).find('.player .timeleft');
 			
-			
-			//timeleft.text('-' + mins + ':' + (secs < 10 ? '0' + secs : secs) + '/' + fl_mins + ':' + (fl_secs < 10 ? '0' + fl_secs : fl_secs));
 			
 			if ((audio.buffered !== undefined) && (audio.buffered.length !== 0)) {
 				$(audio).bind('progress', function() {
@@ -3498,7 +3496,6 @@ function initAudioSetup(){
 			}
 			
 			$(audio).bind('timeupdate', function() {
-				
 				var rem = parseInt(audio.duration - audio.currentTime, 10),
 						pos = (audio.currentTime / audio.duration) * 100,
 						mins = Math.floor(rem/60,10),
@@ -3543,7 +3540,7 @@ function initAudioSetup(){
 			}).bind('ended', function() {
 				$(obj).find(".playtoggle").removeClass('pause');
 				$(obj).find(".playtoggle").removeClass('playing');		
-			});		
+			});
 			
 			$(obj).find(".playtoggle").click(function() {
 				if (audio.paused) {
@@ -3552,7 +3549,7 @@ function initAudioSetup(){
 				} 
 				else { 
 					audio.pause();
-				}	
+				}
 			});
 		}
 	}
