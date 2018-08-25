@@ -7621,6 +7621,10 @@ footer.content-info .footer-wrapper .footer-copyright {
 			background-position:left center;
 			background-size:cover;*/
 }
+.page-template-template-home .home-slider .slider-item a,
+.page-template-template-about-authors .home-slider .slider-item a {
+  display: block;
+}
 .page-template-template-home .home-slider .slick-dots li,
 .page-template-template-about-authors .home-slider .slick-dots li {
   margin: 0;
@@ -8009,6 +8013,20 @@ footer.content-info .footer-wrapper .footer-copyright {
 .page-template-template-group-resource .audio_container.small_audio .audio_playback .player .gutter,
 .page-template-template-group-resource-list .audio_container.small_audio .audio_playback .player .gutter {
   display: none;
+}
+.page-template-template-resource .audio_container.two_audio .audio_playback .playtoggle a,
+.page-template-template-resource-list .audio_container.two_audio .audio_playback .playtoggle a,
+.page-template-template-all-resources .audio_container.two_audio .audio_playback .playtoggle a,
+.page-template-template-all-resources-list .audio_container.two_audio .audio_playback .playtoggle a,
+.page-template-template-group-resource .audio_container.two_audio .audio_playback .playtoggle a,
+.page-template-template-group-resource-list .audio_container.two_audio .audio_playback .playtoggle a,
+.page-template-template-resource .audio_container.small_audio .audio_playback .playtoggle a,
+.page-template-template-resource-list .audio_container.small_audio .audio_playback .playtoggle a,
+.page-template-template-all-resources .audio_container.small_audio .audio_playback .playtoggle a,
+.page-template-template-all-resources-list .audio_container.small_audio .audio_playback .playtoggle a,
+.page-template-template-group-resource .audio_container.small_audio .audio_playback .playtoggle a,
+.page-template-template-group-resource-list .audio_container.small_audio .audio_playback .playtoggle a {
+  max-width: 80px;
 }
 .page-template-template-resource .audio_container .audio_playback,
 .page-template-template-resource-list .audio_container .audio_playback,
@@ -8743,8 +8761,8 @@ footer.content-info .footer-wrapper .footer-copyright {
 .page-template-template-resource-list .resource-container .resource-item .resource-title-wrapper .resource-title-div .resource-title,
 .page-template-template-all-resources-list .resource-container .resource-item .resource-title-wrapper .resource-title-div .resource-title,
 .page-template-template-group-resource-list .resource-container .resource-item .resource-title-wrapper .resource-title-div .resource-title {
-  min-height: 60px;
-  max-height: 60px;
+  min-height: 65px;
+  max-height: 65px;
   overflow: hidden;
   font-size: 16px;
   line-height: 1.25;

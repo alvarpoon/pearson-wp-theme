@@ -680,6 +680,14 @@ function get_resource_dependence_filter(){
 		$filter = $_POST['parent_filter'];
 		$taxonomy_name = 'resource_category';
 		$term_children = get_term_children( $filter, $taxonomy_name );
+		
+		$children = array();
+		foreach ($term_children as $child) {
+		  $term = get_term_by( 'id', $child, $taxonomy_name );
+		  $children[$term->slug] = $term;
+		}
+		
+		ksort($children);
 	}
 	
 	if(isset($_POST['dependence'])){
@@ -690,16 +698,19 @@ function get_resource_dependence_filter(){
 		$filter_title = $_POST['filter_title'];
 	}
 	
-	if($filter_dependence && sizeof($term_children) > 0){
+	if($filter_dependence && sizeof($children) > 0){
 		//print_r($term_children);
 		
 		echo '<select id="filter_2" class="resource_filtering" data-filter="2">';
 		echo '<option value="0">'.$filter_title.'</option>';
-			foreach($term_children as $f2):
-				$term = get_term_by('id', $f2, 'resource_category');
-				$name = $term->name;
-				
-				echo '<option value="'.$f2.'">'.$name.'</option>';
+			foreach($children as $f2):
+				//$term = get_term_by('id', $f2, 'resource_category');
+				//$name = $term->name;
+					
+				$name = $f2->name;
+				if($f2->term_id !== NULL){
+					echo '<option value="'.$f2->term_id.'">'.$name.'</option>';
+				}
 			endforeach;	
 		echo '</select>';
 	}
@@ -2777,6 +2788,8 @@ function checkPageAccessRight($page_id, $dir = false){
 	
 		$page_access_arr = standardizePageAccess($access_service_roles);
 		
+		//print_r($page_access_arr);
+		
 		foreach($_SESSION['accessRight'] as $accessRight){
 		
 			foreach($page_access_arr as $page_access){
@@ -2792,8 +2805,9 @@ function checkPageAccessRight($page_id, $dir = false){
 			}
 		}
 		
-		$permission_page_id = 291;		
-		$no_permission_url = get_permalink($permission_page_id);
+		//$permission_page_id = 291;
+		$frontpage_id = get_option( 'page_on_front' );
+		$no_permission_url = get_permalink($frontpage_id);
 		if($redirection):?>
 		
 		<script>

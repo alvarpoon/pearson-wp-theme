@@ -21,8 +21,8 @@ function roots_scripts() {
    */
   if (WP_ENV === 'development') {
     $assets = array(
-      'css'       => '/assets/css/main.css?20180801a',
-      'js'        => '/assets/js/scripts.js?20180801b',
+      'css'       => '/assets/css/main.css?20180824',
+      'js'        => '/assets/js/scripts.js?20180824',
       'modernizr' => '/assets/vendor/modernizr/modernizr.js',
       'jquery'    => '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js',
 	  'jquery-ui'    => '/assets/js/plugins/jquery-ui.min.js',

@@ -108,7 +108,7 @@ $table_prefix  = 'wp_';
  */
 define('WP_DEBUG', false);
 
-define('WP_ENV', 'development');
+define('WP_ENV', 'production');
 
 /* That's all, stop editing! Happy blogging. */
 

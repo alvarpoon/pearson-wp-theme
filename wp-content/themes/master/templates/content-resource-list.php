@@ -319,7 +319,7 @@
 				
 				<?php if($resource_type == 'article-file') {?>
 					<div id="<?=$resource_slug.'-content'?>" class="hidden-content fancybox-content article-lightbox">
-						<h3><?=get_the_title( $resource->ID );?></h3>
+						<h3><?=$resource_display_title;?></h3>
 						<div class="article-content">
 							<div class="media-container">
 								<?php 

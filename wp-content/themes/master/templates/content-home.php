@@ -20,9 +20,11 @@
 					$banner_desktop = get_field('banner_desktop', $main_banner);
 					
 					echo '<div class="slider-item">';
-					echo '<a href="'.$banner_link.'" target="'.$banner_link_target.'"><img src="'.$banner_mobile.'" class="img-responsive visible-xs hidden-sm hidden-md hidden-lg" /></a>';
-					echo '<a href="'.$banner_link.'" target="'.$banner_link_target.'"><img src="'.$banner_tablet.'" class="img-responsive hidden-xs visible-sm visible-md hidden-lg" /></a>';
-					echo '<a href="'.$banner_link.'" target="'.$banner_link_target.'"><img src="'.$banner_desktop.'" class="img-responsive hidden-xs hidden-sm hidden-md visible-lg" /></a>';
+					echo '<a href="'.$banner_link.'" target="'.$banner_link_target.'">';
+					echo '<img src="'.$banner_mobile.'" class="img-responsive visible-xs hidden-sm hidden-md hidden-lg" />';
+					echo '<img src="'.$banner_tablet.'" class="img-responsive hidden-xs visible-sm visible-md hidden-lg" />';
+					echo '<img src="'.$banner_desktop.'" class="img-responsive hidden-xs hidden-sm hidden-md visible-lg" />';
+					echo '</a>';
 					echo '</div>';
 					
 				endforeach;
@@ -37,6 +39,7 @@
 				<div class="scrollable-content">
 					<?php
 						$args = array(
+							'numberposts'       => -1,
 							'orderby'          => 'date',
 							'order'            => 'DESC',
 							'post_type'        => 'post',
