@@ -10,10 +10,13 @@ if(isset($_GET["file"]) && isset($_GET["pageid"])){
 	
 	$access_service_roles = get_field('access_service_code_with_role', $page_id);
 	
-	//echo '<p>access_service_roles</p>';
-	//echo empty($access_service_roles);
+	echo '<p>access_service_roles: '.sizeof($access_service_roles).'</p>';
+	
+	var_dump($access_service_roles);
 	
 	//echo '<p>checkPageAccessRight: '.checkPageAccessRight($page_id).'</p>';
+	
+	echo '<p>access_service_roles is empty ? '.empty($access_service_roles).'</p>';
 	
 	if(checkPageAccessRight($page_id) || empty($access_service_roles)){ //check media url when user have page access right
 		
@@ -55,7 +58,7 @@ if(isset($_GET["file"]) && isset($_GET["pageid"])){
 		
 		// Process download
 		if(file_exists($destination_path)) {
-			header('Content-Description: File Transfer');
+			/*header('Content-Description: File Transfer');
 			header('Content-Type: '.$mime_type);
 			header('Content-Disposition: attachment; filename="'.basename($destination_path).'"');
 			header('Expires: 0');
@@ -64,7 +67,9 @@ if(isset($_GET["file"]) && isset($_GET["pageid"])){
 			header('Content-Length: ' . filesize($destination_path));
 			
 			flush(); // Flush system output buffer
-			readfile($destination_path);
+			readfile($destination_path);*/
+			
+			echo 'download file: '.$destination_path;
 			//
 		}
 	}else{
@@ -77,8 +82,8 @@ if(isset($_GET["file"]) && isset($_GET["pageid"])){
 <html> 
 <body>
 <script>
-	window.open('', '_self', '');
-	window.close();
+	//window.open('', '_self', '');
+	//window.close();
 </script>
 </body> 
 </html> 

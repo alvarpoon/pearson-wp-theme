@@ -174,7 +174,7 @@
 				foreach ($all_resources as $resource):
 					$resource_parent = $resource['pageid'];
 					$resource_id = $resource['resource_id'];
-					
+					$resource_display_title = get_field('display_title', $resource_id);
 					$resource_type = get_field('resource_type', $resource_id);
 					$note = get_field('note', $resource_id);
 					$resource_popup_image = get_field('resource_popup_image', $resource_id);
@@ -264,6 +264,7 @@
 							
 							if( have_rows('downloads', $resource_id) ){
 								echo '<select class="mobile_download">';
+								echo '<option value="default">Please select</option>';
 								while( have_rows('downloads', $resource_id) ): the_row();
 									$file_title = get_sub_field('file_title');
 									$downloadable_file = get_sub_field('downloadable_file');

@@ -303,16 +303,17 @@ function admin_style() {
 }
 add_action('admin_enqueue_scripts', 'admin_style');
 
-function disable_search( $query, $error = true ) {
-  if ( is_search() ) {
-    $query->is_search = false;
-    $query->query_vars[s] = false;
-    $query->query[s] = false;
-    // to error
-    if ( $error == true )
-    $query->is_404 = true;
-  }
+if ( ! is_admin() ) {
+	add_action( 'parse_query', function( $query ) {
+		if ( $query->is_search ) {
+			unset( $_GET['s'], $_POST['s'], $_REQUEST['s'] );
+			$query->set( 's', '' );
+			$query->is_search = false;
+			$query->set_404();
+			header( $_SERVER[ 'SERVER_PROTOCOL' ] . ' 404 Not Found' );
+		}
+	}, 5);
 }
-
-add_action( 'parse_query', 'disable_search' );
-add_filter( 'get_search_form', create_function( '$a', "return null;" ) );
+add_action( 'widgets_init', function() {
+	unregister_widget( 'WP_Widget_Search' );
+}, 1 );

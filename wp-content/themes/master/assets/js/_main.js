@@ -128,6 +128,10 @@ var Roots = {
 	  $(window).resize(function(){
 		adjustNewsHeight();
 	  });
+	  
+	  $(window).load(function(){
+		adjustNewsHeight();  
+	  });
     }
   },
   // About us page, note the change from about-us to about_us.
@@ -1270,8 +1274,10 @@ function initMultipleDownload(){
 			}).fail(function(response){
 				console.log('fail: '+response);
 			});
-		}else{
+		}else if($(this).val() !== 'default'){
 			var url = $(this).val(); // get selected value
+			$(this).find(':selected').prop('selected', false);
+			$(this).find("option[value='default']").prop('selected', true);
 			//console.log(url);
 			if (url) { // require a URL
 				window.location = url; // redirect

@@ -2752,7 +2752,9 @@ function acsGetAccessRight($inLoginId){
 
 	$asmethod = 'getByUser';
 
-	$inputparameter = '&loginId='. $inLoginId . '&applicationId=438';
+	//$inputparameter = '&loginId='. $inLoginId . '&applicationId=438';
+	
+	$inputparameter = '&loginId='. $inLoginId . '&applicationId=481';
 
 	$node = 'AccessRights/Access';
 
@@ -2781,6 +2783,8 @@ function checkPageAccessRight($page_id, $dir = false){
 
 	$redirection = (!$dir) ? false : true;
 	
+	$haveright = false;
+	
 	//get acf field - access_service_code_with_role
 	$access_service_roles = get_field('access_service_code_with_role', $page_id);
 	
@@ -2790,25 +2794,31 @@ function checkPageAccessRight($page_id, $dir = false){
 		
 		//print_r($page_access_arr);
 		
-		foreach($_SESSION['accessRight'] as $accessRight){
+		//print_r($access_service_roles);
 		
+		foreach($_SESSION['accessRight'] as $accessRight){
+			
+			echo '<p>--- accessRight start ---</p>';
+			print_r($accessRight);
+			echo '<p>--- accessRight end ---</p>';
+			
 			foreach($page_access_arr as $page_access){
+				echo '<p>--- page_access start ---</p>';
+				print_r($page_access);
+				echo '<p>--- page_access end ---</p>';
 			
 				if($page_access['SERVICECODE'] == $accessRight['SERVICECODE'] && $page_access['ROLEID'] == $accessRight['ROLEID']){
-				
-					return true;
-				}else{				
-				
-					continue;
-					
+					$haveright = true;
 				}
 			}
 		}
 		
+		echo '<p>haveright: '.$haveright.'</p>';
+		
 		//$permission_page_id = 291;
 		$frontpage_id = get_option( 'page_on_front' );
 		$no_permission_url = get_permalink($frontpage_id);
-		if($redirection):?>
+		if($redirection && !$haveright): ?>
 		
 		<script>
 			var url = '<?=$no_permission_url?>';
@@ -2819,18 +2829,26 @@ function checkPageAccessRight($page_id, $dir = false){
 		<?php
 		
 		endif;
-		return false;
+		//return false;
+		
+		return $haveright;
 	}else{
-		return true;
+		//return true;
+		$haveright = true;
+		return $haveright;
 	}
 }
 
 function initAccessRightChecking($inLoginId){
 	$current_post_id = get_the_ID();
 
+	
+
 	if(!isset($_SESSION['accessRight'])){ //session NOT EXIST
 		
 		$result = acsGetAccessRight($inLoginId);
+		
+		//print_r($result);
 		
 		if(!empty($result)){
 		
@@ -2844,6 +2862,7 @@ function initAccessRightChecking($inLoginId){
 	
 		checkPageAccessRight($current_post_id, true);
 		
+		//print_r($_SESSION['accessRight']);
 	}
 }
 
