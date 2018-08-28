@@ -2781,6 +2781,8 @@ function standardizePageAccess($arr){
 
 function checkPageAccessRight($page_id, $dir = false){
 
+	session_start();
+
 	$redirection = (!$dir) ? false : true;
 	
 	$haveright = false;
@@ -2798,14 +2800,14 @@ function checkPageAccessRight($page_id, $dir = false){
 		
 		foreach($_SESSION['accessRight'] as $accessRight){
 			
-			echo '<p>--- accessRight start ---</p>';
+			/*echo '<p>--- accessRight start ---</p>';
 			print_r($accessRight);
-			echo '<p>--- accessRight end ---</p>';
+			echo '<p>--- accessRight end ---</p>';*/
 			
 			foreach($page_access_arr as $page_access){
-				echo '<p>--- page_access start ---</p>';
+				/*echo '<p>--- page_access start ---</p>';
 				print_r($page_access);
-				echo '<p>--- page_access end ---</p>';
+				echo '<p>--- page_access end ---</p>';*/
 			
 				if($page_access['SERVICECODE'] == $accessRight['SERVICECODE'] && $page_access['ROLEID'] == $accessRight['ROLEID']){
 					$haveright = true;
@@ -2813,7 +2815,7 @@ function checkPageAccessRight($page_id, $dir = false){
 			}
 		}
 		
-		echo '<p>haveright: '.$haveright.'</p>';
+		//echo '<p>haveright: '.$haveright.'</p>';
 		
 		//$permission_page_id = 291;
 		$frontpage_id = get_option( 'page_on_front' );
@@ -2840,9 +2842,10 @@ function checkPageAccessRight($page_id, $dir = false){
 }
 
 function initAccessRightChecking($inLoginId){
-	$current_post_id = get_the_ID();
 
+	session_start();
 	
+	$current_post_id = get_the_ID();
 
 	if(!isset($_SESSION['accessRight'])){ //session NOT EXIST
 		
@@ -2851,7 +2854,7 @@ function initAccessRightChecking($inLoginId){
 		//print_r($result);
 		
 		if(!empty($result)){
-		
+			
 			$_SESSION['accessRight'] = $result;
 			
 		}
@@ -2867,6 +2870,7 @@ function initAccessRightChecking($inLoginId){
 }
 
 function wp_get_exclude_menu($current_menu) {
+ 	session_start();
  
     $array_menu = wp_get_nav_menu_items($current_menu);
     $menu = array();
