@@ -4,7 +4,13 @@
 	$resource_list = get_field('resource_list');
 	
 	get_header_banner();
+	
+	$pageid = get_the_ID();
 ?>
+
+<script>
+	var pageid = '<?=$pageid?>';
+</script>
 
 <div class="container">
 	<div class="page-content-wrapper">
@@ -228,7 +234,7 @@
 								$preview_only = get_sub_field('preview_only');
 								
 								if(!$preview_only){
-									echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title);
+									echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title, $post->ID);
 									array_push($downloadable_file_arr, $downloadable_file['url']);
 								}
 								
@@ -263,7 +269,7 @@
 									$file_type = get_sub_field('file_type');
 									$preview_only = get_sub_field('preview_only');
 									if(!$preview_only){
-										echo '<option value="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'">'.$file_title.'</option>';
+										echo '<option value="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$post->ID.'">'.$file_title.'</option>';
 										array_push($downloadable_file_arr, $downloadable_file['url']);
 									}
 									
@@ -301,11 +307,13 @@
 								
 								if(!$preview_only){
 									echo '<div class="hidden-xs hidden-sm">';
-									echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title);
+									echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title, $post->ID);
 									echo '</div>';
 									
 									echo '<div class="hidden-md hidden-lg">';
-									echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file all" target="_blank">'.__('Download', 'Pearson-master').'</a>';
+									//echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file all" target="_blank">'.__('Download', 'Pearson-master').'</a>';
+									
+									echo '<a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file all" target="_blank">'.__('Download', 'Pearson-master').'</a>';
 									echo '</div>'; 
 								}
 								
@@ -335,7 +343,7 @@
 										$file_extension = strtolower(substr(strrchr($downloadable_file['url'],"."),1));
 										$preview_only = get_sub_field('preview_only');
 										if(!$preview_only){
-											echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title);
+											echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title, $post->ID);
 											array_push($downloadable_file_arr, $downloadable_file['url']);
 										}
 										
@@ -402,7 +410,9 @@
 					
 					
 					if(!empty($download_all)):
-						echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$download_all['ID'].'&pageid='.$post->ID.'" class="btn_single_download" target="_blank">'.__('Download All').'</a>';
+						//echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$download_all['ID'].'&pageid='.$post->ID.'" class="btn_single_download" target="_blank">'.__('Download All').'</a>';
+						
+						echo '<a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$download_all['ID'].'&pageid='.$post->ID.'" class="btn_single_download" target="_blank">'.__('Download All').'</a>';
 					endif;
 				?>
 			</div>

@@ -40,7 +40,8 @@
   <?php 
   	//$loginId = 'ts12081887';
 	//$loginId = 'ss12081892';
-	$loginId = 'sp12092242';
+	
+	$loginId = 'sp12092242';	
   	initAccessRightChecking($loginId); 
   ?>
 </head>

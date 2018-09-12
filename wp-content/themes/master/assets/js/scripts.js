@@ -2414,10 +2414,63 @@ var Roots = {
 		  });
 	  }
 	  
+	  function fileDownload(){
+		  var downloadAction = getUrlParameter('pageaction');
+		  
+		  if(downloadAction === 'filedownload'){
+			 // console.log('downloadAction: '+downloadAction);
+			var ajaxurl = '/wp-admin/admin-ajax.php';
+		
+			var file = getUrlParameter('file');
+			var pageid = getUrlParameter('pageid');
+			
+			var data = {
+				file: file,
+				pageid: pageid,
+				action: 'ajaxDownload'
+			};
+			
+			$.post(ajaxurl, data, function(response) {
+				//console.log('createzip done');	
+				
+			}).done(function(response){
+				
+				var a = document.createElement('a');
+				var filename_arr = response.split("/");
+				var filename = filename_arr.slice(-1)[0];
+				//var url = window.URL.createObjectURL(response);
+				
+				//console.log(filename);
+				
+				if(response === ''){
+					//console.log('response is null');
+					$('.download_overlay').hide();
+					setTimeout(function () { window.close();}, 500);
+				}else{
+					//console.log(response);
+					a.href = window.location.protocol + "//" + response;
+					a.download = filename;
+					a.click();
+					window.URL.revokeObjectURL(window.location.protocol + "//" + response);
+					
+					setTimeout(function () { window.close();}, 500);
+				
+				}
+				
+			}).fail(function(response){
+				//console.log('createzip fail');
+				console.log('fail: '+response);
+			});
+		  }else{
+			$('.download_overlay').hide();
+		  }
+	  }
+	  
 	  $(document).ready(function(){
 		initMultipleDownload();			
 		initNavbarToggle();
 		initDropdownMenu();
+		fileDownload();
 	  });
 	  
 	  $(window).resize(function(){
@@ -2535,6 +2588,7 @@ var Roots = {
 				  data: {
 					action: 'get_resource_grid', 
 					page: pageNum,
+					page_id: pageid,
 					resource_listID: resource_listID, 
 					filters: filter_1+','+filter_2+','+filter_3
 				  },
@@ -2710,7 +2764,8 @@ var Roots = {
 				  url: ajaxurl,
 				  type: 'post',
 				  data: {
-					action: 'get_resource_list', 
+					action: 'get_resource_list',
+					page_id: pageid,
 					page: pageNum,
 					resource_listID: resource_listID, 
 					filters: filter_1+','+filter_2+','+filter_3

@@ -1,14 +1,17 @@
 <?php
 /* Don't remove this line. */
-//require('../../../../wp-blog-header.php');
-//include get_template_directory() . 'lib/extras.php';
 require('../../../../wp-blog-header.php');
-require_once("../../../../wp-config.php");
-require_once("../../../../wp-includes/wp-db.php");
 
-// Load WP components, no themes
-define('WP_USE_THEMES', false);
-require('../../../../wp-load.php');
+include get_template_directory() . 'lib/extras.php';
+
+session_start();
+
+global $username;
+initAccessRightChecking($username);
+
+//get_template_part('templates/head');
+//wp_head();
+//do_action('get_header');
 
 if(!empty($_GET["file"]) && !empty($_GET["pageid"])){
     // Get parameters
@@ -74,7 +77,6 @@ if(!empty($_GET["file"]) && !empty($_GET["pageid"])){
 			
 			flush(); // Flush system output buffer
 			readfile($destination_path);*/
-			echo 'destination_path: '.$destination_path;
 		}
 	}else{
 		echo '<p>You do not have access right for this file.</p>';
@@ -85,7 +87,12 @@ if(!empty($_GET["file"]) && !empty($_GET["pageid"])){
 	exit;
 }
 ?>
+
+<html> 
+<body>
 <script>
 	//window.open('', '_self', '');
 	//window.close();
 </script>
+</body> 
+</html> 

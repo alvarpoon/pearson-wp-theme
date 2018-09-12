@@ -6708,6 +6708,13 @@ body.fixed {
   width: 100%;
   overflow: hidden;
 }
+.download_overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  z-index: 9999;
+}
 a {
   text-underline-position: under;
 }

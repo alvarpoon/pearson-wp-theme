@@ -9,7 +9,11 @@
  *
  * @link https://github.com/roots/roots/pull/1042
  */
+
+//echo '<p>this is function.php</p>'; 
+
  
+
 $roots_includes = array(
   'lib/utils.php',           // Utility functions
   'lib/init.php',            // Initial theme setup and constants
@@ -297,6 +301,13 @@ function custom_breadcrumbs() {
     }
        
 }
+
+function sess_start() {
+    if (!session_id()){
+	    session_start();
+	}
+}
+add_action('init','sess_start');
 
 function admin_style() {
   wp_enqueue_style('admin-styles', get_template_directory_uri().'/assets/css/admin.css');
