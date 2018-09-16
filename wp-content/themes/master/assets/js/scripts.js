@@ -2382,6 +2382,37 @@ var Roots = {
 		});
 	  }
 	  
+	  function setMenuLastItem(){
+		  var navbarWidth = $('.navbar-collapse').width();
+		  var navbarPos = $('.navbar-collapse').offset();
+		  
+		  var navbarPosWidth = navbarWidth+navbarPos.left;
+		  
+		  var closest_li;
+		  var tempValue = 9999;
+		  
+		  if(navbarWidth >= 993){
+			  //console.log($('.navbar-collapse').width());
+			  
+			  $('.main_menu li').each(function(){
+				$(this).removeClass('pos_right');
+				var navbar_li_width = $(this).width();
+				var navbar_li_pos = $(this).offset();
+				
+				var navbar_li_PosWidth = navbar_li_width+navbar_li_pos.left;
+				
+				if(tempValue > navbarPosWidth-navbar_li_PosWidth){
+					tempValue = navbarPosWidth-navbar_li_PosWidth;
+					closest_li = $(this);
+				}
+			  });
+			  
+			  //console.log(closest_li);
+			  
+			  closest_li.addClass('pos_right');
+		  }
+	  }
+	  
 	  function initDropdownMenu(){
 		  $('.mobile-menu-wrapper li').removeClass('open');
 		  /*$('ul.dropdown-menu [data-toggle=dropdown]').unbind('click');
@@ -2471,10 +2502,12 @@ var Roots = {
 		initNavbarToggle();
 		initDropdownMenu();
 		fileDownload();
+		setMenuLastItem();
 	  });
 	  
 	  $(window).resize(function(){
-		initDropdownMenu();						
+		initDropdownMenu();
+		setMenuLastItem();
 	  });
     }
   },

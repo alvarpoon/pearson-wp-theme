@@ -32,7 +32,7 @@
 		?>
 	</div>
 	
-	<div class="home-content-wrapper">
+	<div class="home-content-wrapper clearfix">
 		<div class="content-right col-md-12">
 			<div class="section-title"><?=__("What's New", 'Pearson-master');?></div>
 			<div class="scrollable-content-wrapper">

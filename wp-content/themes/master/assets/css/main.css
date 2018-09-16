@@ -6912,9 +6912,9 @@ a.media-file {
   max-width: 92px;
   height: 70px;
   background-repeat: no-repeat;
-  background-position: top center;
+  background-position: center 10px;
   text-align: center;
-  padding-top: 40px;
+  padding-top: 50px;
   margin-right: 10px;
   float: left;
   overflow: hidden;
@@ -7546,6 +7546,14 @@ figure.alignnone {
         -ms-transform: translateY(-50%) rotate(270deg);
          -o-transform: translateY(-50%) rotate(270deg);
             transform: translateY(-50%) rotate(270deg);
+  }
+  .mainmenu .navbar-collapse ul li.pos_right ul.dropdown-menu {
+    left: auto;
+    right: 0;
+  }
+  .mainmenu .navbar-collapse ul li.pos_right ul.dropdown-menu ul {
+    left: auto;
+    right: 100%;
   }
 }
 .sidebar {
@@ -8669,19 +8677,38 @@ footer.content-info .footer-wrapper .footer-copyright {
 .page-template-template-group-resource-list .audio_container .audio_playback .playtoggle a {
   max-width: 90px;
 }
+.page-template-template-resource-list .resource-container-inner,
+.page-template-template-all-resources-list .resource-container-inner,
+.page-template-template-group-resource-list .resource-container-inner {
+  display: table;
+  width: 100%;
+}
 .page-template-template-resource-list .resource-container .resource-header,
 .page-template-template-all-resources-list .resource-container .resource-header,
 .page-template-template-group-resource-list .resource-container .resource-header {
-  border-bottom: 1px solid #e7e7e7;
-  padding-bottom: 12px;
+  display: table-row;
   margin-bottom: 15px;
+}
+.page-template-template-resource-list .resource-container .resource-header .header-item,
+.page-template-template-all-resources-list .resource-container .resource-header .header-item,
+.page-template-template-group-resource-list .resource-container .resource-header .header-item,
+.page-template-template-resource-list .resource-container .resource-header .header-download,
+.page-template-template-all-resources-list .resource-container .resource-header .header-download,
+.page-template-template-group-resource-list .resource-container .resource-header .header-download,
+.page-template-template-resource-list .resource-container .resource-header .header-download-all,
+.page-template-template-all-resources-list .resource-container .resource-header .header-download-all,
+.page-template-template-group-resource-list .resource-container .resource-header .header-download-all {
+  display: table-cell;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e7e7e7;
 }
 .page-template-template-resource-list .resource-container .resource-item,
 .page-template-template-all-resources-list .resource-container .resource-item,
 .page-template-template-group-resource-list .resource-container .resource-item {
-  border-bottom: 2px solid #e7e7e7;
-  padding-bottom: 10px;
-  padding-top: 10px;
+  display: table-row;
+  /*border-bottom:2px solid #e7e7e7;
+			padding-bottom:10px;
+			padding-top:10px;*/
 }
 .page-template-template-resource-list .resource-container .resource-item.single-file .resource-title-wrapper .resource-title-div .resource-title a,
 .page-template-template-all-resources-list .resource-container .resource-item.single-file .resource-title-wrapper .resource-title-div .resource-title a,
@@ -8746,6 +8773,11 @@ footer.content-info .footer-wrapper .footer-copyright {
   /*padding-left:35px;
 				background-position:0 0;
 				background-repeat:no-repeat;*/
+  position: relative;
+  display: table-cell;
+  border-bottom: 2px solid #e7e7e7;
+  padding-bottom: 10px;
+  padding-top: 10px;
 }
 .page-template-template-resource-list .resource-container .resource-item .resource-title-wrapper table tr td,
 .page-template-template-all-resources-list .resource-container .resource-item .resource-title-wrapper table tr td,
@@ -8879,6 +8911,8 @@ footer.content-info .footer-wrapper .footer-copyright {
 .page-template-template-resource-list .resource-container .resource-item .file-download-wrapper,
 .page-template-template-all-resources-list .resource-container .resource-item .file-download-wrapper,
 .page-template-template-group-resource-list .resource-container .resource-item .file-download-wrapper {
+  display: table-cell;
+  border-bottom: 2px solid #e7e7e7;
   padding-right: 0;
 }
 .page-template-template-resource-list .resource-container .resource-item .file-download-wrapper .mobile_download_wrapper,
@@ -8890,12 +8924,12 @@ footer.content-info .footer-wrapper .footer-copyright {
 .page-template-template-all-resources-list .resource-container .resource-item .file-download-wrapper .mobile_download_wrapper select.mobile_download,
 .page-template-template-group-resource-list .resource-container .resource-item .file-download-wrapper .mobile_download_wrapper select.mobile_download {
   width: 57px;
-  height: 40px;
+  height: 50px;
   background-image: url(../img/common/download-all.svg);
   -webkit-background-size: 25px auto;
           background-size: 25px auto;
-  background-position: top center;
-  padding: 40px 0 15px 0!important;
+  background-position: center 10px;
+  padding: 50px 0 15px 0!important;
   border: 0;
   text-align: center;
   position: relative;
@@ -8913,6 +8947,13 @@ footer.content-info .footer-wrapper .footer-copyright {
   font-size: 12px;
   line-height: 1.33;
   color: #505759;
+}
+.page-template-template-resource-list .resource-container .resource-item .file-download-all,
+.page-template-template-all-resources-list .resource-container .resource-item .file-download-all,
+.page-template-template-group-resource-list .resource-container .resource-item .file-download-all {
+  display: table-cell;
+  border-bottom: 2px solid #e7e7e7;
+  min-width: 80px;
 }
 .page-template-template-resource-list .audio_container,
 .page-template-template-all-resources-list .audio_container,
@@ -9034,6 +9075,11 @@ footer.content-info .footer-wrapper .footer-copyright {
   .page-template-template-group-resource-list .resource-container .resource-item .file-download-wrapper a {
     width: 92px;
     margin-right: 18px;
+  }
+  .page-template-template-resource-list .resource-container .resource-item .file-download-wrapper a:last-child,
+  .page-template-template-all-resources-list .resource-container .resource-item .file-download-wrapper a:last-child,
+  .page-template-template-group-resource-list .resource-container .resource-item .file-download-wrapper a:last-child {
+    margin-right: 0;
   }
 }
 .page-template-template-teacher-corner h1.pageTitle {

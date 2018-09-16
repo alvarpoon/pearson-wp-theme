@@ -58,8 +58,26 @@
 							
 							foreach($child_links as $child_link):
 								$child_link_id = $child_link->ID;
-							
-								echo '<li><a href="'.esc_url( get_permalink( $child_link_id ) ).'">'.get_the_title($child_link_id).'</a></li>';
+								
+								$access_service_roles_child = get_field('access_service_code_with_role', $child_link_id);
+								
+								if(!empty($access_service_roles_child)){
+								
+									$page_access_child_arr = standardizePageAccess($access_service_roles_child);
+									
+									foreach($_SESSION['accessRight'] as $accessRight){
+										foreach($page_access_child_arr as $page_access){
+											if($page_access['SERVICECODE'] == $accessRight['SERVICECODE'] && $page_access['ROLEID'] == $accessRight['ROLEID']){
+												echo '<li><a href="'.esc_url( get_permalink( $child_link_id ) ).'">'.get_the_title($child_link_id).'</a></li>';
+											}
+										}
+									}
+									
+								}else{
+								
+									echo '<li><a href="'.esc_url( get_permalink( $child_link_id ) ).'">'.get_the_title($child_link_id).'</a></li>';
+									
+								}
 							
 							endforeach;
 							

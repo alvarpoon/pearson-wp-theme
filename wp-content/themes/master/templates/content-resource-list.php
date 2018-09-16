@@ -143,10 +143,10 @@
 			</div>
 		</div>
 		<div class="resource-container clearfix">
-			<div class="clearfix resource-header">
+			<!--<div class="clearfix resource-header">
 				<div class="col-xs-9 col-sm-10 col-md-5 no-padding"><?=__('Items', 'Pearson-master');?></div>
 				<div class="col-xs-3 col-sm-2 col-md-7 no-padding"><?=__('Download', 'Pearson-master');?></div>
-			</div>
+			</div>-->
 			
 			<div class="loading-box"></div>
 			<?php
@@ -174,6 +174,12 @@
 		<?php
 				echo '<div class="resource-container-inner">';
 				
+				echo '<div class="resource-header">';
+				echo '<div class="header-item">'.__('Items', 'Pearson-master').'</div>';
+				echo '<div class="header-download">'.__('Download', 'Pearson-master').'</div>';
+				echo '<div class="header-download-all hidden-xs hidden-sm"></div>';
+				echo '</div>';
+				
 				foreach ($resources as $resource):
 					$resource_id = $resource->ID;
 					$resource_type = get_field('resource_type', $resource_id);
@@ -194,8 +200,8 @@
 					if($resource_count > $max) { break; } 
 			?>
 			
-			<div class="resource-item <?=$resource_type?> clearfix">
-				<div class="resource-title-wrapper col-xs-9 col-sm-10 col-md-5">
+			<div class="resource-item <?=$resource_type?>">
+				<div class="resource-title-wrapper">
 					<div class="clearfix">
 						<table cellpadding="0" cellspacing="0" border="0" width="90%">
 							<tr>
@@ -219,42 +225,47 @@
 						<?php } ?>
 					</div>
 				</div>
-				<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">
-					<?php if($download_count > 1): ?>
-					<div class="hidden-xs hidden-sm">
-						<?php 
-						$downloadable_file_arr = array();
+				
+				<?php if($download_count > 1): 
+				
+					$downloadable_file_arr = array();
+					if( have_rows('downloads', $resource_id) ){
+						echo '<div class="file-download-wrapper no-padding hidden-xs hidden-sm">';
 						
-						if( have_rows('downloads', $resource_id) ){
-							while( have_rows('downloads', $resource_id) ): the_row();
-								$file_title = get_sub_field('file_title');
-								$downloadable_file = get_sub_field('downloadable_file');
-								$file_type = get_sub_field('file_type');
-								$file_extension = strtolower(substr(strrchr($downloadable_file['url'],"."),1));
-								$preview_only = get_sub_field('preview_only');
-								
-								if(!$preview_only){
-									echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title, $post->ID);
-									array_push($downloadable_file_arr, $downloadable_file['url']);
-								}
-								
-								unset($file_title);
-								unset($downloadable_file);
-								unset($file_type);
-								unset($file_extension);
-								unset($preview_only);	
-							endwhile;
+						while( have_rows('downloads', $resource_id) ): the_row();
 							
-							$downloadable_file_string = implode(',',$downloadable_file_arr);
+							$file_title = get_sub_field('file_title');
+							$downloadable_file = get_sub_field('downloadable_file');
+							$file_type = get_sub_field('file_type');
+							$file_extension = strtolower(substr(strrchr($downloadable_file['url'],"."),1));
+							$preview_only = get_sub_field('preview_only');
 							
-							echo '<a href="javascript:;" data-file="'.$downloadable_file_string.'" data-filename="download" class="media-file all createzip">'.__('Download All', 'Pearson-master').'</a>';
+							if(!$preview_only){
+								echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title, $post->ID);
+								array_push($downloadable_file_arr, $downloadable_file['url']);
+							}
 							
-							unset($downloadable_file_arr);
-							unset($downloadable_file_string);
-						}
-						?>
-					</div>					
-					<div class="hidden-md hidden-lg">
+							unset($file_title);
+							unset($downloadable_file);
+							unset($file_type);
+							unset($file_extension);
+							unset($preview_only);	
+						endwhile;
+						echo '</div>';
+						echo '<div class="file-download-all hidden-xs hidden-sm">';
+						$downloadable_file_string = implode(',',$downloadable_file_arr);
+						
+						echo '<a href="javascript:;" data-file="'.$downloadable_file_string.'" data-filename="download" class="media-file all createzip">'.__('Download All', 'Pearson-master').'</a>';
+						
+						unset($downloadable_file_arr);
+						unset($downloadable_file_string);
+						echo '</div>';
+					}
+					
+					
+					?>
+					<!--</div>-->
+					<div class="file-download-wrapper no-padding hidden-md hidden-lg">
 						<div class="mobile_download_wrapper">
 							
 							<?php 
@@ -298,6 +309,10 @@
 					</div>
 					<?php else:
 						if( have_rows('downloads', $resource_id) ):
+							$numrows = count( get_sub_field( 'downloads' ) );
+						
+							$count = 0;
+						
 							while( have_rows('downloads', $resource_id) ): the_row();
 								$file_title = get_sub_field('file_title');
 								$downloadable_file = get_sub_field('downloadable_file'); 
@@ -306,15 +321,19 @@
 								$preview_only = get_sub_field('preview_only');
 								
 								if(!$preview_only){
-									echo '<div class="hidden-xs hidden-sm">';
+									echo '<div class="file-download-wrapper hidden-xs hidden-sm">';
 									echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title, $post->ID);
 									echo '</div>';
 									
-									echo '<div class="hidden-md hidden-lg">';
+									echo '<div class="file-download-wrapper hidden-md hidden-lg">';
 									//echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file all" target="_blank">'.__('Download', 'Pearson-master').'</a>';
 									
 									echo '<a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file all" target="_blank">'.__('Download', 'Pearson-master').'</a>';
-									echo '</div>'; 
+									echo '</div>';
+									
+									echo '<div class="file-download-all hidden-xs hidden-sm"></div>';
+									
+									$count++;
 								}
 								
 								unset($file_title);
@@ -323,9 +342,22 @@
 								unset($file_extension);
 								unset($preview_only);
 					 		endwhile;
-					 endif; ?>
-					<?php endif; ?>
-				</div>
+														
+							if($numrows > $count){
+								echo '<div class="file-download-wrapper hidden-xs hidden-sm"></div>';
+								echo '<div class="file-download-wrapper hidden-md hidden-lg"></div>';
+								echo '<div class="file-download-all hidden-xs hidden-sm"></div>';
+							}
+							
+							unset($count);
+						 else:
+							echo '<div class="file-download-wrapper hidden-xs hidden-sm"></div>';
+							echo '<div class="file-download-wrapper hidden-md hidden-lg"></div>';
+							echo '<div class="file-download-all hidden-xs hidden-sm"></div>';
+						 endif;
+						 
+				endif; ?>
+				<!--</div>-->
 				
 				<?php if($resource_type == 'article-file') {?>
 					<div id="<?=$resource_slug.'-content'?>" class="hidden-content fancybox-content article-lightbox">

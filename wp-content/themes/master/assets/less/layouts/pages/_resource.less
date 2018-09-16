@@ -666,17 +666,29 @@
 		}
 	}
 	
+	.resource-container-inner{
+		display:table;
+		width:100%;
+	}
+	
 	.resource-container{
 		.resource-header{
-			border-bottom:1px solid #e7e7e7;
-			padding-bottom:12px;
+			display:table-row;
 			margin-bottom:15px;
+			
+			.header-item, .header-download, .header-download-all{
+				display:table-cell;
+				padding-bottom:12px;
+				border-bottom:1px solid #e7e7e7;
+			}
 		}
 		
 		.resource-item{
-			border-bottom:2px solid #e7e7e7;
+			display:table-row;
+		
+			/*border-bottom:2px solid #e7e7e7;
 			padding-bottom:10px;
-			padding-top:10px;
+			padding-top:10px;*/
 		
 			&.single-file{
 				.resource-title-wrapper{
@@ -768,6 +780,12 @@
 				/*padding-left:35px;
 				background-position:0 0;
 				background-repeat:no-repeat;*/
+				
+				position:relative;
+				display:table-cell;
+				border-bottom:2px solid #e7e7e7;
+				padding-bottom:10px;
+				padding-top:10px;
 				
 				table{
 					tr{
@@ -884,6 +902,10 @@
 			}
 			
 			.file-download-wrapper{
+				display:table-cell;
+				border-bottom:2px solid #e7e7e7;
+				
+			
 				padding-right:0;
 				
 				.mobile_download_wrapper{
@@ -891,11 +913,11 @@
 					
 					select.mobile_download{
 						width:57px;
-						height:40px;
+						height:50px;
 						background-image: url(../img/common/download-all.svg);
 						background-size:25px auto;
-						background-position:top center;
-						padding:40px 0 15px 0!important;
+						background-position:center 10px;
+						padding:50px 0 15px 0!important;
 						border:0;
 						text-align:center;
 						position:relative;
@@ -914,6 +936,12 @@
 						color: #505759;
 					}
 				}
+			}
+			
+			.file-download-all{
+				display:table-cell;
+				border-bottom:2px solid #e7e7e7;
+				min-width:80px;
 			}
 		}
 	}
@@ -1090,6 +1118,10 @@
 					a{
 						width:92px;
 						margin-right:18px;
+						
+						&:last-child{
+							margin-right:0;
+						}
 					}
 				}
 			}
