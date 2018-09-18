@@ -8915,6 +8915,49 @@ footer.content-info .footer-wrapper .footer-copyright {
   border-bottom: 2px solid #e7e7e7;
   padding-right: 0;
 }
+.page-template-template-resource-list .resource-container .resource-item .file-download-wrapper.item-0,
+.page-template-template-all-resources-list .resource-container .resource-item .file-download-wrapper.item-0,
+.page-template-template-group-resource-list .resource-container .resource-item .file-download-wrapper.item-0,
+.page-template-template-resource-list .resource-container .resource-item .file-download-wrapper.item-1,
+.page-template-template-all-resources-list .resource-container .resource-item .file-download-wrapper.item-1,
+.page-template-template-group-resource-list .resource-container .resource-item .file-download-wrapper.item-1 {
+  width: 92px;
+}
+.page-template-template-resource-list .resource-container .resource-item .file-download-wrapper.item-2,
+.page-template-template-all-resources-list .resource-container .resource-item .file-download-wrapper.item-2,
+.page-template-template-group-resource-list .resource-container .resource-item .file-download-wrapper.item-2 {
+  width: 184px;
+}
+.page-template-template-resource-list .resource-container .resource-item .file-download-wrapper.item-3,
+.page-template-template-all-resources-list .resource-container .resource-item .file-download-wrapper.item-3,
+.page-template-template-group-resource-list .resource-container .resource-item .file-download-wrapper.item-3 {
+  width: 276px;
+}
+.page-template-template-resource-list .resource-container .resource-item .file-download-wrapper.item-4,
+.page-template-template-all-resources-list .resource-container .resource-item .file-download-wrapper.item-4,
+.page-template-template-group-resource-list .resource-container .resource-item .file-download-wrapper.item-4 {
+  width: 368px;
+}
+.page-template-template-resource-list .resource-container .resource-item .file-download-wrapper.item-5,
+.page-template-template-all-resources-list .resource-container .resource-item .file-download-wrapper.item-5,
+.page-template-template-group-resource-list .resource-container .resource-item .file-download-wrapper.item-5,
+.page-template-template-resource-list .resource-container .resource-item .file-download-wrapper.item-6,
+.page-template-template-all-resources-list .resource-container .resource-item .file-download-wrapper.item-6,
+.page-template-template-group-resource-list .resource-container .resource-item .file-download-wrapper.item-6,
+.page-template-template-resource-list .resource-container .resource-item .file-download-wrapper.item-7,
+.page-template-template-all-resources-list .resource-container .resource-item .file-download-wrapper.item-7,
+.page-template-template-group-resource-list .resource-container .resource-item .file-download-wrapper.item-7,
+.page-template-template-resource-list .resource-container .resource-item .file-download-wrapper.item-8,
+.page-template-template-all-resources-list .resource-container .resource-item .file-download-wrapper.item-8,
+.page-template-template-group-resource-list .resource-container .resource-item .file-download-wrapper.item-8,
+.page-template-template-resource-list .resource-container .resource-item .file-download-wrapper.item-9,
+.page-template-template-all-resources-list .resource-container .resource-item .file-download-wrapper.item-9,
+.page-template-template-group-resource-list .resource-container .resource-item .file-download-wrapper.item-9,
+.page-template-template-resource-list .resource-container .resource-item .file-download-wrapper.item-10,
+.page-template-template-all-resources-list .resource-container .resource-item .file-download-wrapper.item-10,
+.page-template-template-group-resource-list .resource-container .resource-item .file-download-wrapper.item-10 {
+  width: 532px;
+}
 .page-template-template-resource-list .resource-container .resource-item .file-download-wrapper .mobile_download_wrapper,
 .page-template-template-all-resources-list .resource-container .resource-item .file-download-wrapper .mobile_download_wrapper,
 .page-template-template-group-resource-list .resource-container .resource-item .file-download-wrapper .mobile_download_wrapper {
@@ -8953,7 +8996,13 @@ footer.content-info .footer-wrapper .footer-copyright {
 .page-template-template-group-resource-list .resource-container .resource-item .file-download-all {
   display: table-cell;
   border-bottom: 2px solid #e7e7e7;
-  min-width: 80px;
+  width: 100px;
+  text-align: center;
+}
+.page-template-template-resource-list .resource-container .resource-item .file-download-all a,
+.page-template-template-all-resources-list .resource-container .resource-item .file-download-all a,
+.page-template-template-group-resource-list .resource-container .resource-item .file-download-all a {
+  float: none!important;
 }
 .page-template-template-resource-list .audio_container,
 .page-template-template-all-resources-list .audio_container,
@@ -9070,6 +9119,49 @@ footer.content-info .footer-wrapper .footer-copyright {
   }
 }
 @media (min-width: 1200px) {
+  .page-template-template-resource-list .resource-container .resource-item .file-download-wrapper.item-0,
+  .page-template-template-all-resources-list .resource-container .resource-item .file-download-wrapper.item-0,
+  .page-template-template-group-resource-list .resource-container .resource-item .file-download-wrapper.item-0,
+  .page-template-template-resource-list .resource-container .resource-item .file-download-wrapper.item-1,
+  .page-template-template-all-resources-list .resource-container .resource-item .file-download-wrapper.item-1,
+  .page-template-template-group-resource-list .resource-container .resource-item .file-download-wrapper.item-1 {
+    width: 92px;
+  }
+  .page-template-template-resource-list .resource-container .resource-item .file-download-wrapper.item-2,
+  .page-template-template-all-resources-list .resource-container .resource-item .file-download-wrapper.item-2,
+  .page-template-template-group-resource-list .resource-container .resource-item .file-download-wrapper.item-2 {
+    width: 202px;
+  }
+  .page-template-template-resource-list .resource-container .resource-item .file-download-wrapper.item-3,
+  .page-template-template-all-resources-list .resource-container .resource-item .file-download-wrapper.item-3,
+  .page-template-template-group-resource-list .resource-container .resource-item .file-download-wrapper.item-3 {
+    width: 312px;
+  }
+  .page-template-template-resource-list .resource-container .resource-item .file-download-wrapper.item-4,
+  .page-template-template-all-resources-list .resource-container .resource-item .file-download-wrapper.item-4,
+  .page-template-template-group-resource-list .resource-container .resource-item .file-download-wrapper.item-4 {
+    width: 422px;
+  }
+  .page-template-template-resource-list .resource-container .resource-item .file-download-wrapper.item-5,
+  .page-template-template-all-resources-list .resource-container .resource-item .file-download-wrapper.item-5,
+  .page-template-template-group-resource-list .resource-container .resource-item .file-download-wrapper.item-5,
+  .page-template-template-resource-list .resource-container .resource-item .file-download-wrapper.item-6,
+  .page-template-template-all-resources-list .resource-container .resource-item .file-download-wrapper.item-6,
+  .page-template-template-group-resource-list .resource-container .resource-item .file-download-wrapper.item-6,
+  .page-template-template-resource-list .resource-container .resource-item .file-download-wrapper.item-7,
+  .page-template-template-all-resources-list .resource-container .resource-item .file-download-wrapper.item-7,
+  .page-template-template-group-resource-list .resource-container .resource-item .file-download-wrapper.item-7,
+  .page-template-template-resource-list .resource-container .resource-item .file-download-wrapper.item-8,
+  .page-template-template-all-resources-list .resource-container .resource-item .file-download-wrapper.item-8,
+  .page-template-template-group-resource-list .resource-container .resource-item .file-download-wrapper.item-8,
+  .page-template-template-resource-list .resource-container .resource-item .file-download-wrapper.item-9,
+  .page-template-template-all-resources-list .resource-container .resource-item .file-download-wrapper.item-9,
+  .page-template-template-group-resource-list .resource-container .resource-item .file-download-wrapper.item-9,
+  .page-template-template-resource-list .resource-container .resource-item .file-download-wrapper.item-10,
+  .page-template-template-all-resources-list .resource-container .resource-item .file-download-wrapper.item-10,
+  .page-template-template-group-resource-list .resource-container .resource-item .file-download-wrapper.item-10 {
+    width: 532px;
+  }
   .page-template-template-resource-list .resource-container .resource-item .file-download-wrapper a,
   .page-template-template-all-resources-list .resource-container .resource-item .file-download-wrapper a,
   .page-template-template-group-resource-list .resource-container .resource-item .file-download-wrapper a {

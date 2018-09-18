@@ -189,6 +189,7 @@
 					$resource_popup_url = get_field('resource_popup_url', $resource_id);
 					$downloads = get_field('downloads', $resource_id);
 					$download_count = getDownload_count($resource_id);
+					//echo 'download_count: '.$download_count;
 					
 					$resource_post = get_post($resource_id); 
 					$resource_slug = $resource_post->post_name;
@@ -230,7 +231,7 @@
 				
 					$downloadable_file_arr = array();
 					if( have_rows('downloads', $resource_id) ){
-						echo '<div class="file-download-wrapper no-padding hidden-xs hidden-sm">';
+						echo '<div class="file-download-wrapper no-padding hidden-xs hidden-sm item-'.$download_count.'">';
 						
 						while( have_rows('downloads', $resource_id) ): the_row();
 							
@@ -321,7 +322,7 @@
 								$preview_only = get_sub_field('preview_only');
 								
 								if(!$preview_only){
-									echo '<div class="file-download-wrapper hidden-xs hidden-sm">';
+									echo '<div class="file-download-wrapper hidden-xs hidden-sm item-'.$download_count.'">';
 									echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title, $post->ID);
 									echo '</div>';
 									
@@ -344,14 +345,14 @@
 					 		endwhile;
 														
 							if($numrows > $count){
-								echo '<div class="file-download-wrapper hidden-xs hidden-sm"></div>';
+								echo '<div class="file-download-wrapper hidden-xs hidden-sm item-'.$download_count.'"></div>';
 								echo '<div class="file-download-wrapper hidden-md hidden-lg"></div>';
 								echo '<div class="file-download-all hidden-xs hidden-sm"></div>';
 							}
 							
 							unset($count);
 						 else:
-							echo '<div class="file-download-wrapper hidden-xs hidden-sm"></div>';
+							echo '<div class="file-download-wrapper hidden-xs hidden-sm item-'.$download_count.'"></div>';
 							echo '<div class="file-download-wrapper hidden-md hidden-lg"></div>';
 							echo '<div class="file-download-all hidden-xs hidden-sm"></div>';
 						 endif;

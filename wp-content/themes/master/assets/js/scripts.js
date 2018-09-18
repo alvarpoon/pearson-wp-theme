@@ -2478,7 +2478,7 @@ var Roots = {
 					$('.download_overlay').hide();
 					setTimeout(function () { window.close();}, 500);
 				}else{
-					//console.log(response);
+					console.log(response);
 					a.href = window.location.protocol + "//" + response;
 					a.download = filename;
 					a.click();

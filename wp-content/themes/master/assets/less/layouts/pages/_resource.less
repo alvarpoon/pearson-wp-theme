@@ -905,6 +905,12 @@
 				display:table-cell;
 				border-bottom:2px solid #e7e7e7;
 				
+				&.item-0, &.item-1{width:92px;}
+				&.item-2{width:184px;}
+				&.item-3{width:276px;}
+				&.item-4{width:368px;}
+				&.item-5, &.item-6, &.item-7, &.item-8, &.item-9, &.item-10{width:532px;}
+				
 			
 				padding-right:0;
 				
@@ -941,7 +947,12 @@
 			.file-download-all{
 				display:table-cell;
 				border-bottom:2px solid #e7e7e7;
-				min-width:80px;
+				//min-width:80px;
+				width:100px;
+				text-align:center;
+				a{
+					float:none!important;
+				}
 			}
 		}
 	}
@@ -1115,6 +1126,12 @@
 		.resource-container{
 			.resource-item{
 				.file-download-wrapper{
+					&.item-0, &.item-1{width:92px;}
+					&.item-2{width:202px;}
+					&.item-3{width:312px;}
+					&.item-4{width:422px;}
+					&.item-5, &.item-6, &.item-7, &.item-8, &.item-9, &.item-10{width:532px;}
+				
 					a{
 						width:92px;
 						margin-right:18px;

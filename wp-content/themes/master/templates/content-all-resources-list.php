@@ -226,7 +226,7 @@
 				
 					$downloadable_file_arr = array();
 					if( have_rows('downloads', $resource_id) ){
-						echo '<div class="file-download-wrapper no-padding hidden-xs hidden-sm">';
+						echo '<div class="file-download-wrapper no-padding hidden-xs hidden-sm item-'.$download_count.'">';
 					
 						while( have_rows('downloads', $resource_id) ): the_row();
 							$file_title = get_sub_field('file_title');
@@ -316,7 +316,7 @@
 								$file_extension = strtolower(substr(strrchr($downloadable_file['url'],"."),1));
 								$preview_only = get_sub_field('preview_only');
 								if(!$preview_only){
-									echo '<div class="file-download-wrapper hidden-xs hidden-sm">';
+									echo '<div class="file-download-wrapper hidden-xs hidden-sm item-'.$download_count.'">';
 									echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title, $resource_parent);
 									echo '</div>';
 									
@@ -340,14 +340,14 @@
 					 		endwhile;
 							
 							if($numrows > $count){
-								echo '<div class="file-download-wrapper hidden-xs hidden-sm"></div>';
+								echo '<div class="file-download-wrapper hidden-xs hidden-sm item-'.$download_count.'"></div>';
 								echo '<div class="file-download-wrapper hidden-md hidden-lg"></div>';
 								echo '<div class="file-download-all hidden-xs hidden-sm"></div>';
 							}
 							
 							unset($count);
 						 else:
-							echo '<div class="file-download-wrapper hidden-xs hidden-sm"></div>';
+							echo '<div class="file-download-wrapper hidden-xs hidden-sm item-'.$download_count.'"></div>';
 							echo '<div class="file-download-wrapper hidden-md hidden-lg"></div>';
 							echo '<div class="file-download-all hidden-xs hidden-sm"></div>';
 						 endif;
