@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<node>
+		<name><![CDATA[Level 1a]]></name>
+		<slug><![CDATA[level-1a]]></slug>
+		<parentcategory><![CDATA[39]]></parentcategory>
+		<description><![CDATA[]]></description>
+		<language><![CDATA[en]]></language>
+	</node>
+	<node>
+		<name><![CDATA[Level 2a]]></name>
+		<slug><![CDATA[level-2a]]></slug>
+		<parentcategory><![CDATA[40]]></parentcategory>
+		<description><![CDATA[]]></description>
+		<language><![CDATA[en]]></language>
+	</node>
+	<node>
+		<name><![CDATA[Level 3a]]></name>
+		<slug><![CDATA[level-3a]]></slug>
+		<parentcategory><![CDATA[41]]></parentcategory>
+		<description><![CDATA[]]></description>
+		<language><![CDATA[en]]></language>
+	</node>
+	<node>
+		<name><![CDATA[Level 4a]]></name>
+		<slug><![CDATA[level-4a]]></slug>
+		<parentcategory><![CDATA[42]]></parentcategory>
+		<description><![CDATA[]]></description>
+		<language><![CDATA[en]]></language>
+	</node>
+</data>

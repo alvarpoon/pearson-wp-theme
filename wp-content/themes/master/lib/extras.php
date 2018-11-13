@@ -186,6 +186,7 @@ function generateRandomString($length = 10) {
     return $randomString;
 }
 
+
 function my_sort_slug($a, $b)
 {
 	if ($a->slug == $b->slug) return 0;
@@ -264,7 +265,8 @@ function create_zip(){
 	exit();
 }
 
-add_action( 'wp_ajax_ajaxDownload', 'ajaxDownload' );
+//Commented on 20181005
+/*add_action( 'wp_ajax_ajaxDownload', 'ajaxDownload' );
 add_action( 'wp_ajax_nopriv_ajaxDownload', 'ajaxDownload' );
 
 function ajaxDownload(){
@@ -281,9 +283,13 @@ function ajaxDownload(){
 		exit();
 	}
 	
-	$access_service_roles = get_field('access_service_code_with_role', $page_id);
+	//$access_service_roles = get_field('access_service_code_with_role', $page_id);
 	
-	//echo '<p>checkPageAccessRight: '.checkPageAccessRight($page_id).'</p>';
+	echo '--- accessRight start --- ';
+	print_r($_SESSION['accessRight']);
+	echo '--- accessRight end ---';
+	
+	echo ' | checkPageAccessRight: '.checkPageAccessRight($page_id).' | ';
 	
 	//if(checkPageAccessRight($page_id) || empty($access_service_roles)){ //check media url when user have page access right
 	if(checkPageAccessRight($page_id)){
@@ -309,7 +315,7 @@ function ajaxDownload(){
 		}
 	}
 	exit();
-}
+}*/
 
 function get_header_banner(){
 	$frontpage_id = get_option( 'page_on_front' );
@@ -327,7 +333,7 @@ function get_header_banner(){
 				echo '<div class="container-fluid">';
 				echo '<div class="top-banner-container" style="background-image:url('.$image['url'].');">';
 				if(!empty($link)){ 
-					echo '<a href="'.$link.'" target="'.$link_target.'">"';
+					echo '<a href="'.$link.'" target="'.$link_target.'">';
 				}
 				echo '<img src="'.$image['url'].'" class="img-responsive hidden-xs hidden-sm hidden-md hidden-lg" />';
 				if(!empty($link)){ 
@@ -432,20 +438,23 @@ function get_file_thumbnail_listing($file_type, $file_extension, $downloadable_f
 		case 'xls':
 		case 'zip':
 		case 'flv':
-			//$thumbnail_link = '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$page_id.'" class="media-file '.$file_extension.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';
-			
-			$thumbnail_link = '<a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$page_id.'" class="media-file '.$file_extension.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';
+			$thumbnail_link = '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$page_id.'" class="media-file '.$file_extension.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';
+			//Commented on 20181005
+			//$thumbnail_link = '<a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$page_id.'" class="media-file '.$file_extension.'" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';
 			break;
 		default:		
 			if($file_type == 'video'){
-				//$thumbnail_link = '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$page_id.'" class="media-file video" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';
-				$thumbnail_link = '<a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$page_id.'" class="media-file video" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';
+				$thumbnail_link = '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$page_id.'" class="media-file video" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';
+				//Commented on 20181005
+				//$thumbnail_link = '<a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$page_id.'" class="media-file video" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';
 			}else if($file_type == 'wav'){
-				//$thumbnail_link = '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$page_id.'" class="media-file audio" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';
-				$thumbnail_link = '<a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$page_id.'" class="media-file audio" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';
+				$thumbnail_link = '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$page_id.'" class="media-file audio" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';
+				//Commented on 20181005
+				//$thumbnail_link = '<a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$page_id.'" class="media-file audio" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';
 			}else{
-				//$thumbnail_link = '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$page_id.'" class="media-file default-file" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';		
-				$thumbnail_link = '<a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$page_id.'" class="media-file default-file" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';		
+				$thumbnail_link = '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$page_id.'" class="media-file default-file" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';		
+				//Commented on 20181005
+				//$thumbnail_link = '<a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$page_id.'" class="media-file default-file" target="_blank" title="'.$file_title.'">'.$file_title.'</a>';		
 			}
 			break;	
 	}
@@ -943,8 +952,10 @@ function get_resource_grid(){
 											//echo '<li><a href="'.$downloadable_file['url'].'" target="_blank">'.$file_title.'</a></li>';
 											
 											if(!$preview_only){
-												//echo '<li><a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$page_id.'" target="_blank">'.$file_title.'</a></li>';
-												echo '<li><a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$page_id.'" target="_blank">'.$file_title.'</a></li>';
+												echo '<li><a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$page_id.'" target="_blank">'.$file_title.'</a></li>';
+												
+												//Commented on 20181005
+												//echo '<li><a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$page_id.'" target="_blank">'.$file_title.'</a></li>';
 												
 												array_push($downloadable_file_arr, $downloadable_file['url']);
 											}
@@ -979,8 +990,9 @@ function get_resource_grid(){
 											
 											if(!$preview_only){
 												//echo '<a href="'.$downloadable_file['url'].'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
-												//echo '<option value="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$page_id.'">'.$file_title.'</option>';
-												echo '<option value="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$page_id.'">'.$file_title.'</option>';
+												echo '<option value="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$page_id.'">'.$file_title.'</option>';
+												//Commented on 20181005
+												//echo '<option value="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$page_id.'">'.$file_title.'</option>';
 											}
 											
 											unset($file_title);
@@ -1004,8 +1016,9 @@ function get_resource_grid(){
 									
 									if(!$preview_only){
 										//echo '<a href="'.$downloadable_file['url'].'" class="btn_single_download" target="_blank">Download</a>';
-										//echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$page_id.'" class="btn_single_download" target="_blank">'.__('Download', 'Pearson-master').'</a>';
-										echo '<a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$page_id.'" class="btn_single_download" target="_blank">'.__('Download', 'Pearson-master').'</a>';
+										echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$page_id.'" class="btn_single_download" target="_blank">'.__('Download', 'Pearson-master').'</a>';
+										//Commented on 20181005
+										//echo '<a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$page_id.'" class="btn_single_download" target="_blank">'.__('Download', 'Pearson-master').'</a>';
 									}
 								
 									unset($downloadable_file);
@@ -1403,9 +1416,9 @@ function get_all_resources_grid(){
 											//echo '<li><a href="'.$downloadable_file['url'].'" target="_blank">'.$file_title.'</a></li>';
 											
 											if(!$preview_only){
-												//echo '<li><a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$resource_parent.'">'.$file_title.'</a></li>';
-												
-												echo '<li><a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$resource_parent.'" target="_blank">'.$file_title.'</a></li>';
+												echo '<li><a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$resource_parent.'">'.$file_title.'</a></li>';
+												//Commented on 20181005
+												//echo '<li><a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$resource_parent.'" target="_blank">'.$file_title.'</a></li>';
 												
 												array_push($downloadable_file_arr, $downloadable_file['url']);
 											}
@@ -1442,9 +1455,9 @@ function get_all_resources_grid(){
 											
 											if(!$preview_only){
 												//echo '<a href="'.$downloadable_file['url'].'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
-												//echo '<option value="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$page_id.'">'.$file_title.'</option>';
-												
-												echo '<option value="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$resource_parent.'">'.$file_title.'</option>';
+												echo '<option value="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$page_id.'">'.$file_title.'</option>';
+												//Commented on 20181005
+												//echo '<option value="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$resource_parent.'">'.$file_title.'</option>';
 											}
 											
 											unset($file_title);
@@ -1746,9 +1759,9 @@ function get_resource_list(){
 									if(!$preview_only){
 										//echo '<a href="'.$downloadable_file['url'].'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
 										//echo '<option val="'.$downloadable_file['url'].'">'.$file_title.'</option>';
-										//echo '<option val="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$page_id.'">'.$file_title.'</option>';
-										
-										echo '<option value="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$page_id.'">'.$file_title.'</option>';
+										echo '<option val="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$page_id.'">'.$file_title.'</option>';
+										//Commented on 20181005
+										//echo '<option value="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$page_id.'">'.$file_title.'</option>';
 									}
 									
 									unset($file_title);
@@ -1783,9 +1796,9 @@ function get_resource_list(){
 								
 								echo '<div class="file-download-wrapper hidden-md hidden-lg">';
 								//echo '<a href="'.$downloadable_file['url'].'" class="media-file all" target="_blank">Download</a>';; 
-								//echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$page_id.'" class="media-file all" target="_blank">'.__('Download', 'Pearson-master').'</a>';
-								
-								echo '<a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$page_id.'" class="media-file all" target="_blank">'.__('Download', 'Pearson-master').'</a>';
+								echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$page_id.'" class="media-file all" target="_blank">'.__('Download', 'Pearson-master').'</a>';
+								//Commented on 20181005
+								//echo '<a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$page_id.'" class="media-file all" target="_blank">'.__('Download', 'Pearson-master').'</a>';
 								echo '</div>'; 
 								
 								echo '<div class="file-download-all hidden-xs hidden-sm"></div>';
@@ -2083,9 +2096,9 @@ function get_all_resources_list(){
 										if(!$preview_only){
 											//echo '<a href="'.$downloadable_file['url'].'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
 											//echo '<option val="'.$downloadable_file['url'].'">'.$file_title.'</option>';
-											//echo '<option val="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$page_id.'">'.$file_title.'</option>';
-											
-											echo '<option value="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$resource_parent.'">'.$file_title.'</option>';
+											echo '<option val="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$page_id.'">'.$file_title.'</option>';
+											//Commented on 20181005
+											//echo '<option value="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$resource_parent.'">'.$file_title.'</option>';
 											
 											array_push($downloadable_file_arr, $downloadable_file['url']);
 										}
@@ -2133,8 +2146,9 @@ function get_all_resources_list(){
 									
 									echo '<div class="file-download-wrapper hidden-md hidden-lg">';
 									//echo '<a href="'.$downloadable_file['url'].'" class="media-file all" target="_blank">Download</a>';; 
-									//echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$page_id.'" class="media-file all" target="_blank">'.__('Download', 'Pearson-master').'</a>';
-									echo '<a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$resource_parent.'" class="media-file all" target="_blank">'.__('Download', 'Pearson-master').'</a>';
+									echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$page_id.'" class="media-file all" target="_blank">'.__('Download', 'Pearson-master').'</a>';
+									//Commented on 20181005
+									//echo '<a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$resource_parent.'" class="media-file all" target="_blank">'.__('Download', 'Pearson-master').'</a>';
 									echo '</div>'; 
 									
 									echo '<div class="file-download-all hidden-xs hidden-sm"></div>';
@@ -2370,9 +2384,11 @@ function get_group_resources_grid(){
 											$preview_only = get_sub_field('preview_only');
 											
 											if(!$preview_only){
-												//echo '<li><a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$pageID.'" target="_blank">'.$file_title.'</a></li>';
+												echo '<li><a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$pageID.'" target="_blank">'.$file_title.'</a></li>';
+												//Commented on 20181005
+												//echo '<li><a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$pageID.'" target="_blank">'.$file_title.'</a></li>';
 												
-												echo '<li><a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$pageID.'" target="_blank">'.$file_title.'</a></li>';
+
 												//echo '<li><a href="'.$downloadable_file['url'].'" target="_blank">'.$file_title.'</a></li>';
 												
 												array_push($downloadable_file_arr, $downloadable_file['url']);
@@ -2408,9 +2424,9 @@ function get_group_resources_grid(){
 												
 												if(!$preview_only){
 													//echo '<a href="'.$downloadable_file['url'].'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
-													//echo '<option value="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$pageID.'">'.$file_title.'</option>';
-													
-													echo '<option value="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$pageID.'">'.$file_title.'</option>';
+													echo '<option value="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$pageID.'">'.$file_title.'</option>';
+													//Commented on 20181005
+													//echo '<option value="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$pageID.'">'.$file_title.'</option>';
 												}
 												
 												unset($file_title);
@@ -2434,9 +2450,9 @@ function get_group_resources_grid(){
 									
 									if(!$preview_only){
 										//echo '<a href="'.$downloadable_file['url'].'" class="btn_single_download" target="_blank">Download</a>';
-										//echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$pageID.'" class="btn_single_download" target="_blank">'.__('Download', 'Pearson-master').'</a>';
-										
-										echo '<a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$pageID.'" class="btn_single_download" target="_blank">'.__('Download', 'Pearson-master').'</a>';
+										echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$pageID.'" class="btn_single_download" target="_blank">'.__('Download', 'Pearson-master').'</a>';
+										//Commented on 20181005
+										//echo '<a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$pageID.'" class="btn_single_download" target="_blank">'.__('Download', 'Pearson-master').'</a>';
 									}
 									
 									unset($downloadable_file);
@@ -2521,9 +2537,9 @@ function get_group_resources_grid(){
 	
 	
 	if(!empty($download_all)):
-		//echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$download_all['ID'].'&pageid='.$post->ID.'" class="btn_single_download" target="_blank">'.__('Download All').'</a>';
-		
-		echo '<a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$download_all['ID'].'&pageid='.$pageID.'" class="btn_single_download" target="_blank">'.__('Download All', 'Pearson-master').'</a>';
+		echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$download_all['ID'].'&pageid='.$post->ID.'" class="btn_single_download" target="_blank">'.__('Download All').'</a>';
+		//Commented on 20181005
+		//echo '<a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$download_all['ID'].'&pageid='.$pageID.'" class="btn_single_download" target="_blank">'.__('Download All', 'Pearson-master').'</a>';
 	endif;
 
 	echo '</div>';
@@ -2722,9 +2738,9 @@ function get_group_resources_list(){
 										
 										if(!$preview_only){
 											//echo '<a href="'.$downloadable_file['url'].'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
-											//echo '<option value="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$pageID.'">'.$file_title.'</option>';
-											
-											echo '<option value="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$pageID.'">'.$file_title.'</option>';
+											echo '<option value="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$pageID.'">'.$file_title.'</option>';
+											//Commented on 20181005
+											//echo '<option value="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$pageID.'">'.$file_title.'</option>';
 											
 											array_push($downloadable_file_arr, $downloadable_file['url']);
 										}
@@ -2771,9 +2787,9 @@ function get_group_resources_list(){
 									echo '</div>';
 									
 									echo '<div class="file-download-wrapper hidden-md hidden-lg">';
-									//echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$pageID.'" class="media-file all" target="_blank">'.__('Download', 'Pearson-master').'</a>';
-									
-									echo '<a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$pageID.'" class="media-file all" target="_blank">'.__('Download', 'Pearson-master').'</a>';
+									echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$pageID.'" class="media-file all" target="_blank">'.__('Download', 'Pearson-master').'</a>';
+									//Commented on 20181005
+									//echo '<a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$pageID.'" class="media-file all" target="_blank">'.__('Download', 'Pearson-master').'</a>';
 									echo '</div>'; 
 									
 									echo '<div class="file-download-all hidden-xs hidden-sm"></div>';
@@ -2870,9 +2886,9 @@ function get_group_resources_list(){
 		
 		
 		if(!empty($download_all)):
-			//echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$download_all['ID'].'&pageid='.$post->ID.'" class="btn_single_download" target="_blank">'.__('Download All').'</a>';
-			
-			echo '<a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$download_all['ID'].'&pageid='.$pageID.'" class="btn_single_download" target="_blank">'.__('Download All').'</a>';
+			echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$download_all['ID'].'&pageid='.$post->ID.'" class="btn_single_download" target="_blank">'.__('Download All').'</a>';
+			//Commented on 20181005
+			//echo '<a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$download_all['ID'].'&pageid='.$pageID.'" class="btn_single_download" target="_blank">'.__('Download All').'</a>';
 		endif;
 
 		echo '</div>';
@@ -3080,6 +3096,8 @@ function checkPageAccessRight($page_id, $dir = false){
 
 function initAccessRightChecking($inLoginId){
 
+	//echo 'inLoginId: '.$inLoginId;
+
 	//session_start();
 	
 	$current_post_id = get_the_ID();
@@ -3091,6 +3109,7 @@ function initAccessRightChecking($inLoginId){
 		//echo "<p>SESSION['accessRight'] not found</p>";
 		
 		$result = acsGetAccessRight($inLoginId);
+		//echo "<p>no session</p>";
 		//print_r($result);
 		
 		if(!empty($result)){

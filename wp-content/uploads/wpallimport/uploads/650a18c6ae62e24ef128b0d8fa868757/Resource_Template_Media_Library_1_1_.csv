@@ -1,0 +1,36 @@
+title,content,displaytitle,category,resourcetype,resourcepopupimage,resourcepopupurl,filetitle,filetype,downloadablefile,externallink,audiopreview,previewonly,maindownload,note
+Z Test Object 1,,項目1,,single-file,,,Z_WORD1,doc,http://local.pearson-master.com/wp-content/uploads/2018/06/sample.doc,,,,1,
+Z Test Object 2,,項目2,,multiple-file,,,"dl1| Test file, Chaper 1|dl3|dl4|dl5",wav|pdf|ppt|doc|zip,http://local.pearson-master.com/wp-content/uploads/2018/06/sample.wav|http://local.pearson-master.com/wp-content/uploads/2018/06/sample.pdf|http://local.pearson-master.com/wp-content/uploads/2018/06/sample.ppt|http://local.pearson-master.com/wp-content/uploads/2018/06/sample.doc|http://local.pearson-master.com/wp-content/uploads/2018/06/sample.zip,,1|0|0|0|0,1|0|0|0|0,,
+Z Test Object 3,,項目3,,image-file,http://local.pearson-master.com/wp-content/uploads/2018/06/sample_thumbnail.jpg,,,,,,,,,
+Z Test Object 4,,項目4,,video-file,,https://vimeo.com/191947042,,,,,,,,
+Z Test Object 5,,項目5,,audio-file,,,sample,wav,http://local.pearson-master.com/wp-content/uploads/2018/06/sample.wav,,1,0,,
+Z Test Object 6 updated,"<p style=""text-align: center;"">Click on the name of a video to view it online!
+(Level of difficulty: * = Elementary / ** = Intermediate / *** = Advanced)</p>
+
+
+<hr />
+
+<h4><strong>The simple present</strong></h4>
+<strong>Video list:</strong>
+<ol>
+         <li><a href=""https://player.vimeo.com/video/282670248"" data-fancybox="""">The present simple</a> *</li>
+         <li><a href=""https://player.vimeo.com/video/282781304"" data-fancybox=""""><em>don't</em> and <em>doesn't</em></a> *</li>
+         <li><a href=""https://player.vimeo.com/video/282782097"" data-fancybox="""">Present simple</a> **</li>
+</ol>
+
+<hr />
+
+<h4><strong>The simple present, adverbs and adverbial phrases of frequency</strong></h4>
+<strong>Video list:</strong>
+<ol>
+         <li><a href=""https://player.vimeo.com/video/282783022"" data-fancybox="""">Types of adverb</a> *</li>
+</ol>
+
+<hr />
+
+<h4><strong>The simple past</strong></h4>
+<strong>Video list:</strong>
+<ol>
+         <li><a href=""https://player.vimeo.com/video/282783257"" data-fancybox="""">Using the past simple</a> *</li>
+         <li><a href=""https://player.vimeo.com/video/282783770"" data-fancybox="""">Past simple</a> **</li>
+</ol>",項目6,,article,,,,,,,,,,

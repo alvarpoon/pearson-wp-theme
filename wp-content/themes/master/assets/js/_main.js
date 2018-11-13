@@ -133,6 +133,8 @@ var Roots = {
 				//console.log('createzip done');	
 				
 			}).done(function(response){
+				console.log('response: '+response);
+				
 				
 				var a = document.createElement('a');
 				var filename_arr = response.split("/");
@@ -141,12 +143,14 @@ var Roots = {
 				
 				//console.log(filename);
 				
-				if(response === ''){
+				
+				
+				/*if(response === ''){
 					//console.log('response is null');
 					$('.download_overlay').hide();
 					setTimeout(function () { window.close();}, 500);
 				}else{
-					console.log(response);
+					
 					a.href = window.location.protocol + "//" + response;
 					a.download = filename;
 					a.click();
@@ -154,7 +158,7 @@ var Roots = {
 					
 					setTimeout(function () { window.close();}, 500);
 				
-				}
+				}*/
 				
 			}).fail(function(response){
 				//console.log('createzip fail');
@@ -169,7 +173,7 @@ var Roots = {
 		initMultipleDownload();			
 		initNavbarToggle();
 		initDropdownMenu();
-		fileDownload();
+		//fileDownload();
 		setMenuLastItem();
 	  });
 	  
@@ -1221,7 +1225,7 @@ function initAudioSetup(){
 			//var episodeTitle = $('body')[0].id;
 			
 			var player = '<p class="player">';
-			player += '<span class="playtoggle"><a href="javascript:;">'+title+'</a></span>';
+			player += '<span class="playtoggle" title="'+title+'"><a href="javascript:;">'+title+'</a></span>';
 			player += '<span class="gutter">';
 			player += '<span class="loading" />';
 			player += '<span class="handle ui-slider-handle" />';

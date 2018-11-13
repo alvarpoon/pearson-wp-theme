@@ -6907,10 +6907,10 @@ a.btn_single_download:before {
 a.media-file {
   display: inline-block;
   font-size: 12px;
-  line-height: 1.33;
+  line-height: 1.4;
   color: #505759;
-  max-width: 92px;
-  height: 70px;
+  max-width: 95px;
+  height: 100px;
   background-repeat: no-repeat;
   background-position: center 10px;
   text-align: center;
@@ -7149,6 +7149,11 @@ figure.alignnone {
   -webkit-background-size: cover;
           background-size: cover;
 }
+.top-banner-container a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 @media (min-width: 768px) {
   .top-banner-container {
     /*height:100px;
@@ -7314,6 +7319,7 @@ figure.alignnone {
 .navbar-header-right .login-wrapper a {
   padding: 25px 20px;
   color: #6a7070;
+  display: inline-block;
 }
 /*.mainmenu{
 	.navbar-nav{
@@ -8956,7 +8962,7 @@ footer.content-info .footer-wrapper .footer-copyright {
 .page-template-template-resource-list .resource-container .resource-item .file-download-wrapper.item-10,
 .page-template-template-all-resources-list .resource-container .resource-item .file-download-wrapper.item-10,
 .page-template-template-group-resource-list .resource-container .resource-item .file-download-wrapper.item-10 {
-  width: 532px;
+  width: 462px;
 }
 .page-template-template-resource-list .resource-container .resource-item .file-download-wrapper .mobile_download_wrapper,
 .page-template-template-all-resources-list .resource-container .resource-item .file-download-wrapper .mobile_download_wrapper,
@@ -8995,6 +9001,7 @@ footer.content-info .footer-wrapper .footer-copyright {
 .page-template-template-all-resources-list .resource-container .resource-item .file-download-all,
 .page-template-template-group-resource-list .resource-container .resource-item .file-download-all {
   display: table-cell;
+  vertical-align: top;
   border-bottom: 2px solid #e7e7e7;
   width: 100px;
   text-align: center;
@@ -9171,6 +9178,11 @@ footer.content-info .footer-wrapper .footer-copyright {
   .page-template-template-resource-list .resource-container .resource-item .file-download-wrapper a:last-child,
   .page-template-template-all-resources-list .resource-container .resource-item .file-download-wrapper a:last-child,
   .page-template-template-group-resource-list .resource-container .resource-item .file-download-wrapper a:last-child {
+    margin-right: 0;
+  }
+  .page-template-template-resource-list .resource-container .resource-item .file-download-wrapper a:nth-of-type(5n+0),
+  .page-template-template-all-resources-list .resource-container .resource-item .file-download-wrapper a:nth-of-type(5n+0),
+  .page-template-template-group-resource-list .resource-container .resource-item .file-download-wrapper a:nth-of-type(5n+0) {
     margin-right: 0;
   }
 }

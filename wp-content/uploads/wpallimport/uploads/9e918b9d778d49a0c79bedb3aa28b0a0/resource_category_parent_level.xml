@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<node>
+		<name><![CDATA[Level 1]]></name>
+		<slug><![CDATA[Level-1]]></slug>
+		<description><![CDATA[]]></description>
+		<language><![CDATA[en]]></language>
+	</node>
+	<node>
+		<name><![CDATA[Level 2]]></name>
+		<slug><![CDATA[Level-2]]></slug>
+		<description><![CDATA[]]></description>
+		<language><![CDATA[en]]></language>
+	</node>
+	<node>
+		<name><![CDATA[Level 3]]></name>
+		<slug><![CDATA[Level-3]]></slug>
+		<description><![CDATA[]]></description>
+		<language><![CDATA[en]]></language>
+	</node>
+	<node>
+		<name><![CDATA[Level 4]]></name>
+		<slug><![CDATA[Level-4]]></slug>
+		<description><![CDATA[]]></description>
+		<language><![CDATA[en]]></language>
+	</node>
+</data>

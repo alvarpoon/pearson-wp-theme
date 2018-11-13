@@ -909,7 +909,10 @@
 				&.item-2{width:184px;}
 				&.item-3{width:276px;}
 				&.item-4{width:368px;}
-				&.item-5, &.item-6, &.item-7, &.item-8, &.item-9, &.item-10{width:532px;}
+				&.item-5, &.item-6, &.item-7, &.item-8, &.item-9, &.item-10{
+					//width:532px;
+					width:462px;
+				}
 				
 			
 				padding-right:0;
@@ -946,6 +949,7 @@
 			
 			.file-download-all{
 				display:table-cell;
+				vertical-align: top;
 				border-bottom:2px solid #e7e7e7;
 				//min-width:80px;
 				width:100px;
@@ -1137,6 +1141,10 @@
 						margin-right:18px;
 						
 						&:last-child{
+							margin-right:0;
+						}
+						
+						&:nth-of-type(5n+0){
 							margin-right:0;
 						}
 					}

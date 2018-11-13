@@ -1,0 +1,6 @@
+title,displaytitle,category,resourcetype,resourcepopupimage,resourcepopupurl,filetitle,filetype,downloadablefile,externallink,audiopreview,previewonly,maindownload,note
+Testing item 1,Item 1,"level-1, level-1a",single-file,,,sample,doc,http://www.catus.tech/dl/sample.doc,,,,1,
+Testing item 2,Item 2,"Level-2, level-2a",multiple-file,,,"dl1,dl2,dl3,dl4,dl5","doc,ppt,pdf,wav,zip","http://www.catus.tech/dl/sample.doc,http://www.catus.tech/dl/sample.pptx,http://www.catus.tech/dl/sample.pdf,http://www.catus.tech/dl/sample.mp3,http://www.catus.tech/dl/sample.zip",,"0,0,0,1,0","0,0,0,1,0",,
+Testing item 3,Item 3,"Level-2, level-2a",image-file,http://www.catus.tech/dl/sample.jpg,,,,,,,,,
+Testing item 4,Item 4,"level-3, level-3a",video-file ,,https://vimeo.com/191947042,,,,,,,,
+Testing item 5,Item 5,"Level-4, level-4a",audio-file,,,sample,wav,http://www.catus.tech/dl/sample.mp3,,1,0,,

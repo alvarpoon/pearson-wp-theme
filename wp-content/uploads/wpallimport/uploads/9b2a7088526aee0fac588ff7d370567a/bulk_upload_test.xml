@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<node>
+		<title><![CDATA[Testing item 1]]></title>
+		<displaytitle><![CDATA[Item 1]]></displaytitle>
+		<resourcetype><![CDATA[single-file]]></resourcetype>
+		<resourcepopupimage><![CDATA[]]></resourcepopupimage>
+		<resourcepopupurl><![CDATA[]]></resourcepopupurl>
+		<filetitle><![CDATA[sample]]></filetitle>
+		<filetype><![CDATA[doc]]></filetype>
+		<downloadablefile><![CDATA[http://www.catus.tech/dl/sample.doc]]></downloadablefile>
+		<externallink><![CDATA[]]></externallink>
+		<audiopreview><![CDATA[]]></audiopreview>
+		<previewonly><![CDATA[]]></previewonly>
+		<maindownload><![CDATA[1]]></maindownload>
+		<note><![CDATA[]]></note>
+	</node>
+	<node>
+		<title><![CDATA[Testing item 2]]></title>
+		<displaytitle><![CDATA[Item 2]]></displaytitle>
+		<resourcetype><![CDATA[multiple-file]]></resourcetype>
+		<resourcepopupimage><![CDATA[]]></resourcepopupimage>
+		<resourcepopupurl><![CDATA[]]></resourcepopupurl>
+		<filetitle><![CDATA[dl1,dl2,dl3,dl4,dl5]]></filetitle>
+		<filetype><![CDATA[doc,ppt,pdf,wav,zip]]></filetype>
+		<downloadablefile><![CDATA[http://www.catus.tech/dl/sample.doc,http://www.catus.tech/dl/sample.pptx,http://www.catus.tech/dl/sample.pdf,http://www.catus.tech/dl/sample.mp3,http://www.catus.tech/dl/sample.zip]]></downloadablefile>
+		<externallink><![CDATA[]]></externallink>
+		<audiopreview><![CDATA[0,0,0,1,0]]></audiopreview>
+		<previewonly><![CDATA[0,0,0,1,0]]></previewonly>
+		<maindownload><![CDATA[]]></maindownload>
+		<note><![CDATA[]]></note>
+	</node>
+	<node>
+		<title><![CDATA[Testing item 3]]></title>
+		<displaytitle><![CDATA[Item 3]]></displaytitle>
+		<resourcetype><![CDATA[image-file]]></resourcetype>
+		<resourcepopupimage><![CDATA[http://www.catus.tech/dl/sample.jpg]]></resourcepopupimage>
+		<resourcepopupurl><![CDATA[]]></resourcepopupurl>
+		<filetitle><![CDATA[]]></filetitle>
+		<filetype><![CDATA[]]></filetype>
+		<downloadablefile><![CDATA[]]></downloadablefile>
+		<externallink><![CDATA[]]></externallink>
+		<audiopreview><![CDATA[]]></audiopreview>
+		<previewonly><![CDATA[]]></previewonly>
+		<maindownload><![CDATA[]]></maindownload>
+		<note><![CDATA[]]></note>
+	</node>
+	<node>
+		<title><![CDATA[Testing item 4]]></title>
+		<displaytitle><![CDATA[Item 4]]></displaytitle>
+		<resourcetype><![CDATA[video-file ]]></resourcetype>
+		<resourcepopupimage><![CDATA[]]></resourcepopupimage>
+		<resourcepopupurl><![CDATA[https://vimeo.com/191947042]]></resourcepopupurl>
+		<filetitle><![CDATA[]]></filetitle>
+		<filetype><![CDATA[]]></filetype>
+		<downloadablefile><![CDATA[]]></downloadablefile>
+		<externallink><![CDATA[]]></externallink>
+		<audiopreview><![CDATA[]]></audiopreview>
+		<previewonly><![CDATA[]]></previewonly>
+		<maindownload><![CDATA[]]></maindownload>
+		<note><![CDATA[]]></note>
+	</node>
+	<node>
+		<title><![CDATA[Testing item 5]]></title>
+		<displaytitle><![CDATA[Item 5]]></displaytitle>
+		<resourcetype><![CDATA[audio-file]]></resourcetype>
+		<resourcepopupimage><![CDATA[]]></resourcepopupimage>
+		<resourcepopupurl><![CDATA[]]></resourcepopupurl>
+		<filetitle><![CDATA[sample]]></filetitle>
+		<filetype><![CDATA[wav]]></filetype>
+		<downloadablefile><![CDATA[http://www.catus.tech/dl/sample.mp3]]></downloadablefile>
+		<externallink><![CDATA[]]></externallink>
+		<audiopreview><![CDATA[1]]></audiopreview>
+		<previewonly><![CDATA[0]]></previewonly>
+		<maindownload><![CDATA[]]></maindownload>
+		<note><![CDATA[]]></note>
+	</node>
+</data>

@@ -7,7 +7,7 @@ $username = $IAM->__get('UserName');*/
 $lang_arr = icl_get_languages('skip_missing=1&orderby=id&order=desc');
 
 ?>
-<div class="download_overlay"></div>
+<!--<div class="download_overlay"></div>-->
 <header class="banner navbar navbar-default mainmenu" role="banner">
 	<div class="topbar-wrapper">
 	  <div class="container-fluid">
@@ -28,7 +28,7 @@ $lang_arr = icl_get_languages('skip_missing=1&orderby=id&order=desc');
 				
 					echo '<div class="clearfix corners-menu">';
 					
-					wp_nav_menu(array('theme_location' => 'corners-menu', 'menu_class' => '', 'depth' => 3));
+					wp_nav_menu(array('theme_location' => 'corners-menu', 'menu_class' => '', 'depth' => 3)); 
 					
 					echo '</div>';		  
 					
@@ -74,7 +74,7 @@ $lang_arr = icl_get_languages('skip_missing=1&orderby=id&order=desc');
 					//Main menu
 					if (has_nav_menu('primary_navigation')) :
 					 
-					  wp_nav_menu(array('theme_location' => 'primary_navigation', 'menu_class' => 'nav navbar-nav main_menu', 'depth' => 3));
+					  wp_nav_menu(array('theme_location' => 'primary_navigation', 'menu_class' => 'nav navbar-nav main_menu', 'depth' => 3)); //updated by Ron on 20180916
 					  
 					endif;
 				?>

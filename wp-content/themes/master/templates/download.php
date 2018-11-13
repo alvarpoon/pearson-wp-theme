@@ -18,11 +18,11 @@ if(!empty($_GET["file"]) && !empty($_GET["pageid"])){
 	
 	$access_service_roles = get_field('access_service_code_with_role', $page_id);
 	
-	echo '<p>Session start</p>';
+	//echo '<p>Session start</p>';
 	
-	var_dump($_SESSION['accessRight']);
+	//var_dump($_SESSION['accessRight']);
 	
-	echo '<p>Session end</p>';
+	//echo '<p>Session end</p>';
 	
 	if(checkPageAccessRight($page_id) || empty($access_service_roles)){ //check media url when user have page access right
 		
@@ -64,7 +64,7 @@ if(!empty($_GET["file"]) && !empty($_GET["pageid"])){
 		
 		// Process download
 		if(file_exists($destination_path)) {
-			/*header('Content-Description: File Transfer');
+			header('Content-Description: File Transfer');
 			header('Content-Type: '.$mime_type);
 			header('Content-Disposition: attachment; filename="'.basename($destination_path).'"');
 			header('Expires: 0');
@@ -73,8 +73,8 @@ if(!empty($_GET["file"]) && !empty($_GET["pageid"])){
 			header('Content-Length: ' . filesize($destination_path));
 			
 			flush(); // Flush system output buffer
-			readfile($destination_path);*/
-			echo 'destination_path: '.$destination_path;
+			readfile($destination_path);
+			//echo 'destination_path: '.$destination_path;
 		}
 	}else{
 		echo '<p>You do not have access right for this file.</p>';
@@ -85,7 +85,11 @@ if(!empty($_GET["file"]) && !empty($_GET["pageid"])){
 	exit;
 }
 ?>
+<html> 
+<body>
 <script>
 	//window.open('', '_self', '');
 	//window.close();
 </script>
+</body> 
+</html> 
