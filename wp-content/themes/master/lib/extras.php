@@ -53,7 +53,7 @@ function wpsax_filter_option( $value, $option_name ) {
             ),
             'idp'          => array(
                 // Required: Set based on provider's supplied value.
-                'entityId' => 'http://science.pprod4.ilongman.com',
+                'entityId' => 'https://leleapweb.pprod4.ilongman.com',
                 'singleSignOnService' => array(
                     // Required: Set based on provider's supplied value.
                     'url'  => 'https://iam-stage.pearson.com:443/auth/SSORedirect/metaAlias/pearson/idp',
@@ -266,7 +266,7 @@ function create_zip(){
 }
 
 //Commented on 20181005
-/*add_action( 'wp_ajax_ajaxDownload', 'ajaxDownload' );
+add_action( 'wp_ajax_ajaxDownload', 'ajaxDownload' );
 add_action( 'wp_ajax_nopriv_ajaxDownload', 'ajaxDownload' );
 
 function ajaxDownload(){
@@ -315,7 +315,7 @@ function ajaxDownload(){
 		}
 	}
 	exit();
-}*/
+}
 
 function get_header_banner(){
 	$frontpage_id = get_option( 'page_on_front' );
@@ -734,19 +734,233 @@ function get_resource_pagination(){
 	die();
 }
 
+function get_group_all_resource_item($page_id){
+	$resource_lists = get_field('resource_list', $page_id);
+	$resource_arr = array();
+	
+	foreach($resource_lists as $resource_list):
+		$resources = get_field('resources', $resource_list->ID); 
+		$resource_arr = array_merge($resource_arr, $resources);
+	endforeach;
+	
+	return $resource_arr;
+}
+
+function get_multiple_resource_item($page_id){
+	$resource_lists = get_field('resource_list', $page_id);
+	$resource_arr = array();
+	
+	foreach($resource_lists as $resource_list):
+		if(checkResourceListAccessRight($resource_list->ID)){
+			$resources = get_field('resources', $resource_list->ID); 
+			$resource_arr = array_merge($resource_arr, $resources);
+		}
+	endforeach;
+	
+	return $resource_arr;
+}
+
+function get_all_resource_category($resource_list_id, $filters, $template){
+	//echo 'filters: '.$filters;
+	//echo 'template: '.$template;
+	$category_arr = array();	
+	//echo 'filters: '.$filters;
+	
+	if(isset($filters)){
+		//echo 'in filter arr explode';
+		$filters_arr = explode(',', $filters);	
+		$filters_arr = array_values(array_diff( $filters_arr, [0]));
+	}
+	
+	//print_r($filters_arr);
+	
+	switch($template){
+		case 'resource_grid':
+		case 'resource_list':
+			//$resources = get_field('resources', $resource_list_id);
+			$resources = get_multiple_resource_item($resource_list_id);
+			break;
+		case 'all_resource_grid':
+		case 'all_resource_list':
+			$resources = get_all_resource_page();
+			break;
+		case 'group_resource_grid':
+		case 'group_resource_list':
+			$resources = get_group_all_resource_item($resource_list_id);
+			break;
+	}
+	
+	//print_r($resources);
+	
+	foreach ($resources as $resource):
+		switch($template){
+			case 'resource_grid':
+			case 'resource_list':
+			case 'group_resource_grid':
+			case 'group_resource_list':
+				$categories = get_the_terms( $resource->ID, 'resource_category');
+				break;
+			case 'all_resource_grid':
+			case 'all_resource_list':
+				//echo 'resource->resource_id: '.$resource['resource_id'];
+				$categories = get_the_terms( $resource['resource_id'], 'resource_category');
+				break;
+		}
+		//$categories = get_the_terms( $resource->ID, 'resource_category');
+		$temp_arr = array();
+		
+		foreach($categories as $category):
+			array_push($temp_arr, $category->term_id);
+		endforeach;
+		
+		$matched = false;
+		
+		//echo 'count intersect: '.count(array_intersect($filters_arr,$temp_arr));
+		
+		switch(count($filters_arr)){
+			case 1:
+				if(count(array_intersect($filters_arr,$temp_arr)) == 1){
+					$matched = true;
+				}
+				break;
+			case 2:
+				if(count(array_intersect($filters_arr,$temp_arr)) == 2){
+					$matched = true;
+				}
+				break;
+			case 3:
+				if(count(array_intersect($filters_arr,$temp_arr)) == 3){
+					$matched = true;
+				}
+				break;
+			default:
+				$matched = true;
+				break;
+		}
+		
+		if(!$matched){
+			continue; 
+		}else{
+			$category_arr = array_merge($category_arr, $temp_arr);
+		}
+		
+	endforeach;
+	
+	$result = array_values(array_unique($category_arr));
+	
+	return $result;
+}
 
 // Hook this function to WordPress' Ajax actions
 add_action( 'wp_ajax_nopriv_get_resource_dependence_filter', 'get_resource_dependence_filter' );
 add_action( 'wp_ajax_get_resource_dependence_filter', 'get_resource_dependence_filter' );
 function get_resource_dependence_filter(){
 	global $post;
+	$taxonomy_name = 'resource_category';
+	
+	if(isset($_POST['resource_list_id_data'])){
+		$resource_list_id = $_POST['resource_list_id_data'];
+	}
+	
+	if(isset($_POST['pageID'])){
+		$pageID = $_POST['pageID'];
+	}
 	
 	if(isset($_POST['parent_filter'])){
-		$filter = $_POST['parent_filter'];
-		$taxonomy_name = 'resource_category';
-		$term_children = get_term_children( $filter, $taxonomy_name );
+		$parent_filter = $_POST['parent_filter'];
+	}
+	
+	if(isset($_POST['filters'])){
+		$filters = $_POST['filters'];
 		
-		//print_r($term_children);
+		$filters_arr = explode(',', $filters);
+	}
+	
+	if(isset($_POST['template'])){
+		switch($_POST['template']){
+			case 'resource_grid':
+			case 'resource_list':
+			case 'group_resource_grid':
+			case 'group_resource_list':
+				$all_cat = get_all_resource_category($pageID, $filters, $_POST['template']);
+				break;
+			case 'all_resource_grid':
+			case 'all_resource_list':
+				$all_cat = get_all_resource_category('', $filters, $_POST['template']);	
+				break;
+		}
+	}
+	
+	//print_r($all_cat);
+	
+	$resource_list_count = count(get_field('resource_list', $pageID));
+	
+	if($resource_list_count > 1 || $_POST['template'] == 'all_resource_grid' || $_POST['template'] == 'all_resource_list' ){
+		$reference_id = $pageID;
+	}else{
+		$reference_id = $resource_list_id;
+	}
+	
+	$filter_dependence = get_field('filter_dependence', $reference_id);
+	if(empty($filter_dependence)){
+		$filter_dependence = 0;
+	}
+	
+	$dependence_filter_title = get_field('dependence_filter_title', $reference_id);
+	
+	$filter_title_1 = get_field('filter_title_1', $reference_id);
+	$filter_1 = get_field('filter_1', $reference_id);
+	
+	
+	$filter_title_2 = get_field('filter_title_2', $reference_id);
+	$filter_2 = get_field('filter_2', $reference_id);
+	
+	
+	$filter_title_3 = get_field('filter_title_3', $reference_id);
+	$filter_3 = get_field('filter_3', $reference_id);
+	
+	$filter_1_count = is_array( $filter_1 ) ? count( $filter_1 ) : 0;
+	$filter_2_count = is_array( $filter_2 ) ? count( $filter_2 ) : 0;
+	$filter_3_count = is_array( $filter_3 ) ? count( $filter_3 ) : 0;
+	
+	
+	if($filter_1_count > 0 && !empty($filter_title_1)):
+		echo '<div class="filter-item">';
+	
+		echo '<select id="filter_1" class="resource_filtering" data-filter="1">';
+		
+		echo '<option value="0">'.$filter_title_1.'</option>';
+			foreach($filter_1 as $f1):
+				$term = get_term_by('id', $f1, 'resource_category');
+				$name = $term->name;
+				if (in_array($f1, $all_cat)) {
+					echo '<option value="'.$f1.'" '.(($filters_arr[0] == $f1) ? 'selected=selected' : '').'>'.$name.'</option>';
+				}
+			endforeach;		
+		echo '</select>';
+		
+		echo '</div>';
+		
+	endif;
+
+	echo '<div class="filter-item" id="filter_2_container">';
+	
+	if(!$filter_dependence && $filter_2_count > 0 && !empty($filter_title_2)){
+	
+		echo '<select id="filter_2" class="resource_filtering" data-filter="2">';
+		
+		echo '<option value="0">'.$filter_title_2.'</option>';
+			foreach($filter_2 as $f2):
+				$term = get_term_by('id', $f2, 'resource_category');
+				$name = $term->name;
+				if (in_array($f2, $all_cat)) {
+					echo '<option value="'.$f2.'" '.(($filters_arr[1] == $f2) ? 'selected=selected' : '').'>'.$name.'</option>';
+				}
+			endforeach;	
+		echo '</select>';
+	}else if($filter_dependence && isset($_POST['parent_filter'])){
+		
+		$term_children = get_term_children( $parent_filter, $taxonomy_name );
 		
 		$children = array();
 		foreach ($term_children as $child) {
@@ -754,64 +968,61 @@ function get_resource_dependence_filter(){
 		  $children[$term->slug] = $term;
 		}
 		
-		/*ksort($children);*/
-		
 		usort($children, "my_sort_slug");
-	}
-	
-	if(isset($_POST['dependence'])){
-		$filter_dependence = $_POST['dependence'];
-	}
-	
-	if(isset($_POST['filter_title'])){
-		$filter_title = $_POST['filter_title'];
-	}
-	
-	if($filter_dependence && sizeof($children) > 0){
-		//print_r($term_children);
 		
-		echo '<select id="filter_2" class="resource_filtering" data-filter="2">';
-		echo '<option value="0">'.$filter_title.'</option>';
-			foreach($children as $f2):
-				//$term = get_term_by('id', $f2, 'resource_category');
-				//$name = $term->name;
-					
-				$name = $f2->name;
-				if($f2->term_id !== NULL){
-					echo '<option value="'.$f2->term_id.'">'.$name.'</option>';
-				}
-			endforeach;	
-		echo '</select>';
+		if(sizeof($children) > 0){
+			echo '<select id="filter_2" class="resource_filtering" data-filter="2">';
+			echo '<option value="0">'.$dependence_filter_title.'</option>';
+				foreach($children as $f2):
+					$name = $f2->name;
+					if (in_array($f2->term_id, $all_cat)) {
+						echo '<option value="'.$f2->term_id.'" '.(($filters_arr[1] == $f2->term_id) ? 'selected=selected' : '').'>'.$name.'</option>';
+					}
+				endforeach;	
+			echo '</select>';
+		}
 	}
 	
-	//wp_reset_postdata();
+	echo '</div>';
 	
+	if($filter_3_count > 0 && !empty($filter_title_3)):
+	
+		echo '<div class="filter-item">';
+		
+		echo '<select id="filter_3" class="resource_filtering" data-filter="3">';
+		echo '<option value="0">'.$filter_title_3.'</option>';
+			foreach($filter_3 as $f3):
+				$term = get_term_by('id', $f3, 'resource_category');
+				$name = $term->name;
+				if (in_array($f3, $all_cat)) {
+					echo '<option value="'.$f3.'" '.(($filters_arr[2] == $f3) ? 'selected=selected' : '').'>'.$name.'</option>';
+				}
+				
+			endforeach;	
+			
+		echo '</select>';
+		
+		echo '</div>';
+	
+	endif;
+
 	die();
 }
 
 // Hook this function to WordPress' Ajax actions
 add_action( 'wp_ajax_nopriv_get_resource_grid', 'get_resource_grid' );
 add_action( 'wp_ajax_get_resource_grid', 'get_resource_grid' );
-function get_resource_grid(){
-	/*global $post;
-	
-	if ($post->ID) {
-		// On initial page load, just grab the post ID...
-		$page_id = $post->ID;
-		//$resource_list_id = get_field('resource_list',$post->ID);
-	} else {
-		// ... but once you're using Ajax, need to get the ID via Ajax
-	}*/
-	
+function get_resource_grid(){	
 	if (isset($_POST['page_id'])) {
 		$page_id = $_POST['page_id'];
 	}
 	
-	//echo $page_id;
-	
-	$resource_list_id = $_POST['resource_listID'];
-	
-	//echo 'resource_list_id: $resource_list_id';
+	$resource_list = get_field('resource_list', $page_id);
+	if(count($resource_list) > 1){
+		$resources = get_multiple_resource_item($page_id);
+	}else{
+		$resources = get_field('resources', $resource_list[0]->ID); 
+	}
 	
 	if (isset($_POST['page'])) {
 		// Set $page to data from Ajax, if available
@@ -826,16 +1037,8 @@ function get_resource_grid(){
 		$filters = $_POST['filters'];
 	}
 	
-	//echo $filters;
-	
 	$filters_arr = explode(',', $filters);	
 	$filters_arr = array_values(array_diff( $filters_arr, [0]));
-	
-	//print_r($filters_arr);
-	
-	$resources = get_field('resources', $resource_list_id);
-	
-	//print_r($resources);
 	
 	// Pagination variables
 	$resource_count      = 0;
@@ -1561,22 +1764,16 @@ function get_all_resources_grid(){
 add_action( 'wp_ajax_nopriv_get_resource_list', 'get_resource_list' );
 add_action( 'wp_ajax_get_resource_list', 'get_resource_list' );
 function get_resource_list(){
-	/*global $post;
-	
-	if ($post->ID) {
-		// On initial page load, just grab the post ID...
-		//$page_id = $post->ID;
-		$resource_list_id = get_field('resource_list',$post->ID);
-	} else {
-		// ... but once you're using Ajax, need to get the ID via Ajax
-		
-	}*/
-	
 	if (isset($_POST['page_id'])) {
 		$page_id = $_POST['page_id'];
 	}
 	
-	$resource_list_id = $_POST['resource_listID'];
+	$resource_list = get_field('resource_list', $page_id);
+	if(count($resource_list) > 1){
+		$resources = get_multiple_resource_item($page_id);
+	}else{
+		$resources = get_field('resources', $resource_list[0]->ID); 
+	}
 	
 	if (isset($_POST['page'])) {
 		// Set $page to data from Ajax, if available
@@ -1591,12 +1788,10 @@ function get_resource_list(){
 		$filters = $_POST['filters'];
 	}
 	
-	//echo $filters;
-	
 	$filters_arr = explode(',', $filters);	
 	$filters_arr = array_values(array_diff( $filters_arr, [0]));
 	
-	$resources = get_field('resources', $resource_list_id);
+	//$resources = get_field('resources', $resource_list_id);
 	
 	//print_r($resources);
 	
@@ -3069,19 +3264,25 @@ function checkPageAccessRight($page_id, $dir = false){
 			
 				if($page_access['SERVICECODE'] == $accessRight['SERVICECODE'] && $page_access['ROLEID'] == $accessRight['ROLEID']){
 					$haveright = true;
+				}else{
+					continue;
 				}
 			}
 		}
 		
-		//echo '<p>haveright: '.$haveright.'</p>';
+		//echo '<p>haveright(page have service code): '. var_dump($haveright) .'</p>';
 		
+		//echo '<p>redirection: '. home_url() .'</p>'; 
 		//$permission_page_id = 291;
 		//$frontpage_id = get_option( 'page_on_front' );
 		//$no_permission_url = get_permalink($frontpage_id);
 		
-		if($redirection && !$haveright):
-			wp_redirect( home_url(), 301 );
-		endif;
+		if($redirection && !$haveright) {
+			//echo '<p>Got it</p>';
+			echo '<META HTTP-EQUIV=REFRESH CONTENT="0; '.home_url().'">';
+			//wp_redirect( home_url(), 301 );
+			exit;
+		}
 		
 		//return false;
 		return $haveright;
@@ -3089,14 +3290,40 @@ function checkPageAccessRight($page_id, $dir = false){
 		//return true;
 		$haveright = true;
 		
-		//echo '<p>haveright: '.$haveright.'</p>';
+		//echo '<p>haveright(page without service code): '.$haveright.'</p>';
+		return $haveright;
+	}
+}
+
+function checkResourceListAccessRight($resource_list_id){	
+	$haveright = false;
+	
+	$access_service_roles = get_field('access_service_code_with_role', $resource_list_id);
+	
+	if(!empty($access_service_roles)){ //not empty, check access right
+	
+		$page_access_arr = standardizePageAccess($access_service_roles);
+		
+		foreach($_SESSION['accessRight'] as $accessRight){			
+			foreach($page_access_arr as $page_access){
+			
+				if($page_access['SERVICECODE'] == $accessRight['SERVICECODE'] && $page_access['ROLEID'] == $accessRight['ROLEID']){
+					$haveright = true;
+				}else{
+					continue;
+				}
+			}
+		}
+		
+		return $haveright;
+	}else{
+		$haveright = true;
+		
 		return $haveright;
 	}
 }
 
 function initAccessRightChecking($inLoginId){
-
-	//echo 'inLoginId: '.$inLoginId;
 
 	//session_start();
 	
@@ -3109,7 +3336,6 @@ function initAccessRightChecking($inLoginId){
 		//echo "<p>SESSION['accessRight'] not found</p>";
 		
 		$result = acsGetAccessRight($inLoginId);
-		//echo "<p>no session</p>";
 		//print_r($result);
 		
 		if(!empty($result)){

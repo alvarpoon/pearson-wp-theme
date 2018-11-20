@@ -3,7 +3,7 @@
 $IAM = new SimpleSAML_HK_IAM('default-sp');
 if (!$IAM->isAuthenticated()) error_log('RALPH RALPH RALPH No LOGIN');
 $username = $IAM->__get('UserName');*/
-
+//initAccessRightChecking($username);
 $lang_arr = icl_get_languages('skip_missing=1&orderby=id&order=desc');
 
 ?>

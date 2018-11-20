@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<node>
+		<name><![CDATA[Level 1]]></name>
+		<slug><![CDATA[Level-1]]></slug>
+		<description><![CDATA[]]></description>
+		<parentcategoryslug><![CDATA[]]></parentcategoryslug>
+	</node>
+	<node>
+		<name><![CDATA[Level 1a]]></name>
+		<slug><![CDATA[level-1a]]></slug>
+		<description><![CDATA[]]></description>
+		<parentcategoryslug><![CDATA[Level-1]]></parentcategoryslug>
+	</node>
+	<node>
+		<name><![CDATA[Level 2]]></name>
+		<slug><![CDATA[Level-2]]></slug>
+		<description><![CDATA[]]></description>
+		<parentcategoryslug><![CDATA[]]></parentcategoryslug>
+	</node>
+	<node>
+		<name><![CDATA[Level 2a]]></name>
+		<slug><![CDATA[level-2a]]></slug>
+		<description><![CDATA[]]></description>
+		<parentcategoryslug><![CDATA[Level-2]]></parentcategoryslug>
+	</node>
+	<node>
+		<name><![CDATA[Level 3]]></name>
+		<slug><![CDATA[Level-3]]></slug>
+		<description><![CDATA[]]></description>
+		<parentcategoryslug><![CDATA[]]></parentcategoryslug>
+	</node>
+	<node>
+		<name><![CDATA[Level 3a]]></name>
+		<slug><![CDATA[level-3a]]></slug>
+		<description><![CDATA[]]></description>
+		<parentcategoryslug><![CDATA[Level-3]]></parentcategoryslug>
+	</node>
+	<node>
+		<name><![CDATA[Level 4]]></name>
+		<slug><![CDATA[Level-4]]></slug>
+		<description><![CDATA[]]></description>
+		<parentcategoryslug><![CDATA[]]></parentcategoryslug>
+	</node>
+	<node>
+		<name><![CDATA[Level 4a]]></name>
+		<slug><![CDATA[level-4a]]></slug>
+		<description><![CDATA[]]></description>
+		<parentcategoryslug><![CDATA[Level-4]]></parentcategoryslug>
+	</node>
+</data>

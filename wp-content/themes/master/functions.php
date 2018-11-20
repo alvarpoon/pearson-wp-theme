@@ -302,12 +302,12 @@ function custom_breadcrumbs() {
        
 }
 
-function sess_start() {
+/*function sess_start() {
     if (!session_id()){
 	    session_start();
 	}
 }
-add_action('init','sess_start');
+add_action('init','sess_start');*/
 
 function admin_style() {
   wp_enqueue_style('admin-styles', get_template_directory_uri().'/assets/css/admin.css');

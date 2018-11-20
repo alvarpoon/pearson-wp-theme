@@ -5,11 +5,12 @@
 	
 	get_header_banner();
 	
-	$pageid = get_the_ID();
+	$pageID = get_the_ID();
 ?>
 
 <script>
-	var pageid = '<?=$pageid?>';
+	var pageID = '<?=$pageID?>';
+	var resource_list_id = '<?=$resource_list[0]->ID?>';
 </script>
 
 <div class="container">
@@ -40,39 +41,49 @@
 		</div>
 		<div class="filter-wrapper clearfix">	
 			<div class="col-md-9 filter-select">
-				<div class="clearfix">
+				<div class="clearfix" id="filter_select_container">
 					<?php
+						$all_cat = get_all_resource_category($pageID,0,'resource_list');
+					
+						if(count($resource_list) > 1){
+							$reference_id = $pageID;
+						}else{
+							$reference_id = $resource_list[0]->ID;
+						}
 						
-						$filter_dependence = get_field('filter_dependence', $resource_list[0]->ID);
+						$filter_dependence = get_field('filter_dependence', $reference_id);
 						if(empty($filter_dependence)){
 							$filter_dependence = 0;
 						}
 						
-						$dependence_filter_title = get_field('dependence_filter_title', $resource_list[0]->ID);
+						$dependence_filter_title = get_field('dependence_filter_title', $reference_id);
 						
-						$filter_title_1 = get_field('filter_title_1', $resource_list[0]->ID);
-						$filter_1 = get_field('filter_1', $resource_list[0]->ID);
-						$filer_1_count = is_array( $filter_1 ) ? count( $filter_1 ) : 0;
+						$filter_title_1 = get_field('filter_title_1', $reference_id);
+						$filter_1 = get_field('filter_1', $reference_id);
 						
-						$filter_title_2 = get_field('filter_title_2', $resource_list[0]->ID);
-						$filter_2 = get_field('filter_2', $resource_list[0]->ID);
+						
+						$filter_title_2 = get_field('filter_title_2', $reference_id);
+						$filter_2 = get_field('filter_2', $reference_id);
+						
+						
+						$filter_title_3 = get_field('filter_title_3', $reference_id);
+						$filter_3 = get_field('filter_3', $reference_id);
+						
+						$filter_1_count = is_array( $filter_1 ) ? count( $filter_1 ) : 0;
 						$filter_2_count = is_array( $filter_2 ) ? count( $filter_2 ) : 0;
-						
-						$filter_title_3 = get_field('filter_title_3', $resource_list[0]->ID);
-						$filter_3 = get_field('filter_3', $resource_list[0]->ID);
 						$filter_3_count = is_array( $filter_3 ) ? count( $filter_3 ) : 0;
 						
 					?>
 					
 					<script type="text/javascript">						
 						
-						var filter_dependence = <?=$filter_dependence?>
+						var filter_dependence = <?=$filter_dependence?>;
 						
 						var filter2_title = '<?=$dependence_filter_title?>';
 						
 					</script>
 					<?php
-						if($filer_1_count > 0 && !empty($filter_title_1)):
+						if($filter_1_count > 0 && !empty($filter_title_1)):
 							echo '<div class="filter-item">';
 						
 							echo '<select id="filter_1" class="resource_filtering" data-filter="1">';
@@ -81,8 +92,9 @@
 								foreach($filter_1 as $f1):
 									$term = get_term_by('id', $f1, 'resource_category');
 									$name = $term->name;
-									
-									echo '<option value="'.$f1.'">'.$name.'</option>';
+									if (in_array($f1, $all_cat)) {
+										echo '<option value="'.$f1.'">'.$name.'</option>';
+									}
 								endforeach;		
 							echo '</select>';
 							
@@ -99,8 +111,9 @@
 								foreach($filter_2 as $f2):
 									$term = get_term_by('id', $f2, 'resource_category');
 									$name = $term->name;
-									
-									echo '<option value="'.$f2.'">'.$name.'</option>';
+									if (in_array($f2, $all_cat)) {
+										echo '<option value="'.$f2.'">'.$name.'</option>';
+									}
 								endforeach;	
 							echo '</select>';
 							
@@ -116,8 +129,10 @@
 								foreach($filter_3 as $f3):
 									$term = get_term_by('id', $f3, 'resource_category');
 									$name = $term->name;
+									if (in_array($f3, $all_cat)) {
+										echo '<option value="'.$f3.'">'.$name.'</option>';
+									}
 									
-									echo '<option value="'.$f3.'">'.$name.'</option>';
 								endforeach;	
 								
 							echo '</select>';
@@ -136,7 +151,7 @@
 					if(!empty($alternative_view)):
 					?>
 					<a href="javascript:;" class="btn_list active"><?=__('List', 'Pearson-master');?></a>
-					<a href="<?=$alternative_view?>" class="btn_grid"><?=__('Grid', 'Pearson-master');?></a>
+					<a href="<?=$alternative_view?>" class="btn_grid "><?=__('Grid', 'Pearson-master');?></a>
 					
 					<?php endif; ?>
 				</div>
@@ -225,6 +240,11 @@
 						</div>
 						<?php } ?>
 					</div>
+					
+					<?php if( current_user_can('administrator') ):
+						$resource_link = get_edit_post_link( $resource_id );
+						echo '<a href="'.$resource_link.'" class="btn_resource_edit edit_element">Edit</a>';
+					endif; ?>
 				</div>
 				
 				<?php if($download_count > 1): 
@@ -450,6 +470,25 @@
 					endif;
 				?>
 			</div>
+			
+			<?php if( current_user_can('administrator') ): ?>
+		
+			<div class="clearfix ">
+				<div class="page_edit_links_container">
+				<?php
+		
+					$page_link = get_edit_post_link( $pageID );
+					echo '<a href="'.$page_link.'" class="edit_element">Edit page</a>';
+					
+					$resource_list_link = get_edit_post_link( $resource_list[0]->ID );
+					echo '<a href="'.$resource_list_link.'" class="edit_element">Edit Resource list</a>';
+					
+					echo '<a href="javascript:;" class="edit_toggle">Hide Edit button</a>';
+				?>
+				</div>
+			</div>
+			
+			<?php endif; ?>
 		</div>
 	</div>
 </div>

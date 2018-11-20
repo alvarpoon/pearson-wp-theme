@@ -7981,6 +7981,17 @@ footer.content-info .footer-wrapper .footer-copyright {
 .page-template-template-group-resource-list .filter-wrapper .view-option-wrapper .view-option a:hover {
   text-decoration: none;
 }
+.page-template-template-resource .btn_resource_edit,
+.page-template-template-resource-list .btn_resource_edit,
+.page-template-template-all-resources .btn_resource_edit,
+.page-template-template-all-resources-list .btn_resource_edit,
+.page-template-template-group-resource .btn_resource_edit,
+.page-template-template-group-resource-list .btn_resource_edit {
+  text-decoration: underline;
+  font-size: 16px;
+  color: #007fa3;
+  display: none;
+}
 .page-template-template-resource .audio_container,
 .page-template-template-resource-list .audio_container,
 .page-template-template-all-resources .audio_container,
@@ -8341,6 +8352,42 @@ footer.content-info .footer-wrapper .footer-copyright {
 .page-template-template-group-resource-list .resource-footer .download_all .btn_single_download:before {
   background-image: url(../img/common/ic-file-download-blue.svg);
 }
+.page-template-template-resource .resource-footer .page_edit_links_container,
+.page-template-template-resource-list .resource-footer .page_edit_links_container,
+.page-template-template-all-resources .resource-footer .page_edit_links_container,
+.page-template-template-all-resources-list .resource-footer .page_edit_links_container,
+.page-template-template-group-resource .resource-footer .page_edit_links_container,
+.page-template-template-group-resource-list .resource-footer .page_edit_links_container {
+  float: right;
+  margin-top: 30px;
+}
+.page-template-template-resource .resource-footer .page_edit_links_container a,
+.page-template-template-resource-list .resource-footer .page_edit_links_container a,
+.page-template-template-all-resources .resource-footer .page_edit_links_container a,
+.page-template-template-all-resources-list .resource-footer .page_edit_links_container a,
+.page-template-template-group-resource .resource-footer .page_edit_links_container a,
+.page-template-template-group-resource-list .resource-footer .page_edit_links_container a {
+  display: none;
+  margin-right: 10px;
+  text-decoration: underline;
+  color: #007fa3;
+}
+.page-template-template-resource .resource-footer .page_edit_links_container a:last-child,
+.page-template-template-resource-list .resource-footer .page_edit_links_container a:last-child,
+.page-template-template-all-resources .resource-footer .page_edit_links_container a:last-child,
+.page-template-template-all-resources-list .resource-footer .page_edit_links_container a:last-child,
+.page-template-template-group-resource .resource-footer .page_edit_links_container a:last-child,
+.page-template-template-group-resource-list .resource-footer .page_edit_links_container a:last-child {
+  margin-right: 0;
+}
+.page-template-template-resource .resource-footer .page_edit_links_container a.edit_toggle,
+.page-template-template-resource-list .resource-footer .page_edit_links_container a.edit_toggle,
+.page-template-template-all-resources .resource-footer .page_edit_links_container a.edit_toggle,
+.page-template-template-all-resources-list .resource-footer .page_edit_links_container a.edit_toggle,
+.page-template-template-group-resource .resource-footer .page_edit_links_container a.edit_toggle,
+.page-template-template-group-resource-list .resource-footer .page_edit_links_container a.edit_toggle {
+  display: inline-block;
+}
 .page-template-template-resource .resource-container .resource-item,
 .page-template-template-all-resources .resource-container .resource-item,
 .page-template-template-group-resource .resource-container .resource-item {
@@ -8571,6 +8618,7 @@ footer.content-info .footer-wrapper .footer-copyright {
 .page-template-template-all-resources .resource-container .resource-item .resource-download-wrapper .multiple_download,
 .page-template-template-group-resource .resource-container .resource-item .resource-download-wrapper .multiple_download {
   position: relative;
+  float: left;
 }
 .page-template-template-resource .resource-container .resource-item .resource-download-wrapper .multiple_download.opened .multiple_dl_content,
 .page-template-template-all-resources .resource-container .resource-item .resource-download-wrapper .multiple_download.opened .multiple_dl_content,
@@ -8665,11 +8713,21 @@ footer.content-info .footer-wrapper .footer-copyright {
   font-size: 15px;
   color: #505759;
 }
+.page-template-template-resource .resource-container .resource-item .resource-download-wrapper .btn_resource_edit,
+.page-template-template-all-resources .resource-container .resource-item .resource-download-wrapper .btn_resource_edit,
+.page-template-template-group-resource .resource-container .resource-item .resource-download-wrapper .btn_resource_edit {
+  float: right;
+}
 .page-template-template-resource .resource-footer,
 .page-template-template-all-resources .resource-footer,
 .page-template-template-group-resource .resource-footer {
   border-top: 2px solid #e7e7e7;
   padding-top: 10px;
+}
+.page-template-template-resource .resource-footer.no-border,
+.page-template-template-all-resources .resource-footer.no-border,
+.page-template-template-group-resource .resource-footer.no-border {
+  border-top: none;
 }
 .page-template-template-resource-list .filter-wrapper,
 .page-template-template-all-resources-list .filter-wrapper,
@@ -9185,6 +9243,40 @@ footer.content-info .footer-wrapper .footer-copyright {
   .page-template-template-group-resource-list .resource-container .resource-item .file-download-wrapper a:nth-of-type(5n+0) {
     margin-right: 0;
   }
+}
+.page-template-template-resource-checking-list .filter-wrapper {
+  padding-top: 12px;
+  margin-top: 12px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+}
+.page-template-template-resource-checking-list .filter-wrapper .filter-select {
+  padding: 0;
+}
+.page-template-template-resource-checking-list .filter-wrapper .filter-select .filter-item {
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+.page-template-template-resource-checking-list .filter-wrapper .filter-select .filter-item select {
+  padding: 5px;
+}
+.page-template-template-resource-checking-list .checking-list-wrapper .resource-checking-list {
+  font-size: 14px;
+}
+.page-template-template-resource-checking-list .checking-list-wrapper .resource-checking-list table {
+  margin: 0 auto;
+}
+.page-template-template-resource-checking-list .checking-list-wrapper .resource-checking-list table tr th,
+.page-template-template-resource-checking-list .checking-list-wrapper .resource-checking-list table tr td {
+  vertical-align: top;
+  padding: 10px;
+}
+.page-template-template-resource-checking-list .checking-list-wrapper .resource-checking-list table tr th {
+  border-bottom: 1px solid #000;
+}
+.page-template-template-resource-checking-list .checking-list-wrapper .resource-checking-list table tr td {
+  border-bottom: 1px solid #DDD;
 }
 .page-template-template-teacher-corner h1.pageTitle {
   font-size: 28px;

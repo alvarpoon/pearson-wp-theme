@@ -141,7 +141,7 @@ var Roots = {
 				var filename = filename_arr.slice(-1)[0];
 				//var url = window.URL.createObjectURL(response);
 				
-				//console.log(filename);
+				console.log(filename);
 				
 				
 				
@@ -169,12 +169,49 @@ var Roots = {
 		  }
 	  }
 	  
+	  function initEditButton(){
+		  if($('.edit_toggle').length > 0){			  
+			  //cookies for show/hide record
+			  var edit_button_show = Cookies.get('edit_button_show');
+			  console.log('edit_button_show: '+edit_button_show);
+			  if (edit_button_show == null){
+				Cookies.set('edit_button_show', 'yes');
+				edit_button_show = true;
+			  }
+			
+			  if(edit_button_show === 'yes'){
+				  console.log('show');
+					$('.edit_element').show();
+			  }else{
+				  console.log('hide');
+					$('.edit_element').hide();
+			  }
+			
+			  //toggle for show hide, show by default
+			  $('.edit_toggle').click(function(){
+			    edit_button_show = Cookies.get('edit_button_show');
+				if(edit_button_show === 'yes'){
+					//edit_button_show = 'no';
+					Cookies.set('edit_button_show', 'no');
+					$('.edit_element').hide();
+					//console.log('edit_button_show: '+Cookies.get('edit_button_show'));
+				}else{
+					//edit_button_show = true;
+					Cookies.set('edit_button_show', 'yes');
+					$('.edit_element').show();
+					//console.log('edit_button_show: '+Cookies.get('edit_button_show'));
+				}
+			  });
+		  }
+	  }
+	  
 	  $(document).ready(function(){
 		initMultipleDownload();			
 		initNavbarToggle();
 		initDropdownMenu();
 		//fileDownload();
 		setMenuLastItem();
+		initEditButton();
 	  });
 	  
 	  $(window).resize(function(){
@@ -260,9 +297,11 @@ var Roots = {
 			
 			$('.pagination').fadeOut();
 			
-			if(parseInt(filter_dependence) === 1 && current_filter === 1){
-				$('#filter_2_container').hide();	
-			}
+			// if(parseInt(filter_dependence) === 1 && current_filter === 1){
+				// $('#filter_2_container').hide();
+			// }
+			
+			// $('#filter_select_container').hide();
 			
 			
 			var result1;
@@ -277,7 +316,10 @@ var Roots = {
 						action: 'get_resource_dependence_filter',
 						parent_filter: filter_1,
 						dependence: filter_dependence,
-						filter_title: filter2_title
+						filters: filter_1+','+filter_2+','+filter_3,
+						resource_list_id_data: resource_list_id,
+						pageID: pageID,
+						template: 'resource_grid'
 					},
 					success: function( result ) {
 						result_filter = result;
@@ -293,8 +335,8 @@ var Roots = {
 				  data: {
 					action: 'get_resource_grid', 
 					page: pageNum,
-					page_id: pageid,
-					resource_listID: resource_listID, 
+					page_id: pageID,
+					//resource_listID: resource_listID, 
 					filters: filter_1+','+filter_2+','+filter_3
 				  },
 				  success: function( result ) {
@@ -335,9 +377,14 @@ var Roots = {
 					$('.pagination').fadeIn();
 					
 					if(parseInt(filter_dependence) === 1 && current_filter === 1){
-						$('#filter_2_container').html(result_filter);
-						$('#filter_2_container').show();
+						//$('#filter_2_container').html(result_filter);
+						//$('#filter_2_container').show();
+						//$('#filter_select_container').html(result_filter);
+						//$('#filter_select_container').show();
 					}
+					
+					$('#filter_select_container').html(result_filter);
+					$('#filter_select_container').show();
 					
 					get_post_grid();
 					
@@ -438,9 +485,9 @@ var Roots = {
 			
 			$('.pagination').fadeOut();
 			
-			if(parseInt(filter_dependence) === 1 && current_filter === 1){
+			/* if(parseInt(filter_dependence) === 1 && current_filter === 1){
 				$('#filter_2_container').hide();	
-			}
+			} */
 			
 			
 			var result1;
@@ -455,7 +502,10 @@ var Roots = {
 						action: 'get_resource_dependence_filter',
 						parent_filter: filter_1,
 						dependence: filter_dependence,
-						filter_title: filter2_title
+						filters: filter_1+','+filter_2+','+filter_3,
+						resource_list_id_data: resource_list_id,
+						pageID: pageID,
+						template: 'resource_list'
 					},
 					success: function( result ) {
 						result_filter = result;
@@ -470,9 +520,9 @@ var Roots = {
 				  type: 'post',
 				  data: {
 					action: 'get_resource_list',
-					page_id: pageid,
+					page_id: pageID,
 					page: pageNum,
-					resource_listID: resource_listID, 
+					//resource_listID: resource_listID, 
 					filters: filter_1+','+filter_2+','+filter_3
 				  },
 				  success: function( result ) {
@@ -512,10 +562,13 @@ var Roots = {
 					$('.pagination').html(result2);
 					$('.pagination').fadeIn();
 					
-					if(parseInt(filter_dependence) === 1 && current_filter === 1){
+					/* if(parseInt(filter_dependence) === 1 && current_filter === 1){
 						$('#filter_2_container').html(result_filter);
 						$('#filter_2_container').show();
-					}
+					} */
+					
+					$('#filter_select_container').html(result_filter);
+					$('#filter_select_container').show();
 					
 					get_post_list();
 					
@@ -614,9 +667,9 @@ var Roots = {
 			});
 			$('.pagination').fadeOut();
 			
-			if(parseInt(filter_dependence) === 1 && current_filter === 1){
+			/* if(parseInt(filter_dependence) === 1 && current_filter === 1){
 				$('#filter_2_container').hide();	
-			}
+			} */
 			
 			
 			var result1;
@@ -628,10 +681,18 @@ var Roots = {
 					url: ajaxurl,
 					type: 'post',
 					data:{
+						/* action: 'get_resource_dependence_filter',
+						parent_filter: filter_1,
+						dependence: filter_dependence,
+						filter_title: filter2_title */
+						
 						action: 'get_resource_dependence_filter',
 						parent_filter: filter_1,
 						dependence: filter_dependence,
-						filter_title: filter2_title
+						filters: filter_1+','+filter_2+','+filter_3,
+						//resource_list_id_data: pageid,
+						pageID: pageID,
+						template: 'all_resource_grid'
 					},
 					success: function( result ) {
 						result_filter = result;
@@ -687,10 +748,13 @@ var Roots = {
 					$('.pagination').html(result2);
 					$('.pagination').fadeIn();
 					
-					if(parseInt(filter_dependence) === 1 && current_filter === 1){
+					/* if(parseInt(filter_dependence) === 1 && current_filter === 1){
 						$('#filter_2_container').html(result_filter);
 						$('#filter_2_container').show();
-					}
+					} */
+					
+					$('#filter_select_container').html(result_filter);
+					$('#filter_select_container').show();
 					
 					get_all_resources();
 					
@@ -789,9 +853,9 @@ var Roots = {
 			});
 			$('.pagination').fadeOut();
 			
-			if(parseInt(filter_dependence) === 1 && current_filter === 1){
+			/* if(parseInt(filter_dependence) === 1 && current_filter === 1){
 				$('#filter_2_container').hide();	
-			}
+			} */
 			
 			
 			var result1;
@@ -803,10 +867,18 @@ var Roots = {
 					url: ajaxurl,
 					type: 'post',
 					data:{
+						/* action: 'get_resource_dependence_filter',
+						parent_filter: filter_1,`
+						dependence: filter_dependence,
+						filter_title: filter2_title */
+						
 						action: 'get_resource_dependence_filter',
 						parent_filter: filter_1,
 						dependence: filter_dependence,
-						filter_title: filter2_title
+						filters: filter_1+','+filter_2+','+filter_3,
+						//resource_list_id_data: pageid,
+						pageID: pageID,
+						template: 'all_resource_list'
 					},
 					success: function( result ) {
 						result_filter = result;
@@ -862,10 +934,13 @@ var Roots = {
 					$('.pagination').html(result2);
 					$('.pagination').fadeIn();
 					
-					if(parseInt(filter_dependence) === 1 && current_filter === 1){
+					/* if(parseInt(filter_dependence) === 1 && current_filter === 1){
 						$('#filter_2_container').html(result_filter);
 						$('#filter_2_container').show();
-					}
+					} */
+					
+					$('#filter_select_container').html(result_filter);
+					$('#filter_select_container').show();
 					
 					get_all_resources_list();
 					
@@ -963,9 +1038,9 @@ var Roots = {
 			});
 			
 			
-			if(parseInt(filter_dependence) === 1 && current_filter === 1){
+			/* if(parseInt(filter_dependence) === 1 && current_filter === 1){
 				$('#filter_2_container').hide();	
-			}
+			} */
 			
 			
 			var result1;
@@ -976,10 +1051,18 @@ var Roots = {
 					url: ajaxurl,
 					type: 'post',
 					data:{
+						/* action: 'get_resource_dependence_filter',
+						parent_filter: filter_1,
+						dependence: filter_dependence,
+						filter_title: filter2_title */
+						
 						action: 'get_resource_dependence_filter',
 						parent_filter: filter_1,
 						dependence: filter_dependence,
-						filter_title: filter2_title
+						filters: filter_1+','+filter_2+','+filter_3,
+						//resource_list_id_data: pageID,
+						pageID: pageID,
+						template: 'group_resource_grid'
 					},
 					success: function( result ) {
 						result_filter = result;
@@ -1013,10 +1096,13 @@ var Roots = {
 					initAudioSetup();
 					createZip();
 
-					if(parseInt(filter_dependence) === 1 && current_filter === 1){
+					/* if(parseInt(filter_dependence) === 1 && current_filter === 1){
 						$('#filter_2_container').html(result_filter);
 						$('#filter_2_container').show();
-					}
+					} */
+					
+					$('#filter_select_container').html(result_filter);
+					$('#filter_select_container').show();
 					
 					get_group_resources();
 				});
@@ -1068,9 +1154,9 @@ var Roots = {
 			});
 			
 			
-			if(parseInt(filter_dependence) === 1 && current_filter === 1){
+			/* if(parseInt(filter_dependence) === 1 && current_filter === 1){
 				$('#filter_2_container').hide();	
-			}
+			} */
 			
 			
 			var result1;
@@ -1081,10 +1167,18 @@ var Roots = {
 					url: ajaxurl,
 					type: 'post',
 					data:{
+						/* action: 'get_resource_dependence_filter',
+						parent_filter: filter_1,
+						dependence: filter_dependence,
+						filter_title: filter2_title */
+						
 						action: 'get_resource_dependence_filter',
 						parent_filter: filter_1,
 						dependence: filter_dependence,
-						filter_title: filter2_title
+						filters: filter_1+','+filter_2+','+filter_3,
+						//resource_list_id_data: pageID,
+						pageID: pageID,
+						template: 'group_resource_list'
 					},
 					success: function( result ) {
 						result_filter = result;
@@ -1118,10 +1212,13 @@ var Roots = {
 					initAudioSetup();
 					createZip();
 
-					if(parseInt(filter_dependence) === 1 && current_filter === 1){
+					/* if(parseInt(filter_dependence) === 1 && current_filter === 1){
 						$('#filter_2_container').html(result_filter);
 						$('#filter_2_container').show();
-					}
+					} */
+					
+					$('#filter_select_container').html(result_filter);
+					$('#filter_select_container').show();
 					
 					get_group_resources_list();
 				});
