@@ -792,6 +792,8 @@ function get_all_resource_category($resource_list_id, $filters, $template){
 	
 	//print_r($resources);
 	
+	$hide_empty_filter = get_field('hide_empty_filter', $resource_list_id);
+	
 	foreach ($resources as $resource):
 		switch($template){
 			case 'resource_grid':
@@ -813,33 +815,38 @@ function get_all_resource_category($resource_list_id, $filters, $template){
 			array_push($temp_arr, $category->term_id);
 		endforeach;
 		
-		$matched = false;
+		if($hide_empty_filter){
 		
-		//echo 'count intersect: '.count(array_intersect($filters_arr,$temp_arr));
-		
-		switch(count($filters_arr)){
-			case 1:
-				if(count(array_intersect($filters_arr,$temp_arr)) == 1){
+			$matched = false;
+			
+			//echo 'count intersect: '.count(array_intersect($filters_arr,$temp_arr));
+			
+			switch(count($filters_arr)){
+				case 1:
+					if(count(array_intersect($filters_arr,$temp_arr)) == 1){
+						$matched = true;
+					}
+					break;
+				case 2:
+					if(count(array_intersect($filters_arr,$temp_arr)) == 2){
+						$matched = true;
+					}
+					break;
+				case 3:
+					if(count(array_intersect($filters_arr,$temp_arr)) == 3){
+						$matched = true;
+					}
+					break;
+				default:
 					$matched = true;
-				}
-				break;
-			case 2:
-				if(count(array_intersect($filters_arr,$temp_arr)) == 2){
-					$matched = true;
-				}
-				break;
-			case 3:
-				if(count(array_intersect($filters_arr,$temp_arr)) == 3){
-					$matched = true;
-				}
-				break;
-			default:
-				$matched = true;
-				break;
-		}
-		
-		if(!$matched){
-			continue; 
+					break;
+			}
+			
+			if(!$matched){
+				continue; 
+			}else{
+				$category_arr = array_merge($category_arr, $temp_arr);
+			}
 		}else{
 			$category_arr = array_merge($category_arr, $temp_arr);
 		}
@@ -877,7 +884,7 @@ function get_resource_dependence_filter(){
 	}
 	
 	if(isset($_POST['template'])){
-		switch($_POST['template']){
+		/*switch($_POST['template']){
 			case 'resource_grid':
 			case 'resource_list':
 			case 'group_resource_grid':
@@ -886,9 +893,10 @@ function get_resource_dependence_filter(){
 				break;
 			case 'all_resource_grid':
 			case 'all_resource_list':
-				$all_cat = get_all_resource_category('', $filters, $_POST['template']);	
-				break;
-		}
+				//$all_cat = get_all_resource_category('', $filters, $_POST['template']);	*/
+				$all_cat = get_all_resource_category($pageID, $filters, $_POST['template']);
+				/*break;
+		}*/
 	}
 	
 	//print_r($all_cat);
@@ -1177,6 +1185,13 @@ function get_resource_grid(){
 								</div>
 							</div>
 							
+							<?php
+							if( current_user_can('manage_options') ):
+								$resource_link = get_edit_post_link( $resource_id );
+								echo '<a href="'.$resource_link.'" class="btn_resource_edit edit_element">Edit</a>';
+							endif;
+							?>
+							
 							<div class="hidden-md hidden-lg">
 								<div class="mobile_download_wrapper">								
 									<?php 
@@ -1228,6 +1243,11 @@ function get_resource_grid(){
 									unset($preview_only);
 								endwhile;
 							}
+							
+							if( current_user_can('manage_options') ):
+								$resource_link = get_edit_post_link( $resource_id );
+								echo '<a href="'.$resource_link.'" class="btn_resource_edit edit_element">Edit</a>';
+							endif;
 						}
 					?>
 				</div>
@@ -1642,6 +1662,13 @@ function get_all_resources_grid(){
 								</div>
 							</div>
 							
+							<?php
+							if( current_user_can('manage_options') ):
+								$resource_link = get_edit_post_link( $resource_id );
+								echo '<a href="'.$resource_link.'" class="btn_resource_edit edit_element">Edit</a>';
+							endif;
+							?>
+							
 							<div class="hidden-md hidden-lg">
 								<div class="mobile_download_wrapper">
 									<?php 
@@ -1673,6 +1700,11 @@ function get_all_resources_grid(){
 										
 										echo '<div class="download_text">'.__('Download', 'Pearson-master').' ('.$download_count.')</div>';
 									}
+									
+									if( current_user_can('manage_options') ):
+										$resource_link = get_edit_post_link( $resource_id );
+										echo '<a href="'.$resource_link.'" class="btn_resource_edit edit_element">Edit</a>';
+									endif;
 									?>
 								</div>
 							</div>
@@ -1902,6 +1934,11 @@ function get_resource_list(){
 						</div>
 						<?php } ?>
 					</div>
+					
+					<?php if( current_user_can('manage_options') ):
+						$resource_link = get_edit_post_link( $resource_id );
+						echo '<a href="'.$resource_link.'" class="btn_resource_edit edit_element">Edit</a>';
+					endif; ?>
 				</div>
 				<?php if($download_count > 1): 
 			
@@ -2232,6 +2269,11 @@ function get_all_resources_list(){
 						</div>
 						<?php } ?>
 					</div>
+					
+					<?php if( current_user_can('manage_options') ):
+						$resource_link = get_edit_post_link( $resource_id );
+						echo '<a href="'.$resource_link.'" class="btn_resource_edit edit_element">Edit</a>';
+					endif; ?>
 				</div>
 				<!--<div class="col-xs-3 col-sm-2 col-md-7 file-download-wrapper no-padding">-->
 					<?php if($download_count > 1): 
@@ -2606,6 +2648,13 @@ function get_group_resources_grid(){
 								</div>
 							</div>
 							
+							<?php
+							if( current_user_can('manage_options') ):
+								$resource_link = get_edit_post_link( $resource_id );
+								echo '<a href="'.$resource_link.'" class="btn_resource_edit edit_element">Edit</a>';
+							endif;
+							?>
+							
 							<div class="hidden-md hidden-lg">
 								<div class="mobile_download_wrapper">
 									<select class="mobile_download">
@@ -2654,6 +2703,11 @@ function get_group_resources_grid(){
 									unset($preview_only);
 								endwhile;
 							}
+							
+							if( current_user_can('manage_options') ):
+								$resource_link = get_edit_post_link( $resource_id );
+								echo '<a href="'.$resource_link.'" class="btn_resource_edit edit_element">Edit</a>';
+							endif;
 						}
 					?>
 				</div>
@@ -2880,6 +2934,11 @@ function get_group_resources_list(){
 						</div>
 						<?php } ?>
 					</div>
+					
+					<?php if( current_user_can('manage_options') ):
+						$resource_link = get_edit_post_link( $resource_id );
+						echo '<a href="'.$resource_link.'" class="btn_resource_edit edit_element">Edit</a>';
+					endif; ?>
 				</div>
 				
 				<?php if($download_count > 1): 

@@ -241,7 +241,7 @@
 						<?php } ?>
 					</div>
 					
-					<?php if( current_user_can('administrator') ):
+					<?php if( current_user_can('manage_options') ):
 						$resource_link = get_edit_post_link( $resource_id );
 						echo '<a href="'.$resource_link.'" class="btn_resource_edit edit_element">Edit</a>';
 					endif; ?>
@@ -471,7 +471,7 @@
 				?>
 			</div>
 			
-			<?php if( current_user_can('administrator') ): ?>
+			<?php if( current_user_can('manage_options') ): ?>
 		
 			<div class="clearfix ">
 				<div class="page_edit_links_container">
@@ -483,7 +483,7 @@
 					$resource_list_link = get_edit_post_link( $resource_list[0]->ID );
 					echo '<a href="'.$resource_list_link.'" class="edit_element">Edit Resource list</a>';
 					
-					echo '<a href="javascript:;" class="edit_toggle">Hide Edit button</a>';
+					echo '<a href="javascript:;" class="edit_toggle" data-showtext="Show Edit button" data-hidetext="Hide Edit button">Hide Edit button</a>';
 				?>
 				</div>
 			</div>

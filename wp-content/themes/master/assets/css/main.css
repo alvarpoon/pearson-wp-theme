@@ -9244,6 +9244,9 @@ footer.content-info .footer-wrapper .footer-copyright {
     margin-right: 0;
   }
 }
+.page-template-template-resource-checking-list .nav-container {
+  display: none;
+}
 .page-template-template-resource-checking-list .filter-wrapper {
   padding-top: 12px;
   margin-top: 12px;
@@ -9277,6 +9280,9 @@ footer.content-info .footer-wrapper .footer-copyright {
 }
 .page-template-template-resource-checking-list .checking-list-wrapper .resource-checking-list table tr td {
   border-bottom: 1px solid #DDD;
+}
+.page-template-template-resource-checking-list .page_edit_links_container {
+  float: right;
 }
 .page-template-template-teacher-corner h1.pageTitle {
   font-size: 28px;
