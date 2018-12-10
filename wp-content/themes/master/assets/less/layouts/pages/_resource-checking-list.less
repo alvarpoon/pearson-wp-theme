@@ -28,7 +28,11 @@
 		.resource-checking-list{
 			font-size:14px;
 			table{
-				margin:0 auto;
+				//margin:0 auto;
+				&:nth-of-type(1){
+					margin:0 auto;
+				}
+				
 				tr{
 					&.border-bottom{
 						th, td{
@@ -39,6 +43,11 @@
 					th, td{
 						vertical-align:top;
 						padding:10px;
+						
+						&:nth-of-type(3){
+							max-width:200px;
+							word-wrap: break-word;
+						}
 					}
 				
 					th{
@@ -47,6 +56,12 @@
 					
 					td{
 						border-bottom:1px solid #DDD;
+						
+						a{
+							display: inline-block;
+							max-width: 280px;
+							word-wrap: break-word;
+						}
 					}
 				}
 			}

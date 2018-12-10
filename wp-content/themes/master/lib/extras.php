@@ -748,10 +748,16 @@ function get_group_all_resource_item($page_id){
 
 function get_multiple_resource_item($page_id){
 	$resource_lists = get_field('resource_list', $page_id);
+		
 	$resource_arr = array();
 	
 	foreach($resource_lists as $resource_list):
-		if(checkResourceListAccessRight($resource_list->ID)){
+		if(sizeof($resource_lists) > 1){
+			if(checkResourceListAccessRight($resource_list->ID)){
+				$resources = get_field('resources', $resource_list->ID); 
+				$resource_arr = array_merge($resource_arr, $resources);
+			}
+		}else{
 			$resources = get_field('resources', $resource_list->ID); 
 			$resource_arr = array_merge($resource_arr, $resources);
 		}
@@ -779,6 +785,7 @@ function get_all_resource_category($resource_list_id, $filters, $template){
 		case 'resource_list':
 			//$resources = get_field('resources', $resource_list_id);
 			$resources = get_multiple_resource_item($resource_list_id);
+			//print_r($resources);
 			break;
 		case 'all_resource_grid':
 		case 'all_resource_list':
@@ -2506,6 +2513,8 @@ function get_group_resources_grid(){
 	
 	foreach($resource_lists as $resource_list):
 	
+		$resource_match_count = 0;
+	
 		$separator_count = 0;
 			
 		echo '<div class="resource-container clearfix">';
@@ -2784,7 +2793,6 @@ function get_group_resources_grid(){
 	
 	$download_all = get_field('download_all',$resource_list->ID);
 	
-	
 	if(!empty($download_all)):
 		echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$download_all['ID'].'&pageid='.$post->ID.'" class="btn_single_download" target="_blank">'.__('Download All').'</a>';
 		//Commented on 20181005
@@ -2829,6 +2837,8 @@ function get_group_resources_list(){
 	//print_r($resource_lists);
 	
 	foreach($resource_lists as $resource_list):
+		
+		$resource_match_count = 0;
 			
 		echo '<div class="resource-container clearfix">';
 							

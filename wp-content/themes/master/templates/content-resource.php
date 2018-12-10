@@ -44,6 +44,8 @@
 				<div class="clearfix" id="filter_select_container">
 					<?php
 						$all_cat = get_all_resource_category($pageID,0,'resource_grid');
+						
+						//print_r($all_cat);
 					
 						if(count($resource_list) > 1){
 							$reference_id = $pageID;
@@ -83,6 +85,8 @@
 						
 					</script>
 					<?php
+						//print_r($filter_1);
+					
 						if($filter_1_count > 0 && !empty($filter_title_1)):
 							echo '<div class="filter-item">';
 						
@@ -91,6 +95,7 @@
 							echo '<option value="0">'.$filter_title_1.'</option>';
 								foreach($filter_1 as $f1):
 									$term = get_term_by('id', $f1, 'resource_category');
+									//print_r($term);
 									$name = $term->name;
 									if (in_array($f1, $all_cat)) {
 										echo '<option value="'.$f1.'">'.$name.'</option>';
@@ -163,7 +168,9 @@
 				if(count($resource_list) > 1){
 					$resources = get_multiple_resource_item($pageID);
 				}else{
-					$resources = get_field('resources', $resource_list[0]->ID); 
+					//if(checkResourceListAccessRight($resource_list[0]->ID)){
+						$resources = get_field('resources', $resource_list[0]->ID); 
+					//}
 				}
 				
 				//$url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
@@ -439,8 +446,10 @@
 			</div>
 	</div>
 	<div class="resource-footer">
+		
 		<div class="pagination clearfix">
 			<!--<button class="btn_gopage_prev"></button>-->
+			<?php if($pages > 0) {?>
 			<select id="pagination-select">
 				<?php
 				
@@ -451,10 +460,12 @@
 				?>
 			</select>
 			<span>/<?=$pages?></span>
+			<?php } ?>
 			<?php if($pages > 1){
 				echo '<button class="btn_gopage_next"></button>';
 			} ?>
 		</div>
+		
 		
 		<div class="download_all">
 			<?php

@@ -1489,18 +1489,16 @@ function initEditButton(){
 	  //cookies for show/hide record
 	  var edit_button_show = Cookies.get('edit_button_show');
 	  console.log('edit_button_show: '+edit_button_show);
-	  if (edit_button_show == null || typeof edit_button_show !== 'undefined'){
+	  if(typeof edit_button_show === 'undefined'){
 		console.log('edit_button_show first set');
 		Cookies.set('edit_button_show', 'yes');
 		edit_button_show = Cookies.get('edit_button_show');
 	  }
 	
-	  if(edit_button_show === 'yes' || edit_button_show == null || typeof edit_button_show !== 'undefined'){
-		  console.log('show');
+	  if(edit_button_show === 'yes'){
 			$('.edit_element').show();
 			$('.edit_toggle').text($('.edit_toggle').attr('data-hidetext'));
-	  }else{
-		  console.log('hide');
+	  }else if(edit_button_show === 'no'){
 			$('.edit_element').hide();
 			$('.edit_toggle').text($('.edit_toggle').attr('data-showtext'));
 	  }
@@ -1513,10 +1511,12 @@ function initEditButton(){
 			Cookies.set('edit_button_show', 'no');
 			$(this).text($(this).attr('data-showtext'));
 			$('.edit_element').hide();
+			edit_button_show = Cookies.get('edit_button_show');
 		}else{
 			Cookies.set('edit_button_show', 'yes');
 			$('.edit_element').show();
 			$(this).text($(this).attr('data-hidetext'));
+			edit_button_show = Cookies.get('edit_button_show');
 		}
 	  });
   }
