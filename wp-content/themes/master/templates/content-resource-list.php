@@ -166,7 +166,15 @@
 			<div class="loading-box"></div>
 			<?php
 				
-				$resources = get_field('resources', $resource_list[0]->ID);
+				//$resources = get_field('resources', $resource_list[0]->ID);
+				
+				if(count($resource_list) > 1){
+					$resources = get_multiple_resource_item($pageID);
+				}else{
+					//if(checkResourceListAccessRight($resource_list[0]->ID)){
+						$resources = get_field('resources', $resource_list[0]->ID); 
+					//}
+				}
 				
 				if(empty($page)){
 					$page = 1;
