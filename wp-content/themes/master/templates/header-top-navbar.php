@@ -2,10 +2,10 @@
 /*require_once('/var/www/html/pearson.catus.tech/public_html/wp-content/themes/master/iam_saml_functions.php');
 $IAM = new SimpleSAML_HK_IAM('default-sp');
 if (!$IAM->isAuthenticated()) error_log('RALPH RALPH RALPH No LOGIN');
-$username = $IAM->__get('UserName');*/
+$username = $IAM->__get('UserName');
 //initAccessRightChecking($username);
 $lang_arr = icl_get_languages('skip_missing=1&orderby=id&order=desc');
-
+*/
 ?>
 <!--<div class="download_overlay"></div>-->
 <header class="banner navbar navbar-default mainmenu" role="banner">

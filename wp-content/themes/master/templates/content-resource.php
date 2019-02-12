@@ -485,14 +485,18 @@
 		<div class="clearfix ">
 			<div class="page_edit_links_container">
 			<?php
-	
-				$page_link = get_edit_post_link( $pageID );
-				echo '<a href="'.$page_link.'" class="edit_element">Edit page</a>';
-				
-				$resource_list_link = get_edit_post_link( $resource_list[0]->ID );
-				echo '<a href="'.$resource_list_link.'" class="edit_element">Edit Resource list</a>';
-				
-				echo '<a href="javascript:;" class="edit_toggle" data-showtext="Show Edit button" data-hidetext="Hide Edit button">Hide Edit button</a>';
+				if(count($resources) > 0){
+		
+					$page_link = get_edit_post_link( $pageID );
+					echo '<a href="'.$page_link.'" class="edit_element">Edit page</a>';
+					
+					if(count($resource_list) == 1){
+						$resource_list_link = get_edit_post_link( $resource_list[0]->ID );
+						echo '<a href="'.$resource_list_link.'" class="edit_element">Edit Resource list</a>';
+					}
+					
+					echo '<a href="javascript:;" class="edit_toggle" data-showtext="Show Edit button" data-hidetext="Hide Edit button">Hide Edit button</a>';
+				}
 			?>
 			</div>
 		</div>

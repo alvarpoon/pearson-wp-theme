@@ -468,14 +468,17 @@
 			</div>
 			<div class="download_all">
 				<?php
-					$download_all = get_field('download_all',$resource_list[0]->ID);
-					
-					
-					if(!empty($download_all)):
-						echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$download_all['ID'].'&pageid='.$post->ID.'" class="btn_single_download" target="_blank">'.__('Download All').'</a>';
+					if(count($resource_list) == 1){
 						
-						//echo '<a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$download_all['ID'].'&pageid='.$post->ID.'" class="btn_single_download" target="_blank">'.__('Download All').'</a>';
-					endif;
+						$download_all = get_field('download_all',$resource_list[0]->ID);
+						
+						
+						if(!empty($download_all)):
+							echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$download_all['ID'].'&pageid='.$post->ID.'" class="btn_single_download" target="_blank">'.__('Download All').'</a>';
+							
+							//echo '<a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$download_all['ID'].'&pageid='.$post->ID.'" class="btn_single_download" target="_blank">'.__('Download All').'</a>';
+						endif;
+					}
 				?>
 			</div>
 			
@@ -484,14 +487,18 @@
 			<div class="clearfix ">
 				<div class="page_edit_links_container">
 				<?php
-		
-					$page_link = get_edit_post_link( $pageID );
-					echo '<a href="'.$page_link.'" class="edit_element">Edit page</a>';
-					
-					$resource_list_link = get_edit_post_link( $resource_list[0]->ID );
-					echo '<a href="'.$resource_list_link.'" class="edit_element">Edit Resource list</a>';
-					
-					echo '<a href="javascript:;" class="edit_toggle" data-showtext="Show Edit button" data-hidetext="Hide Edit button">Hide Edit button</a>';
+				
+					if(count($resources) > 0){
+			
+						$page_link = get_edit_post_link( $pageID );
+						echo '<a href="'.$page_link.'" class="edit_element">Edit page</a>';
+						
+						$resource_list_link = get_edit_post_link( $resource_list[0]->ID );
+						echo '<a href="'.$resource_list_link.'" class="edit_element">Edit Resource list</a>';
+						
+						echo '<a href="javascript:;" class="edit_toggle" data-showtext="Show Edit button" data-hidetext="Hide Edit button">Hide Edit button</a>';
+						
+					}
 				?>
 				</div>
 			</div>

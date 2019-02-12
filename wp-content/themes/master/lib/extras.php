@@ -3398,20 +3398,20 @@ function initAccessRightChecking($inLoginId){
 	
 	$current_post_id = get_the_ID();
 	
-	//echo '<p>initAccessRightChecking start</p>';
+	echo '<p>initAccessRightChecking start</p>';
 
 	if(!isset($_SESSION['accessRight'])){ //session NOT EXIST
 	
 		//echo "<p>SESSION['accessRight'] not found</p>";
 		
 		$result = acsGetAccessRight($inLoginId);
-		//print_r($result);
+		print_r($result);
 		
 		if(!empty($result)){
 			
 			$_SESSION['accessRight'] = $result;
 			
-			//echo "<p>SESSION['accessRight'] added</p>";
+			echo "<p>SESSION['accessRight'] added</p>";
 			
 		}
 		
@@ -3419,16 +3419,16 @@ function initAccessRightChecking($inLoginId){
 		
 	}else{ //session EXIST
 	
-		//echo "<p>SESSION['accessRight'] found</p>";
+		echo "<p>SESSION['accessRight'] found</p>";
 		
 		
 		
 		checkPageAccessRight($current_post_id, true);
 		
-		//print_r($_SESSION['accessRight']);
+		print_r($_SESSION['accessRight']);
 	}
 	
-	//echo '<p>initAccessRightChecking end</p>';
+	echo '<p>initAccessRightChecking end</p>';
 }
 
 function wp_get_exclude_menu($current_menu) {
