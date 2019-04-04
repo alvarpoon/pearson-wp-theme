@@ -126,11 +126,12 @@ var Roots = {
 			var data = {
 				file: file,
 				pageid: pageid,
+				sessionid: ssid,
 				action: 'ajaxDownload'
 			};
 			
 			$.post(ajaxurl, data, function(response) {
-				//console.log('createzip done');	
+				console.log('createzip done');	
 				
 			}).done(function(response){
 				console.log('response: '+response);
@@ -142,13 +143,13 @@ var Roots = {
 				//var url = window.URL.createObjectURL(response);
 				
 				console.log(filename);
+				var win = window.open('','_self'); 				
 				
-				
-				
-				/*if(response === ''){
-					//console.log('response is null');
-					$('.download_overlay').hide();
-					setTimeout(function () { window.close();}, 500);
+				if(response === ''){
+					console.log('response is null');
+					//$('.download_overlay').hide();
+					//setTimeout(function () { window.close();}, 500);
+					setTimeout(function () { win.close();}, 500);
 				}else{
 					
 					a.href = window.location.protocol + "//" + response;
@@ -156,9 +157,9 @@ var Roots = {
 					a.click();
 					window.URL.revokeObjectURL(window.location.protocol + "//" + response);
 					
-					setTimeout(function () { window.close();}, 500);
-				
-				}*/
+					//setTimeout(function () { window.close();}, 500);
+					setTimeout(function () { win.close();}, 500);
+				}
 				
 			}).fail(function(response){
 				//console.log('createzip fail');
@@ -175,7 +176,7 @@ var Roots = {
 		initMultipleDownload();			
 		initNavbarToggle();
 		initDropdownMenu();
-		//fileDownload();
+		fileDownload();
 		setMenuLastItem();
 		initEditButton();
 	  });
@@ -1028,7 +1029,7 @@ var Roots = {
 						
 						action: 'get_resource_dependence_filter',
 						parent_filter: filter_1,
-						dependence: filter_dependence,
+						//dependence: filter_dependence,
 						filters: filter_1+','+filter_2+','+filter_3,
 						//resource_list_id_data: pageID,
 						pageID: pageID,
@@ -1145,7 +1146,7 @@ var Roots = {
 						
 						action: 'get_resource_dependence_filter',
 						parent_filter: filter_1,
-						dependence: filter_dependence,
+						//dependence: filter_dependence,
 						filters: filter_1+','+filter_2+','+filter_3,
 						//resource_list_id_data: pageID,
 						pageID: pageID,
@@ -1267,7 +1268,7 @@ function createZip(){
 		var filename = $(this).attr('data-filename');
 		
 		var data = {
-			filepaths: filepath,
+			filepaths: filepath, //updated to file id
 			zipname: filename,
 			action: 'create-zip'
 		};

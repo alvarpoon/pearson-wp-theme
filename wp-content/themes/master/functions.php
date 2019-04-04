@@ -328,3 +328,15 @@ if ( ! is_admin() ) {
 add_action( 'widgets_init', function() {
 	unregister_widget( 'WP_Widget_Search' );
 }, 1 );
+
+//Remove page id class for file security
+add_filter( 'body_class', function( $classes ) {
+	$pid = get_the_ID();
+
+    foreach($classes as $key => $class) {
+        if( $class == "page-id-".$pid ){
+            unset($classes[$key]);
+        }
+    }
+    return $classes;
+}, 1000);

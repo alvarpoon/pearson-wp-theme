@@ -7,7 +7,7 @@ $username = $IAM->__get('UserName');
 $lang_arr = icl_get_languages('skip_missing=1&orderby=id&order=desc');
 */
 ?>
-<!--<div class="download_overlay"></div>-->
+<div class="download_overlay"></div>
 <header class="banner navbar navbar-default mainmenu" role="banner">
 	<div class="topbar-wrapper">
 	  <div class="container-fluid">

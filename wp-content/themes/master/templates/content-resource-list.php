@@ -271,7 +271,7 @@
 							
 							if(!$preview_only){
 								echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title, $post->ID);
-								array_push($downloadable_file_arr, $downloadable_file['url']);
+								array_push($downloadable_file_arr, $downloadable_file['ID']);
 							}
 							
 							unset($file_title);
@@ -309,9 +309,10 @@
 									$file_type = get_sub_field('file_type');
 									$preview_only = get_sub_field('preview_only');
 									if(!$preview_only){
-										echo '<option value="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'">'.$file_title.'</option>';
 										//echo '<option value="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$post->ID.'">'.$file_title.'</option>';
-										array_push($downloadable_file_arr, $downloadable_file['url']);
+										
+										echo '<option value="'.getFileDownloadLink($downloadable_file['ID'], $post->ID).'">'.$file_title.'</option>';
+										array_push($downloadable_file_arr, $downloadable_file['ID']);
 									}
 									
 									unset($file_title);
@@ -356,9 +357,11 @@
 									echo '</div>';
 									
 									echo '<div class="file-download-wrapper hidden-md hidden-lg">';
-									echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file all" target="_blank">'.__('Download', 'Pearson-master').'</a>';
-									
 									//echo '<a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file all" target="_blank">'.__('Download', 'Pearson-master').'</a>';
+									
+									
+									echo '<a href="'.getFileDownloadLink($downloadable_file['ID'], $post->ID).'" class="media-file all" target="_blank">'.__('Download', 'Pearson-master').'</a>';
+									
 									echo '</div>';
 									
 									echo '<div class="file-download-all hidden-xs hidden-sm"></div>';
@@ -406,7 +409,7 @@
 										$preview_only = get_sub_field('preview_only');
 										if(!$preview_only){
 											echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title, $post->ID);
-											array_push($downloadable_file_arr, $downloadable_file['url']);
+											array_push($downloadable_file_arr, $downloadable_file['ID']);
 										}
 										
 										unset($file_title);
@@ -451,18 +454,16 @@
 		</div>
 		<div class="resource-footer">
 			<div class="pagination clearfix">
-				<!--<button class="btn_gopage_prev"></button>-->
-				<select id="pagination-select">
-					<?php
-					
-					for($i = 1; $i <= $pages; $i++){
-						echo '<option val='.$i.'>'.$i.'</option>';
-					}
-					
-					?>
-				</select>
-				<span>/<?=$pages?></span>
-				<?php if($pages > 1){
+				<?php if($pages > 0){
+					echo '<select id="pagination-select">';
+						for($i = 1; $i <= $pages; $i++){
+							echo '<option val='.$i.'>'.$i.'</option>';
+						}
+					echo '</select>';
+					echo '<span>/'.$pages.'</span>';
+				}
+				
+				if($pages > 1){
 					echo '<button class="btn_gopage_next"></button>';
 				} ?>
 			</div>
@@ -474,9 +475,10 @@
 						
 						
 						if(!empty($download_all)):
-							echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$download_all['ID'].'&pageid='.$post->ID.'" class="btn_single_download" target="_blank">'.__('Download All').'</a>';
-							
 							//echo '<a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$download_all['ID'].'&pageid='.$post->ID.'" class="btn_single_download" target="_blank">'.__('Download All').'</a>';
+							
+							//
+							echo '<a href="'.getFileDownloadLink($download_all['ID'], $post->ID).'" class="btn_single_download" target="_blank">'.__('Download All').'</a>';
 						endif;
 					}
 				?>
@@ -493,8 +495,10 @@
 						$page_link = get_edit_post_link( $pageID );
 						echo '<a href="'.$page_link.'" class="edit_element">Edit page</a>';
 						
-						$resource_list_link = get_edit_post_link( $resource_list[0]->ID );
-						echo '<a href="'.$resource_list_link.'" class="edit_element">Edit Resource list</a>';
+						if(count($resource_list) == 1){
+							$resource_list_link = get_edit_post_link( $resource_list[0]->ID );
+							echo '<a href="'.$resource_list_link.'" class="edit_element">Edit Resource list</a>';
+						}
 						
 						echo '<a href="javascript:;" class="edit_toggle" data-showtext="Show Edit button" data-hidetext="Hide Edit button">Hide Edit button</a>';
 						

@@ -256,7 +256,7 @@
 							//echo '<a href="'.$downloadable_file['url'].'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
 							if(!$preview_only){								
 								echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title, $resource_parent);
-								array_push($downloadable_file_arr, $downloadable_file['url']);
+								array_push($downloadable_file_arr, $downloadable_file['ID']);
 							}
 							
 							unset($file_title);
@@ -295,7 +295,9 @@
 									if(!$preview_only){
 										echo '<option value="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'">'.$file_title.'</option>';
 										//echo '<option value="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$resource_parent.'">'.$file_title.'</option>';
-										array_push($downloadable_file_arr, $downloadable_file['url']);
+										
+										echo '<option value="'.getFileDownloadLink($downloadable_file['ID'], $resource_parent).'">'.$file_title.'</option>';
+										array_push($downloadable_file_arr, $downloadable_file['ID']);
 									}
 									
 									unset($file_title);
@@ -340,7 +342,10 @@
 									
 									echo '<div class="file-download-wrapper hidden-md hidden-lg">';
 									//echo '<a href="'.$downloadable_file['url'].'" class="media-file all" target="_blank">Download</a>';
-									echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file all" target="_blank">'.__('Download', 'Pearson-master').'</a>';
+									//echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file all" target="_blank">'.__('Download', 'Pearson-master').'</a>';
+									
+									
+									echo '<a href="'.getFileDownloadLink($downloadable_file['ID'], $resource_parent).'" class="media-file all" target="_blank">'.__('Download', 'Pearson-master').'</a>';
 									//echo '<a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$resource_parent.'" class="media-file all" target="_blank">'.__('Download', 'Pearson-master').'</a>';
 									echo '</div>'; 
 									
@@ -389,7 +394,7 @@
 										$preview_only = get_sub_field('preview_only');
 										if(!$preview_only){
 											echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title, $resource_parent);
-											array_push($downloadable_file_arr, $downloadable_file['url']);
+											array_push($downloadable_file_arr, $downloadable_file['ID']);
 										}
 										
 										unset($file_title);

@@ -42,6 +42,11 @@
 	//$loginId = 'ss12081892';
 	
 	//$loginId = 'sp12092242';
-  	//initAccessRightChecking($loginId); 
+	$loginId = 'tp12175582';
+  	initAccessRightChecking($loginId); 
   ?>
+  
+  <script type="text/javascript">
+  	var ssid = '<?=$GLOBALS['SSID']?>';
+  </script>
 </head>

@@ -252,12 +252,14 @@
 													$preview_only = get_sub_field('preview_only');
 													
 													if(!$preview_only){
-														echo '<li><a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$resource_parent.'" target="_blank">'.$file_title.'</a></li>';
+														//echo '<li><a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$resource_parent.'" target="_blank">'.$file_title.'</a></li>';
+														
+														echo '<li><a href="'.getFileDownloadLink($downloadable_file['ID'], $resource_parent).'" target="_blank">'.$file_title.'</a></li>';	
 														
 														//echo '<li><a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$resource_parent.'" target="_blank">'.$file_title.'</a></li>';
 														//echo '<li><a href="'.$downloadable_file['url'].'" target="_blank">'.$file_title.'</a></li>';
 														
-														array_push($downloadable_file_arr, $downloadable_file['url']);
+														array_push($downloadable_file_arr, $downloadable_file['ID']);
 													}
 													
 													unset($file_title);
@@ -300,11 +302,13 @@
 														$preview_only = get_sub_field('preview_only');
 														if(!$preview_only){
 															//echo '<a href="'.$downloadable_file['url'].'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
-															echo '<option value="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'">'.$file_title.'</option>';
+															//echo '<option value="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'">'.$file_title.'</option>';
+															
+															echo '<option value="'.getFileDownloadLink($downloadable_file['ID'], $resource_parent).'">'.$file_title.'</option>';
 															
 															//echo '<option value="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$resource_parent.'">'.$file_title.'</option>';
 															
-															array_push($downloadable_file_arr, $downloadable_file['url']);
+															array_push($downloadable_file_arr, $downloadable_file['ID']);
 														}
 														
 														unset($file_title);
@@ -338,8 +342,9 @@
 											$preview_only = get_sub_field('preview_only');
 											if(!$preview_only){
 												//echo '<a href="'.$downloadable_file['url'].'" class="btn_single_download" target="_blank">Download</a>';
-												echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$resource_parent.'" class="btn_single_download" target="_blank">'.__('Download', 'Pearson-master').'</a>';
+												//echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$resource_parent.'" class="btn_single_download" target="_blank">'.__('Download', 'Pearson-master').'</a>';
 												
+												echo '<a href="'.getFileDownloadLink($downloadable_file['ID'], $resource_parent).'" class="btn_single_download" target="_blank">'.__('Download', 'Pearson-master').'</a>';
 												//echo '<a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$resource_parent.'" class="btn_single_download" target="_blank">'.__('Download', 'Pearson-master').'</a>';
 											}
 											
@@ -374,7 +379,7 @@
 											$preview_only = get_sub_field('preview_only');
 											if(!$preview_only){
 												echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title, $resource_parent);
-												array_push($downloadable_file_arr, $downloadable_file['url']);
+												array_push($downloadable_file_arr, $downloadable_file['ID']);
 											}
 											
 											unset($file_title);
