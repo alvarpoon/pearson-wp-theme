@@ -43,7 +43,7 @@
 			<div class="col-md-9 filter-select">
 				<div class="clearfix" id="filter_select_container">
 					<?php
-						$all_cat = get_all_resource_category($pageID,0,'resource_list');
+						$all_cat = get_all_resource_category($pageID,0,'resource_list', $GLOBALS['SSID']);
 					
 						if(count($resource_list) > 1){
 							$reference_id = $pageID;
@@ -168,13 +168,13 @@
 				
 				//$resources = get_field('resources', $resource_list[0]->ID);
 				
-				if(count($resource_list) > 1){
-					$resources = get_multiple_resource_item($pageID);
-				}else{
+				//if(count($resource_list) > 1){
+					$resources = get_multiple_resource_item($pageID, $GLOBALS['SSID']);
+				//}else{
 					//if(checkResourceListAccessRight($resource_list[0]->ID)){
-						$resources = get_field('resources', $resource_list[0]->ID); 
+						//$resources = get_field('resources', $resource_list[0]->ID); 
 					//}
-				}
+				//}
 				
 				if(empty($page)){
 					$page = 1;
@@ -190,7 +190,7 @@
 		?>
 				
 				<script>
-					var resource_listID = '<?=$resource_list[0]->ID?>';
+					var resource_listID = '<?php echo implode(",",standardizeArray($resource_list, 'ID')) ?>';
 					var currentPageNum = '<?=$page?>';
 				</script>
 				
@@ -270,7 +270,7 @@
 							$preview_only = get_sub_field('preview_only');
 							
 							if(!$preview_only){
-								echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title, $post->ID);
+								echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title, $post->ID, $resource->parentlist);
 								array_push($downloadable_file_arr, $downloadable_file['ID']);
 							}
 							
@@ -311,7 +311,7 @@
 									if(!$preview_only){
 										//echo '<option value="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$post->ID.'">'.$file_title.'</option>';
 										
-										echo '<option value="'.getFileDownloadLink($downloadable_file['ID'], $post->ID).'">'.$file_title.'</option>';
+										echo '<option value="'.getFileDownloadLink($downloadable_file['ID'], $post->ID, $resource->parentlist).'">'.$file_title.'</option>';
 										array_push($downloadable_file_arr, $downloadable_file['ID']);
 									}
 									
@@ -353,14 +353,14 @@
 								
 								if(!$preview_only){
 									echo '<div class="file-download-wrapper hidden-xs hidden-sm item-'.$download_count.'">';
-									echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title, $post->ID);
+									echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title, $post->ID, $resource->parentlist);
 									echo '</div>';
 									
 									echo '<div class="file-download-wrapper hidden-md hidden-lg">';
 									//echo '<a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file all" target="_blank">'.__('Download', 'Pearson-master').'</a>';
 									
 									
-									echo '<a href="'.getFileDownloadLink($downloadable_file['ID'], $post->ID).'" class="media-file all" target="_blank">'.__('Download', 'Pearson-master').'</a>';
+									echo '<a href="'.getFileDownloadLink($downloadable_file['ID'], $post->ID, $resource->parentlist).'" class="media-file all" target="_blank">'.__('Download', 'Pearson-master').'</a>';
 									
 									echo '</div>';
 									
@@ -408,7 +408,7 @@
 										$file_extension = strtolower(substr(strrchr($downloadable_file['url'],"."),1));
 										$preview_only = get_sub_field('preview_only');
 										if(!$preview_only){
-											echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title, $post->ID);
+											echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title, $post->ID, $resource->parentlist);
 											array_push($downloadable_file_arr, $downloadable_file['ID']);
 										}
 										
@@ -478,7 +478,7 @@
 							//echo '<a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$download_all['ID'].'&pageid='.$post->ID.'" class="btn_single_download" target="_blank">'.__('Download All').'</a>';
 							
 							//
-							echo '<a href="'.getFileDownloadLink($download_all['ID'], $post->ID).'" class="btn_single_download" target="_blank">'.__('Download All').'</a>';
+							echo '<a href="'.getFileDownloadLink($download_all['ID'], $post->ID, $resource_list[0]->ID).'" class="btn_single_download" target="_blank">'.__('Download All').'</a>';
 						endif;
 					}
 				?>
@@ -490,7 +490,7 @@
 				<div class="page_edit_links_container">
 				<?php
 				
-					if(count($resources) > 0){
+					//if(count($resources) > 0){
 			
 						$page_link = get_edit_post_link( $pageID );
 						echo '<a href="'.$page_link.'" class="edit_element">Edit page</a>';
@@ -502,7 +502,7 @@
 						
 						echo '<a href="javascript:;" class="edit_toggle" data-showtext="Show Edit button" data-hidetext="Hide Edit button">Hide Edit button</a>';
 						
-					}
+					//}
 				?>
 				</div>
 			</div>

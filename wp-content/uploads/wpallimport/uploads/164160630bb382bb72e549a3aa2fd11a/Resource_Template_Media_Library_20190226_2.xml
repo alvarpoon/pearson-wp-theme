@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<node>
+		<title><![CDATA[Z Test Object 1]]></title>
+		<content><![CDATA[]]></content>
+		<displaytitle><![CDATA[項目1]]></displaytitle>
+		<category><![CDATA[level-1]]></category>
+		<resourcetype><![CDATA[single-file]]></resourcetype>
+		<featureimage><![CDATA[http://local.pearson-master.com/wp-content/uploads/2018/11/sample.jpg]]></featureimage>
+		<resourcepopupimage><![CDATA[]]></resourcepopupimage>
+		<resourcepopupurl><![CDATA[]]></resourcepopupurl>
+		<filetitle><![CDATA[Z_WORD1]]></filetitle>
+		<filetype><![CDATA[doc]]></filetype>
+		<downloadablefile><![CDATA[http://local.pearson-master.com/wp-content/uploads/2018/06/sample.doc]]></downloadablefile>
+		<externallink><![CDATA[]]></externallink>
+		<audiopreview><![CDATA[]]></audiopreview>
+		<previewonly><![CDATA[]]></previewonly>
+		<maindownload><![CDATA[1]]></maindownload>
+		<note><![CDATA[]]></note>
+	</node>
+	<node>
+		<title><![CDATA[Z Test Object 2]]></title>
+		<content><![CDATA[]]></content>
+		<displaytitle><![CDATA[項目2]]></displaytitle>
+		<category><![CDATA[level-1 > level-1a]]></category>
+		<resourcetype><![CDATA[multiple-file]]></resourcetype>
+		<featureimage><![CDATA[]]></featureimage>
+		<resourcepopupimage><![CDATA[]]></resourcepopupimage>
+		<resourcepopupurl><![CDATA[]]></resourcepopupurl>
+		<filetitle><![CDATA[dl1| Test file, Chaper 1|dl3|dl4|dl5]]></filetitle>
+		<filetype><![CDATA[wav|pdf|ppt|doc|zip]]></filetype>
+		<downloadablefile><![CDATA[http://local.pearson-master.com/wp-content/uploads/2018/06/sample.wav|http://local.pearson-master.com/wp-content/uploads/2018/06/sample.pdf|http://local.pearson-master.com/wp-content/uploads/2018/06/sample.ppt|http://local.pearson-master.com/wp-content/uploads/2018/06/sample.doc|http://local.pearson-master.com/wp-content/uploads/2018/06/sample.zip]]></downloadablefile>
+		<externallink><![CDATA[]]></externallink>
+		<audiopreview><![CDATA[1|0|0|0|0]]></audiopreview>
+		<previewonly><![CDATA[1|0|0|0|0]]></previewonly>
+		<maindownload><![CDATA[]]></maindownload>
+		<note><![CDATA[]]></note>
+	</node>
+	<node>
+		<title><![CDATA[Z Test Object 3]]></title>
+		<content><![CDATA[]]></content>
+		<displaytitle><![CDATA[項目3]]></displaytitle>
+		<category><![CDATA[level-1 > level-1a > level-1a-1]]></category>
+		<resourcetype><![CDATA[image-file]]></resourcetype>
+		<featureimage><![CDATA[]]></featureimage>
+		<resourcepopupimage><![CDATA[http://local.pearson-master.com/wp-content/uploads/2018/11/sample.jpg]]></resourcepopupimage>
+		<resourcepopupurl><![CDATA[]]></resourcepopupurl>
+		<filetitle><![CDATA[]]></filetitle>
+		<filetype><![CDATA[]]></filetype>
+		<downloadablefile><![CDATA[]]></downloadablefile>
+		<externallink><![CDATA[]]></externallink>
+		<audiopreview><![CDATA[]]></audiopreview>
+		<previewonly><![CDATA[]]></previewonly>
+		<maindownload><![CDATA[]]></maindownload>
+		<note><![CDATA[]]></note>
+	</node>
+	<node>
+		<title><![CDATA[Z Test Object 4]]></title>
+		<content><![CDATA[]]></content>
+		<displaytitle><![CDATA[項目4]]></displaytitle>
+		<category><![CDATA[]]></category>
+		<resourcetype><![CDATA[video-file]]></resourcetype>
+		<featureimage><![CDATA[]]></featureimage>
+		<resourcepopupimage><![CDATA[]]></resourcepopupimage>
+		<resourcepopupurl><![CDATA[https://vimeo.com/191947042]]></resourcepopupurl>
+		<filetitle><![CDATA[]]></filetitle>
+		<filetype><![CDATA[]]></filetype>
+		<downloadablefile><![CDATA[]]></downloadablefile>
+		<externallink><![CDATA[]]></externallink>
+		<audiopreview><![CDATA[]]></audiopreview>
+		<previewonly><![CDATA[]]></previewonly>
+		<maindownload><![CDATA[]]></maindownload>
+		<note><![CDATA[]]></note>
+	</node>
+	<node>
+		<title><![CDATA[Z Test Object 5]]></title>
+		<content><![CDATA[]]></content>
+		<displaytitle><![CDATA[項目5]]></displaytitle>
+		<category><![CDATA[]]></category>
+		<resourcetype><![CDATA[audio-file]]></resourcetype>
+		<featureimage><![CDATA[]]></featureimage>
+		<resourcepopupimage><![CDATA[]]></resourcepopupimage>
+		<resourcepopupurl><![CDATA[]]></resourcepopupurl>
+		<filetitle><![CDATA[sample]]></filetitle>
+		<filetype><![CDATA[wav]]></filetype>
+		<downloadablefile><![CDATA[http://local.pearson-master.com/wp-content/uploads/2018/06/sample.wav]]></downloadablefile>
+		<externallink><![CDATA[]]></externallink>
+		<audiopreview><![CDATA[1]]></audiopreview>
+		<previewonly><![CDATA[0]]></previewonly>
+		<maindownload><![CDATA[]]></maindownload>
+		<note><![CDATA[]]></note>
+	</node>
+	<node>
+		<title><![CDATA[Z Test Object 6]]></title>
+		<content><![CDATA[<p style="text-align: center;">Click on the name of a video to view it online!
+(Level of difficulty: * = Elementary / ** = Intermediate / *** = Advanced)</p>
+
+
+<hr />
+
+<h4><strong>The simple present</strong></h4>
+<strong>Video list:</strong>
+<ol>
+         <li><a href="https://player.vimeo.com/video/282670248" data-fancybox="">The present simple</a> *</li>
+         <li><a href="https://player.vimeo.com/video/282781304" data-fancybox=""><em>don't</em> and <em>doesn't</em></a> *</li>
+         <li><a href="https://player.vimeo.com/video/282782097" data-fancybox="">Present simple</a> **</li>
+</ol>
+
+<hr />
+
+<h4><strong>The simple present, adverbs and adverbial phrases of frequency</strong></h4>
+<strong>Video list:</strong>
+<ol>
+         <li><a href="https://player.vimeo.com/video/282783022" data-fancybox="">Types of adverb</a> *</li>
+</ol>
+
+<hr />
+
+<h4><strong>The simple past</strong></h4>
+<strong>Video list:</strong>
+<ol>
+         <li><a href="https://player.vimeo.com/video/282783257" data-fancybox="">Using the past simple</a> *</li>
+         <li><a href="https://player.vimeo.com/video/282783770" data-fancybox="">Past simple</a> **</li>
+</ol>]]></content>
+		<displaytitle><![CDATA[項目6]]></displaytitle>
+		<category><![CDATA[]]></category>
+		<resourcetype><![CDATA[article]]></resourcetype>
+		<featureimage><![CDATA[]]></featureimage>
+		<resourcepopupimage><![CDATA[]]></resourcepopupimage>
+		<resourcepopupurl><![CDATA[]]></resourcepopupurl>
+		<filetitle><![CDATA[]]></filetitle>
+		<filetype><![CDATA[]]></filetype>
+		<downloadablefile><![CDATA[]]></downloadablefile>
+		<externallink><![CDATA[]]></externallink>
+		<audiopreview><![CDATA[]]></audiopreview>
+		<previewonly><![CDATA[]]></previewonly>
+		<maindownload><![CDATA[]]></maindownload>
+		<note><![CDATA[]]></note>
+	</node>
+</data>

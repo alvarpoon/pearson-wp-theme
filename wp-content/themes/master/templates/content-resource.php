@@ -43,7 +43,7 @@
 			<div class="col-md-9 filter-select">
 				<div class="clearfix" id="filter_select_container">
 					<?php
-						$all_cat = get_all_resource_category($pageID,0,'resource_grid');
+						$all_cat = get_all_resource_category($pageID,0,'resource_grid', $GLOBALS['SSID']);
 						
 						//print_r($all_cat);
 					
@@ -165,13 +165,13 @@
 		<div class="resource-container clearfix">		
 			<div class="loading-box"></div>
 		<?php
-				if(count($resource_list) > 1){
-					$resources = get_multiple_resource_item($pageID);
-				}else{
+				//if(count($resource_list) > 1){
+					$resources = get_multiple_resource_item($pageID, $GLOBALS['SSID']);
+				//}else{
 					//if(checkResourceListAccessRight($resource_list[0]->ID)){
-						$resources = get_field('resources', $resource_list[0]->ID); 
+						//$resources = get_field('resources', $resource_list[0]->ID); 
 					//}
-				}
+				//}
 				
 				//$url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 				//$parts = parse_url($url);
@@ -188,13 +188,11 @@
 				$pages              = ceil( $total / $resources_per_page );
 				$min                = ( ( $page * $resources_per_page ) - $resources_per_page ) + 1;
 				$max                = ( $min + $resources_per_page ) - 1;
-				
 		?>
 				
 				<script>
-					var resource_listID = '<?=$resource_list[0]->ID?>';
+					var resource_listID = '<?php echo implode(",",standardizeArray($resource_list, 'ID')) ?>';
 					var currentPageNum = '<?=$page?>';
-					//console.log('resource_listID: '+resource_listID);
 				</script>
 				
 		<?php
@@ -233,7 +231,7 @@
 					<div class="col-xs-6 col-sm-3 col-md-3 resource-item">
 						<div class="resource-thumbnail">
 							<?php
-								echo showGridThumbnail($resource_id, $resource_thumbnail, $resource_type, $resource_popup_image['url'], $resource_popup_url, $resource_slug);
+								echo showGridThumbnail($resource_id, $resource_thumbnail, $resource_type, $resource_popup_image['url'], $resource_popup_url, $resource_slug, $resource->parentlist);
 								echo get_audio_preview(get_field('downloads', $resource_id));
 							?>
 						</div>
@@ -269,7 +267,7 @@
 													if(!$preview_only){
 														//echo '<li><a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" target="_blank">'.$file_title.'</a></li>';
 														
-														echo '<li><a href="'.getFileDownloadLink($downloadable_file['ID'], $post->ID).'" target="_blank">'.$file_title.'</a></li>';	
+														echo '<li><a href="'.getFileDownloadLink($downloadable_file['ID'], $post->ID, $resource->parentlist).'" target="_blank">'.$file_title.'</a></li>';	
 														
 														//array_push($downloadable_file_arr, $downloadable_file['url']);
 														array_push($downloadable_file_arr, $downloadable_file['ID']);
@@ -320,7 +318,7 @@
 														if(!$preview_only){
 															//echo '<option value="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$post->ID.'">'.$file_title.'</option>';
 															
-															echo '<option value="'.getFileDownloadLink($downloadable_file['ID'], $post->ID).'">'.$file_title.'</option>';
+															echo '<option value="'.getFileDownloadLink($downloadable_file['ID'], $post->ID, $resource->parentlist).'">'.$file_title.'</option>';
 															
 															array_push($downloadable_file_arr, $downloadable_file['ID']);
 														}
@@ -354,7 +352,7 @@
 											$preview_only = get_sub_field('preview_only');
 											if(!$preview_only){
 												//echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="btn_single_download" target="_blank">'.__('Download', 'Pearson-master').'</a>';
-												echo '<a href="'.getFileDownloadLink($downloadable_file['ID'], $post->ID).'" class="btn_single_download" target="_blank">'.__('Download', 'Pearson-master').'</a>';
+												echo '<a href="'.getFileDownloadLink($downloadable_file['ID'], $post->ID, $resource->parentlist).'" class="btn_single_download" target="_blank">'.__('Download', 'Pearson-master').'</a>';
 											}
 											
 											
@@ -388,7 +386,7 @@
 											$file_extension = strtolower(substr(strrchr($downloadable_file['url'],"."),1));
 											$preview_only = get_sub_field('preview_only');
 											if(!$preview_only){
-												echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title, $post->ID);
+												echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title, $post->ID,$resource->parentlist);
 												array_push($downloadable_file_arr, $downloadable_file['ID']);
 											}
 											
@@ -443,7 +441,12 @@
 			?>
 			</div>
 	</div>
+	
+	
+	
 	<div class="resource-footer">
+	
+		<?php if(count($resources) > 0): ?>
 		
 		<div class="pagination clearfix">
 			<!--<button class="btn_gopage_prev"></button>-->
@@ -462,6 +465,7 @@
 		</div>
 		
 		
+		
 		<div class="download_all">
 			<?php
 				if(count($resource_list) == 1){
@@ -469,18 +473,20 @@
 					if(!empty($download_all)):
 						//echo '<a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$download_all['ID'].'&pageid='.$post->ID.'" class="btn_single_download" target="_blank">'.__('Download All', 'Pearson-master').'</a>';
 						
-						echo '<a href="'.getFileDownloadLink($download_all['ID'], $post->ID).'" class="btn_single_download" target="_blank">'.__('Download All', 'Pearson-master').'</a>';
+						echo '<a href="'.getFileDownloadLink($download_all['ID'], $post->ID, $resource->parentlist).'" class="btn_single_download" target="_blank">'.__('Download All', 'Pearson-master').'</a>';
 					endif;
 				}
 			?>
 		</div>
 		
+		<?php endif; ?>
+				
 		<?php if( current_user_can('manage_options') ): ?>
 		
 		<div class="clearfix ">
 			<div class="page_edit_links_container">
 			<?php
-				if(count($resources) > 0){
+				//if(count($resources) > 0){
 		
 					$page_link = get_edit_post_link( $pageID );
 					echo '<a href="'.$page_link.'" class="edit_element">Edit page</a>';
@@ -491,11 +497,12 @@
 					}
 					
 					echo '<a href="javascript:;" class="edit_toggle" data-showtext="Show Edit button" data-hidetext="Hide Edit button">Hide Edit button</a>';
-				}
+				//}
 			?>
 			</div>
 		</div>
 		
 		<?php endif; ?>
 	</div>
+	
 </div>

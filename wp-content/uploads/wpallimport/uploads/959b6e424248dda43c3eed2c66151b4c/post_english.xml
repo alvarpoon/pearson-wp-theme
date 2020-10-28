@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<node>
+		<title><![CDATA[Test english 1]]></title>
+		<content><![CDATA[this is a test]]></content>
+		<connector><![CDATA[1]]></connector>
+	</node>
+	<node>
+		<title><![CDATA[Test english 2]]></title>
+		<content><![CDATA[this is a test]]></content>
+		<connector><![CDATA[2]]></connector>
+	</node>
+	<node>
+		<title><![CDATA[Test english 3]]></title>
+		<content><![CDATA[this is a test]]></content>
+		<connector><![CDATA[3]]></connector>
+	</node>
+</data>

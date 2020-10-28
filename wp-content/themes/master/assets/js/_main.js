@@ -122,16 +122,18 @@ var Roots = {
 		
 			var file = getUrlParameter('file');
 			var pageid = getUrlParameter('pageid');
+			var parentlistid = getUrlParameter('parentlistid');
 			
 			var data = {
 				file: file,
 				pageid: pageid,
 				sessionid: ssid,
+				parentlistid: parentlistid,
 				action: 'ajaxDownload'
 			};
 			
 			$.post(ajaxurl, data, function(response) {
-				console.log('createzip done');	
+				//console.log('createzip done');	
 				
 			}).done(function(response){
 				console.log('response: '+response);
@@ -150,15 +152,20 @@ var Roots = {
 					//$('.download_overlay').hide();
 					//setTimeout(function () { window.close();}, 500);
 					setTimeout(function () { win.close();}, 500);
-				}else{
-					
+				}else{					
 					a.href = window.location.protocol + "//" + response;
 					a.download = filename;
 					a.click();
 					window.URL.revokeObjectURL(window.location.protocol + "//" + response);
 					
+					var version = detectIE();
+					
+					if (version === false) {
+					  setTimeout(function () { win.close();}, 500);
+					}
+					
 					//setTimeout(function () { window.close();}, 500);
-					setTimeout(function () { win.close();}, 500);
+					
 				}
 				
 			}).fail(function(response){
@@ -173,11 +180,17 @@ var Roots = {
 	  
 	  
 	  $(document).ready(function(){
-		initMultipleDownload();			
+		console.log(1);
+		initMultipleDownload();
+		console.log(2);
 		initNavbarToggle();
+		console.log(3);
 		initDropdownMenu();
+		console.log(4);
 		fileDownload();
+		console.log(5);
 		setMenuLastItem();
+		console.log(6);
 		initEditButton();
 	  });
 	  
@@ -285,6 +298,7 @@ var Roots = {
 						dependence: filter_dependence,
 						filters: filter_1+','+filter_2+','+filter_3,
 						resource_list_id_data: resource_list_id,
+						sessionid: ssid,
 						pageID: pageID,
 						template: 'resource_grid'
 					},
@@ -303,6 +317,7 @@ var Roots = {
 					action: 'get_resource_grid', 
 					page: pageNum,
 					page_id: pageID,
+					sessionid: ssid,
 					//resource_listID: resource_listID, 
 					filters: filter_1+','+filter_2+','+filter_3
 				  },
@@ -320,6 +335,8 @@ var Roots = {
 				  data: {
 					action: 'get_resource_pagination', 
 					page: pageNum,
+					page_id: pageID,
+					sessionid: ssid,
 					resource_listID: resource_listID, 
 					filters: filter_1+','+filter_2+','+filter_3
 				  },
@@ -472,6 +489,7 @@ var Roots = {
 						dependence: filter_dependence,
 						filters: filter_1+','+filter_2+','+filter_3,
 						resource_list_id_data: resource_list_id,
+						sessionid: ssid,
 						pageID: pageID,
 						template: 'resource_list'
 					},
@@ -490,6 +508,7 @@ var Roots = {
 					action: 'get_resource_list',
 					page_id: pageID,
 					page: pageNum,
+					sessionid: ssid,
 					//resource_listID: resource_listID, 
 					filters: filter_1+','+filter_2+','+filter_3
 				  },
@@ -507,7 +526,9 @@ var Roots = {
 				  data: {
 					action: 'get_resource_pagination', 
 					page: pageNum,
+					page_id: pageID,
 					resource_listID: resource_listID, 
+					sessionid: ssid,
 					filters: filter_1+','+filter_2+','+filter_3
 				  },
 				  success: function( result ) {
@@ -658,6 +679,7 @@ var Roots = {
 						action: 'get_resource_dependence_filter',
 						parent_filter: filter_1,
 						dependence: filter_dependence,
+						sessionid: ssid,
 						filters: filter_1+','+filter_2+','+filter_3,
 						//resource_list_id_data: pageid,
 						pageID: pageID,
@@ -846,6 +868,7 @@ var Roots = {
 						parent_filter: filter_1,
 						dependence: filter_dependence,
 						filters: filter_1+','+filter_2+','+filter_3,
+						sessionid: ssid,
 						//resource_list_id_data: pageid,
 						pageID: pageID,
 						template: 'all_resource_list'
@@ -1031,6 +1054,7 @@ var Roots = {
 						parent_filter: filter_1,
 						//dependence: filter_dependence,
 						filters: filter_1+','+filter_2+','+filter_3,
+						sessionid: ssid,
 						//resource_list_id_data: pageID,
 						pageID: pageID,
 						template: 'group_resource_grid'
@@ -1049,6 +1073,7 @@ var Roots = {
 				  data: {
 					action: 'get_group_resources_grid', 
 					pageID: pageID,
+					sessionid: ssid,
 					filters: filter_1+','+filter_2+','+filter_3
 				  },
 				  success: function( result ) {
@@ -1148,6 +1173,7 @@ var Roots = {
 						parent_filter: filter_1,
 						//dependence: filter_dependence,
 						filters: filter_1+','+filter_2+','+filter_3,
+						sessionid: ssid,
 						//resource_list_id_data: pageID,
 						pageID: pageID,
 						template: 'group_resource_list'
@@ -1166,6 +1192,7 @@ var Roots = {
 				  data: {
 					action: 'get_group_resources_list', 
 					pageID: pageID,
+					sessionid: ssid,
 					filters: filter_1+','+filter_2+','+filter_3
 				  },
 				  success: function( result ) {
@@ -1454,7 +1481,8 @@ function initMultipleDownload(){
 			$.post(ajaxurl, data, function(response) {
 				//console.log('createzip done');
 			}).done(function(response){
-				window.location.href = window.location.protocol + "//" + response;
+				//window.location.href = window.location.protocol + "//" + response;
+				window.open(window.location.protocol + "//" + response,'_blank');
 			}).fail(function(response){
 				console.log('fail: '+response);
 			});
@@ -1464,7 +1492,8 @@ function initMultipleDownload(){
 			$(this).find("option[value='default']").prop('selected', true);
 			//console.log(url);
 			if (url) { // require a URL
-				window.location = url; // redirect
+				//window.location = url; // redirect
+				window.open(url,'_blank');
 			}
 		}
 		return false;						
@@ -1537,6 +1566,50 @@ var getUrlParameter = function getUrlParameter(sParam) {
         }
     }
 };
+
+/**
+ * detect IE
+ * returns version of IE or false, if browser is not Internet Explorer
+ */
+function detectIE() {
+  var ua = window.navigator.userAgent;
+
+  // Test values; Uncomment to check result …
+
+  // IE 10
+  // ua = 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)';
+  
+  // IE 11
+  // ua = 'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko';
+  
+  // Edge 12 (Spartan)
+  // ua = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36 Edge/12.0';
+  
+  // Edge 13
+  // ua = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Safari/537.36 Edge/13.10586';
+
+  var msie = ua.indexOf('MSIE ');
+  if (msie > 0) {
+    // IE 10 or older => return version number
+    return parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
+  }
+
+  var trident = ua.indexOf('Trident/');
+  if (trident > 0) {
+    // IE 11 => return version number
+    var rv = ua.indexOf('rv:');
+    return parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10);
+  }
+
+  var edge = ua.indexOf('Edge/');
+  if (edge > 0) {
+    // Edge (IE 12+) => return version number
+    return parseInt(ua.substring(edge + 5, ua.indexOf('.', edge)), 10);
+  }
+
+  // other browser
+  return false;
+}
 
 $(document).ready(UTIL.loadEvents);
 

@@ -46,7 +46,5 @@
   	initAccessRightChecking($loginId); 
   ?>
   
-  <script type="text/javascript">
-  	var ssid = '<?=$GLOBALS['SSID']?>';
-  </script>
+  <!-- SSID javascript removed 20190408 -->
 </head>

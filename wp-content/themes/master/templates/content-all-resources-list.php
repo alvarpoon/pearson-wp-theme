@@ -38,7 +38,7 @@
 			<div class="col-md-9 filter-select">
 				<div class="clearfix" id="filter_select_container">
 					<?php
-						$all_cat = get_all_resource_category($pageID,0,'all_resource_list');
+						$all_cat = get_all_resource_category($pageID,0,'all_resource_list', $GLOBALS['SSID']);
 					
 						$reference_id = $pageID;
 						
@@ -218,7 +218,7 @@
 										<div class="resource-title">
 											<?php echo showListTitle($resource_id, $resource_type, $resource_popup_image['url'], $resource_popup_url, $resource_slug);?>
 										</div>
-										<div class="resource-type"><?php echo get_the_title($resource_parent);?></div>
+										<!--<div class="resource-type"><?php echo get_the_title($resource_parent);?></div>-->
 									</div>
 								</td>
 								<td class="audio">
@@ -255,7 +255,7 @@
 							
 							//echo '<a href="'.$downloadable_file['url'].'" class="media-file '.$file_type.'" target="_blank">'.$file_title.'</a>';
 							if(!$preview_only){								
-								echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title, $resource_parent);
+								echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title, $resource_parent, $resource->parentlist);
 								array_push($downloadable_file_arr, $downloadable_file['ID']);
 							}
 							
@@ -296,7 +296,7 @@
 										echo '<option value="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'">'.$file_title.'</option>';
 										//echo '<option value="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$resource_parent.'">'.$file_title.'</option>';
 										
-										echo '<option value="'.getFileDownloadLink($downloadable_file['ID'], $resource_parent).'">'.$file_title.'</option>';
+										echo '<option value="'.getFileDownloadLink($downloadable_file['ID'], $resource_parent, $resource->parentlist).'">'.$file_title.'</option>';
 										array_push($downloadable_file_arr, $downloadable_file['ID']);
 									}
 									
@@ -337,7 +337,7 @@
 								$preview_only = get_sub_field('preview_only');
 								if(!$preview_only){
 									echo '<div class="file-download-wrapper hidden-xs hidden-sm item-'.$download_count.'">';
-									echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title, $resource_parent);
+									echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title, $resource_parent, $resource->parentlist);
 									echo '</div>';
 									
 									echo '<div class="file-download-wrapper hidden-md hidden-lg">';
@@ -345,7 +345,7 @@
 									//echo '<a href="'.get_template_directory_uri().'/templates/download.php?file='.$downloadable_file['ID'].'&pageid='.$post->ID.'" class="media-file all" target="_blank">'.__('Download', 'Pearson-master').'</a>';
 									
 									
-									echo '<a href="'.getFileDownloadLink($downloadable_file['ID'], $resource_parent).'" class="media-file all" target="_blank">'.__('Download', 'Pearson-master').'</a>';
+									echo '<a href="'.getFileDownloadLink($downloadable_file['ID'], $resource_parent, $resource->parentlist).'" class="media-file all" target="_blank">'.__('Download', 'Pearson-master').'</a>';
 									//echo '<a href="'.(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER['SERVER_NAME'].'?pageaction=filedownload&file='.$downloadable_file['ID'].'&pageid='.$resource_parent.'" class="media-file all" target="_blank">'.__('Download', 'Pearson-master').'</a>';
 									echo '</div>'; 
 									
@@ -393,7 +393,7 @@
 										$file_extension = strtolower(substr(strrchr($downloadable_file['url'],"."),1));
 										$preview_only = get_sub_field('preview_only');
 										if(!$preview_only){
-											echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title, $resource_parent);
+											echo get_file_thumbnail_listing($file_type, $file_extension, $downloadable_file, $file_title, $resource_parent, $resource->parentlist);
 											array_push($downloadable_file_arr, $downloadable_file['ID']);
 										}
 										

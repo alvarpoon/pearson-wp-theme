@@ -8541,6 +8541,7 @@ footer.content-info .footer-wrapper .footer-copyright {
 .page-template-template-resource .resource-container .resource-item .resource-type,
 .page-template-template-all-resources .resource-container .resource-item .resource-type,
 .page-template-template-group-resource .resource-container .resource-item .resource-type {
+  display: none;
   font-size: 12px;
   line-height: 1.33;
   color: #666666;
@@ -9285,6 +9286,7 @@ footer.content-info .footer-wrapper .footer-copyright {
 }
 .page-template-template-resource-checking-list .checking-list-wrapper .resource-checking-list table tr td {
   border-bottom: 1px solid #DDD;
+  word-break: break-all;
 }
 .page-template-template-resource-checking-list .checking-list-wrapper .resource-checking-list table tr td a {
   display: inline-block;

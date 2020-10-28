@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<node>
+		<title><![CDATA[Test Chinese 1]]></title>
+		<content><![CDATA[這是一個測試]]></content>
+		<connector><![CDATA[1]]></connector>
+	</node>
+	<node>
+		<title><![CDATA[Test Chinese 2]]></title>
+		<content><![CDATA[這是一個測試]]></content>
+		<connector><![CDATA[2]]></connector>
+	</node>
+	<node>
+		<title><![CDATA[Test Chinese 3]]></title>
+		<content><![CDATA[這是一個測試]]></content>
+		<connector><![CDATA[3]]></connector>
+	</node>
+</data>

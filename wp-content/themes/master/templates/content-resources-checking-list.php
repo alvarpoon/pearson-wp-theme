@@ -64,17 +64,17 @@
 	</div>
 </div>
 <div class="checking-list-wrapper">
-	<div class="resource-checking-list">
+	<div class="resource-checking-list table-responsive">
 		<table>
-			<col width="120">
-			<col width="120">
-			<col width="140">
-			<col width="120">
-			<col width="120">
-			<col width="200">
-			<col width="200">
-			<col width="400">
-			<col width="50">
+			<col width="8%">
+			<col width="8%">
+			<col width="9.5%">
+			<col width="9%">
+			<col width="9%">
+			<col width="13.6%">
+			<col width="13.6%">
+			<col width="25%">
+			<col width="4.3%">
 			<tr class="border-bottom">
 				<th>Title</th>
 				<th>Display Title</th>
@@ -132,7 +132,8 @@
 						
 						//Feature Image
 						echo '<td>';
-						echo get_the_post_thumbnail($post_id, 'thumbnail');
+						//echo get_the_post_thumbnail($post_id, 'thumbnail');
+						echo '<img width="60" height="60" src="'.get_the_post_thumbnail_url($post_id, 'thumbnail').'" class="attachment-thumbnail size-thumbnail wp-post-image" alt="">';
 						echo '</td>';
 						
 						//resource_popup_image
@@ -148,9 +149,9 @@
 						echo '<td>';
 						if( have_rows('downloads', $post_id) ){
 							echo '<table>';
-							echo '<col width="10%">';
+							echo '<col width="18%">';
 							echo '<col width="30%">';
-							echo '<col width="60%">';
+							echo '<col width="52%">';
 							$count = 0;
 							while( have_rows('downloads', $post_id) ): the_row();
 								$count++;
@@ -269,7 +270,8 @@
 						
 						//Feature Image
 						echo '<td>';
-						the_post_thumbnail('thumbnail');
+						//the_post_thumbnail('thumbnail');
+						echo '<img width="60" height="60" src="'.get_the_post_thumbnail_url($post_id, 'thumbnail').'" class="attachment-thumbnail size-thumbnail wp-post-image" alt="">';
 						echo '</td>';
 						
 						//resource_popup_image
@@ -285,9 +287,9 @@
 						echo '<td>';
 						if( have_rows('downloads', $post_id) ){
 							echo '<table>';
-							echo '<col width="10%">';
+							echo '<col width="18%">';
 							echo '<col width="30%">';
-							echo '<col width="60%">';
+							echo '<col width="52%">';
 							$count = 0;
 							while( have_rows('downloads', $post_id) ): the_row();
 								$count++;
